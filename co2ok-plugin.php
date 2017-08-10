@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 0.1.1
+ * Version: 0.1.2
  *         (Remember to change the VERSION constant, below, as well!)
  * Author: Milo de Vries
  * Author URI: http://www.co2ok.eco/
@@ -26,5 +26,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Check if WooCommerce is active
  **/
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+  // Hook in
+  add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+  // Our hooked in function - $fields is passed via the filter!
+  function custom_override_checkout_fields( $fields ) {
+      $fields['order']['order_comments']['placeholder'] = 'Wahooo!';
+      return $fields;
+  }
 }
 ?>
