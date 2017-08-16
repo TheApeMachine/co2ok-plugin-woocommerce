@@ -33,6 +33,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 
     'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
+    add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
+    function woocommerce_custom_surcharge() {
+        global $woocommerce;
+
+        $percentage = 0.02;
+        $surcharge = ( $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total + $woocommerce->cart->tax_total ) * $percentage;
+        $woocommerce->cart->add_fee( 'CO2 compensatie', $surcharge, false, '' );
+
+    }
+
     add_action( 'woocommerce_after_order_notes', 'co2ok_compensation');
 
     function co2ok_compensation() { echo '<tr id="carbon-item">
