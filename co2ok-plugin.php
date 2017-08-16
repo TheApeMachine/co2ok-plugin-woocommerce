@@ -37,9 +37,9 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters(
     function woocommerce_custom_surcharge() {
         global $woocommerce;
 
-        $percentage = 0.02;
-        $surcharge = ( $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total + $woocommerce->cart->tax_total ) * $percentage;
-        $woocommerce->cart->add_fee( 'CO2 compensatie', $surcharge, false, '' );
+        $percentage = 0.0165;
+        $surcharge = ( $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total ) * $percentage;
+        $woocommerce->cart->add_fee( 'CO2 compensatie', $surcharge, true, '' );
 
     }
 
