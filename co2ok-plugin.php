@@ -35,12 +35,11 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters(
 
     add_action( 'woocommerce_after_order_notes', 'co2ok_compensation');
 
-    $checked = '';
     function co2ok_compensation() { echo '<tr id="carbon-item">
-        <input type="checkbox" name="co2-ok" id="co2-ok" '.$checked.' />'.__(' Maak mijn aankoop CO₂ok voor €0,23','woocommerce').'<a class="question-mark tip" href="http://co2ok.eco" target="_blank">
-        <span>wut?</span>
-        </a>
-    </tr>';
+        <input type="checkbox" name="co2-ok" id="co2-ok" />'.__(' Maak mijn
+        aankoop CO₂ok voor €0,23','woocommerce').'<a class="question-mark tip"
+        href="http://co2ok.eco" target="_blank">
+        <span>wut?</span></a></tr>';
     }
 }
 ?>
