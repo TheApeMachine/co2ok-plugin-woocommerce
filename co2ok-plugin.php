@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 0.1.5
+ * Version: 0.1.6
  *         (Remember to change the VERSION constant, below, as well!)
  * Author: Milo de Vries
  * Author URI: http://www.co2ok.eco/
@@ -18,7 +18,7 @@
 /**
  * This plugin's version
  */
-const VERSION = '0.1.5';
+const VERSION = '0.1.6';
 
 /**
  * Prevent data leaks
