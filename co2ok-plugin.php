@@ -15,26 +15,47 @@
  *
  */
 
-/**
- * This plugin's version
- */
-const VERSION = '0.1.6';
+class Co2ok_Plugin
+{
+    /**
+     * This plugin's version
+     */
+    const VERSION = '0.1.6';
 
-/**
- * Prevent data leaks
-*/
-if ( ! defined( 'ABSPATH' ) ) { 
-    exit; // Exit if accessed directly
-}
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        /**
+         * Prevent data leaks
+         */
+        if ( ! defined( 'ABSPATH' ) ) {
+            exit; // Exit if accessed directly
+        }
 
-/**
- * Check if WooCommerce is active
- **/
-if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 
-    'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+        /**
+         * Check if WooCommerce is active
+         **/
+        if ( in_array( 'woocommerce/woocommerce.php', apply_filters(
+            'active_plugins', get_option( 'active_plugins' ) ) ) )
+        {
+            add_action( 'woocommerce_after_order_notes', array($this,'co2ok_compensation'));
+            add_action( 'woocommerce_cart_calculate_fees',array($this,'woocommerce_custom_surcharge'));
+        }
+    }
 
-    add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
-    function woocommerce_custom_surcharge() {
+    public function co2ok_compensation()
+    {
+        echo '<tr id="carbon-item">
+        <input type="checkbox" name="co2-ok" id="co2-ok" />'.__(' Maak mijn
+        aankoop CO₂ok voor €0,23','woocommerce').'<a class="question-mark tip"
+        href="http://co2ok.eco" target="_blank">
+        <span>wut?</span></a></tr>';
+    }
+
+    public function woocommerce_custom_surcharge()
+    {
         global $woocommerce;
 
         $percentage = 0.0165;
@@ -43,14 +64,6 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters(
         $woocommerce->cart->add_fee( 'CO2 compensatie', $surcharge, true, '' );
 
     }
-
-    add_action( 'woocommerce_after_order_notes', 'co2ok_compensation');
-
-    function co2ok_compensation() { echo '<tr id="carbon-item">
-        <input type="checkbox" name="co2-ok" id="co2-ok" />'.__(' Maak mijn
-        aankoop CO₂ok voor €0,23','woocommerce').'<a class="question-mark tip"
-        href="http://co2ok.eco" target="_blank">
-        <span>wut?</span></a></tr>';
-    }
 }
+$co2okPlugin = new Co2ok_Plugin();
 ?>
