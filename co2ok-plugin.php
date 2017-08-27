@@ -66,8 +66,7 @@ class Co2ok_Plugin
     {
         global $woocommerce;
 
-        $percentage = 0.0165;
-        $surcharge = ( $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total ) * $percentage;
+        $surcharge = ( $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total ) * $this->percentage;
 
         return $surcharge;
     }
