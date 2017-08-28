@@ -38,6 +38,7 @@ var Co2ok_JS = function ()
                 function onPlayerReady (event)
                 {
                     player.mute();
+                    player.seekTo(38, true);
                     player.playVideo();
                 };
 
