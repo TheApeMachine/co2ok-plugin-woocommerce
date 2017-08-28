@@ -80,7 +80,7 @@ class Co2ok_Plugin
         } else {
             $post_data = $_POST;
         }
-        echo '<div id="my_custom_checkout_field"><h2>'.__('CO2 Compensatie').'</h2>';
+        echo '<div id="my_custom_checkout_field"><h2>'.__('CO2 Compensation').'</h2>';
 
         woocommerce_form_field('co2-ok', array(
             'type' => 'checkbox',
@@ -88,7 +88,7 @@ class Co2ok_Plugin
             'class' => array(
                 'co2-ok-cart'
             ) ,
-            'label' => __('Ik wil de CO2 voor mijn product(en) compenseren voor €'.number_format($this->calculateSurcharge(), 2, ',', ' ')),
+            'label' => __('Make my order CO2ok for €'.number_format($this->calculateSurcharge(), 2, ',', ' ')),
             'required' => false,
         ) ,$woocommerce->session->co2_ok);
 
@@ -108,14 +108,14 @@ class Co2ok_Plugin
     {
         global $woocommerce;
 
-        echo '<div id="co2-ok"><h2>' . __('CO2 Compensatie') . '</h2>';
+        echo '<div id="co2-ok"><h2>' . __('CO2 Compensation') . '</h2>';
         woocommerce_form_field('co2-ok', array(
             'type' => 'checkbox',
             'id' => 'co2-ok-checkout',
             'class' => array(
                 'co2-ok'
             ),
-            'label' => __('Ik wil de CO2 voor mijn product(en) compenseren voor <span id="co2-amount">€'.number_format($this->calculateSurcharge(), 2, ',', ' ')."</span>"),
+            'label' => __('Make my order CO2ok for <span id="co2-amount">€'.number_format($this->calculateSurcharge(), 2, ',', ' ')."</span>"),
             'required' => false,
         ), $woocommerce->session->co2_ok);
 
@@ -148,7 +148,7 @@ class Co2ok_Plugin
 
         if ($woocommerce->session->co2_ok == 1)
         {
-            $woocommerce->cart->add_fee( 'CO2 compensatie', $this->calculateSurcharge(), true, '' );
+            $woocommerce->cart->add_fee( 'CO2 compensation', $this->calculateSurcharge(), true, '' );
         }
     }
 }
