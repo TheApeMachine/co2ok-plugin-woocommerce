@@ -88,7 +88,7 @@ class Co2ok_Plugin
             'class' => array(
                 'co2-ok-cart'
             ) ,
-            'label' => __('Make my order CO2ok for €'.number_format($this->calculateSurcharge(), 2, ',', ' ')),
+            'label' => __('Make <img src="'.plugins_url('images/logo.svg', __FILE__).'" height="23" width="42"/> for €'.number_format($this->calculateSurcharge(), 2, ',', ' ').'<img src="'.plugins_url('images/info.gif', __FILE__).'" height="16" width="16"/>'),
             'required' => false,
         ) ,$woocommerce->session->co2_ok);
 
