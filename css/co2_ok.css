@@ -1,0 +1,28 @@
+img#co2-ok-logo
+{
+    display: inline-block;
+    width: 62px;
+    vertical-align: middle;
+    margin-right: -3px;
+    margin-top: -4px;
+}
+
+img#co2-ok-info
+{
+    display: inline-block;
+    width: 13px;
+    margin-left: 4px;
+    margin-bottom: 6px;
+    vertical-align: bottom;
+}
+
+input#co2-ok-cart
+{
+    vertical-align: sub;
+    margin-right: 5px;
+}
+
+.co2_label
+{
+    vertical-align: middle;
+}

@@ -18,6 +18,8 @@
  *
  */
 
+include( plugin_dir_path( __FILE__ ) . 'Co2ok_HelperComponent.php');
+
 class Co2ok_Plugin
 {
     /**
@@ -27,15 +29,15 @@ class Co2ok_Plugin
 
     private $percentage = 0.0165;
 
+    private $helperComponent;
+
     //This function is called when the user activates the plugin.
     static function Activated()
     {
-
     }
     //This function is called when the user activates the plugin.
     static function Deactivated()
     {
-
     }
 
     /**
@@ -50,6 +52,8 @@ class Co2ok_Plugin
             exit; // Exit if accessed directly
         }
 
+        $this->helperComponent = new Co2ok_HelperComponent();
+
         /**
          * Check if WooCommerce is active
          **/
@@ -59,7 +63,24 @@ class Co2ok_Plugin
             add_action('woocommerce_after_order_notes' ,array($this,'my_custom_checkout_field') );
             add_action('woocommerce_cart_calculate_fees', array($this,'woocommerce_custom_surcharge'));
             add_action('woocommerce_cart_collaterals' , array($this,'my_custom_cart_field'));
+
+            /**
+             * Register Front End
+             */
+            add_action( 'wp_enqueue_scripts', array($this,'co2_ok_stylesheet') );
+            add_action( 'wp_enqueue_scripts', array($this,'co2_ok_javascript') );
         }
+    }
+
+    public function co2_ok_stylesheet()
+    {
+        wp_register_style( 'co2_ok_stylesheet', plugins_url('css/co2_ok.css', __FILE__) );
+        wp_enqueue_style(  'co2_ok_stylesheet' );
+    }
+    public function co2_ok_javascript()
+    {
+        wp_register_script( 'co2_ok_js', plugins_url('js/co2_ok.js', __FILE__) );
+        wp_enqueue_script(  'co2_ok_js',"" ,array(),null,true );
     }
 
     final private function calculateSurcharge()
@@ -80,52 +101,41 @@ class Co2ok_Plugin
         } else {
             $post_data = $_POST;
         }
-        echo '<div id="my_custom_checkout_field"><h2>'.__('CO2 Compensation').'</h2>';
 
+        echo '<h2>'.__('CO2 Compensation').'</h2>';
         woocommerce_form_field('co2-ok', array(
             'type' => 'checkbox',
             'id' => 'co2-ok-cart',
             'class' => array(
                 'co2-ok-cart'
-            ) ,
-            'label' => __('Make <img src="'.plugins_url('images/logo.svg', __FILE__).'" height="23" width="42"/> for €'.number_format($this->calculateSurcharge(), 2, ',', ' ').'<img src="'.plugins_url('images/info.gif', __FILE__).'" height="16" width="16"/>'),
+            ),
+            'label' =>
+                __('<span class="co2_label"> Make'.$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
+                .' for €'.number_format($this->calculateSurcharge(), 2, ',', ' ')
+                .$this->helperComponent->RenderImage('images/info.gif',null,'co2-ok-info').'</span>'
+            ),
             'required' => false,
         ) ,$woocommerce->session->co2_ok);
-
-        echo '</div>
-            <script>
-                 jQuery(\'#co2-ok-cart\').click(function ()
-                 {
-                    if(jQuery(this).is(":checked"))
-                        jQuery(\'.woocommerce-cart-form\').append(\'<input type="checkbox" class="input-checkbox " name="co2-ok" id="co2-ok" checked value="1" style="display:none">\');
-                    jQuery(\'.woocommerce-cart-form\').find(\'input\').trigger("change");
-                    jQuery("[name=\'update_cart\']").trigger("click");
-                });
-            </script>';
     }
 
     public function my_custom_checkout_field( $checkout )
     {
         global $woocommerce;
 
-        echo '<div id="co2-ok"><h2>' . __('CO2 Compensation') . '</h2>';
+        echo '<h2>' . __('CO2 Compensation') . '</h2>';
         woocommerce_form_field('co2-ok', array(
             'type' => 'checkbox',
             'id' => 'co2-ok-checkout',
             'class' => array(
                 'co2-ok'
             ),
-            'label' => __('Make my order CO2ok for <span id="co2-amount">€'.number_format($this->calculateSurcharge(), 2, ',', ' ')."</span>"),
+            'label' =>
+                __('<span class="co2_label"> Make'.$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
+                    .' for €'.number_format($this->calculateSurcharge(), 2, ',', ' ')
+                    .$this->helperComponent->RenderImage('images/info.gif',null,'co2-ok-info').'</span>'
+                ),
             'required' => false,
         ), $woocommerce->session->co2_ok);
-
-        echo '</div>
-        <script>
-            jQuery(\'#co2-ok-checkout\').click(function ()
-            {
-                jQuery(\'body\').trigger(\'update_checkout\');
-            });
-        </script>';
     }
 
     public function woocommerce_custom_surcharge( $cart )
