@@ -23,7 +23,7 @@ class Co2ok_Plugin
     /**
      * This plugin's version
      */
-    const VERSION = '0.2.0';
+    const VERSION = '0.2.1';
 
     private $percentage = 0.0165;
 
@@ -138,8 +138,11 @@ class Co2ok_Plugin
             $post_data = $_POST;
         }
 
-        if( $post_data['co2-ok'] == 1)
-            $woocommerce->session->co2_ok = 1;
+        if( isset($post_data['co2-ok']) ) {
+            if ($post_data['co2-ok'] == 1) {
+                $woocommerce->session->co2_ok = 1;
+            }
+        }
         else if($_POST)
             $woocommerce->session->co2_ok = 0;
 
