@@ -69,6 +69,8 @@ class Co2ok_Plugin
              */
             add_action( 'wp_enqueue_scripts', array($this,'co2_ok_stylesheet') );
             add_action( 'wp_enqueue_scripts', array($this,'co2_ok_javascript') );
+
+
         }
     }
 
@@ -132,8 +134,9 @@ class Co2ok_Plugin
             'label' =>
                 __('<span class="co2_label"> Make'.$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
                     .' for €'.number_format($this->calculateSurcharge(), 2, ',', ' ')
-                    .$this->helperComponent->RenderImage('images/info.gif',null,'co2-ok-info').'</span>'
-                ),
+                    .$this->helperComponent->RenderImage('images/info.gif','co2-ok-info','co2-ok-info')
+                    .'</span><div class="youtubebox" id="youtubebox" style="width:1px;height:1px;overflow:hidden"></div>'
+        ),
             'required' => false,
         ), $woocommerce->session->co2_ok);
     }
