@@ -135,7 +135,7 @@ class Co2ok_Plugin
                 __('<span class="co2_label"> Make'.$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
                     .' for €'.number_format($this->calculateSurcharge(), 2, ',', ' ')
                     .$this->helperComponent->RenderImage('images/info.gif','co2-ok-info','co2-ok-info')
-                    .'</span><div class="youtubebox" id="youtubebox" style="width:1px;height:1px;overflow:hidden"></div>'
+                    .'</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div> '
         ),
             'required' => false,
         ), $woocommerce->session->co2_ok);

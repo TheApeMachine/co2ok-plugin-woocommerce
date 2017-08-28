@@ -31,7 +31,7 @@ var Co2ok_JS = function ()
         {
             jQuery('.co2-ok-info').hover(function()
             {
-                jQuery(".youtubebox").css({ "display" : "block","width" : "400px","height" : "300px" , "opacity" : 1 });// style="width:1px;height:1px;overflow:hidden">
+                jQuery(".youtubebox_container").css({ "display" : "block","width" : "400px","height" : "300px" , "opacity" : 1 });// style="width:1px;height:1px;overflow:hidden">
                 //jQuery(".youtubebox").append('<iframe id="youtube_mov" width="400" height="300" src="https://www.youtube.com/embed/agwD0N1v46s?t=38s?enablejsapi=1&amp;loop=0" frameborder="0" allowfullscreen> </iframe>');
                 var player;
 
@@ -43,8 +43,8 @@ var Co2ok_JS = function ()
                 };
 
                 player = new YT.Player('youtubebox', {
-                    height: '400',
-                    width: '300',
+                    height: '300',
+                    width: '400',
                     videoId: 'agwD0N1v46s',
                     events: {
                         'onReady': onPlayerReady
@@ -52,9 +52,11 @@ var Co2ok_JS = function ()
                 });
             });
 
-            jQuery('*').click(function(){
-                jQuery(".youtubebox").css({ "display" : "none", "opacity" : 1  });// style="width:1px;height:1px;overflow:hidden">
-                jQuery(".youtubebox").remove('#youtube_mov');
+            jQuery('*').click(function()
+            {
+                jQuery(".youtubebox_container").css({ "opacity" : 0  });// style="width:1px;height:1px;overflow:hidden">
+                jQuery(".youtubebox_container").find('#youtubebox').remove();
+                jQuery(".youtubebox_container").append('<div id="youtubebox"></div>');
             });
 
             var tag = document.createElement('script');
