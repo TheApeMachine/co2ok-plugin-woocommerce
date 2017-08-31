@@ -67,22 +67,22 @@ class Co2ok_Plugin
             /**
              * Register Front End
              */
-            add_action( 'wp_enqueue_scripts', array($this,'co2_ok_stylesheet') );
-            add_action( 'wp_enqueue_scripts', array($this,'co2_ok_javascript') );
+            add_action( 'wp_enqueue_scripts', array($this,'co2ok_stylesheet') );
+            add_action( 'wp_enqueue_scripts', array($this,'co2ok_javascript') );
 
 
         }
     }
 
-    public function co2_ok_stylesheet()
+    public function co2ok_stylesheet()
     {
-        wp_register_style( 'co2_ok_stylesheet', plugins_url('css/co2_ok.css', __FILE__) );
-        wp_enqueue_style(  'co2_ok_stylesheet' );
+        wp_register_style( 'co2ok_stylesheet', plugins_url('css/co2ok.css', __FILE__) );
+        wp_enqueue_style(  'co2ok_stylesheet' );
     }
-    public function co2_ok_javascript()
+    public function co2ok_javascript()
     {
-        wp_register_script( 'co2_ok_js', plugins_url('js/co2_ok.js', __FILE__) );
-        wp_enqueue_script(  'co2_ok_js',"" ,array(),null,true );
+        wp_register_script( 'co2ok_js', plugins_url('js/co2ok-plugin.js', __FILE__) );
+        wp_enqueue_script(  'co2ok_js',"" ,array(),null,true );
     }
 
     final private function calculateSurcharge()
@@ -118,7 +118,7 @@ class Co2ok_Plugin
                     .'</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div>'
             ),
             'required' => false,
-        ) ,$woocommerce->session->co2_ok);
+        ) ,$woocommerce->session->co2ok);
     }
 
     public function my_custom_checkout_field( $checkout )
@@ -139,7 +139,7 @@ class Co2ok_Plugin
                     .'</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div>'
         ),
             'required' => false,
-        ), $woocommerce->session->co2_ok);
+        ), $woocommerce->session->co2ok);
     }
 
     public function woocommerce_custom_surcharge( $cart )
@@ -154,13 +154,13 @@ class Co2ok_Plugin
 
         if( isset($post_data['co2-ok']) ) {
             if ($post_data['co2-ok'] == 1) {
-                $woocommerce->session->co2_ok = 1;
+                $woocommerce->session->co2ok = 1;
             }
         }
         else if($_POST)
-            $woocommerce->session->co2_ok = 0;
+            $woocommerce->session->co2ok = 0;
 
-        if ($woocommerce->session->co2_ok == 1)
+        if ($woocommerce->session->co2ok == 1)
         {
             $woocommerce->cart->add_fee( 'CO2 compensation', $this->calculateSurcharge(), true, '' );
         }
