@@ -19,6 +19,7 @@
  */
 
 include( plugin_dir_path( __FILE__ ) . 'Co2ok_HelperComponent.php');
+include( plugin_dir_path( __FILE__ ) . '/Components/GraphQLClient.php');
 
 class Co2ok_Plugin
 {
@@ -27,6 +28,8 @@ class Co2ok_Plugin
      */
     const VERSION = '0.2.4';
 
+    static $co2okApiUrl = "https://9dt5zc5p3a.execute-api.eu-central-1.amazonaws.com/co2ok_api_test/graphql";
+
     private $percentage = 0.0165;
 
     private $helperComponent;
@@ -34,6 +37,24 @@ class Co2ok_Plugin
     //This function is called when the user activates the plugin.
     static function Activated()
     {
+        $graphQLClient = new GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
+
+        // TODO :: Fetch merchant data from database...
+        $merchantName  = "test";
+        $merchantEmail = "test@chris.nl";
+
+        $graphQLClient->mutation(function($mutation) use ($merchantName,$merchantEmail)
+        {
+            $mutation->setFunctionName('registerMerchant');
+            $mutation->setFunctionParams(array('name' => $merchantName, 'email' => $merchantEmail));
+            $mutation->setFunctionReturnTypes(array('merchant' => array("secret","id"), 'ok'));
+        }
+            ,function($response)// Callback after request
+            {
+                // TODO :: Do something with response
+                //echo $response;
+                //die();
+            });
     }
     //This function is called when the user activates the plugin.
     static function Deactivated()
