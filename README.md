@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Mil0dV/co2ok-plugin-woocommerce.svg?branch=master)](https://travis-ci.org/Mil0dV/co2ok-plugin-woocommerce)
+
 # WooCommerce Plugin for CO2ok
 
 A WooCommerce plugin to integrate CO2ok
