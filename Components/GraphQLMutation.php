@@ -43,7 +43,10 @@ Class GraphQLMutation
         $paramIndex = 0;
         foreach($this->mutationFunctionParams as $key => $param)
         {
-            $this->mutationQuery .= $key.': "'.$param.'"';
+            if(!is_numeric($param))
+                $this->mutationQuery .= $key.': "'.$param.'"';
+            else
+                $this->mutationQuery .= $key.': '.$param.'';
             $paramIndex++;
 
             if($paramIndex < $paramCount)

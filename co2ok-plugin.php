@@ -28,8 +28,7 @@ class Co2ok_Plugin
      */
     const VERSION = '0.2.4';
 
-    static $co2okApiUrl = "https://9dt5zc5p3a.execute-api.eu-central-1.amazonaws.com/co2ok_api_test/graphql";
-
+    static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
     private $percentage = 0.0165;
 
     private $helperComponent;
@@ -37,24 +36,41 @@ class Co2ok_Plugin
     //This function is called when the user activates the plugin.
     static function Activated()
     {
-        $graphQLClient = new GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
+        $alreadyActivated = get_option( 'co2ok_id', false );
+        //   $alreadyActivated = false;
+        //  delete_option('co2ok_id');
+        //  delete_option('co2ok_secret');
 
-        // TODO :: Fetch merchant data from database...
-        $merchantName  = "test";
-        $merchantEmail = "test@chris.nl";
-
-        $graphQLClient->mutation(function($mutation) use ($merchantName,$merchantEmail)
+        if(!$alreadyActivated)
         {
-            $mutation->setFunctionName('registerMerchant');
-            $mutation->setFunctionParams(array('name' => $merchantName, 'email' => $merchantEmail));
-            $mutation->setFunctionReturnTypes(array('merchant' => array("secret","id"), 'ok'));
+            $graphQLClient = new GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
+
+            $merchantName = $_SERVER['SERVER_NAME'];
+            $merchantEmail = get_option('admin_email');
+
+            $graphQLClient->mutation(function ($mutation) use ($merchantName, $merchantEmail) {
+                $mutation->setFunctionName('registerMerchant');
+                $mutation->setFunctionParams(array('name' => $merchantName, 'email' => $merchantEmail));
+                $mutation->setFunctionReturnTypes(array('merchant' => array("secret", "id"), 'ok'));
+            }
+                , function ($response)// Callback after request
+                {
+                    $response = json_decode($response,1);
+                    if($response['data']['registerMerchant']['ok'] == 1)
+                    {
+                        add_option('co2ok_id', $response['data']['registerMerchant']['merchant']['id']);
+                        add_option('co2ok_secret', $response['data']['registerMerchant']['merchant']['secret']);
+                    }
+                    else // TO DO error handling...
+                    {
+                        //Something went wrong.. we did not recieve a secret or id from the api.
+                    }
+                });
         }
-            ,function($response)// Callback after request
-            {
-                // TODO :: Do something with response
-                //echo $response;
-                //die();
-            });
+        else
+        {
+            // The admin has updated this plugin ..
+        }
     }
     //This function is called when the user activates the plugin.
     static function Deactivated()
@@ -85,13 +101,13 @@ class Co2ok_Plugin
             add_action('woocommerce_cart_calculate_fees', array($this,'woocommerce_custom_surcharge'));
             add_action('woocommerce_cart_collaterals' , array($this,'my_custom_cart_field'));
 
+            add_action( 'woocommerce_payment_complete', array($this,'woocommerce_payment_completed') );
+
             /**
              * Register Front End
              */
             add_action( 'wp_enqueue_scripts', array($this,'co2ok_stylesheet') );
             add_action( 'wp_enqueue_scripts', array($this,'co2ok_javascript') );
-
-
         }
     }
 
@@ -102,8 +118,61 @@ class Co2ok_Plugin
     }
     public function co2ok_javascript()
     {
-        wp_register_script( 'co2ok_js', plugins_url('js/co2ok-plugin.js', __FILE__) );
-        wp_enqueue_script(  'co2ok_js',"" ,array(),null,true );
+        wp_register_script( 'co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__) );
+        wp_enqueue_script(  'co2ok_js_wp',"" ,array(),null,true );
+    }
+
+    public function storeTransaction($order_id)
+    {
+            $order = wc_get_order( $order_id );
+            $fees = $order->get_fees();
+
+            $compensationCost = 0;
+            foreach($fees as $fee)
+            {
+                if($fee->get_name() == "CO2 compensation")
+                {
+                    $compensationCost = $fee->get_total();
+                    break;
+                }
+            }
+
+            $graphQLClient = new GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
+
+            $merchantId =  get_option( 'co2ok_id', false );
+            $orderTotal = $order->get_total();
+
+            $graphQLClient->mutation(function ($mutation) use ($merchantId, $order_id, $compensationCost,$orderTotal)
+            {
+                $mutation->setFunctionName('storeTransaction');
+
+                $mutation->setFunctionParams(
+                    array(
+                        'merchantId' => $merchantId,
+                        'orderId' => $order_id,
+                        'compensationCost' => number_format($compensationCost,2,'.',''),
+                        'orderTotal' => number_format($orderTotal,2,'.','')
+                    )
+                );
+
+                $mutation->setFunctionReturnTypes(array('ok'));
+            }
+                , function ($response)// Callback after request
+                {
+                   // TODO error handling
+                });
+
+    }
+
+    public function woocommerce_payment_completed( $order_id )
+    {
+        global $woocommerce;
+
+        if ($woocommerce->session->co2ok == 1)
+        {
+            // The user did opt for co2 compensation
+            $this->storeTransaction( $order_id );
+        }
     }
 
     final private function calculateSurcharge()
@@ -134,7 +203,7 @@ class Co2ok_Plugin
             ),
             'label' =>
                 __('<span class="co2_label"> Make'.$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
-                .' for €'.number_format($this->calculateSurcharge(), 2, ',', ' ')
+                .' for <span class="compensation_amount">€'.number_format($this->calculateSurcharge(), 2, ',', ' ').'</span>'
                 .$this->helperComponent->RenderImage('images/info.svg','co2-ok-info','co2-ok-info')
                     .'</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div>'
             ),
@@ -155,7 +224,7 @@ class Co2ok_Plugin
             ),
             'label' =>
                 __('<span class="co2_label"> Make'.$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
-                    .' for €'.number_format($this->calculateSurcharge(), 2, ',', ' ')
+                    .' for <span class="compensation_amount">€'.number_format($this->calculateSurcharge(), 2, ',', ' ').'</span>'
                     .$this->helperComponent->RenderImage('images/info.svg','co2-ok-info','co2-ok-info')
                     .'</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div>'
         ),
@@ -165,6 +234,8 @@ class Co2ok_Plugin
 
     public function woocommerce_custom_surcharge( $cart )
     {
+        //$this->storeTransaction();
+        //Co2ok_Plugin::Activated();
         global $woocommerce;
 
         if ( isset( $_POST['post_data'] ) ) {

@@ -8,6 +8,12 @@ var Co2ok_JS = function ()
             this.RegisterCartBindings();
             this.RegisterCheckoutBinding();
             this.RegisterInfoHoverVideo();
+
+            setInterval(function()
+            {
+                var html = jQuery('.fee').find('[data-title="CO2 compensation"]').find('.amount').html();
+                jQuery('.compensation_amount').html(html);
+            },1000);
         },
         RegisterCartBindings: function()
         {
@@ -26,7 +32,6 @@ var Co2ok_JS = function ()
                 jQuery('body').trigger('update_checkout');
             });
         },
-
         RegisterInfoHoverVideo : function()
         {
             jQuery('.co2-ok-info').hover(function()
