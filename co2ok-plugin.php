@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 0.3.0
+ * Version: 0.3.1
  *         (Remember to change the VERSION constant, below, as well!)
  * Author:
  * Chris Fuller,
@@ -18,6 +18,8 @@
  *
  */
 
+ define( 'WP_DEBUG_LOG', true ); 
+
 include( plugin_dir_path( __FILE__ ) . 'Co2ok_HelperComponent.php');
 include( plugin_dir_path( __FILE__ ) . '/Components/GraphQLClient.php');
 
@@ -26,7 +28,7 @@ class Co2ok_Plugin
     /**
      * This plugin's version
      */
-    const VERSION = '0.3.0';
+    const VERSION = '0.3.1';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
     private $percentage = 0.01652892561983471;
@@ -101,7 +103,7 @@ class Co2ok_Plugin
             add_action('woocommerce_cart_calculate_fees', array($this,'woocommerce_custom_surcharge'));
             add_action('woocommerce_cart_collaterals' , array($this,'my_custom_cart_field'));
 
-            add_action( 'woocommerce_payment_complete', array($this,'woocommerce_payment_completed') );
+            add_action( 'order_status_completed', array($this,'co2ok_order_status_completed') );
 
             /**
              * Register Front End
@@ -164,7 +166,7 @@ class Co2ok_Plugin
 
     }
 
-    public function woocommerce_payment_completed( $order_id )
+    public function co2ok_order_status_completed( $order_id )
     {
         global $woocommerce;
 
