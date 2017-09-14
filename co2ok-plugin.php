@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 0.3.6
+ * Version: 0.3.7
  *         (Remember to change the VERSION constant, below, as well!)
  * Author:
  * Chris Fuller,
@@ -26,7 +26,7 @@ class Co2ok_Plugin
     /**
      * This plugin's version
      */
-    const VERSION = '0.3.6';
+    const VERSION = '0.3.7';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
     private $percentage = 0.01652892561983471;
@@ -105,8 +105,7 @@ class Co2ok_Plugin
             * Woocommerce' state for an order that's accepted and should be
             * stored on our end is 'processing'
             */
-            add_action('woocommerce_order_status_changed', 
-                array($this,'co2ok_store_transaction_when_compensating') , 99, 3);
+            add_action( 'woocommerce_payment_complete', array($this,'co2ok_store_transaction_when_compensating') );
 
             /**
              * Register Front End
@@ -169,16 +168,14 @@ class Co2ok_Plugin
 
     }
 
-    public function co2ok_store_transaction_when_compensating( $order_id, $old_status, $new_status)
+    public function co2ok_store_transaction_when_compensating( $order_id )
     {
-        if( $new_status == "processing" ) {
-            global $woocommerce;
+        global $woocommerce;
 
-            if ($woocommerce->session->co2ok == 1)
-            {
-                // The user did opt for co2 compensation
-                $this->storeTransaction( $order_id );
-            }
+        if ($woocommerce->session->co2ok == 1)
+        {
+            // The user did opt for co2 compensation
+            $this->storeTransaction( $order_id );
         }
     }
 
