@@ -1,6 +1,10 @@
 webserver:
    container_name: woocommerce
-   image: shipbeat/woocommerce
+   image: tristanpenman/wordpress
+   environment:
+    WORDPRESS_DB_PASSWORD: example
+    WORDPRESS_DB_USER: root
+    WP_DEBUG: 'true'
    links:
     - dbserver:mysql
    ports:
