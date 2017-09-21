@@ -18,11 +18,17 @@ img#co2-ok-info
 
 input#co2-ok-cart
 {
-    vertical-align: sub;
-    margin-right: 5px;
+    border-radius: 2px;
+    background-color: #5EAC24;
+    padding: 6px 9px;
+    font-size: 18px;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    cursor:pointer;
 }
 
-.co2_label
+.co2_label_old
 {
     vertical-align: middle;
 }
@@ -41,4 +47,43 @@ input#co2-ok-cart
     -webkit-transition: opacity 1.2s;
     transition: opacity 1.2s;
     z-index : 10000;
+}
+
+.co2ok_text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.co2ok_checkbox {
+    border-radius: 2px;
+    background-color: #5EAC24;
+    padding: 6px 9px;
+    font-size: 18px;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    cursor:pointer;
+}
+
+input[type="checkbox"] {
+    display:none;
+}
+
+input[type="checkbox"] + label {
+    color:#ffffff;
+}
+
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+    background:url(https://s3.eu-central-1.amazonaws.com/co2ok-static/checkbox_imagemap.png) left top no-repeat;
+    cursor:pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+    background:url(https://s3.eu-central-1.amazonaws.com/co2ok-static/checkbox_imagemap.png) -19px top no-repeat;
 }

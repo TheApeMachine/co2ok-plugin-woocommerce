@@ -209,10 +209,11 @@ class Co2ok_Plugin
                 'co2-ok-cart'
             ),
             'label' =>
-                __('<span class="co2_label"> Make'.$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
-                .' for <span class="compensation_amount">€'.number_format($this->calculateSurcharge(), 2, ',', ' ').'</span>'
+                __('<span class="co2_label"> Make CO2ok for <span class="compensation_amount">€'.number_format($this->calculateSurcharge(), 2, ',', ' ').'</span>'
                 .$this->helperComponent->RenderImage('images/info.svg','co2-ok-info','co2-ok-info')
                     .'</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div>'
+                    .$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
+                    
             ),
             'required' => false,
         ) ,$woocommerce->session->co2ok);
