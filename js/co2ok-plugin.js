@@ -50,7 +50,7 @@ var Co2ok_JS = function ()
                 player = new YT.Player('youtubebox', {
                     height: '300',
                     width: '400',
-                    videoId: 'agwD0N1v46s',
+                    videoId: 'W82ZmuEJq3g',
                     events: {
                         'onReady': onPlayerReady
                     }
