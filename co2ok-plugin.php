@@ -28,7 +28,7 @@ class Co2ok_Plugin
      */
     const VERSION = '0.3.8';
 
-    static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
+    static $co2okApiUrl = "https://api.co2ok.eco/graphql";
     private $percentage = 0.01652892561983471;
 
     private $helperComponent;
