@@ -14,6 +14,46 @@ var Co2ok_JS = function ()
                 var html = jQuery('.fee').find('[data-title="CO2 compensation"]').find('.amount').html();
                 jQuery('.compensation_amount').html(html);
             },1000);
+
+            var products = JSON.parse(decodeURIComponent(jQuery('.co2ok_container').attr('data-cart')));
+
+            var CartData = {
+                products: []
+            }
+
+            jQuery(products).each(function(i)
+            {
+                var ProductData ={
+                    name: products[i].name,
+                    brand: products[i].brand,
+                    description: products[i].description,
+                    shortDescription: products[i].shortDescription,
+                    sku: products[i].sku,
+                    gtin: products[i].gtin,
+                    price: products[i].price,
+                    taxClass: products[i].taxClass,
+                    weight: products[i].weight,
+                    attributes: products[i].attributes,
+                    defaultAttributes: products[i].defaultAttributes,
+                    quantity: products[i].quantity,
+                }
+                CartData.products.push(ProductData);
+            });
+
+            var promise = CO2ok.getFootprint("test",CartData);
+
+            promise.then(function(percentage) {
+                // do something with result
+                console.log( percentage );
+                var data = {
+                    'action': 'my_ajax_action',
+                    'percentage': percentage
+                };
+                jQuery.post(ajax_object.ajax_url, data, function(response) {
+                  //  alert('Got this from the server: ' + response);
+                });
+            });
+
         },
         RegisterCartBindings: function()
         {
@@ -68,14 +108,6 @@ var Co2ok_JS = function ()
             tag.src = "https://www.youtube.com/iframe_api";
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
-
-            function onYouTubeIframeAPIReady() {
-
-            }
         }
-
     }
-
 }().Init();
