@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Chris
- * Date: 9/6/2017
- * Time: 22:18 PM
- */
+namespace co2ok_plugin_woocommerce\Components;
 
-Class GraphQLMutation
+Class Co2ok_GraphQLMutation
 {
     private $mutationFunctionName;
     private $mutationFunctionParams;

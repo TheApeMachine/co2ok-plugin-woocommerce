@@ -17,12 +17,20 @@
  * @package co2ok-plugin-woocommerce
  *
  */
+namespace co2ok_plugin_woocommerce;
 
-include( plugin_dir_path( __FILE__ ) . 'Co2ok_HelperComponent.php');
-include( plugin_dir_path( __FILE__ ) . '/Components/GraphQLClient.php');
+/**
+ * Prevent data leaks
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
 
-class Co2ok_Plugin
-{
+// Check if class exists
+if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
+
+    class Co2ok_Plugin
+    {
     /**
      * This plugin's version
      */
@@ -36,16 +44,12 @@ class Co2ok_Plugin
     private $helperComponent;
 
     //This function is called when the user activates the plugin.
-    static function Activated()
+    static function co2ok_Activated()
     {
-        $alreadyActivated = get_option( 'co2ok_id', false );
-        //  $alreadyActivated = false;
-        //  delete_option('co2ok_id');
-        //  delete_option('co2ok_secret');
+        $alreadyActivated = get_option('co2ok_id', false);
 
-        if(!$alreadyActivated)
-        {
-            $graphQLClient = new GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
+        if (!$alreadyActivated) {
+            $graphQLClient = new Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
             $merchantName = $_SERVER['SERVER_NAME'];
             $merchantEmail = get_option('admin_email');
@@ -57,25 +61,22 @@ class Co2ok_Plugin
             }
                 , function ($response)// Callback after request
                 {
-                    $response = json_decode($response,1);
-                    if($response['data']['registerMerchant']['ok'] == 1)
-                    {
-                        add_option('co2ok_id', $response['data']['registerMerchant']['merchant']['id']);
-                        add_option('co2ok_secret', $response['data']['registerMerchant']['merchant']['secret']);
-                    }
-                    else // TO DO error handling...
+                    $response = json_decode($response, 1);
+                    if ($response['data']['registerMerchant']['ok'] == 1) {
+                        add_option('co2ok_id', sanitize_text_field($response['data']['registerMerchant']['merchant']['id']));
+                        add_option('co2ok_secret', sanitize_text_field($response['data']['registerMerchant']['merchant']['secret']));
+                    } else // TO DO error handling...
                     {
                         //Something went wrong.. we did not recieve a secret or id from the api.
                     }
                 });
-        }
-        else
-        {
+        } else {
             // The admin has updated this plugin ..
         }
     }
+
     //This function is called when the user activates the plugin.
-    static function Deactivated()
+    static function co2ok_Deactivated()
     {
     }
 
@@ -84,141 +85,150 @@ class Co2ok_Plugin
      */
     public function __construct()
     {
-        /**
-         * Prevent data leaks
-         */
-        if ( ! defined( 'ABSPATH' ) ) {
-            exit; // Exit if accessed directly
-        }
+        require_once(  plugin_dir_path( __FILE__ ) . '/co2ok-autoloader.php' );
 
-        $this->helperComponent = new Co2ok_HelperComponent();
+        $this->helperComponent = new Components\Co2ok_HelperComponent();
 
         /**
          * Check if WooCommerce is active
          **/
-        if ( in_array( 'woocommerce/woocommerce.php', apply_filters(
-            'active_plugins', get_option( 'active_plugins' ) ) ) )
+        if (in_array('woocommerce/woocommerce.php', apply_filters(
+            'active_plugins', get_option('active_plugins'))))
         {
-            add_action('woocommerce_after_order_notes' ,array($this,'my_custom_checkout_field') );
-            add_action('woocommerce_cart_calculate_fees', array($this,'woocommerce_custom_surcharge'));
-            add_action('woocommerce_cart_collaterals' , array($this,'my_custom_cart_field'));
+            add_action('woocommerce_after_order_notes',   array($this, 'co2ok_checkout_checkbox'));
+            add_action('woocommerce_cart_collaterals',    array($this, 'co2ok_cart_checkbox'));
+            add_action('woocommerce_cart_calculate_fees', array($this, 'co2ok_woocommerce_custom_surcharge'));
 
             /**
-            * Woocommerce' state for an order that's accepted and should be
-            * stored on our end is 'processing'
-            */
-            add_action('woocommerce_order_status_changed', 
-                array($this,'co2ok_store_transaction_when_compensating') , 99, 3);
+             * Woocommerce' state for an order that's accepted and should be
+             * stored on our end is 'processing'
+             */
+            add_action('woocommerce_order_status_changed',
+                array($this, 'co2ok_store_transaction_when_compensating'), 99, 3);
 
             /**
              * Register Front End
              */
-            add_action( 'wp_enqueue_scripts', array($this,'co2ok_stylesheet') );
-            add_action( 'wp_enqueue_scripts', array($this,'co2ok_javascript') );
+            add_action('wp_enqueue_scripts', array($this, 'co2ok_stylesheet'));
+            add_action('wp_enqueue_scripts', array($this, 'co2ok_javascript'));
 
-            add_action( 'wp_ajax_nopriv_my_ajax_action',  array($this,'my_ajax_action') );
+            add_action('wp_ajax_nopriv_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
         }
     }
 
-    public function my_ajax_action()
+    public function co2ok_ajax_set_percentage()
     {
+        if( empty($_POST) )
+            die('Security check');
+
         global $woocommerce;
 
-        $this->percentage = $_POST['percentage'];
-        $woocommerce->session->percentage = $_POST['percentage'];
+        if ( isset( $_POST['post_data'] ) ) {
+            parse_str( $_POST['post_data'], $post_data );
+        } else {
+            $post_data = $_POST;
+        }
+        $this->percentage = $post_data['percentage'];
+        $this->percentage = filter_var ( $this->percentage, FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+
+        $woocommerce->session->percentage = $this->percentage;
+
+        $return = array(
+            'compensation_amount'	=> '€' . number_format($this->co2ok_calculateSurcharge(), 2, ',', ' ')
+        );
+
+        wp_send_json($return);
     }
 
     public function co2ok_stylesheet()
     {
-        wp_register_style( 'co2ok_stylesheet', plugins_url('css/co2ok.css', __FILE__) );
-        wp_enqueue_style(  'co2ok_stylesheet' );
+        wp_register_style('co2ok_stylesheet', plugins_url('css/co2ok.css', __FILE__));
+        wp_enqueue_style('co2ok_stylesheet');
     }
+
     public function co2ok_javascript()
     {
-        wp_register_script( 'co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true );
+        wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true);
         wp_enqueue_script('co2ok_js_cdn');
 
-        wp_register_script( 'co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__) );
-        wp_enqueue_script(  'co2ok_js_wp',"" ,array(),null,true );
-        wp_localize_script( 'co2ok_js_wp', 'ajax_object',
-            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+        wp_register_script('co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__));
+        wp_enqueue_script('co2ok_js_wp', "", array(), null, true);
+        wp_localize_script('co2ok_js_wp', 'ajax_object',
+            array('ajax_url' => admin_url('admin-ajax.php')));
     }
 
-    public function storeTransaction( $order_id )
+    public function co2ok_storeTransaction($order_id)
     {
-            $order = wc_get_order( $order_id );
-            $fees = $order->get_fees();
+        $order = wc_get_order($order_id);
+        $fees = $order->get_fees();
 
-            $compensationCost = 0;
-            foreach($fees as $fee)
-            {
-                if($fee->get_name() == "CO2 compensation")
-                {
-                    $compensationCost = $fee->get_total();
-                    break;
-                }
+        $compensationCost = 0;
+        foreach ($fees as $fee) {
+            if ($fee->get_name() == "CO2 compensation") {
+                $compensationCost = $fee->get_total();
+                break;
             }
+        }
 
-            $graphQLClient = new GraphQLClient( Co2ok_Plugin::$co2okApiUrl );
+        $graphQLClient = new Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
-            $merchantId = get_option( 'co2ok_id', false );
-            $orderTotal = $order->get_total();
+        $merchantId = get_option('co2ok_id', false);
+        $orderTotal = $order->get_total();
 
-            $graphQLClient->mutation(function ($mutation) use ($merchantId, $order_id, $compensationCost,$orderTotal)
-            {
-                $mutation->setFunctionName('storeTransaction');
+        $graphQLClient->mutation(function ($mutation) use ($merchantId, $order_id, $compensationCost, $orderTotal) {
+            $mutation->setFunctionName('storeTransaction');
 
-                $mutation->setFunctionParams(
-                    array(
-                        'merchantId' => $merchantId,
-                        'orderId' => $order_id,
-                        'compensationCost' => number_format($compensationCost,2,'.',''),
-                        'orderTotal' => number_format($orderTotal,2,'.','')
-                    )
-                );
+            $mutation->setFunctionParams(
+                array(
+                    'merchantId' => $merchantId,
+                    'orderId' => $order_id,
+                    'compensationCost' => number_format($compensationCost, 2, '.', ''),
+                    'orderTotal' => number_format($orderTotal, 2, '.', '')
+                )
+            );
 
-                $mutation->setFunctionReturnTypes(array('ok'));
-            }
+            $mutation->setFunctionReturnTypes(array('ok'));
+        }
             , function ($response)// Callback after request
             {
-               // TODO error handling
+                echo print_r($response,1);
+                // TODO error handling
             });
 
     }
 
-    public function co2ok_store_transaction_when_compensating( $order_id, $old_status, $new_status)
+    public function co2ok_store_transaction_when_compensating($order_id, $old_status, $new_status)
     {
-        if( $new_status == "processing" ) {
+        if ($new_status == "processing") {
             global $woocommerce;
 
-            if ($woocommerce->session->co2ok == 1)
-            {
+            if ($woocommerce->session->co2ok == 1) {
                 // The user did opt for co2 compensation
-                $this->storeTransaction( $order_id );
+                $this->co2ok_storeTransaction($order_id);
             }
         }
     }
 
-    final private function calculateSurcharge()
+    final private function co2ok_calculateSurcharge()
     {
         global $woocommerce;
 
         if ($woocommerce->session->percentage)
             $this->percentage = $woocommerce->session->percentage;
 
-        $surcharge = ( ( $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total ) /100 )* $this->percentage;
+        $surcharge = (($woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total) / 100) * $this->percentage;
+        $surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
         return $surcharge;
     }
 
-    public function getCartData()
+    public function co2ok_CartDataToJson()
     {
         global $woocommerce;
         $cart = array();
 
         $items = $woocommerce->cart->get_cart();
-        foreach($items as $item => $values)
-        {
+        foreach ($items as $item => $values) {
             $_product = $values['data'];
 
             $product_data = array();
@@ -227,8 +237,8 @@ class Co2ok_Plugin
             $product_data['brand'] = "";
             $product_data['description'] = $_product->description;
             $product_data['shortDescription'] = $_product->shortDescription;
-            $product_data['sku']  = $_product->sku;
-            $product_data['gtin']  = $_product->gtin;
+            $product_data['sku'] = $_product->sku;
+            $product_data['gtin'] = $_product->gtin;
             $product_data['price'] = $_product->price;
             $product_data['taxClass'] = $_product->taxClass;
             $product_data['weight'] = $_product->weight;
@@ -241,17 +251,17 @@ class Co2ok_Plugin
         return $cart;
     }
 
-    public function my_custom_cart_field()
+    public function co2ok_cart_checkbox()
     {
         global $woocommerce;
 
-        if ( isset( $_POST['post_data'] ) ) {
-            parse_str( $_POST['post_data'], $post_data );
+        if (isset($_POST['post_data'])) {
+            parse_str($_POST['post_data'], $post_data);
         } else {
             $post_data = $_POST;
         }
 
-        echo '<span class="co2ok_container" data-cart="'.urlencode(json_encode( $this->getCartData() )).'"></span>';
+        echo '<span class="co2ok_container" data-cart="' . esc_attr(urlencode(json_encode($this->co2ok_CartDataToJson())) ). '"></span>';
         echo '<h2>' . __('CO2 Compensation') . '</h2>';
 
         woocommerce_form_field('co2-ok', array(
@@ -261,23 +271,24 @@ class Co2ok_Plugin
                 'co2-ok-cart'
             ),
             'label' =>
-                __('<span class="co2_label"> Maak'.$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
-                    .' voor <span class="compensation_amount">€'.number_format($this->calculateSurcharge(), 2, ',', ' ').'</span>'
-                    .$this->helperComponent->RenderImage('images/info.svg','co2-ok-info','co2-ok-info')
-                    .'</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div>'
+                __('<span class="co2_label"> Maak' . $this->helperComponent->RenderImage('images/logo.svg', null, 'co2-ok-logo')
+                    . ' voor <span class="compensation_amount">€' . esc_html(number_format($this->co2ok_calculateSurcharge(), 2, ',', ' ') ). '</span>'
+                    . $this->helperComponent->RenderImage('images/info.svg', 'co2-ok-info', 'co2-ok-info')
+                    . '</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div>'
                 ),
             'required' => false,
-        ) ,$woocommerce->session->co2ok);
+        ), $woocommerce->session->co2ok);
 
         //echo $this->helperComponent->RenderCheckbox(number_format($this->calculateSurcharge(), 2, ',', ' '),$cart);
     }
 
-    public function my_custom_checkout_field( $checkout )
+    public function co2ok_checkout_checkbox($checkout)
     {
         global $woocommerce;
 
-        echo '<span class="co2ok_container" data-cart="'.urlencode(json_encode( $this->getCartData() )).'"></span>';
-        echo '<h2>' . __('CO2 Compensation') . '</h2>';
+        echo '<span class="co2ok_container" data-cart="' . esc_attr( urlencode(json_encode($this->co2ok_CartDataToJson())) ). '"></span>';
+        echo ( '<h2>' . __('CO2 Compensation') . '</h2>' );
+
         woocommerce_form_field('co2-ok', array(
             'type' => 'checkbox',
             'id' => 'co2-ok-checkout',
@@ -285,42 +296,41 @@ class Co2ok_Plugin
                 'co2-ok'
             ),
             'label' =>
-                __('<span class="co2_label"> Maak'.$this->helperComponent->RenderImage('images/logo.svg',null,'co2-ok-logo')
-                    .' voor <span class="compensation_amount">€'.number_format($this->calculateSurcharge(), 2, ',', ' ').'</span>'
-                    .$this->helperComponent->RenderImage('images/info.svg','co2-ok-info','co2-ok-info')
-                    .'</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div>'
-        ),
+               __('<span class="co2_label"> Maak' . $this->helperComponent->RenderImage('images/logo.svg', null, 'co2-ok-logo')
+                    . ' voor <span class="compensation_amount">€' .esc_html(  number_format($this->co2ok_calculateSurcharge(), 2, ',', ' ') ). '</span>'
+                    . $this->helperComponent->RenderImage('images/info.svg', 'co2-ok-info', 'co2-ok-info')
+                    . '</span><div class="youtubebox_container" style="width:1px;height:1px;overflow:hidden"> <div class="youtubebox" id="youtubebox" width="400" height="300" ></div> </div>'
+                ),
             'required' => false,
         ), $woocommerce->session->co2ok);
     }
 
-    public function woocommerce_custom_surcharge( $cart )
+    public function co2ok_woocommerce_custom_surcharge($cart)
     {
-        //$this->storeTransaction();
-        //Co2ok_Plugin::Activated();
         global $woocommerce;
 
-        if ( isset( $_POST['post_data'] ) ) {
-            parse_str( $_POST['post_data'], $post_data );
+        if (isset($_POST['post_data'])) {
+            parse_str($_POST['post_data'], $post_data);
         } else {
             $post_data = $_POST;
         }
 
-        if( isset($post_data['co2-ok']) ) {
+        if (isset($post_data['co2-ok'])) {
             if ($post_data['co2-ok'] == 1) {
                 $woocommerce->session->co2ok = 1;
             }
-        }
-        else if($_POST)
+        } else if ($_POST)
             $woocommerce->session->co2ok = 0;
 
-        if ($woocommerce->session->co2ok == 1)
-        {
-            $woocommerce->cart->add_fee( 'CO2 compensation', $this->calculateSurcharge(), true, '' );
+        if ($woocommerce->session->co2ok == 1) {
+            $woocommerce->cart->add_fee('CO2 compensation', $this->co2ok_calculateSurcharge(), true, '');
         }
     }
-}
-$co2okPlugin = new Co2ok_Plugin();
-register_activation_hook( __FILE__, array( 'Co2ok_Plugin', 'Activated' ) );
-register_deactivation_hook( __FILE__, array( 'Co2ok_Plugin', 'Deactivated' ) );
+    }
+
+endif; //! class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' )
+
+$co2okPlugin = new \co2ok_plugin_woocommerce\Co2ok_Plugin();
+register_activation_hook( __FILE__, array( 'co2ok_plugin_woocommerce\Co2ok_Plugin', 'co2ok_Activated' ) );
+register_deactivation_hook( __FILE__, array( 'co2ok_plugin_woocommerce\Co2ok_Plugin', 'co2ok_Deactivated' ) );
 ?>

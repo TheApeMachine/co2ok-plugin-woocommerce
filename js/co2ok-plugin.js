@@ -9,12 +9,17 @@ var Co2ok_JS = function ()
             this.RegisterCheckoutBinding();
             this.RegisterInfoHoverVideo();
 
-            setInterval(function()
-            {
-                var html = jQuery('.fee').find('[data-title="CO2 compensation"]').find('.amount').html();
-                jQuery('.compensation_amount').html(html);
-            },1000);
+            var _this = this;
 
+
+            jQuery( document.body ).on( 'updated_cart_totals', function(){
+                _this.GetPercentageFromMiddleware();
+            });
+
+            this.GetPercentageFromMiddleware();
+        },
+        GetPercentageFromMiddleware: function()
+        {
             var products = JSON.parse(decodeURIComponent(jQuery('.co2ok_container').attr('data-cart')));
 
             var CartData = {
@@ -42,18 +47,17 @@ var Co2ok_JS = function ()
 
             var promise = CO2ok.getFootprint("test",CartData);
 
-            promise.then(function(percentage) {
-                // do something with result
-                console.log( percentage );
+            promise.then(function(percentage)
+            {
                 var data = {
-                    'action': 'my_ajax_action',
+                    'action': 'co2ok_ajax_set_percentage',
                     'percentage': percentage
                 };
-                jQuery.post(ajax_object.ajax_url, data, function(response) {
-                  //  alert('Got this from the server: ' + response);
+                jQuery.post(ajax_object.ajax_url, data, function(response)
+                {
+                    jQuery('.compensation_amount').html(response.compensation_amount);
                 });
             });
-
         },
         RegisterCartBindings: function()
         {

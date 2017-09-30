@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Chris
- * Date: 9/6/2017
- * Time: 20:39 PM
- */
+namespace co2ok_plugin_woocommerce\Components;
 
-include( plugin_dir_path( __FILE__ ) . '/HttpsRequest.php');
-include( plugin_dir_path( __FILE__ ) . '/GraphQLMutation.php');
-
-class GraphQLClient extends HttpsRequest
+class Co2ok_GraphQLClient extends Co2ok_HttpsRequest
 {
     public function __construct($apiUrl)
     {
@@ -22,7 +14,7 @@ class GraphQLClient extends HttpsRequest
 
     public function mutation($callback,$responseCallback)
     {
-        $mutation = new GraphQLMutation();
+        $mutation = new Co2ok_GraphQLMutation();
         $callback($mutation);
         $mutation->ProcessMutationQuery();
         
