@@ -191,7 +191,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
             , function ($response)// Callback after request
             {
-                echo print_r($response,1);
+               // echo print_r($response,1);
                 // TODO error handling
             });
 
