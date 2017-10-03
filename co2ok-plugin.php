@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: CO2ok WooCommerce Plugin
+ * Plugin Name: CO2ok for WooCommerce
  *
  * Description: A WooCommerce plugin to integrate CO2ok
  *
