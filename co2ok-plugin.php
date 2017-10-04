@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 0.3.8
+ * Version: 0.4.0
  *         (Remember to change the VERSION constant, below, as well!)
  * Author:
  * Chris Fuller,
@@ -34,7 +34,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '0.3.9';
+    const VERSION = '0.4.0';
 
     static $co2okApiUrl = "https://api.co2ok.eco/graphql";
 
@@ -164,7 +164,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $compensationCost = 0;
         foreach ($fees as $fee) {
-            if ($fee->get_name() == "CO2 compensation") {
+            if ($fee->get_name() == "CO2 compensatie") {
                 $compensationCost = $fee->get_total();
                 break;
             }
@@ -262,7 +262,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
 
         echo '<span class="co2ok_container" data-cart="' . esc_attr(urlencode(json_encode($this->co2ok_CartDataToJson())) ). '"></span>';
-        echo '<h2>' . __('CO2 Compensation') . '</h2>';
+        echo '<h2>' . __('CO2 Compensatie') . '</h2>';
 
         woocommerce_form_field('co2-ok', array(
             'type' => 'checkbox',
@@ -287,7 +287,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         global $woocommerce;
 
         echo '<span class="co2ok_container" data-cart="' . esc_attr( urlencode(json_encode($this->co2ok_CartDataToJson())) ). '"></span>';
-        echo ( '<h2>' . __('CO2 Compensation') . '</h2>' );
+        echo ( '<h2>' . __('CO2 Compensatie') . '</h2>' );
 
         woocommerce_form_field('co2-ok', array(
             'type' => 'checkbox',
@@ -323,7 +323,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $woocommerce->session->co2ok = 0;
 
         if ($woocommerce->session->co2ok == 1) {
-            $woocommerce->cart->add_fee('CO2 compensation', $this->co2ok_calculateSurcharge(), true, '');
+            $woocommerce->cart->add_fee('CO2 compensatie', $this->co2ok_calculateSurcharge(), true, '');
         }
     }
     }
