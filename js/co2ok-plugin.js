@@ -5,9 +5,8 @@ var Co2ok_JS = function ()
 
         Init: function ()
         {
-            this.RegisterCartBindings();
-            this.RegisterCheckoutBinding();
-            this.RegisterInfoHoverVideo();
+            this.RegisterBindings();
+            this.RegisterInfoBox();
 
             var _this = this;
 
@@ -20,6 +19,7 @@ var Co2ok_JS = function ()
         },
         GetPercentageFromMiddleware: function()
         {
+            var merchant_id = jQuery('.co2ok_container').attr('data-merchant-id');
             var products = JSON.parse(decodeURIComponent(jQuery('.co2ok_container').attr('data-cart')));
 
             var CartData = {
@@ -45,7 +45,7 @@ var Co2ok_JS = function ()
                 CartData.products.push(ProductData);
             });
 
-            var promise = CO2ok.getFootprint("test",CartData);
+            var promise = CO2ok.getFootprint(merchant_id,CartData);
 
             promise.then(function(percentage)
             {
@@ -59,59 +59,36 @@ var Co2ok_JS = function ()
                 });
             });
         },
-        RegisterCartBindings: function()
+        RegisterBindings: function()
         {
             jQuery('#co2-ok-cart').click(function ()
             {
                 if(jQuery(this).is(":checked"))
                     jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2-ok" id="co2-ok" checked value="1" style="display:none">');
                 jQuery('.woocommerce-cart-form').find('input').trigger("change");
+
                 jQuery("[name='update_cart']").trigger("click");
-            });
-        },
-        RegisterCheckoutBinding : function()
-        {
-            jQuery('#co2-ok-checkout').click(function ()
-            {
+
                 jQuery('body').trigger('update_checkout');
             });
         },
-        RegisterInfoHoverVideo : function()
+        ShowInfoBox  : function()
         {
+            jQuery(".co2ok_infobox_container").css({ "display" : "block","width" : "400px","height" : "300px" , "opacity" : 1 });
+        },
+        RegisterInfoBox : function()
+        {
+            var _this = this;
             jQuery('.co2-ok-info').hover(function()
             {
-                jQuery(".youtubebox_container").css({ "display" : "block","width" : "400px","height" : "300px" , "opacity" : 1 });// style="width:1px;height:1px;overflow:hidden">
-                //jQuery(".youtubebox").append('<iframe id="youtube_mov" width="400" height="300" src="https://www.youtube.com/embed/agwD0N1v46s?t=38s?enablejsapi=1&amp;loop=0" frameborder="0" allowfullscreen> </iframe>');
-                var player;
-
-                function onPlayerReady (event)
-                {
-                    player.mute();
-                    player.seekTo(38, true);
-                    player.playVideo();
-                };
-
-                player = new YT.Player('youtubebox', {
-                    height: '300',
-                    width: '400',
-                    videoId: 'W82ZmuEJq3g',
-                    events: {
-                        'onReady': onPlayerReady
-                    }
-                });
+                _this.ShowInfoBox();
             });
 
             jQuery('*').click(function()
             {
-                jQuery(".youtubebox_container").css({ "opacity" : 0  });// style="width:1px;height:1px;overflow:hidden">
-                jQuery(".youtubebox_container").find('#youtubebox').remove();
-                jQuery(".youtubebox_container").append('<div id="youtubebox"></div>');
+                jQuery(".co2ok_infobox_container").css({ "opacity" : 0  });
+                jQuery(".co2ok_infobox_container").find('#co2ok_infobox').remove();
             });
-
-            var tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            var firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         }
     }
 }().Init();

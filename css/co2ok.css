@@ -1,10 +1,74 @@
-img#co2-ok-logo
+.co2ok_container
+{
+}
+
+.co2ok_checkbox_container
+{
+    font-size: 26px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #5eac24;
+    color:white;
+}
+
+#co2-ok-cart
 {
     display: inline-block;
-    width: 62px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 15px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
     vertical-align: middle;
-    margin-right: -3px;
-    margin-top: -4px;
+    margin-bottom: 5px;
+}
+
+#co2-ok-cart:active, #co2-ok-cart:checked:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+#co2-ok-cart:focus{
+    outline:0;
+}
+
+#co2-ok-cart:checked {
+    background-color: white;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+    color: #99a1a7;
+
+}
+
+#co2-ok-cart:checked:after {
+    content: "         ";
+    white-space: pre;
+    background : url("../images/vinkje_co2ok.png");
+    font-size: 20px;
+    background-repeat: no-repeat;
+    background-position-x: 3px;
+    background-position-y: 3px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    vertical-align: middle;
+    color: #000000;
+}
+
+span#p
+{
+    display: block;
+    padding-top: 8px;
+    padding-bottom: 1px;
+}
+
+p#co2-ok-cart_field
+{
+    margin : 0px!important;
+    display: inline-block;
 }
 
 img#co2-ok-info
@@ -16,29 +80,30 @@ img#co2-ok-info
     vertical-align: bottom;
 }
 
-input#co2-ok-cart
+img#co2-ok-logo
 {
-    vertical-align: sub;
-    margin-right: 5px;
-}
-
-.co2_label
-{
+    display: inline-block;
+    width: 104px;
     vertical-align: middle;
+    margin-left:-4px;
 }
 
-.youtubebox_container
+.co2ok_infobox_container
 {
     width: 300px;
     height: 300px;
     overflow: hidden;
-    /* display: none; */
     position: absolute;
     margin-left: 190px;
     margin-top: -44px;
-    border-radius: 20px;
     opacity: 0;
     -webkit-transition: opacity 1.2s;
     transition: opacity 1.2s;
     z-index : 10000;
+}
+
+.co2ok_infobox_container img
+{
+    border: 1px solid black;
+    border-radius: 15px;
 }
