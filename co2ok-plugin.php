@@ -58,7 +58,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
             , function ($response)// Callback after request
             {
-                $response = json_decode($response, 1);
+                if(!is_array($response))
+                    $response = json_decode($response, 1);
+                
                 if ($response['data']['registerMerchant']['ok'] == 1) {
                     add_option('co2ok_id', sanitize_text_field($response['data']['registerMerchant']['merchant']['id']));
                     add_option('co2ok_secret', sanitize_text_field($response['data']['registerMerchant']['merchant']['secret']));
