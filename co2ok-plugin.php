@@ -34,7 +34,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '0.4.0';
+    const VERSION = '0.4.1';
 
     static $co2okApiUrl = "https://api.co2ok.eco/graphql";
 
