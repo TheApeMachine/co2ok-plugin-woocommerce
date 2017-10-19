@@ -61,6 +61,7 @@
 span#p
 {
     display: block;
+    font-size: 18px;
     padding-top: 8px;
     padding-bottom: 1px;
 }
@@ -74,8 +75,8 @@ p#co2-ok-cart_field
 img#co2-ok-info
 {
     display: inline-block;
-    width: 13px;
-    margin-left: 4px;
+    width: 20px;
+    margin-left: 6px;
     margin-bottom: 6px;
     vertical-align: bottom;
 }
