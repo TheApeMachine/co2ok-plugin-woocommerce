@@ -129,6 +129,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             add_action('wp_enqueue_scripts', array($this, 'co2ok_javascript'));
 
             add_action('wp_ajax_nopriv_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
+            add_action('wp_ajax_priv_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
 
             // Check if merchant is registered, if for whatever reason this merchant is in fact not a registered merchant,
             // Maybe the api was down when this user registered the plugin, in that case we want to re-register !
