@@ -36,13 +36,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                                 'class' => array(
                                     'co2-ok-cart'
                                 ),
-                                'label' =>
-                                    __(''),
+                               
                                 'required' => false,
                             ), $woocommerce->session->co2ok);
 
-                            echo '<span id="checkbox"></span>
-                            Maak CO&#8322;ok voor <span class="compensation_amount">€' . $surcharge . '</span>
+                            echo '<span id="checkbox_label"> Maak CO&#8322;ok voor <span class="compensation_amount">€' . $surcharge . '</span> </span>
+                           
                         </span>
                         
                         <span id="p">
