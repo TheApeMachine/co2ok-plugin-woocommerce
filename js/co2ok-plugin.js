@@ -68,8 +68,12 @@ var Co2ok_JS = function ()
                 jQuery('.woocommerce-cart-form').find('input').trigger("change");
 
                 jQuery("[name='update_cart']").trigger("click");
-
                 jQuery('body').trigger('update_checkout');
+            });
+
+            jQuery('.co2ok_checkbox_container').click(function()
+            {
+                jQuery("[name='co2-ok']").trigger("click");
             });
         },
         ShowInfoBox  : function()
