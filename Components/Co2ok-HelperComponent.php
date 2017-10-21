@@ -36,7 +36,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                                 'class' => array(
                                     'co2-ok-cart'
                                 ),
-                               
+
                                 'required' => false,
                             ), $woocommerce->session->co2ok);
 
@@ -51,7 +51,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
 
                     . '</span>
             
-            <div class="co2ok_infobox_container" style="width:1px;height:1px;overflow:hidden"> <img src="https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png" /> </div> ';
+            <div class="co2ok_infobox_container" style="width:1px;height:1px;overflow:hidden"> <img src="https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png" /> 
+             <span> <a target="_blank" href="http://www.co2ok.eco/co2-compensatie">http://co2ok.eco</a> </span></div> ';
 
         }
 
