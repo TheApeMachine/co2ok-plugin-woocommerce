@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.0.1
+ * Version: 1.0.0.3
  *         (Remember to change the VERSION constant, below, as well!)
  * Author:
  * Chris Fuller,
@@ -34,7 +34,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.0.2';
+    const VERSION = '1.0.0.3';
 
     static $co2okApiUrl = "https://api.co2ok.eco/graphql";
 
@@ -58,13 +58,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
             , function ($response)// Callback after request
             {
-                if(!is_array($response))
-                    $response = json_decode($response, 1);
-                
-                if ($response['data']['registerMerchant']['ok'] == 1) {
+                if(!is_array($response['body']))
+                    $response = json_decode($response['body'], 1);
+
+                if ($response['data']['registerMerchant']['ok'] == true)
+                {
                     add_option('co2ok_id', sanitize_text_field($response['data']['registerMerchant']['merchant']['id']));
                     add_option('co2ok_secret', sanitize_text_field($response['data']['registerMerchant']['merchant']['secret']));
-                } else // TO DO error handling...
+                }
+                else // TO DO error handling...
                 {
                     //Something went wrong.. we did not recieve a secret or id from the api.
                 }
@@ -77,7 +79,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $alreadyActivated = get_option('co2ok_id', false);
 
         if (!$alreadyActivated)
+        {
             Co2ok_Plugin::registerMerchant();
+
+        }
         else {
             // The admin has updated this plugin ..
         }
@@ -93,6 +98,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
      */
     final public function __construct()
     {
+       // delete_option('co2ok_id');
+       // delete_option('co2ok_secret');
+
         require_once(  plugin_dir_path( __FILE__ ) . '/co2ok-autoloader.php' );
 
         $this->helperComponent = new Components\Co2ok_HelperComponent();
