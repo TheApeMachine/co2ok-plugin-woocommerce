@@ -86,20 +86,22 @@ var Co2ok_JS = function ()
         },
         ShowInfoBox  : function()
         {
-            jQuery(".co2ok_infobox_container").css({ "display" : "block","width" : "400px","height" : "300px" , "opacity" : 1 });
+            jQuery(".co2ok_infobox_container").css({ "display" : "block","width" : "348px","height" : "300px" , "opacity" : 1 });
         },
         RegisterInfoBox : function()
         {
             var _this = this;
-            jQuery('.co2-ok-info').hover(function()
-            {
-                _this.ShowInfoBox();
-            });
 
-            jQuery('*').click(function()
+            jQuery('body').click(function()
             {
                 jQuery(".co2ok_infobox_container").css({ "opacity" : 0  });
                 jQuery(".co2ok_infobox_container").find('#co2ok_infobox').remove();
+            });
+
+            jQuery('.co2-ok-info').click(function(e)
+            {
+                _this.ShowInfoBox();
+                e.stopPropagation();
             });
         }
     }

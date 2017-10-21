@@ -1,7 +1,6 @@
 .co2ok_container
 {
-    float: left;
-    width: 40%;
+    display: inline-table;
 }
 
 .co2ok_checkbox_container
@@ -103,16 +102,19 @@ img#co2-ok-logo
     height: 300px;
     overflow: hidden;
     position: absolute;
-    margin-left: 312px;
-    margin-top: -126px;
+
     opacity: 0;
     -webkit-transition: opacity 1.2s;
     transition: opacity 1.2s;
     z-index : 10000;
+
+    background: white;
+    border-radius: 15px;
+    border: 1px solid black;
 }
 
-.co2ok_infobox_container img
+.co2ok_infobox_container span
 {
-    border: 1px solid black;
-    border-radius: 15px;
+    float: right;
+    padding: 20px;
 }
