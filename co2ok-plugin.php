@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.0.4
+ * Version: 1.0.0.5
  *         (Remember to change the VERSION constant, below, as well!)
  * Author:
  * Chris Fuller,
@@ -34,9 +34,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.0.4';
+    const VERSION = '1.0.0.5';
 
-    static $co2okApiUrl = "https://api.co2ok.eco/graphql";
+    static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
     // Percentage is returned by the Middleware..
     private $percentage = 0;

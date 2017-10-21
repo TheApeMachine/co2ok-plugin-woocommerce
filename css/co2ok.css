@@ -94,6 +94,7 @@ img#co2-ok-logo
     width: 104px;
     vertical-align: middle;
     margin-left:-4px;
+    margin-bottom:14px;
 }
 
 .co2ok_infobox_container
@@ -116,5 +117,5 @@ img#co2-ok-logo
 .co2ok_infobox_container span
 {
     float: right;
-    padding: 20px;
+    padding: 2px;
 }

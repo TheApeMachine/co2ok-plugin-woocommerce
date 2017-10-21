@@ -86,7 +86,7 @@ var Co2ok_JS = function ()
         },
         ShowInfoBox  : function()
         {
-            jQuery(".co2ok_infobox_container").css({ "display" : "block","width" : "348px","height" : "300px" , "opacity" : 1 });
+            jQuery(".co2ok_infobox_container").css({ "display" : "block","width" : "348px","height" : "260px" , "opacity" : 1 });
         },
         RegisterInfoBox : function()
         {
