@@ -25,3 +25,22 @@ function co2ok_plugin_woocommerce_autoload( $class_name ) {
             include_once( $filepath );
     }
 }
+
+/*
+ * PHP 5.1.2 < does not have spl_autoload_register 
+    Fallback for Pre 5.1.2 PHP version
+*/
+if(!function_exists("spl_autoload_register"))
+{
+    if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' ) )
+        require_once("Components/Co2ok-HelperComponent.php");
+
+    if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HttpsRequest' ) )
+        require_once("Components/Co2ok-HttpsRequest.php");
+
+    if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient' ) )
+        require_once("Components/Co2ok-GraphQLClient.php");
+
+    if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_GraphQLMutation' ) )
+        require_once("Components/Co2ok-GraphQLMutation.php");
+}
