@@ -61,7 +61,7 @@ var Co2ok_JS = function ()
         },
         RegisterBindings: function()
         {
-            jQuery('#co2-ok-cart').click(function ()
+            jQuery('#co2-ok-cart').click(function (event)
             {
                 if(jQuery(this).is(":checked"))
                     jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2-ok" id="co2-ok" checked value="1" style="display:none">');
@@ -71,9 +71,9 @@ var Co2ok_JS = function ()
                 jQuery('body').trigger('update_checkout');
             });
 
-            jQuery('.co2ok_checkbox_container').click(function()
+            jQuery('#checkbox_label').click(function(event)
             {
-                jQuery("[name='co2-ok']").trigger("click");
+                jQuery("[id='co2-ok-cart']").trigger("click");
             });
         },
         ShowInfoBox  : function()
