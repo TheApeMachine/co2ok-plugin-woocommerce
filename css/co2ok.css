@@ -112,6 +112,8 @@ img#co2-ok-logo
     background: white;
     border-radius: 15px;
     border: 1px solid black;
+
+    margin-top: -50px;
 }
 
 .co2ok_infobox_container span
