@@ -14,7 +14,7 @@ class Co2ok_GraphQLClient extends Co2ok_HttpsRequest
 
     public function mutation($callback,$responseCallback)
     {
-        $mutation = new Co2ok_GraphQLMutation();
+        $mutation = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLMutation();
         $callback($mutation);
         $mutation->ProcessMutationQuery();
         

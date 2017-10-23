@@ -45,7 +45,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final static function registerMerchant()
     {
-        $graphQLClient = new Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
+        $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
         $merchantName = $_SERVER['SERVER_NAME'];
         $merchantEmail = get_option('admin_email');
@@ -103,7 +103,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         require_once(  plugin_dir_path( __FILE__ ) . '/co2ok-autoloader.php' );
 
-        $this->helperComponent = new Components\Co2ok_HelperComponent();
+        $this->helperComponent = new \co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent();
 
         /**
          * Check if WooCommerce is active
@@ -187,7 +187,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             }
         }
 
-        $graphQLClient = new Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
+        $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
         $merchantId = get_option('co2ok_id', false);
         $orderTotal = $order->get_total();
