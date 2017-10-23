@@ -39,6 +39,9 @@ Besides the option that the CO2 compensation button provides, nothing changes. Y
 
 == Changelog ==
 
+= 1.0.1 =
+* Improved button design, fixed some bugs
+
 = 1.0.0 =
 * Initial release
 
