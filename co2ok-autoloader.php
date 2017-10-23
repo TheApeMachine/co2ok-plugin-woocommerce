@@ -25,7 +25,7 @@ function co2ok_plugin_woocommerce_autoload( $class_name ) {
         if ( !class_exists( $class_name ) )
             include_once( $filepath );
     }
-    else{
+    else{ 
       //  echo "Something went wrong finding the files to include";
     }
 }
