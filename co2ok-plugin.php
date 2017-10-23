@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.0.7
+ * Version: 1.0.0.8
  *         (Remember to change the VERSION constant, below, as well!)
  * Author:
  * Chris Fuller,
@@ -34,7 +34,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.0.7';
+    const VERSION = '1.0.0.8';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -181,7 +181,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $compensationCost = 0;
         foreach ($fees as $fee) {
-            if ($fee->get_name() == "CO2 compensatie") {
+            if ($fee->get_name() == "CO&#8322; compensatie") {
                 $compensationCost = $fee->get_total();
                 break;
             }
