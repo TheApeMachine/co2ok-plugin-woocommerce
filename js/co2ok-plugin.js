@@ -72,9 +72,10 @@ var Co2ok_JS = function ()
                     setTimeout(function()
                     {
                         jQuery(".woocommerce-cart-form input[name=update_cart]").click();
-                        jQuery('body').trigger('update_checkout');
                     },200);
                 });
+
+                jQuery('body').trigger('update_checkout');
 
                 jQuery('.woocommerce-cart-form').find('input.qty').first().trigger("change");
             });
