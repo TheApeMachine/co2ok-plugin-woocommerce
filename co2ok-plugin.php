@@ -235,6 +235,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $surcharge = (($woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total) / 100) * $this->percentage;
         $surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
+        // $surcharge *= 1.2;
+
         return $surcharge;
     }
 
@@ -271,7 +273,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final private function renderCheckbox()
     {
         global $woocommerce;
-        $this->helperComponent->RenderCheckbox( esc_html(number_format($this->co2ok_calculateSurcharge(), 2, ',', ' ') ) , esc_attr(urlencode(json_encode($this->co2ok_CartDataToJson())) ));
+        $this->helperComponent->RenderCheckbox( esc_html(number_format($this->co2ok_calculateSurcharge() * 1.21, 2, ',', ' ') ) , esc_attr(urlencode(json_encode($this->co2ok_CartDataToJson())) ));
     }
 
     final public function co2ok_cart_checkbox()
@@ -302,7 +304,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $woocommerce->session->co2ok = 0;
 
         if ($woocommerce->session->co2ok == 1) {
-            $woocommerce->cart->add_fee('CO&#8322; compensatie', $this->co2ok_calculateSurcharge(), false, '');
+            $woocommerce->cart->add_fee('CO&#8322; compensatie', $this->co2ok_calculateSurcharge(), true, '');
         }
     }
 }
