@@ -40,19 +40,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                                 'required' => false,
                             ), $woocommerce->session->co2ok);
 
-                            echo '<span id="checkbox_label"> Maak CO&#8322;ok voor <span class="compensation_amount">€' . $surcharge . '</span> </span>
+                            echo '<span id="checkbox_label"> Maak CO&#8322;ok voor <span class="compensation_amount">€' . $surcharge_incl . '</span> </span>
                            
                         </span>
                         
                         <span id="p">
-                            Bouw mee aan een betere toekomst!' . $this->RenderImage('images/info.svg', 'co2-ok-info', 'co2-ok-info') .
+                            Bouw mee aan een betere toekomst' . $this->RenderImage('images/info.svg', 'co2-ok-info', 'co2-ok-info') .
                         '</span>'
                         .'<a target="_blank" href="http://co2ok.eco">'. $this->RenderImage('images/logo.svg', null, 'co2-ok-logo').'</a>'
 
-                    . '</span>
-            
-            <div class="co2ok_infobox_container" style="width:1px;height:1px;overflow:hidden"> <img src="https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png" /> 
-             <span> <a target="_blank" href="http://www.co2ok.eco/co2-compensatie">hoe CO&#8322; compensatie werkt</a> </span></div> ';
+                    . '<div class="co2ok_infobox_container" style="width:1px;height:1px;overflow:hidden"> <img src="https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png" /> 
+                       <span> <a target="_blank" href="http://www.co2ok.eco/co2-compensatie">hoe CO&#8322; compensatie werkt&nbsp;</a> </span></div> 
+                  </span>';
 
         }
 

@@ -5,12 +5,13 @@
 
 .co2ok_checkbox_container
 {
-    font-size: 26px;
+    font-size: 21px;
     padding: 8px;
     border-radius: 5px;
     background-color: #5eac24;
     color:white;
-
+    font-family: Roboto, sans-serif;
+    font-weight: lighter;    
 }
 
 #checkbox_label
@@ -20,15 +21,14 @@
 
 #co2-ok-cart
 {
-    display: inline-block;
+    display: inline-block !important;
     -webkit-appearance: none;
-    appearance: none;
+    -moz-appearance: none;
     background-color: white;
     border: 1px solid #cacece;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
     padding: 15px;
     border-radius: 3px;
-    display: inline-block;
     position: relative;
     vertical-align: middle;
     margin-bottom: 5px;
@@ -68,9 +68,11 @@
 span#p
 {
     display: block;
-    font-size: 18px;
+    font-size: 15px;
     padding-top: 8px;
     padding-bottom: 1px;
+    font-family: Roboto, sans-serif;
+    font-weight: lighter;
 }
 
 p#co2-ok-cart_field
@@ -119,5 +121,5 @@ img#co2-ok-logo
 .co2ok_infobox_container span
 {
     float: right;
-    padding: 2px;
+    padding: 0px;
 }

@@ -34,7 +34,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.0.10;
+    const VERSION = '1.0.0.10';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -126,6 +126,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
              * Register Front End
              */
             add_action('wp_enqueue_scripts', array($this, 'co2ok_stylesheet'));
+            add_action('wp_enqueue_scripts', array($this, 'co2ok_font'));
             add_action('wp_enqueue_scripts', array($this, 'co2ok_javascript'));
 
             add_action('wp_ajax_nopriv_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
@@ -161,6 +162,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         wp_register_style('co2ok_stylesheet', plugins_url('css/co2ok.css', __FILE__).'?plugin_version='.self::VERSION);
         wp_enqueue_style('co2ok_stylesheet');
+    }
+
+    final public function co2ok_font()
+    {
+        wp_enqueue_style( 'co2ok-google-fonts', 'http://fonts.googleapis.com/css?family=Roboto:300,400', false );
     }
 
     final public function co2ok_javascript()
