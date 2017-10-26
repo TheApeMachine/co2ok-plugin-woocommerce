@@ -218,7 +218,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     'merchantId' => $merchantId,
                     'orderId' => $order_id,
                     'compensationCost' => number_format($compensationCost, 2, '.', ''),
-                    'orderTotal' => number_format($orderTotal, 2, '.', '')
+                    'orderTotal' => number_format($orderTotal, 2, '.', ''),
+                    'currency' => get_woocommerce_currency()
                 )
             );
 
