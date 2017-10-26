@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.0.11
+ * Version: 1.0.0.12
  *         (Remember to change the VERSION constant, below, as well!)
  * Author:
  * Chris Fuller,
@@ -35,7 +35,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.0.11';
+    const VERSION = '1.0.0.12';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -158,7 +158,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $this->surcharge = $this->co2ok_calculateSurcharge();
 
         $return = array(
-            'compensation_amount'	=> '€' . number_format($this->surcharge, 2, ',', ' ')
+            'compensation_amount'	=> get_woocommerce_currency_symbol() . number_format($this->surcharge, 2, ',', ' ')
         );
 
         wp_send_json($return);
