@@ -11,6 +11,7 @@
  * Author:
  * Chris Fuller,
  * Milo de Vries
+ * Text Domain: co2ok-for-woocommerce
  *
  * Author URI: http://www.co2ok.eco/
  * License: GPLv2
@@ -132,6 +133,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             add_action('wp_ajax_nopriv_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
             add_action('wp_ajax_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
 
+            /**
+             * Load translations
+             */
+            add_action( 'plugins_loaded', array($this, 'co2ok_load_plugin_textdomain' ));
+
             // Check if merchant is registered, if for whatever reason this merchant is in fact not a registered merchant,
             // Maybe the api was down when this user registered the plugin, in that case we want to re-register !
             $alreadyActivated = get_option('co2ok_id', false);
@@ -178,6 +184,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         wp_enqueue_script('co2ok_js_wp', "", array(), null, true);
         wp_localize_script('co2ok_js_wp', 'ajax_object',
             array('ajax_url' => admin_url('admin-ajax.php')));
+    }
+
+    final public function co2ok_load_plugin_textdomain() {
+        load_plugin_textdomain( 'co2ok-for-woocommerce', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
     }
 
     final private function co2ok_storeTransaction($order_id)

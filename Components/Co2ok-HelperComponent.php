@@ -44,8 +44,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                            
                         </span>
                         
-                        <span id="p">
-                            Bouw mee aan een betere toekomst' . $this->RenderImage('images/info.svg', 'co2-ok-info', 'co2-ok-info') .
+                        <span id="p">'
+
+                        . __( 'Help build a better future', 'co2ok-for-woocommerce' );
+                        echo $this->RenderImage('images/info.svg', 'co2-ok-info', 'co2-ok-info') .
                         '</span>'
                         .'<a target="_blank" href="http://co2ok.eco">'. $this->RenderImage('images/logo.svg', null, 'co2-ok-logo').'</a>'
 
