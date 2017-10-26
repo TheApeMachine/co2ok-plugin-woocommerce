@@ -40,7 +40,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                                 'required' => false,
                             ), $woocommerce->session->co2ok);
 
-                            echo '<span id="checkbox_label"> Maak CO&#8322;ok voor <span class="compensation_amount">€' . $surcharge_incl . '</span> </span>
+                            $currency_symbol = get_woocommerce_currency_symbol();
+
+                            echo '<span id="checkbox_label"> '. __( 'Make CO&#8322;ok for', 'co2ok-for-woocommerce' ).' <span class="compensation_amount">'.$currency_symbol.''. $surcharge . '</span> </span>
                            
                         </span>
                         
