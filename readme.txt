@@ -15,6 +15,10 @@ Give your customers the choice to make their purchase climate neutral with CO2ok
 
 By giving your customers the choice to compensate the carbon footprint of their purchase, you're helping the environment without any investment on your side. 
 
+We're just starting! Our site is still mostly in Dutch - soon™. (Same goes for a proper description - so much to do and so little time)
+
+Drop us a line if you have questions or something doesn't work as expected: make@co2ok.eco
+
 [Terms of Service](http://www.co2ok.eco/wp-content/uploads/2017/10/ToS.pdf)
 
 == Installation ==
@@ -38,6 +42,12 @@ Besides the option that the CO2 compensation button provides, nothing changes. Y
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.0.12 =
+* Hello world! Now in English as well as in Dutch - other languages will follow
+* Added support for every currency that Woocommerce supports
+* More resiliant against aggressive designs
+* Now even prettier in FireFox
 
 = 1.0.0.10 =
 * Improved button design, fixed some bugs
