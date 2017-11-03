@@ -126,6 +126,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     array($this, 'co2ok_store_transaction_when_compensating'), 99, 3);
 
                 /**
+                 * I suspect some webshops might have a different flow, so let's log some events
+                 * TODO
+                 */
+
+                /**
                  * Register Front End
                  */
                 add_action('wp_enqueue_scripts', array($this, 'co2ok_stylesheet'));
@@ -189,6 +194,20 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final public function co2ok_load_plugin_textdomain()
     {
         load_plugin_textdomain( 'co2ok-for-woocommerce', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+
+        /**
+         *         TODO this should be conditional
+         * (eg only when visited from our IPs)
+         */
+
+        use cbschuld\LogEntries;
+        
+        require "vendor/autoload.php";
+        $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
+        
+        $log = LogEntries::getLogger($token,true,true); // create persistent SSL-based connection
+        $log->info("some information");
+        $log->notice(json_encode(["status"=>"ok","message"=>"send some json"]));
 
     }
 
