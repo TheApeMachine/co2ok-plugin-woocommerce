@@ -39,6 +39,12 @@ function co2ok_plugin_woocommerce_autoload( $class_name ) {
 //{
 
 
+if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Admin\Co2ok_AdminOverview' ) )
+    require_once( plugin_dir_path( __FILE__ )."/Components/Admin/Co2ok-AdminOverview.php");
+
+if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_TemplateRenderer' ) )
+    require_once( plugin_dir_path( __FILE__ )."/Components/Co2ok-TemplateRenderer.php");
+
     if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' ) )
         require_once( plugin_dir_path( __FILE__ )."/Components/Co2ok-HelperComponent.php");
 

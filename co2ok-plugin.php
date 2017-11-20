@@ -142,6 +142,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     Co2ok_Plugin::registerMerchant();
 
         }
+        else
+        {
+           throw new \Exception( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ));
+        }
     }
 
     final public function co2ok_ajax_set_percentage()
@@ -279,18 +283,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $_product = $values['data'];
 
             $product_data = array();
-            $product_data['name'] = $_product->name;
+            $product_data['name'] = $_product->get_name();
             $product_data['quantity'] = $values['quantity'];
             $product_data['brand'] = "";
-            $product_data['description'] = $_product->description;
-            $product_data['shortDescription'] = $_product->shortDescription;
-            $product_data['sku'] = $_product->sku;
-            $product_data['gtin'] = $_product->gtin;
-            $product_data['price'] = $_product->price;
-            $product_data['taxClass'] = $_product->taxClass;
-            $product_data['weight'] = $_product->weight;
-            $product_data['attributes'] = $_product->attributes;
-            $product_data['defaultAttributes'] = $_product->defaultAttributes;
+            $product_data['description'] = $_product->get_description();
+            $product_data['shortDescription'] = $_product->get_short_description();
+            $product_data['sku'] = $_product->get_sku();
+           // $product_data['gtin'] = $_product->get;
+            $product_data['price'] = $_product->get_price();
+            $product_data['taxClass'] = $_product->get_tax_class();
+            $product_data['weight'] = $_product->get_weight();
+            $product_data['attributes'] = $_product->get_attributes();
+            $product_data['defaultAttributes'] = $_product->get_default_attributes();
 
             $cart[] = $product_data;
         }

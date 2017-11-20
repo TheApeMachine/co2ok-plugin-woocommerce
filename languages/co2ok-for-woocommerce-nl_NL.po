@@ -14,8 +14,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: Components/Co2ok-HelperComponent.php:49
-msgid "Help build a better future"
-msgstr "Bouw mee aan een betere toekomst"
+msgid "Make your purchase climate neutral"
+msgstr "Maak je aankoop klimaatneutraal"
 
 #: Components/co2ok-plugin.php:45
 msgid "Make CO&#8322;ok for"

@@ -7,11 +7,88 @@
 {
     font-size: 21px;
     padding: 8px;
-    border-radius: 5px;
-    background-color: #5eac24;
-    color:white;
+    /* background-color: #5eac24; */
+    color:#606468;
     font-family: Roboto, sans-serif;
-    font-weight: lighter;    
+    font-weight: lighter;
+
+    position: relative;
+
+    border-radius: 16px;
+    background: white;
+    background-clip: padding-box;
+    padding: 10px;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /* just to show box-shadow still works fine */
+     /* box-shadow: 0 3px 9px black, inset 0 0 9px white; */
+}
+
+
+
+  .co2ok_checkbox_container.unselected .compensation_amount
+  {
+    color:#06d367;
+      font-weight:normal;
+  }
+
+.co2ok_checkbox_container.unselected
+{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    margin-top: 0px;
+
+    max-height: 53px;
+}
+
+.co2ok_checkbox_container.unselected::after {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: absolute;
+    top: -2px; bottom: -2px;
+    left: -2px; right: -2px;
+    background: linear-gradient(#1defaa, #06d367);
+    content: '';
+    z-index: -1;
+    border-radius: 16px;
+}
+
+.co2ok_checkbox_container.selected
+{
+    margin: -2px;
+    padding-left: 12px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color:white;
+    text-shadow: 2px 2px 8px #6d6d6d;
+    background: #1ceeaa; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #1ceeaa 0%, #06d367 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #1ceeaa 0%,#06d367 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #1ceeaa 0%,#06d367 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ceeaa', endColorstr='#06d367',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.co2ok_checkbox_container.selected::after {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+}
+
+
+.co2ok_space_grad
+{
+    background: #1ceeaa; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #1ceeaa 0%, #06d367 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #1ceeaa 0%,#06d367 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #1ceeaa 0%,#06d367 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ceeaa', endColorstr='#06d367',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 #checkbox_label
@@ -19,7 +96,7 @@
     cursor: pointer;
 }
 
-#co2-ok-cart
+#co2ok_cart
 {
     display: inline-block !important;
     -webkit-appearance: none;
@@ -34,15 +111,15 @@
     margin-bottom: 5px;
 }
 
-#co2-ok-cart:active, #co2-ok-cart:checked:active {
+#co2ok_cart:active, #co2ok_cart:checked:active {
     box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
 }
 
-#co2-ok-cart:focus{
+#co2ok_cart:focus{
     outline:0;
 }
 
-#co2-ok-cart:checked {
+#co2ok_cart:checked {
     background-color: white;
     border: 1px solid #adb8c0;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
@@ -50,7 +127,7 @@
 
 }
 
-#co2-ok-cart:checked:after {
+#co2ok_cart:checked:after {
     content: "         ";
     white-space: pre;
     background : url("../images/vinkje_co2ok.png");
@@ -75,13 +152,13 @@ span#p
     font-weight: lighter;
 }
 
-p#co2-ok-cart_field
+p#co2ok_cart_field
 {
     margin : 0px!important;
     display: inline-block;
 }
 
-img#co2-ok-info
+img#co2ok_info
 {
     display: inline-block;
     width: 20px;
@@ -90,13 +167,14 @@ img#co2-ok-info
     vertical-align: bottom;
 }
 
-img#co2-ok-logo
+img#co2ok_logo
 {
     display: inline-block;
-    width: 104px;
-    vertical-align: middle;
-    margin-left:-4px;
-    margin-bottom:14px;
+    width: 79px;
+    vertical-align: top;
+    margin-left: -5px;
+    margin-bottom: 14px;
+    margin-right: 3px;
 }
 
 .co2ok_infobox_container
