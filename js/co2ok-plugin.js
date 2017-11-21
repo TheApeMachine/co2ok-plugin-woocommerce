@@ -19,9 +19,14 @@ var Co2ok_JS = function ()
 
                     _this.GetPercentageFromMiddleware();
                 }
+
             });
 
-
+            jQuery("img#co2ok_info_hover_image")
+                .on('error', function()
+                {
+                    jQuery("#co2ok_info_hover_image").attr("src","https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png");
+                });
         },
         GetPercentageFromMiddleware: function()
         {
@@ -96,7 +101,7 @@ var Co2ok_JS = function ()
                         jQuery(".woocommerce-cart-form input[name=update_cart]").click();
                     },200);
                 });
-                
+
                 jQuery('body').trigger('update_checkout');
 
                 jQuery('.woocommerce-cart-form').find('input.qty').first().trigger("change");
