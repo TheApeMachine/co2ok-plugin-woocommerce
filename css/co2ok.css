@@ -5,6 +5,7 @@
 
 .co2ok_checkbox_container
 {
+    cursor:pointer;
     font-size: 21px;
     padding: 8px;
     /* background-color: #5eac24; */
@@ -26,8 +27,6 @@
      /* box-shadow: 0 3px 9px black, inset 0 0 9px white; */
 }
 
-
-
   .co2ok_checkbox_container.unselected .compensation_amount
   {
     color:#06d367;
@@ -45,6 +44,8 @@
     max-height: 53px;
 }
 
+
+
 .co2ok_checkbox_container.unselected::after {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -61,8 +62,8 @@
 .co2ok_checkbox_container.selected
 {
     margin: -2px;
-    padding-left: 12px;
-    padding-top: 10px;
+    padding-left: 17px;
+    padding-top: 8px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -78,9 +79,11 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-
 }
-
+.co2ok_checkbox_container.selected #checkbox_label {
+    display: inline-block;
+    vertical-align: sub;
+}
 
 .co2ok_space_grad
 {
@@ -107,8 +110,9 @@
     padding: 15px;
     border-radius: 3px;
     position: relative;
-    vertical-align: middle;
+    vertical-align: top;
     margin-bottom: 5px;
+    cursor:pointer;
 }
 
 #co2ok_cart:active, #co2ok_cart:checked:active {
@@ -124,7 +128,9 @@
     border: 1px solid #adb8c0;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
     color: #99a1a7;
-
+    margin-left: -5px;
+    margin-right: 2px;
+    margin-top: 2px;
 }
 
 #co2ok_cart:checked:after {
@@ -162,8 +168,8 @@ img#co2ok_info
 {
     display: inline-block;
     width: 20px;
-    margin-left: 6px;
-    margin-bottom: 6px;
+    margin-left: 2px;
+    margin-bottom: 2px;
     vertical-align: bottom;
 }
 
@@ -172,9 +178,10 @@ img#co2ok_logo
     display: inline-block;
     width: 79px;
     vertical-align: top;
-    margin-left: -5px;
-    margin-bottom: 14px;
+    margin-left: 0px;
+    margin-bottom: 0px;
     margin-right: 3px;
+    margin-top: 2px;
 }
 
 .co2ok_infobox_container

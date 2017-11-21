@@ -79,10 +79,11 @@ var Co2ok_JS = function ()
                 {
                     jQuery('.co2ok_checkbox_container').addClass('selected');
                     jQuery('.co2ok_checkbox_container').removeClass('unselected');
-                    jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2-ok" id="co2-ok" checked value="1" style="display:none">');
+                    jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_cart_hidden" checked value="1" style="display:none">');
                 }else {
                     jQuery('.co2ok_checkbox_container').removeClass('selected');
                     jQuery('.co2ok_checkbox_container').addClass('unselected');
+                    jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_cart_hidden"  checked value="0" style="display:none">');
                 }
 
 
@@ -95,15 +96,19 @@ var Co2ok_JS = function ()
                         jQuery(".woocommerce-cart-form input[name=update_cart]").click();
                     },200);
                 });
-
+                
                 jQuery('body').trigger('update_checkout');
 
                 jQuery('.woocommerce-cart-form').find('input.qty').first().trigger("change");
             });
 
-            jQuery('#checkbox_label').click(function(event)
+            jQuery('#co2ok_cart, #checkbox_label, .co2ok_checkbox_container').click(function(event)
             {
-                jQuery("[id='co2-ok-cart']").trigger("click");
+                if(!jQuery(this).is("#co2ok_cart"))
+                {
+                    jQuery("[id='co2ok_cart']").trigger("click");
+                }
+                event.stopPropagation();
             });
         },
         ShowInfoBox  : function()

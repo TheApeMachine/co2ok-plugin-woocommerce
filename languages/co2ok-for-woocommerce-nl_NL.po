@@ -1,27 +1,53 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2017-10-26 17:42+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: nl_NL\n"
+"POT-Creation-Date: 2017-11-21 21:51+0000\n"
+"PO-Revision-Date: 2017-11-21 21:51+0000\n"
+"Last-Translator: chris <chris@test.nbasdasd>\n"
+"Language-Team: Dutch\n"
+"Language: nl-NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Loco - https://localise.biz/\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"Report-Msgid-Bugs-To: "
 
-#: Components/Co2ok-HelperComponent.php:49
-msgid "Make your purchase climate neutral"
-msgstr "Maak je aankoop klimaatneutraal"
+#: co2ok-plugin.php:147
+msgid ""
+"Co2ok Plugin needs Woocommerce to work, please install woocommerce and try "
+"again."
+msgstr ""
 
-#: Components/co2ok-plugin.php:45
-msgid "Make CO&#8322;ok for"
-msgstr "Maak CO&#8322;ok voor"
+#: Templates/co2ok_button_template_default.php:42
+msgid "How CO&#8322; compensation works"
+msgstr "Hoe CO&#8322; compensatie werkt"
 
-#: Components/co2ok-plugin.php:331 and 119
-msgid "CO2 compensation"
-msgstr "CO2 compensatie"
+#. Name of the plugin
+msgid "CO2ok for WooCommerce"
+msgstr ""
 
+#. Description of the plugin
+msgid "A WooCommerce plugin to integrate CO2ok"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/Mil0dV/co2ok-plugin-woocommerce"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://www.co2ok.eco/"
+msgstr ""
+
+#: co2ok-plugin.php:206 co2ok-plugin.php:344
+msgid "CO2 compensation (Inc. VAT)"
+msgstr "CO2 compensatie (Inc. BTW)"
+
+#: Templates/co2ok_button_template_default.php:13
+msgid "Make CO&#8322;ok for "
+msgstr "Maak CO&#8322;ok voor "
+
+#: Templates/co2ok_button_template_default.php:23
+msgid "Help build a better future"
+msgstr "Help mee aan een betere toekomst"

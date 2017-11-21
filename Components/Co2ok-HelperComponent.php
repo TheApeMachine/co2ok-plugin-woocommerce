@@ -31,7 +31,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
 
             echo $templateRenderer->render(get_option('co2ok_button_template', 'co2ok_button_template_default'),
                 array('cart' => $cart,
-                      'co2_ok_session_opted' =>  1,//$woocommerce->session->co2ok,
+                      'co2_ok_session_opted' =>  $woocommerce->session->co2ok,
                       'currency_symbol' =>get_woocommerce_currency_symbol(),
                       'surcharge' => $surcharge
                 )

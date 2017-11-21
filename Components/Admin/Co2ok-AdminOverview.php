@@ -44,23 +44,55 @@ class Co2ok_AdminOverview
 
     function co2ok_plugin_setup_menu()
     {
-        add_menu_page( 'Co2ok Plugin Page', 'Co2ok Plugin', 'manage_options', 'co2ok-plugin', array($this, 'test_init'));
+        add_menu_page( 'Co2ok Plugin Page', 'Co2ok Plugin', 'manage_options', 'co2ok-plugin', array($this, 'co2ok_plugin_admin_overview'));
     }
 
-    function test_init()
+    function co2ok_plugin_admin_overview()
     {
         if (isset($_POST['co2ok_template_style'])) {
             update_option('co2ok_button_template', $_POST['co2ok_template_style']);
-            $value = $_POST['co2ok_template_style'];
+            $co2ok_template_style = $_POST['co2ok_template_style'];
         }
 
-        if (isset($_POST['co2ok_plugin_language'])) {
-            update_option('co2ok_plugin_language', $_POST['co2ok_plugin_language']);
-            $co2ok_plugin_language = $_POST['co2ok_plugin_language'];
+        if (isset($_POST['co2ok_statistics']))
+        {
+            update_option('co2ok_statistics', 'on');
         }
 
-        $value = get_option('co2ok_button_template', 'co2ok_button_template_default');
-        $co2ok_plugin_language = get_option('co2ok_plugin_language', 'co2_ok_language_EN');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            if (!isset($_POST['co2ok_statistics']))
+            {
+                $_POST['co2ok_statistics'] = 'off';
+                update_option('co2ok_statistics', 'off');
+            }
+
+            $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(\co2ok_plugin_woocommerce\Co2ok_Plugin::$co2okApiUrl);
+
+            $merchantId = get_option('co2ok_id', false);
+            $co2ok_statistics = get_option('co2ok_statistics', 'off');
+
+            $graphQLClient->mutation(function ($mutation) use ($merchantId, $co2ok_statistics)
+            {
+                $mutation->setFunctionName('updateMerchant');
+
+                $mutation->setFunctionParams(
+                    array(
+                        'merchantId' => $merchantId,
+                        'sendStats' => $co2ok_statistics
+                    )
+                );
+                $mutation->setFunctionReturnTypes(array('ok'));
+            }
+                , function ($response)// Callback after request
+                {
+                    // echo print_r($response,1);
+                    // TODO error handling
+                });
+        }
+
+        $co2ok_template_style = get_option('co2ok_button_template', 'co2ok_button_template_default');
+        $co2ok_statistics = get_option('co2ok_statistics', 'off');
 
         include_once plugin_dir_path(__FILE__).'views/default.php';
     }
