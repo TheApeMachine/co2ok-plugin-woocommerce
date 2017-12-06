@@ -8,7 +8,7 @@
     <form method="POST" style="display: block;clear: both; margin-top: 20px;">
 
         <input name="co2ok_statistics" <?php if($co2ok_statistics == 'on') echo "checked" ?> type="checkbox"/>
-        <label for="plugin_language">Help us improve our product by allowing us to send anonymous statistics. </label>
+        <label for="plugin_language">Help us improve our product (we will never impact the stability of your shop through this!). </label>
 
         </br>
         </br>

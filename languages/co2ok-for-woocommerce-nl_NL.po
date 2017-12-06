@@ -45,9 +45,9 @@ msgid "CO2 compensation (Inc. VAT)"
 msgstr "CO2 compensatie (Inc. BTW)"
 
 #: Templates/co2ok_button_template_default.php:13
-msgid "Make CO&#8322;ok for "
-msgstr "Maak CO&#8322;ok voor "
+msgid "Make "
+msgstr "Maak "
 
 #: Templates/co2ok_button_template_default.php:23
-msgid "Help build a better future"
-msgstr "Help mee aan een betere toekomst"
+msgid "Make my purchase climate neutral"
+msgstr "Maak je aankoop klimaatneutraal"
