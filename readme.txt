@@ -17,9 +17,9 @@ By enabling your customers to make their purchase climate neutral with CO₂ok t
 
 Help build a better future.
 
-[more information on our site]http://www.co2ok.eco/retailers/)
+[more information on our site](http://www.co2ok.eco/retailers/)
 
-We're just starting! Please let us know if you have feedback/questions or something doesn't work as expected: we're online almost 24/7 on the chat function on our website, or drop us a line : make@co2ok.eco
+We're just starting! Please let us know if you have feedback/questions or something doesn't work as expected: we're online almost 24/7 on the chat function on our website, or drop us a line : <make@co2ok.eco>
 
 [Terms of Service](http://www.co2ok.eco/wp-content/uploads/2017/10/ToS.pdf)
 

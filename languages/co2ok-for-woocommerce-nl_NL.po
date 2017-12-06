@@ -50,4 +50,4 @@ msgstr "Maak "
 
 #: Templates/co2ok_button_template_default.php:23
 msgid "Make my purchase climate neutral"
-msgstr "Maak je aankoop klimaatneutraal"
+msgstr "Maak mijn aankoop klimaatneutraal"
