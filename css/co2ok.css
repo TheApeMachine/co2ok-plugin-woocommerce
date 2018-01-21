@@ -12,6 +12,7 @@
       max-width: 275px; } }
   .co2ok_container .co2ok_payoff {
     width: 100%;
+    margin-top: 12.5px;
     text-align: center;
     display: block;
     width: 100%; }
@@ -21,6 +22,7 @@
       .co2ok_container .co2ok_payoff #p img {
         width: 15px;
         margin-top: 2px;
+        margin-left: 10px;
         display: inline-block; }
   .co2ok_container .co2ok_checkbox_container {
     border-radius: 10px;
@@ -33,13 +35,15 @@
       position: relative;
       display: inline-block;
       width: 100%;
-      padding: 5px 10px;
+      padding: 7.5px 10px;
       height: 100%;
       font-size: 1.2em;
       font-weight: bold;
       text-align: center; }
       .co2ok_container .co2ok_checkbox_container #checkbox_label .make {
         margin-left: 20px; }
+      .co2ok_container .co2ok_checkbox_container #checkbox_label span {
+        vertical-align: baseline; }
       @media (max-width: 480px) {
         .co2ok_container .co2ok_checkbox_container #checkbox_label .make {
           margin-left: 35px; } }
