@@ -1,6 +1,7 @@
 .co2ok_container {
 
   display: inline-block;
+  position: relative;
   font-family: Roboto, sans-serif;
   color:#606468;
 
@@ -12,18 +13,26 @@
 
   @media(min-width : 868px) {
 
-    min-width: 350px;
-    max-width: 350px;
+    min-width: 275px;
+    max-width: 275px;
 
   }
 
   .co2ok_payoff {
-
+    width: 100%;
+    text-align: center;
+    display: block;
+    width: 100%;
     #p {
+
+      vertical-align: middle;
+      display: inline-block;
 
       & img{
 
         width: 15px;
+        margin-top: 2px;
+        display: inline-block;
 
       }
 
@@ -34,19 +43,28 @@
   .co2ok_checkbox_container {
 
     border-radius: 10px;
-    border: solid 2px #5eac24;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     display: block;
+    position: relative;
+
 
     #checkbox_label {
 
       position: relative;
       display: inline-block;
       width: 100%;
-      padding: 10px;
+      padding: 5px 10px;
       height: 100%;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+
+      .make {
+          margin-left: 20px;
+      }
+
 
       @media (max-width : 480px) {
 
@@ -74,10 +92,13 @@
       position: absolute;
       width: 25px;
       height: 25px;
-      left: 25px;
+      left: 10px;
       top: 50%;
       transform: translateY(-50%);
-      border: 1px solid black;
+      background-color: #E1E6E7;
+      border: 1px solid #cacece;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+      border-radius: 5px;
 
     }
 
@@ -87,17 +108,29 @@
 
     }
 
+    .compensation_amount {
+      color:#06d367;
+    }
+
     &.unselected {
 
       background: white;
 
-      #checkbox:before {
+      .compensation_amount {
+        color:#06d367;
+      }
 
-        padding: 2px;
-        background-color: white;
-        font-size: 20px;
-        background-repeat: no-repeat;
-
+      &:after {
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          position: absolute;
+          top: -2px; bottom: -2px;
+          left: -2px; right: -2px;
+          background: linear-gradient(#1defaa, #06d367);
+          content: '';
+          z-index: -1;
+          border-radius: 12px;
       }
 
     }
@@ -111,6 +144,8 @@
       background: -webkit-linear-gradient(-45deg, #1ceeaa 0%,#06d367 100%); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(135deg, #1ceeaa 0%,#06d367 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ceeaa', endColorstr='#06d367',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+      background-color: #E1E6E7;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
 
       #checkbox {
 
@@ -123,6 +158,13 @@
         background-repeat: no-repeat;
 
       }
+
+      .compensation_amount {
+
+        color: white;
+
+      }
+
     }
   }
 }
