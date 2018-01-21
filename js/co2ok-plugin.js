@@ -1,6 +1,7 @@
 var Co2ok_JS = function ()
 {
     var player;
+    var image_url = plugin.url;
     return {
 
         Init: function ()
@@ -27,6 +28,17 @@ var Co2ok_JS = function ()
                 {
                     jQuery("#co2ok_info_hover_image").attr("src","https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png");
                 });
+
+                if (!(jQuery('#co2ok_cart').is(":checked"))) {
+                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
+                }
+
+                if(jQuery('#co2ok_cart').is(":checked"))
+                {
+                    // change image source
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_ok_wit.svg');
+                }
+
         },
         GetPercentageFromMiddleware: function()
         {
@@ -80,9 +92,15 @@ var Co2ok_JS = function ()
             {
                 //
                 //alert("mofo");
+                if (!(jQuery(this).is(":checked"))) {
+                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
+                }
 
                 if(jQuery(this).is(":checked"))
                 {
+                    // change image source
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_ok_wit.svg');
+
                     jQuery('.co2ok_checkbox_container').addClass('selected');
                     jQuery('.co2ok_checkbox_container').removeClass('unselected');
                     jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_cart_hidden" checked value="1" style="display:none">');
