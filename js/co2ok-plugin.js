@@ -140,7 +140,7 @@ var Co2ok_JS = function ()
         },
         ShowInfoBox  : function()
         {
-            jQuery(".co2ok_infobox_container").css({ "display" : "block","width" : "348px","height" : "270px" , "opacity" : '1' });
+            jQuery(".co2ok_infobox_container").css({ "display" : "block","width" : "348px","height" : "270px" , "opacity" : 1 });
         },
 
         IsMobile : function()
@@ -158,33 +158,24 @@ var Co2ok_JS = function ()
 
             var _this = this;
 
-            jQuery('body').click(function( e )
+            jQuery('body').click(function()
             {
-                console.log(e);
-                if(e.target.className != 'co2ok_info' && e.target.className != 'co2ok_infobox_container')
-                {
-                  jQuery(".co2ok_infobox_container").css({  'display' : "none", 'opacity' : 0  });
-                  setTimeout(function () {
-                      jQuery(".co2ok_infobox_container").css({  'display' : "none", 'opacity' : 0    });
-                  },1200);
-                }
-
+                jQuery(".co2ok_infobox_container").css({  'opacity' : 0  });
+                setTimeout(function () {
+                    jQuery(".co2ok_infobox_container").css({  'display' : "none", 'opacity' : 0    });
+                },1200);
             });
 
-                // alert("not mobile");
+            if(!_this.IsMobile())
+            {
+                //alert("not mobile");
                 jQuery('#co2ok_info').hover(function () {
-
-                  if(_this.IsMobile())
-                  {
-
                     _this.ShowInfoBox();
                     //alert("not mobile");
-
-                  }
-
                 });
+            }
 
-            jQuery('#co2ok_info').click(function(e)
+            jQuery('.co2ok_info').click(function(e)
             {
                 _this.ShowInfoBox();
              //   e.stopPropagation();
