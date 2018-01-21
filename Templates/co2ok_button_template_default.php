@@ -1,5 +1,6 @@
 <div class="co2ok_container" data-cart="<?php echo $cart ?>">
-    <span class="co2ok_checkbox_container <?php echo ($co2_ok_session_opted == 1 ? 'selected' : 'unselected' )?>" style="display:block;">
+
+    <span class="co2ok_checkbox_container <?php echo ($co2_ok_session_opted == 1 ? 'selected' : 'unselected' )?>">
         <?php
             woocommerce_form_field('co2ok_cart', array(
                 'type' => 'checkbox',
@@ -9,32 +10,38 @@
             ), $co2_ok_session_opted);
         ?>
 
-        <div id="checkbox_label" style="display: inline-block;">
-            <?php echo __( 'Make ', 'co2ok-for-woocommerce' );
-                echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); 
+        <div id="checkbox_label">
+          <div id="checkbox">
+
+          </div>
+            <?php echo __( '<span class="make">Make</span>', 'co2ok-for-woocommerce' );
+                echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
             ?>
             <span class="compensation_amount">+<?php echo $currency_symbol.''. $surcharge ?> </span>
         </div>
     </span>
-                                                
+
 
     <span class="co2ok_payoff">
-    
+
         <?php
             echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
             ?>
-        <span id="p"  style="display:inline-block;">
-            <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/info.svg', 'co2ok_info', 'co2ok_info'); ?>
+        <span id="p">
+            <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/info.png', 'co2ok_info', 'co2ok_info'); ?>
         </span>
     </span>
 
-    <div class="co2ok_infobox_container" style="width:1px;height:1px;overflow:hidden">
+
+    <div class="co2ok_infobox_container">
         <img id="co2ok_info_hover_image" src="https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover_<?php echo get_locale(); ?>.png" />
-        <a target="_blank" href="http://co2ok.eco" style="margin-left: 10px"> 
+        <a target="_blank" href="http://co2ok.eco">
         <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); ?>
             </a>
         <span> <a target="_blank" href="http://www.co2ok.eco/co2-compensatie"><?php
             echo  __( 'How CO&#8322; compensation works', 'co2ok-for-woocommerce' );
             ?></a> </span>
     </div>
+
+
 </div>
