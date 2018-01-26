@@ -2,7 +2,8 @@
   display: inline-block;
   position: relative;
   font-family: Roboto, sans-serif;
-  color: #606468; }
+  color: #606468;
+  z-index: 10; }
   @media (max-width: 500px) {
     .co2ok_container {
       width: 100%;
@@ -133,8 +134,11 @@ img#co2ok_logo {
   display: none;
   background: white;
   border-radius: 15px;
-  border: 1px solid black;
-  margin-top: -50px; }
+  margin-top: -50px;
+  border: 5px solid transparent;
+  border-image: linear-gradient(135deg, #1ceeaa 0%, #06d367 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  border-image-slice: 1; }
   .co2ok_infobox_container.ShowInfoBox {
     display: block;
     opacity: 1; }
