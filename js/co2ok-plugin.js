@@ -158,7 +158,14 @@ var Co2ok_JS = function ()
         },
         ShowInfoBox  : function()
         {
-            jQuery(".co2ok_infobox_container").css({ "display" : "block","width" : "348px","height" : "270px" , "opacity" : 1 });
+            jQuery(".co2ok_infobox_container").removeClass('infobox-hidden')
+            jQuery(".co2ok_infobox_container").addClass('ShowInfoBox')
+        },
+
+        hideInfoBox : function()
+        {
+            jQuery(".co2ok_infobox_container").removeClass('ShowInfoBox')
+            jQuery(".co2ok_infobox_container").addClass('infobox-hidden')
         },
 
         IsMobile : function()
@@ -176,27 +183,43 @@ var Co2ok_JS = function ()
 
             var _this = this;
 
-            jQuery('body').click(function()
+            jQuery('document').click(function(e)
             {
-                jQuery(".co2ok_infobox_container").css({  'opacity' : 0  });
-                setTimeout(function () {
-                    jQuery(".co2ok_infobox_container").css({  'display' : "none", 'opacity' : 0    });
-                },1200);
+              console.log('clicking');
+              if(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info')){
+                console.log('not closign!');
+              }else{
+                _this.hideInfoBox();
+              }
+            });
+
+            jQuery('document').on('touchstart', function(e)
+            {
+                console.log('tapping');
+              if(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info')){
+                console.log('not closign!');
+              }else{
+                _this.hideInfoBox();
+              }
             });
 
             if(!_this.IsMobile())
             {
                 //alert("not mobile");
-                jQuery('#co2ok_info').hover(function () {
-                    _this.ShowInfoBox();
-                    //alert("not mobile");
-                });
+                jQuery('.co2ok_info, .co2ok_infobox_container').mouseenter(function()
+                {
+                  _this.ShowInfoBox();
+                })
+
+                .mouseleave(function()
+                {
+                  _this.hideInfoBox();
+                })
             }
 
-            jQuery('.co2ok_info').click(function(e)
+            jQuery('#co2ok_info').click(function(e)
             {
                 _this.ShowInfoBox();
-             //   e.stopPropagation();
             });
         }
     }
