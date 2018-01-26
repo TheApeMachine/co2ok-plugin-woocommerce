@@ -185,7 +185,7 @@ var Co2ok_JS = function ()
 
             jQuery(document).click(function(e)
             {
-
+              console.log(!(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info')));
               if(!(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info'))){
                 _this.hideInfoBox();
               }
