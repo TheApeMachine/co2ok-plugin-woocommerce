@@ -186,7 +186,7 @@ var Co2ok_JS = function ()
             jQuery(document).click(function(e)
             {
 
-              if(!(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info'))){
+              if(!(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info') || jQuery(e.target).hasClass('.co2ok_infobox_container'))){
                 _this.hideInfoBox();
               }
               else {
@@ -197,7 +197,8 @@ var Co2ok_JS = function ()
 
 
             jQuery(document).on("touchstart",function(e){
-              if(!(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info'))){
+              console.log(e);
+              if(!(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info') || jQuery(e.target).hasClass('.co2ok_infobox_container'))){
                 _this.hideInfoBox();
               }
               else {
