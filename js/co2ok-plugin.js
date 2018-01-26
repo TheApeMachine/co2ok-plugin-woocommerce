@@ -183,29 +183,20 @@ var Co2ok_JS = function ()
 
             var _this = this;
 
-            jQuery('document').click(function(e)
+            jQuery(document).click(function(e)
             {
-              console.log('clicking');
-              if(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info')){
-                console.log('not closign!');
-              }else{
-                _this.hideInfoBox();
-              }
-            });
 
-            jQuery('document').on('touchstart', function(e)
-            {
-                console.log('tapping');
-              if(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info')){
-                console.log('not closign!');
-              }else{
+              if(!(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info'))){
                 _this.hideInfoBox();
               }
+              else {
+                _this.ShowInfoBox();
+              }
+
             });
 
             if(!_this.IsMobile())
             {
-                //alert("not mobile");
                 jQuery('.co2ok_info, .co2ok_infobox_container').mouseenter(function()
                 {
                   _this.ShowInfoBox();
@@ -216,11 +207,6 @@ var Co2ok_JS = function ()
                   _this.hideInfoBox();
                 })
             }
-
-            jQuery('#co2ok_info').click(function(e)
-            {
-                _this.ShowInfoBox();
-            });
         }
     }
 }().Init();
