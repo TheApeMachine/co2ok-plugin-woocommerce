@@ -3,13 +3,14 @@
   position: relative;
   font-family: Roboto, sans-serif;
   color: #606468; }
-  @media (max-width: 867px) {
+  @media (max-width: 500px) {
     .co2ok_container {
-      width: 100%; } }
+      width: 100%;
+      margin: 0 auto; } }
   @media (min-width: 868px) {
     .co2ok_container {
-      min-width: 275px;
-      max-width: 275px; } }
+      min-width: 300px;
+      max-width: 300px; } }
   .co2ok_container .co2ok_payoff {
     width: 100%;
     margin-top: 12.5px;
@@ -129,10 +130,14 @@ img#co2ok_logo {
   -webkit-transition: opacity 1.2s;
   transition: opacity 1.2s;
   z-index: 10000;
+  display: none;
   background: white;
   border-radius: 15px;
   border: 1px solid black;
   margin-top: -50px; }
+  .co2ok_infobox_container.ShowInfoBox {
+    display: block;
+    opacity: 1; }
 
 .co2ok_infobox_container span {
   float: right;
