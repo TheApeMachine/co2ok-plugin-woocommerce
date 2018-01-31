@@ -14,17 +14,19 @@
 
   @media(min-width : 868px) {
 
-    min-width: 300px;
-    max-width: 300px;
+    min-width: 250px;
+    max-width: 250px;
 
   }
 
   .co2ok_payoff {
     width: 100%;
     margin-top: 12.5px;
+    font-size: 16px;
     text-align: center;
     display: block;
-    width: 100%;
+    margin-left: -5%;
+    width: 110%;
     #p {
 
       vertical-align: middle;
@@ -32,9 +34,8 @@
 
       & img{
 
-        width: 15px;
+        width: 16px;
         margin-top: 2px;
-        margin-left: 10px;
         display: inline-block;
 
       }
@@ -60,12 +61,12 @@
       width: 100%;
       padding: 7.5px 10px;
       height: 100%;
-      font-size: 1.2em;
-      font-weight: bold;
-      text-align: center;
+      font-size: 22px;
+      font-weight: 500;
+      text-align: right;
 
       .make {
-          margin-left: 20px;
+          // margin-left: 20px;
       }
 
       span {
@@ -84,9 +85,8 @@
       img {
 
          display: inline-block;
-         height: 75%;
-         margin-left: 10px;
-         margin-right: 10px;
+        height: 25px  ;
+
          vertical-align: middle;
 
       }
@@ -97,8 +97,8 @@
     #checkbox {
 
       position: absolute;
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
       left: 10px;
       top: 50%;
       transform: translateY(-50%);
@@ -204,8 +204,7 @@ img#co2ok_logo
 
     margin-top: -50px;
 
-    border: 5px solid transparent;
-    border-image: linear-gradient(135deg, #1ceeaa 0%,#06d367 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    border: 3px solid #eee;
 
     border-image-slice: 1;
 

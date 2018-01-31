@@ -10,21 +10,22 @@
       margin: 0 auto; } }
   @media (min-width: 868px) {
     .co2ok_container {
-      min-width: 300px;
-      max-width: 300px; } }
+      min-width: 250px;
+      max-width: 250px; } }
   .co2ok_container .co2ok_payoff {
     width: 100%;
     margin-top: 12.5px;
+    font-size: 16px;
     text-align: center;
     display: block;
-    width: 100%; }
+    margin-left: -5%;
+    width: 110%; }
     .co2ok_container .co2ok_payoff #p {
       vertical-align: middle;
       display: inline-block; }
       .co2ok_container .co2ok_payoff #p img {
-        width: 15px;
+        width: 16px;
         margin-top: 2px;
-        margin-left: 10px;
         display: inline-block; }
   .co2ok_container .co2ok_checkbox_container {
     border-radius: 10px;
@@ -39,11 +40,9 @@
       width: 100%;
       padding: 7.5px 10px;
       height: 100%;
-      font-size: 1.2em;
-      font-weight: bold;
-      text-align: center; }
-      .co2ok_container .co2ok_checkbox_container #checkbox_label .make {
-        margin-left: 20px; }
+      font-size: 22px;
+      font-weight: 500;
+      text-align: right; }
       .co2ok_container .co2ok_checkbox_container #checkbox_label span {
         vertical-align: baseline; }
       @media (max-width: 480px) {
@@ -51,14 +50,12 @@
           margin-left: 35px; } }
       .co2ok_container .co2ok_checkbox_container #checkbox_label img {
         display: inline-block;
-        height: 75%;
-        margin-left: 10px;
-        margin-right: 10px;
+        height: 25px;
         vertical-align: middle; }
     .co2ok_container .co2ok_checkbox_container #checkbox {
       position: absolute;
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
       left: 10px;
       top: 50%;
       transform: translateY(-50%);
@@ -135,9 +132,7 @@ img#co2ok_logo {
   background: white;
   border-radius: 15px;
   margin-top: -50px;
-  border: 5px solid transparent;
-  border-image: linear-gradient(135deg, #1ceeaa 0%, #06d367 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  border: 3px solid #eee;
   border-image-slice: 1; }
   .co2ok_infobox_container.ShowInfoBox {
     display: block;
