@@ -10,12 +10,23 @@
 
     width: 100%;
     margin: 0 auto;
+
+    #checkbox_label {
+      text-align: center;
+    }
+
   }
 
-  @media(min-width : 868px) {
+  @media(min-width : 501px) {
 
     min-width: 250px;
     max-width: 250px;
+
+
+    #checkbox_label {
+      text-align: right;
+    }
+
 
   }
 
@@ -63,7 +74,6 @@
       height: 100%;
       font-size: 22px;
       font-weight: 500;
-      text-align: right;
 
       .make {
           // margin-left: 20px;
@@ -193,7 +203,8 @@ img#co2ok_logo
     height: 310px;
     overflow: hidden;
     position: absolute;
-
+    left:50%;
+    margin-left:-150px;
     opacity: 0;
     -webkit-transition: opacity 1.2s;
     transition: opacity 1.2s;

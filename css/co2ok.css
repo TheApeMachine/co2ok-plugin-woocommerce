@@ -7,11 +7,15 @@
   @media (max-width: 500px) {
     .co2ok_container {
       width: 100%;
-      margin: 0 auto; } }
-  @media (min-width: 868px) {
+      margin: 0 auto; }
+      .co2ok_container #checkbox_label {
+        text-align: center; } }
+  @media (min-width: 501px) {
     .co2ok_container {
       min-width: 250px;
-      max-width: 250px; } }
+      max-width: 250px; }
+      .co2ok_container #checkbox_label {
+        text-align: right; } }
   .co2ok_container .co2ok_payoff {
     width: 100%;
     margin-top: 12.5px;
@@ -41,8 +45,7 @@
       padding: 7.5px 10px;
       height: 100%;
       font-size: 22px;
-      font-weight: 500;
-      text-align: right; }
+      font-weight: 500; }
       .co2ok_container .co2ok_checkbox_container #checkbox_label span {
         vertical-align: baseline; }
       @media (max-width: 480px) {
@@ -124,6 +127,8 @@ img#co2ok_logo {
   height: 310px;
   overflow: hidden;
   position: absolute;
+  left: 50%;
+  margin-left: -150px;
   opacity: 0;
   -webkit-transition: opacity 1.2s;
   transition: opacity 1.2s;
