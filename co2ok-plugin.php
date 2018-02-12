@@ -20,6 +20,9 @@
  */
 namespace co2ok_plugin_woocommerce;
 
+use cbschuld\LogEntries;
+require "vendor/autoload.php";
+
 /**
  * Prevent data leaks
  */
@@ -44,6 +47,91 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     private $surcharge  = 0;
 
     private $helperComponent;
+    
+    /*
+     * Returns the result of a debug_backtrace() as a pretty-printed string
+     * @param  array   $trace Result of debug_backtrace()
+     * @param  boolean $safe  Whether to remove exposing information from print
+     * @return string         Formatted backtrace
+     */
+    final static function formatBacktrace($trace, $safe = true) {
+        array_pop($trace); // remove {main}
+        $log = "Backtrace:";
+        foreach (array_reverse($trace) as $index => $line) {
+            // Format file location
+            $location = $line["file"];
+            if ($safe) {
+                // Z:\private\exposing\webserver\directory\co2ok-plugin-woocommerce\co2ok_plugin.php -> **\co2ok_plugin.php
+                $location = preg_replace('#.*[\\\/]#', '**\\', $location);
+            }
+            
+            // Format caller
+            $caller = "";
+            if (array_key_exists("class", $line)) {
+                $caller = $line["class"] . $line["type"];
+            }
+            $caller .= $line["function"];
+            
+            // Format state, append to $caller
+            if (!$safe || $index == count($trace) - 1) { // If unsafe or last call
+                if (array_key_exists("object", $line) && !empty($line["object"])) {
+                    $caller .= "\n      " . $line["class"] . ":";
+                    foreach ($line["object"] as $name => $value) {
+                        $caller .= "\n        " . print_r($name, true) . ': ' . print_r($value, true);
+                    }
+                }
+                if (array_key_exists("args", $line) && !empty($line["args"])) {
+                    $caller .= "\n      args:";
+                    foreach ($line["args"] as $name => $value) {
+                        $caller .= "\n        " . print_r($name, true) . ': ' . print_r($value, true);
+                    }
+                }
+            }
+
+            // Append contents to string
+            $log .= sprintf("\n    %s(%d): %s", $location, $line["line"], $caller);
+        }
+        return $log;
+    }
+
+    /*
+     * Fail silently
+     * @param string $error Error message
+     */
+    final public static function fail($error = "Unspecified error.")
+    {
+        // Format error notice
+        $now = date("Ymd_HisT");
+        $logmsg = function ($info) use ($now, $error) { return sprintf("[%s:FAIL] %s\n%s\n", $now, $error, $info); };
+        
+        // Generate backtrace
+        $trace = debug_backtrace();
+        array_shift($trace); // remove call to this method
+
+        // Write to local log
+        $local = $logmsg(Co2ok_Plugin::formatBacktrace($trace, false));
+        if ( WP_DEBUG === true ) {
+            error_log( $local );
+        } else {
+            try {
+                $file = sprintf("%serror_%s.log", plugin_dir_path( __FILE__ ), $now);
+                $open = fopen( $file, "a" ); 
+                $write = fputs( $open, $logmsg($local) ); 
+                fclose( $open );
+            } catch (Exception $e) { // fail silently
+            }
+        }
+
+        // Write to remote log
+        $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
+        $remote = LogEntries::getLogger($token, true, true);
+        $remote->error( explode("\n", $logmsg(Co2ok_Plugin::formatBacktrace($trace))) ); // explode for multiline
+
+        // Notify admins if in dashboard
+        $class  = "notice notice-warning is-dismissible";
+        $notice = "The Co2ok Plugin has experienced an error, and may show unexpected behaviour. A debug log has been sent.";
+        add_action( 'admin_notices', function() use ($class, $notice) { printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $notice ) ); });
+    }
 
     final static function registerMerchant()
     {
@@ -199,10 +287,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
          *         TODO this should be conditional
          * (eg only when visited from our IPs)
          */
-
-        use cbschuld\LogEntries;
         
-        require "vendor/autoload.php";
         $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
         
         $log = LogEntries::getLogger($token,true,true); // create persistent SSL-based connection
