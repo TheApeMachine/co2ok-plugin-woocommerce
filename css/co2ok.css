@@ -45,7 +45,25 @@
       padding: 7.5px 10px;
       height: 100%;
       font-size: 22px;
-      font-weight: 500; }
+      font-weight: 500;
+      background: linear-gradient(to right, #fff 0%, #fff 50%, #1ceeaa 50%, #06d367 100%);
+      background-size: 200% 100%;
+      border-radius: 10px;
+      background-position: left bottom;
+      transition: all 2s ease; }
+      .co2ok_container .co2ok_checkbox_container #checkbox_label:after {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        position: absolute;
+        top: -2px;
+        bottom: -2px;
+        left: -2px;
+        right: -2px;
+        background: linear-gradient(#1defaa, #06d367);
+        content: '';
+        z-index: -1;
+        border-radius: 12px; }
       .co2ok_container .co2ok_checkbox_container #checkbox_label span {
         vertical-align: baseline; }
       @media (max-width: 480px) {
@@ -74,15 +92,16 @@
       background: white; }
       .co2ok_container .co2ok_checkbox_container.unselected .compensation_amount {
         color: #06d367; }
-      .co2ok_container .co2ok_checkbox_container.unselected:after {
+      .co2ok_container .co2ok_checkbox_container.unselected:after #checkbox_label {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         position: absolute;
-        top: -2px;
-        bottom: -2px;
-        left: -2px;
-        right: -2px;
+        top: -5px;
+        bottom: -5px;
+        left: -5px;
+        right: -5px;
+        height: 101%;
         background: linear-gradient(#1defaa, #06d367);
         content: '';
         z-index: -1;
@@ -90,18 +109,9 @@
     .co2ok_container .co2ok_checkbox_container.selected {
       color: white;
       text-shadow: 2px 2px 8px #6d6d6d;
-      background: #1ceeaa;
-      /* Old browsers */
-      background: -moz-linear-gradient(-45deg, #1ceeaa 0%, #06d367 100%);
-      /* FF3.6-15 */
-      background: -webkit-linear-gradient(-45deg, #1ceeaa 0%, #06d367 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(135deg, #1ceeaa 0%, #06d367 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ceeaa', endColorstr='#06d367',GradientType=1 );
-      /* IE6-9 fallback on horizontal gradient */
-      background-color: #E1E6E7;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); }
+      .co2ok_container .co2ok_checkbox_container.selected > #checkbox_label {
+        background-position: right bottom; }
       .co2ok_container .co2ok_checkbox_container.selected #checkbox {
         padding: 2px;
         background-color: white;
