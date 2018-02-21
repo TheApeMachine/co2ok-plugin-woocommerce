@@ -11,13 +11,15 @@
         ?>
 
         <div id="checkbox_label">
-          <div id="checkbox">
+          <div class="inner_checkbox_label">
+            <div id="checkbox">
 
+            </div>
+              <?php echo __( '<span class="make">Make</span>', 'co2ok-for-woocommerce' );
+                  echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
+              ?>
+              <span class="compensation_amount">+<?php echo $currency_symbol.''. $surcharge ?> </span>
           </div>
-            <?php echo __( '<span class="make">Make</span>', 'co2ok-for-woocommerce' );
-                echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
-            ?>
-            <span class="compensation_amount">+<?php echo $currency_symbol.''. $surcharge ?> </span>
         </div>
     </span>
 
