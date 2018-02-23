@@ -1,5 +1,5 @@
 .co2ok_container .co2ok_checkbox_container .inner_checkbox_label:after, .co2ok_container .co2ok_checkbox_container.selected .inner_checkbox_label {
-  background: linear-gradient(164.64deg, #1DEFAC -26.99%, #11D071 1.31%, #10CC6B 5.29%, #05B139 35.13%); }
+  background: linear-gradient(#1DEFAC 10.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%); }
 
 .co2ok_container {
   display: inline-block;
@@ -13,6 +13,10 @@
     margin-top: 6px;
     font-size: 14px;
     text-align: center;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
     display: block;
     letter-spacing: -0.0538461em;
     margin-left: -5%;
@@ -43,7 +47,6 @@
       position: relative;
       display: inline-block;
       font-size: 22px;
-      font-weight: 500;
       width: 100%;
       height: 54px;
       background-position: center;
@@ -72,7 +75,6 @@
       background: #E1E6E7;
       box-shadow: inset 0px 2px 1px rgba(96, 100, 104, 0.3);
       border-radius: 3px;
-      border-radius: 5px;
       margin: 14px 0px 14px 8px; }
     .co2ok_container .co2ok_checkbox_container #co2ok_cart_field {
       display: none; }
