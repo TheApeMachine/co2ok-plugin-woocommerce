@@ -22,6 +22,7 @@
          #p {
              vertical-align: middle;
              display: inline-block;
+             margin-left: 12px;
              & img{
                  width: 16px;
                  margin-top: 2px;
@@ -88,11 +89,11 @@
          #checkbox {
              width: 26px;
              height: 26px;
-             background: #FFFFFF;
+             background: #E1E6E7;
              box-shadow: inset 0px 2px 1px rgba(96, 100, 104, 0.3);
              border-radius: 3px;
              border-radius: 5px;
-               margin: 14px 0px 14px 8px;
+            margin: 14px 0px 14px 8px;
         }
 
          #co2ok_cart_field {
@@ -109,9 +110,7 @@
 
             .inner_checkbox_label {
 
-                background: no-repeat center radial-gradient(circle, #1DEFAC -26.99%, #11D071 1.31%, #10CC6B 5.29%, #05B139 35.13%, transparent 50%);
-                background-size: 0%;
-                @extend %backgroundTransition;
+                // @extend %backgroundTransition;
 
            }
 
@@ -119,25 +118,8 @@
          &.selected {
 
              .inner_checkbox_label {
-
-                 background: no-repeat center radial-gradient(circle, #1DEFAC -26.99%, #11D071 1.31%, #10CC6B 5.29%, #05B139 35.13%, transparent 50%);
-                 background-size: 250%;
-                 @extend %backgroundTransition;
-
-            }
-
-
-
-              @keyframes radialBackground {
-              from { background-size: 0%; }
-              to { background-size: 250%; }
-              }
-
-              @keyframes radialBackgroundDown {
-              from { background-size: 250%; }
-              to { background-size: 0%; }
-              }
-
+               @extend %gradient;
+             }
              color:white;
              text-shadow: 2px 2px 8px #6d6d6d;
              box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
@@ -160,7 +142,7 @@
  img#co2ok_logo {
      display: inline-block;
      width: 55px;
-     vertical-align: top;
+     vertical-align: middle;
      margin: 17px 20px 14px 5px;
 }
  .co2ok_infobox_container {

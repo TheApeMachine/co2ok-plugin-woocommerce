@@ -1,12 +1,5 @@
-.co2ok_container .co2ok_checkbox_container .inner_checkbox_label:after {
+.co2ok_container .co2ok_checkbox_container .inner_checkbox_label:after, .co2ok_container .co2ok_checkbox_container.selected .inner_checkbox_label {
   background: linear-gradient(164.64deg, #1DEFAC -26.99%, #11D071 1.31%, #10CC6B 5.29%, #05B139 35.13%); }
-
-.co2ok_container .co2ok_checkbox_container.unselected .inner_checkbox_label, .co2ok_container .co2ok_checkbox_container.selected .inner_checkbox_label {
-  transition: background-size 1s forwards;
-  -moz-transition: background-size 1s forwards;
-  -ms-transition: background-size 1s forwards;
-  -o-transition: background-size 1s forwards;
-  -webkit-transition: background-size 1s forwards; }
 
 .co2ok_container {
   display: inline-block;
@@ -27,7 +20,8 @@
     width: 110%; }
     .co2ok_container .co2ok_payoff #p {
       vertical-align: middle;
-      display: inline-block; }
+      display: inline-block;
+      margin-left: 12px; }
       .co2ok_container .co2ok_payoff #p img {
         width: 16px;
         margin-top: 2px;
@@ -75,7 +69,7 @@
     .co2ok_container .co2ok_checkbox_container #checkbox {
       width: 26px;
       height: 26px;
-      background: #FFFFFF;
+      background: #E1E6E7;
       box-shadow: inset 0px 2px 1px rgba(96, 100, 104, 0.3);
       border-radius: 3px;
       border-radius: 5px;
@@ -84,28 +78,10 @@
       display: none; }
     .co2ok_container .co2ok_checkbox_container.unselected .compensation_amount {
       color: #06d367; }
-    .co2ok_container .co2ok_checkbox_container.unselected .inner_checkbox_label {
-      background: no-repeat center radial-gradient(circle, #1DEFAC -26.99%, #11D071 1.31%, #10CC6B 5.29%, #05B139 35.13%, transparent 50%);
-      background-size: 0%; }
     .co2ok_container .co2ok_checkbox_container.selected {
       color: white;
       text-shadow: 2px 2px 8px #6d6d6d;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); }
-      .co2ok_container .co2ok_checkbox_container.selected .inner_checkbox_label {
-        background: no-repeat center radial-gradient(circle, #1DEFAC -26.99%, #11D071 1.31%, #10CC6B 5.29%, #05B139 35.13%, transparent 50%);
-        background-size: 250%; }
-
-@keyframes radialBackground {
-  from {
-    background-size: 0%; }
-  to {
-    background-size: 250%; } }
-
-@keyframes radialBackgroundDown {
-  from {
-    background-size: 250%; }
-  to {
-    background-size: 0%; } }
       .co2ok_container .co2ok_checkbox_container.selected #checkbox {
         padding: 2px;
         background-color: white;
@@ -120,7 +96,7 @@
 img#co2ok_logo {
   display: inline-block;
   width: 55px;
-  vertical-align: top;
+  vertical-align: middle;
   margin: 17px 20px 14px 5px; }
 
 .co2ok_infobox_container {
