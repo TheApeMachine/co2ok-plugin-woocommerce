@@ -1,6 +1,7 @@
 var Co2ok_JS = function ()
 {
     var player;
+    var image_url = plugin.url;
     return {
 
         Init: function ()
@@ -27,6 +28,17 @@ var Co2ok_JS = function ()
                 {
                     jQuery("#co2ok_info_hover_image").attr("src","https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png");
                 });
+
+                if (!(jQuery('#co2ok_cart').is(":checked"))) {
+                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
+                }
+
+                if(jQuery('#co2ok_cart').is(":checked"))
+                {
+                    // change image source
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_ok_wit.svg');
+                }
+
         },
         GetPercentageFromMiddleware: function()
         {
@@ -80,9 +92,15 @@ var Co2ok_JS = function ()
             {
                 //
                 //alert("mofo");
+                if (!(jQuery(this).is(":checked"))) {
+                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
+                }
 
                 if(jQuery(this).is(":checked"))
                 {
+                    // change image source
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_ok_wit.svg');
+
                     jQuery('.co2ok_checkbox_container').addClass('selected');
                     jQuery('.co2ok_checkbox_container').removeClass('unselected');
                     jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_cart_hidden" checked value="1" style="display:none">');
@@ -140,7 +158,14 @@ var Co2ok_JS = function ()
         },
         ShowInfoBox  : function()
         {
-            jQuery(".co2ok_infobox_container").css({ "display" : "block","width" : "348px","height" : "270px" , "opacity" : 1 });
+            jQuery(".co2ok_infobox_container").removeClass('infobox-hidden')
+            jQuery(".co2ok_infobox_container").addClass('ShowInfoBox')
+        },
+
+        hideInfoBox : function()
+        {
+            jQuery(".co2ok_infobox_container").removeClass('ShowInfoBox')
+            jQuery(".co2ok_infobox_container").addClass('infobox-hidden')
         },
 
         IsMobile : function()
@@ -158,28 +183,40 @@ var Co2ok_JS = function ()
 
             var _this = this;
 
-            jQuery('body').click(function()
+            jQuery('body').click(function(e)
             {
-                jQuery(".co2ok_infobox_container").css({  'opacity' : 0  });
-                setTimeout(function () {
-                    jQuery(".co2ok_infobox_container").css({  'display' : "none", 'opacity' : 0    });
-                },1200);
+
+              if(!(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info') || jQuery(e.target).hasClass('co2ok_infobox_container') || e.target.localName === 'a')){
+                _this.hideInfoBox();
+              }
+              else {
+                _this.ShowInfoBox();
+              }
+
             });
+
+            jQuery('body').on("touchstart",function(e){
+
+              if(!(e.target.id == 'co2ok_info_hover_image' || jQuery(e.target).hasClass('co2ok_info') || jQuery(e.target).hasClass('co2ok_infobox_container') || e.target.localName === 'a')){
+                _this.hideInfoBox();
+              }
+              else {
+                _this.ShowInfoBox();
+              }
+            })
 
             if(!_this.IsMobile())
             {
-                //alert("not mobile");
-                jQuery('#co2ok_info').hover(function () {
-                    _this.ShowInfoBox();
-                    //alert("not mobile");
-                });
-            }
+                jQuery('.co2ok_info, .co2ok_infobox_container').mouseenter(function()
+                {
+                  _this.ShowInfoBox();
+                })
 
-            jQuery('.co2ok_info').click(function(e)
-            {
-                _this.ShowInfoBox();
-             //   e.stopPropagation();
-            });
+                .mouseleave(function()
+                {
+                  _this.hideInfoBox();
+                })
+            }
         }
     }
 }().Init();

@@ -1,0 +1,267 @@
+.co2ok_container {
+
+  display: inline-block;
+  position: relative;
+  font-family: Roboto, sans-serif;
+  color:#606468;
+  z-index: 10;
+
+  @media (max-width : 500px) {
+
+    width: 100%;
+    margin: 0 auto;
+
+    #checkbox_label {
+      text-align: center;
+    }
+
+  }
+
+  @media(min-width : 501px) {
+
+    min-width: 250px;
+    max-width: 250px;
+
+
+    #checkbox_label {
+      text-align: right;
+    }
+
+
+  }
+
+  .co2ok_payoff {
+    width: 100%;
+    margin-top: 12.5px;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    margin-left: -5%;
+    width: 110%;
+    #p {
+
+      vertical-align: middle;
+      display: inline-block;
+
+      & img{
+
+        width: 16px;
+        margin-top: 2px;
+        display: inline-block;
+
+      }
+
+    }
+
+  }
+
+  .co2ok_checkbox_container {
+
+    border-radius: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    position: relative;
+
+
+    #checkbox_label {
+
+      &:after{box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      position: absolute;
+      top: -2px; bottom: -2px;
+      left: -2px; right: -2px;
+      background: linear-gradient(#1defaa, #06d367);
+      content: '';
+      z-index: -1;
+
+      border-radius: 12px;}
+
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      padding: 7.5px 10px;
+      height: 100%;
+      font-size: 22px;
+      font-weight: 500;
+      background: linear-gradient(to right, #fff 0%, #fff 50%, #1ceeaa 50%,#06d367 100%);
+      background-size: 200% 100%;
+      border-radius: 10px;
+      background-position: left bottom;
+      transition:all 2s ease;
+
+      .make {
+          // margin-left: 20px;
+      }
+
+      &:hover{
+
+      }
+
+      span {
+        vertical-align: baseline;
+      }
+
+
+      @media (max-width : 480px) {
+
+        .make {
+            margin-left: 35px;
+        }
+
+      }
+
+      img {
+
+         display: inline-block;
+        height: 25px  ;
+
+         vertical-align: middle;
+
+      }
+
+    }
+
+
+    #checkbox {
+
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #E1E6E7;
+      border: 1px solid #cacece;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+      border-radius: 5px;
+
+    }
+
+    #co2ok_cart_field {
+
+      display: none;
+
+    }
+
+    .compensation_amount {
+      color:#06d367;
+    }
+
+    &.unselected {
+
+      background: white;
+
+      .compensation_amount {
+        color:#06d367;
+      }
+
+      &:after  {
+
+       #checkbox_label {
+           box-sizing: border-box;
+           -moz-box-sizing: border-box;
+           -webkit-box-sizing: border-box;
+           position: absolute;
+           top: -5px; bottom: -5px;
+           left: -5px; right: -5px;
+           height: 101%;
+           background: linear-gradient(#1defaa, #06d367);
+           content: '';
+           z-index: -1;
+
+           border-radius: 12px;
+         }
+
+      }
+
+    }
+
+    &.selected {
+
+      & > #checkbox_label {
+        background-position: right bottom;
+
+      }
+
+      color:white;
+      text-shadow: 2px 2px 8px #6d6d6d;
+      // background: #1ceeaa; /* Old browsers */
+      // background: -moz-linear-gradient(-45deg, #1ceeaa 0%, #06d367 100%); /* FF3.6-15 */
+      // background: -webkit-linear-gradient(-45deg, #1ceeaa 0%,#06d367 100%); /* Chrome10-25,Safari5.1-6 */
+      // background: linear-gradient(135deg, #1ceeaa 0%,#06d367 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ceeaa', endColorstr='#06d367',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+      // background-color: #E1E6E7;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+
+      #checkbox {
+
+        padding: 2px;
+        background-color: white;
+        background-size: 80%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url("../images/vinkje_co2ok.png") !important;
+        font-size: 20px;
+
+      }
+
+      .compensation_amount {
+
+        color: white;
+
+      }
+
+    }
+  }
+}
+
+img#co2ok_logo
+{
+    display: inline-block;
+    width: 70px;
+    vertical-align: top;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-top: 8px;
+}
+
+.co2ok_infobox_container
+{
+    width: 300px;
+    height: 310px;
+    overflow: hidden;
+    position: absolute;
+    left:50%;
+    margin-left:-150px;
+    opacity: 0;
+    -webkit-transition: opacity 1.2s;
+    transition: opacity 1.2s;
+    z-index : 10000;
+    display: none;
+    background: white;
+    border-radius: 15px;
+
+    margin-top: -50px;
+
+    border: 3px solid #eee;
+
+    border-image-slice: 1;
+
+
+    &.ShowInfoBox{
+      display: block;
+      opacity: 1
+    }
+}
+
+.co2ok_infobox_container span
+{
+    float: right;
+    padding: 0px;
+
+
+}

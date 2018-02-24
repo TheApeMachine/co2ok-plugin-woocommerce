@@ -188,6 +188,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         wp_enqueue_script('co2ok_js_wp', "", array(), null, true);
         wp_localize_script('co2ok_js_wp', 'ajax_object',
             array('ajax_url' => admin_url('admin-ajax.php')));
+        wp_localize_script('co2ok_js_wp', 'plugin',
+            array('url' => plugins_url('images', __FILE__)));
+
     }
 
     final public function co2ok_load_plugin_textdomain()
