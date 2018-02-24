@@ -239,15 +239,49 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         });
     }
 
+    
+    final private function co2ok_deleteTransaction($order_id)
+    {
+        $order = wc_get_order($order_id);
+
+        $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
+
+        $merchantId = get_option('co2ok_id', false);
+
+        $graphQLClient->mutation(function ($mutation) use ($merchantId, $order_id, $compensationCost, $orderTotal)
+        {
+            $mutation->setFunctionName('deleteTransaction');
+
+            $mutation->setFunctionParams(
+                array(
+                    'merchantId' => $merchantId,
+                    'orderId' => $order_id
+                )
+            );
+            $mutation->setFunctionReturnTypes(array('ok'));
+        }
+        , function ($response)// Callback after request
+        {
+           // echo print_r($response,1);
+            // TODO error handling
+        });
+    }
+
     final public function co2ok_store_transaction_when_compensating($order_id, $old_status, $new_status)
     {
-        if ($new_status == "processing") {
-            global $woocommerce;
+        global $woocommerce;
+        switch ($new_status) {
+            case "processing":
+                if ($woocommerce->session->co2ok == 1) {
+                    // The user did opt for co2 compensation
+                    $this->co2ok_storeTransaction($order_id);
+                }
+                break;
 
-            if ($woocommerce->session->co2ok == 1) {
-                // The user did opt for co2 compensation
-                $this->co2ok_storeTransaction($order_id);
-            }
+            case "refunded":
+            case "cancelled":
+                $this->co2ok_deleteTransaction($order_id);
+                break;
         }
     }
 
