@@ -112,25 +112,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $local = $logmsg(Co2ok_Plugin::formatBacktrace($trace, false));
         if ( WP_DEBUG === true ) {
             error_log( $local );
-        } else {
-            try {
-                $file = sprintf("%serror_%s.log", plugin_dir_path( __FILE__ ), $now);
-                $open = fopen( $file, "a" ); 
-                $write = fputs( $open, $logmsg($local) ); 
-                fclose( $open );
-            } catch (Exception $e) { // fail silently
-            }
         }
 
         // Write to remote log
-        $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
-        $remote = LogEntries::getLogger($token, true, true);
-        $remote->error( explode("\n", $logmsg(Co2ok_Plugin::formatBacktrace($trace))) ); // explode for multiline
-
-        // Notify admins if in dashboard
-        $class  = "notice notice-warning is-dismissible";
-        $notice = "The Co2ok Plugin has experienced an error, and may show unexpected behaviour. A debug log has been sent.";
-        add_action( 'admin_notices', function() use ($class, $notice) { printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $notice ) ); });
+        try {
+            $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
+            $remote = LogEntries::getLogger($token, true, true);
+            $remote->error( explode("\n", $logmsg(Co2ok_Plugin::formatBacktrace($trace))) ); // explode for multiline
+        } catch (Exception $e) { // fail silently
+        }
     }
 
     final static function registerMerchant()
@@ -148,6 +138,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
             , function ($response)// Callback after request
             {
+                if (is_wp_error($response)) { // ignore valid responses
+                    $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
+                    Co2ok_Plugin::fail($formattedError);
+                    return;
+                }
                 if(!is_array($response['body']))
                     $response = json_decode($response['body'], 1);
 
@@ -158,7 +153,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
                 else // TO DO error handling...
                 {
-                    //Something went wrong.. we did not recieve a secret or id from the api.
+                    $formattedError = json_encode($response['data']);
+                    Co2ok_Plugin::fail($formattedError);
                 }
             });
     }
@@ -331,8 +327,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
             , function ($response)// Callback after request
             {
-               // echo print_r($response,1);
-                // TODO error handling
+                if (is_wp_error($response)) { // ignore valid responses
+                    $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
+                    Co2ok_Plugin::fail($formattedError);
+                }
             });
     }
 
