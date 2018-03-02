@@ -11,6 +11,9 @@
         ?>
 
         <div id="checkbox_label">
+          <div class="animation v-center ">
+
+          </div>
           <div class="inner_checkbox_label">
             <div id="checkbox">
 
