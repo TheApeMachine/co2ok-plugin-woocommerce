@@ -36,7 +36,7 @@
 
 
     <div class="co2ok_infobox_container">
-        <img id="co2ok_info_hover_image" src="https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover_<?php echo get_locale(); ?>.png" />
+        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/new_picture.png', '  co2ok_info_hover_image', '  co2ok_info_hover_image'); ?>
         <a target="_blank" href="http://co2ok.eco">
         <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); ?>
             </a>
