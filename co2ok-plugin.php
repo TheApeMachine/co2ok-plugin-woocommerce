@@ -98,7 +98,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
      * Fail silently
      * @param string $error Error message
      */
-    final public static function fail($error = "Unspecified error.")
+    final public static function failGracefully($error = "Unspecified error.")
     {
         // Format error notice
         $now = date("Ymd_HisT");
@@ -140,7 +140,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             {
                 if (is_wp_error($response)) { // ignore valid responses
                     $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
-                    Co2ok_Plugin::fail($formattedError);
+                    Co2ok_Plugin::failGracefully($formattedError);
                     return;
                 }
                 if(!is_array($response['body']))
@@ -154,7 +154,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 else // TO DO error handling...
                 {
                     $formattedError = json_encode($response['data']);
-                    Co2ok_Plugin::fail($formattedError);
+                    Co2ok_Plugin::failGracefully($formattedError);
                 }
             });
     }
@@ -329,7 +329,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             {
                 if (is_wp_error($response)) { // ignore valid responses
                     $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
-                    Co2ok_Plugin::fail($formattedError);
+                    Co2ok_Plugin::failGracefully($formattedError);
                 }
             });
     }
