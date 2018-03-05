@@ -36,10 +36,13 @@
 
 
     <div class="co2ok_infobox_container">
-        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/new_picture.png', '  co2ok_info_hover_image', '  co2ok_info_hover_image'); ?>
-        <a target="_blank" href="http://co2ok.eco">
-        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); ?>
-            </a>
+        <p class="text-block">Tijdens productie en  vervoer van producten komen broeikasgassen vrij. </p>
+        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/fout.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
+
+        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/even.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
+        <p class="text-block">Wij zorgen ervoor dat een even grote hoeveelheid uitstoot voorkomen wordt. </p>
+        
+        <a target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); ?></a>
         <span> <a target="_blank" href="http://www.co2ok.eco/co2-compensatie"><?php
             echo  __( 'How CO&#8322; compensation works', 'co2ok-for-woocommerce' );
             ?></a> </span>
