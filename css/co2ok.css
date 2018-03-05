@@ -114,9 +114,11 @@ img#co2ok_logo {
   position: absolute;
   left: 50%;
   margin-left: -150px;
+  opacity: 0;
   -webkit-transition: opacity 1.2s;
   transition: opacity 1.2s;
   z-index: 10000;
+  display: none;
   background: white;
   border-radius: 15px;
   box-sizing: border-box;
