@@ -5,7 +5,11 @@ $font: Roboto, sans-serif;
 $borderRadius: 10px;
 
 %gradient {
-background: linear-gradient(#1DEFAC 10.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
+
+  background: #1ceeaa; /* Old browsers */
+  background: -moz-linear-gradient(164.64deg, #1ceeaa 0%, #06d367 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(164.64deg, #1ceeaa 0%,#06d367 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(164.64deg, #1ceeaa 0%,#06d367 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 %backgroundTransition {

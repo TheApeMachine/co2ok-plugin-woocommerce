@@ -153,13 +153,15 @@
      position: absolute;
      left:50%;
      margin-left:-150px;
-     opacity: 0;
+     // opacity: 0;
      -webkit-transition: opacity 1.2s;
      transition: opacity 1.2s;
      z-index : 10000;
-     display: none;
+     // display: none;
      background: white;
      border-radius: 15px;
+     box-sizing: border-box;
+     padding: 10px;
      margin-top: -50px;
      border: 3px solid #eee;
      border-image-slice: 1;
@@ -167,6 +169,28 @@
          display: block;
          opacity: 1
     }
+
+    .svg-img {
+      width: 125px;
+      display: inline-block;
+      margin-bottom: 10px;
+
+    }
+
+    .text-block {
+      font-size: 0.7em;
+      box-sizing: border-box;
+      border-radius: 5px;
+      padding: 5px;
+      text-align: left;
+      vertical-align: middle;
+      width: 125px;
+      line-height: normal;
+      margin-bottom: 10px;
+      display: inline-block;
+      border: 2px solid #28DB83;
+    }
+
     img, span {
       display: inline-block;
       vertical-align: middle;
