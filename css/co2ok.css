@@ -1,125 +1,127 @@
-.co2ok_container
-{
-    display: inline-table;
-}
+.co2ok_container .co2ok_checkbox_container .inner_checkbox_label:after, .co2ok_container .co2ok_checkbox_container.selected .inner_checkbox_label {
+  background: linear-gradient(#1DEFAC 10.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%); }
 
-.co2ok_checkbox_container
-{
-    font-size: 21px;
-    padding: 8px;
-    border-radius: 5px;
-    background-color: #5eac24;
-    color:white;
+.co2ok_container {
+  display: inline-block;
+  position: relative;
+  font-family: Roboto, sans-serif;
+  color: #606468;
+  z-index: 10;
+  width: 259px; }
+  .co2ok_container .co2ok_payoff {
+    width: 100%;
+    margin-top: 6px;
+    font-size: 14px;
+    text-align: center;
     font-family: Roboto, sans-serif;
-    font-weight: lighter;    
-}
-
-#checkbox_label
-{
-    cursor: pointer;
-}
-
-#co2-ok-cart
-{
-    display: inline-block !important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: white;
-    border: 1px solid #cacece;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-    padding: 15px;
-    border-radius: 3px;
-    position: relative;
-    vertical-align: middle;
-    margin-bottom: 5px;
-}
-
-#co2-ok-cart:active, #co2-ok-cart:checked:active {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
-}
-
-#co2-ok-cart:focus{
-    outline:0;
-}
-
-#co2-ok-cart:checked {
-    background-color: white;
-    border: 1px solid #adb8c0;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
-    color: #99a1a7;
-
-}
-
-#co2-ok-cart:checked:after {
-    content: "         ";
-    white-space: pre;
-    background : url("../images/vinkje_co2ok.png");
-    font-size: 20px;
-    background-repeat: no-repeat;
-    background-position-x: 3px;
-    background-position-y: 3px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    vertical-align: middle;
-    color: #000000;
-}
-
-span#p
-{
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
     display: block;
-    font-size: 15px;
-    padding-top: 8px;
-    padding-bottom: 1px;
-    font-family: Roboto, sans-serif;
-    font-weight: lighter;
-}
+    letter-spacing: -0.0538461em;
+    margin-left: -5%;
+    color: #4D5155;
+    width: 110%; }
+    .co2ok_container .co2ok_payoff #p {
+      vertical-align: middle;
+      display: inline-block;
+      margin-left: 12px; }
+      .co2ok_container .co2ok_payoff #p img {
+        width: 16px;
+        margin-top: 2px;
+        display: inline-block; }
+  .co2ok_container .co2ok_checkbox_container {
+    border-radius: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    position: relative;
+    height: 54px; }
+    .co2ok_container .co2ok_checkbox_container > * {
+      background-position: center; }
+    .co2ok_container .co2ok_checkbox_container #checkbox_label {
+      background: #fff;
+      border-radius: 10px; }
+    .co2ok_container .co2ok_checkbox_container .inner_checkbox_label {
+      position: relative;
+      display: inline-block;
+      font-size: 22px;
+      width: 100%;
+      height: 54px;
+      background-position: center;
+      background: white;
+      background-size: 100%;
+      border-radius: 10px;
+      transition: all 0.4s ease; }
+      .co2ok_container .co2ok_checkbox_container .inner_checkbox_label:after {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        position: absolute;
+        top: -2px;
+        bottom: -2px;
+        left: -2px;
+        right: -2px;
+        content: '';
+        z-index: -1;
+        border-radius: 12px; }
+      .co2ok_container .co2ok_checkbox_container .inner_checkbox_label > * {
+        display: inline-block;
+        vertical-align: middle; }
+    .co2ok_container .co2ok_checkbox_container #checkbox {
+      width: 26px;
+      height: 26px;
+      background: #E1E6E7;
+      box-shadow: inset 0px 2px 1px rgba(96, 100, 104, 0.3);
+      border-radius: 3px;
+      margin: 14px 0px 14px 8px; }
+    .co2ok_container .co2ok_checkbox_container #co2ok_cart_field {
+      display: none; }
+    .co2ok_container .co2ok_checkbox_container.unselected .compensation_amount {
+      color: #06d367; }
+    .co2ok_container .co2ok_checkbox_container.selected {
+      color: white;
+      text-shadow: 2px 2px 8px #6d6d6d;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); }
+      .co2ok_container .co2ok_checkbox_container.selected #checkbox {
+        padding: 2px;
+        background-color: white;
+        background-size: 80%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url("../images/vinkje_co2ok.png") !important;
+        font-size: 20px; }
+      .co2ok_container .co2ok_checkbox_container.selected .compensation_amount {
+        color: white; }
 
-p#co2-ok-cart_field
-{
-    margin : 0px!important;
-    display: inline-block;
-}
+img#co2ok_logo {
+  display: inline-block;
+  width: 55px;
+  vertical-align: middle;
+  margin: 17px 20px 14px 5px; }
 
-img#co2-ok-info
-{
-    display: inline-block;
-    width: 20px;
-    margin-left: 6px;
-    margin-bottom: 6px;
-    vertical-align: bottom;
-}
+.co2ok_infobox_container {
+  width: 300px;
+  height: 310px;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+  opacity: 0;
+  -webkit-transition: opacity 1.2s;
+  transition: opacity 1.2s;
+  z-index: 10000;
+  display: none;
+  background: white;
+  border-radius: 15px;
+  margin-top: -50px;
+  border: 3px solid #eee;
+  border-image-slice: 1; }
+  .co2ok_infobox_container.ShowInfoBox {
+    display: block;
+    opacity: 1; }
 
-img#co2-ok-logo
-{
-    display: inline-block;
-    width: 104px;
-    vertical-align: middle;
-    margin-left:-4px;
-    margin-bottom:14px;
-}
-
-.co2ok_infobox_container
-{
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    position: absolute;
-
-    opacity: 0;
-    -webkit-transition: opacity 1.2s;
-    transition: opacity 1.2s;
-    z-index : 10000;
-
-    background: white;
-    border-radius: 15px;
-    border: 1px solid black;
-
-    margin-top: -50px;
-}
-
-.co2ok_infobox_container span
-{
-    float: right;
-    padding: 0px;
-}
+.co2ok_infobox_container span {
+  float: right;
+  padding: 0px; }

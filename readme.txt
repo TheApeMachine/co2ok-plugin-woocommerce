@@ -1,10 +1,10 @@
 === CO2ok for Woocommerce ===
 Contributors: co2ok
 Donate link: http://co2ok.eco/
-Tags: CO2, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental, climate neutral
+Tags: climate neutral, CO2, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental
 Requires at least: 4.0
-Tested up to: 4.8
-
+Tested up to: 4.9
+WC tested up to: 3.2.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,11 +13,13 @@ Give your customers the choice to make their purchase climate neutral with CO2ok
 
 == Description ==
 
-By giving your customers the choice to compensate the carbon footprint of their purchase, you're helping the environment without any investment on your side. 
+By enabling your customers to make their purchase climate neutral with CO₂ok together we can drive back climate change. CO₂ok lets you increase your conversion with no upfront or recurring costs.
 
-We're just starting! Our site is still mostly in Dutch - soon™. (Same goes for a proper description - so much to do and so little time)
+Help build a better future.
 
-Drop us a line if you have questions or something doesn't work as expected: make@co2ok.eco
+[more information on our site](http://www.co2ok.eco/retailers/)
+
+We're just starting! Please let us know if you have feedback/questions or something doesn't work as expected: we're online almost 24/7 on the chat function on our website, or drop us a line : <make@co2ok.eco>
 
 [Terms of Service](http://www.co2ok.eco/wp-content/uploads/2017/10/ToS.pdf)
 
@@ -42,6 +44,12 @@ Besides the option that the CO2 compensation button provides, nothing changes. Y
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.0.15
+* Fresh new design
+* clearer communication of the function (make climate neutral instead of build a better future)
+* implemented settings screen for future button layout selection and opt-in for helping us improve our product
+* bugs be gone
 
 = 1.0.0.12 =
 * Hello world! Now in English as well as in Dutch - other languages will follow

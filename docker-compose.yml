@@ -1,9 +1,9 @@
 webserver:
    container_name: woocommerce
-   image: tristanpenman/wordpress
+   image: wordpress:latest
    environment:
-    WORDPRESS_DB_PASSWORD: example
-    WORDPRESS_DB_USER: root
+    WORDPRESS_DB_USER: wordpress
+    WORDPRESS_DB_PASSWORD: wordpress
     WP_DEBUG: 'true'
    links:
     - dbserver:mysql
@@ -16,6 +16,9 @@ dbserver:
    container_name: woo_mariadb
    image: mariadb
    environment:
-    MYSQL_ROOT_PASSWORD: example
+    MYSQL_ROOT_PASSWORD: somewordpress
+    MYSQL_DATABASE: wordpress
+    MYSQL_USER: wordpress
+    MYSQL_PASSWORD: wordpress
    ports:
     - 3307:3306
