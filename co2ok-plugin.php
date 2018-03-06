@@ -20,6 +20,9 @@
  */
 namespace co2ok_plugin_woocommerce;
 
+use cbschuld\LogEntries;
+require "vendor/autoload.php";
+
 /**
  * Prevent data leaks
  */
@@ -44,6 +47,81 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     private $surcharge  = 0;
 
     private $helperComponent;
+    
+    /*
+     * Returns the result of a debug_backtrace() as a pretty-printed string
+     * @param  array   $trace Result of debug_backtrace()
+     * @param  boolean $safe  Whether to remove exposing information from print
+     * @return string         Formatted backtrace
+     */
+    final static function formatBacktrace($trace, $safe = true) {
+        array_pop($trace); // remove {main}
+        $log = "Backtrace:";
+        foreach (array_reverse($trace) as $index => $line) {
+            // Format file location
+            $location = $line["file"];
+            if ($safe) {
+                // Z:\private\exposing\webserver\directory\co2ok-plugin-woocommerce\co2ok_plugin.php -> **\co2ok_plugin.php
+                $location = preg_replace('#.*[\\\/]#', '**\\', $location);
+            }
+            
+            // Format caller
+            $caller = "";
+            if (array_key_exists("class", $line)) {
+                $caller = $line["class"] . $line["type"];
+            }
+            $caller .= $line["function"];
+            
+            // Format state, append to $caller
+            if (!$safe || $index == count($trace) - 1) { // If unsafe or last call
+                if (array_key_exists("object", $line) && !empty($line["object"])) {
+                    $caller .= "\n      " . $line["class"] . ":";
+                    foreach ($line["object"] as $name => $value) {
+                        $caller .= "\n        " . print_r($name, true) . ': ' . print_r($value, true);
+                    }
+                }
+                if (array_key_exists("args", $line) && !empty($line["args"])) {
+                    $caller .= "\n      args:";
+                    foreach ($line["args"] as $name => $value) {
+                        $caller .= "\n        " . print_r($name, true) . ': ' . print_r($value, true);
+                    }
+                }
+            }
+
+            // Append contents to string
+            $log .= sprintf("\n    %s(%d): %s", $location, $line["line"], $caller);
+        }
+        return $log;
+    }
+
+    /*
+     * Fail silently
+     * @param string $error Error message
+     */
+    final public static function failGracefully($error = "Unspecified error.")
+    {
+        // Format error notice
+        $now = date("Ymd_HisT");
+        $logmsg = function ($info) use ($now, $error) { return sprintf("[%s:FAIL] %s\n%s\n", $now, $error, $info); };
+        
+        // Generate backtrace
+        $trace = debug_backtrace();
+        array_shift($trace); // remove call to this method
+
+        // Write to local log
+        $local = $logmsg(Co2ok_Plugin::formatBacktrace($trace, false));
+        if ( WP_DEBUG === true ) {
+            error_log( $local );
+        }
+
+        // Write to remote log
+        try {
+            $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
+            $remote = LogEntries::getLogger($token, true, true);
+            $remote->error( explode("\n", $logmsg(Co2ok_Plugin::formatBacktrace($trace))) ); // explode for multiline
+        } catch (Exception $e) { // fail silently
+        }
+    }
 
     final static function registerMerchant()
     {
@@ -60,6 +138,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
             , function ($response)// Callback after request
             {
+                if (is_wp_error($response)) { // ignore valid responses
+                    $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
+                    Co2ok_Plugin::failGracefully($formattedError);
+                    return;
+                }
                 if(!is_array($response['body']))
                     $response = json_decode($response['body'], 1);
 
@@ -70,7 +153,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
                 else // TO DO error handling...
                 {
-                    //Something went wrong.. we did not recieve a secret or id from the api.
+                    $formattedError = json_encode($response['data']);
+                    Co2ok_Plugin::failGracefully($formattedError);
                 }
             });
     }
@@ -124,6 +208,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                  */
                 add_action('woocommerce_order_status_changed',
                     array($this, 'co2ok_store_transaction_when_compensating'), 99, 3);
+
+                /**
+                 * I suspect some webshops might have a different flow, so let's log some events
+                 * TODO
+                 */
 
                 /**
                  * Register Front End
@@ -197,6 +286,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         load_plugin_textdomain( 'co2ok-for-woocommerce', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 
+        /**
+         *         TODO this should be conditional
+         * (eg only when visited from our IPs)
+         */
+        
+        $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
+        
+        $log = LogEntries::getLogger($token,true,true); // create persistent SSL-based connection
+        $log->info("some information");
+        $log->notice(json_encode(["status"=>"ok","message"=>"send some json"]));
+
     }
 
     final private function co2ok_storeTransaction($order_id)
@@ -260,11 +360,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             );
             $mutation->setFunctionReturnTypes(array('ok'));
         }
-        , function ($response)// Callback after request
-        {
-           // echo print_r($response,1);
-            // TODO error handling
-        });
+            , function ($response)// Callback after request
+            {
+                if (is_wp_error($response)) { // ignore valid responses
+                    $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
+                    Co2ok_Plugin::failGracefully($formattedError);
+                }
+            });
     }
 
     final public function co2ok_store_transaction_when_compensating($order_id, $old_status, $new_status)

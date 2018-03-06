@@ -1,0 +1,5 @@
+{
+    "require": {
+        "cbschuld/LogEntries": "^1.0"
+    }
+}
