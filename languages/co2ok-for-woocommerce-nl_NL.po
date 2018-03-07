@@ -44,7 +44,7 @@ msgstr ""
 msgid "CO2 compensation (Inc. VAT)"
 msgstr "CO2 compensatie (Inc. BTW)"
 
-#: Templates/co2ok_button_template_default.php:13
+#: Templates/co2ok_button_template_default.php:21
 msgid "Make "
 msgstr "Maak "
 
