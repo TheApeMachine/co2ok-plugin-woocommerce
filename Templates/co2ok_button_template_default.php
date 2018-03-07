@@ -29,7 +29,7 @@
 
     <span class="co2ok_payoff">
       <?php // TODO: Replace text with static vars ?>
-        
+
         <?php
             echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
             ?>
@@ -40,12 +40,19 @@
 
 
     <div class="co2ok_infobox_container">
-        <?php // TODO: Replace text with static vars ?>
-        <p class="text-block">Tijdens productie en  vervoer van producten komen broeikasgassen vrij. </p>
-        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/fout.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
-        <?php // TODO: Replace text with static vars ?>
-        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/even.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
-        <p class="text-block">Wij zorgen ervoor dat een even grote hoeveelheid uitstoot voorkomen wordt. </p>
+
+        <div class="inner-wrapper">
+          <?php // TODO: Replace text with static vars ?>
+          <p class="text-block">Tijdens productie en  vervoer van producten komen broeikasgassen vrij. </p>
+          <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/fout.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
+        </div>
+
+        <div class="inner-wrapper">
+          <?php // TODO: Replace text with static vars ?>
+          <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/even.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
+          <p class="text-block">Wij zorgen ervoor dat een even grote hoeveelheid uitstoot voorkomen wordt. </p>
+        </div>
+
 
         <a target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); ?></a>
         <span> <a target="_blank" href="http://www.co2ok.eco/co2-compensatie"><?php
