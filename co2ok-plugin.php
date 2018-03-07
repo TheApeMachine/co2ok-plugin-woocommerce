@@ -233,7 +233,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
         else
         {
-        //    throw new \Exception( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ));
+           throw new \Exception( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ));
         }
     }
 
@@ -248,7 +248,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $woocommerce->session->percentage = $this->percentage;
 
-        $this->surcharge = $this->co2ok_calculateSurcharge();
+        $this->surcharge = $this->co2ok_calculateSurcharge($add_tax = true);
 
         $return = array(
             'compensation_amount'	=> get_woocommerce_currency_symbol() . number_format($this->surcharge, 2, ',', ' ')
@@ -387,16 +387,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
     }
 
-    final private function co2ok_calculateSurcharge()
+    final private function co2ok_calculateSurcharge($add_tax=false)
+    /**
+	 * Returns surcharge, optionally with tax
+	 */
     {
         global $woocommerce;
 
         if ($woocommerce->session->percentage)
             $this->percentage = $woocommerce->session->percentage;
 
-        $surcharge = (($woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total) / 100) * $this->percentage;
-        $this->surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-
+    
+        $order_total = $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total;
         $tax_rates = \WC_Tax::get_base_tax_rates( );
 
         $highest_tax_rate = 0;
@@ -406,8 +408,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $highest_tax_rate = $tax_rate['rate'];
         }
         $highest_tax_rate = ((int)$highest_tax_rate) / 100;
-        $this->surcharge *= (1 + $highest_tax_rate);
+        $order_total_with_tax = ($order_total * $highest_tax_rate) + $order_total;
 
+        $surcharge = ($order_total_with_tax) * ($this->percentage / 100);
+        $this->surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+        if ($add_tax)
+            $this->surcharge = (1 + $highest_tax_rate) * round($surcharge, 2);
+        
         return $this->surcharge;
     }
 
@@ -444,6 +452,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final private function renderCheckbox()
     {
         global $woocommerce;
+        $this->surcharge = $this->co2ok_calculateSurcharge($add_tax=true);
         $this->helperComponent->RenderCheckbox( esc_html(number_format($this->surcharge , 2, ',', ' ') ) , esc_attr(urlencode(json_encode($this->co2ok_CartDataToJson())) ));
     }
 
