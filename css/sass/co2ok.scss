@@ -148,11 +148,11 @@
      margin: 17px 20px 14px 5px;
 }
  .co2ok_infobox_container {
-     width: 310px;
+     width: 350px;
      overflow: hidden;
      position: absolute;
      left:50%;
-     margin-left:-150px;
+     margin-left:-175px;
      opacity: 0;
      -webkit-transition: opacity 1.2s;
      transition: opacity 1.2s;
@@ -169,26 +169,33 @@
          display: block;
          opacity: 1
     }
+    .inner-wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
 
-    .svg-img {
-      width: 125px;
-      display: inline-block;
-      margin-bottom: 10px;
+      .svg-img {
+        display: flex;
+        justify-content: center; /* align horizontal */
+        align-items: center; /* align vertical */
+        height: 50%;
+        width: 50%;
+        align-items: center;
+        justify-content: center;
 
-    }
+      }
+      .text-block {
+        margin: 0px;
+        font-size: 0.9em;
+        box-sizing: border-box;
+        padding: 5px;
+        border-radius: 5px;
+        border: 2px solid #28db83;
+      }
 
-    .text-block {
-      font-size: 0.7em;
-      box-sizing: border-box;
-      border-radius: 5px;
-      padding: 5px;
-      text-align: left;
-      vertical-align: middle;
-      width: 125px;
-      line-height: normal;
-      margin-bottom: 10px;
-      display: inline-block;
-      border: 2px solid #28DB83;
     }
 
     img, span {
