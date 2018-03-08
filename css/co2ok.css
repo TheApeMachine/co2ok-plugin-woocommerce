@@ -149,6 +149,7 @@ img#co2ok_logo {
     .co2ok_infobox_container .inner-wrapper .text-block {
       margin: 0px;
       font-size: 0.9em;
+      line-height: normal;
       box-sizing: border-box;
       padding: 5px;
       border-radius: 5px;
