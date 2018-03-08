@@ -134,7 +134,7 @@ var Co2ok_JS = function ()
                 {
                     setTimeout(function()
                     {
-                        jQuery(".woocommerce-cart-form input[name=update_cart]").click();
+                        jQuery(".woocommerce-cart-form").submit();
                     },200);
                 });
 
