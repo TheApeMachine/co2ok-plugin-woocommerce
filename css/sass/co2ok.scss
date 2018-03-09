@@ -31,6 +31,9 @@
                  width: 16px;
                  margin-top: 2px;
                  display: inline-block;
+                 @media #{$small} {
+                  width: 20px;
+                 }
             }
         }
     }
@@ -148,12 +151,11 @@
      margin: 17px 20px 14px 5px;
 }
  .co2ok_infobox_container {
-     width: 300px;
-     height: 310px;
+     width: 350px;
      overflow: hidden;
      position: absolute;
      left:50%;
-     margin-left:-150px;
+     margin-left:-175px;
      opacity: 0;
      -webkit-transition: opacity 1.2s;
      transition: opacity 1.2s;
@@ -161,15 +163,58 @@
      display: none;
      background: white;
      border-radius: 15px;
-     margin-top: -50px;
+     box-sizing: border-box;
+     padding: 10px;
      border: 3px solid #eee;
      border-image-slice: 1;
      &.ShowInfoBox{
          display: block;
          opacity: 1
     }
-}
- .co2ok_infobox_container span {
-     float: right;
-     padding: 0px;
+    .inner-wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+
+      .svg-img {
+        display: flex;
+        justify-content: center; /* align horizontal */
+        align-items: center; /* align vertical */
+        height: 50%;
+        width: 58%;
+        align-items: center;
+        justify-content: center;
+
+      }
+      .text-block {
+        margin: 0px;
+        font-size: 0.9em;
+        line-height: normal;
+        box-sizing: border-box;
+        text-align: left;
+        padding: 5px;
+        border-radius: 5px;
+        border: 2px solid #28db83;
+        text-decoration: none;
+
+        &.greyBorder {
+          border-color: #b8b8b8;
+        }
+      }
+
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    img, span {
+      display: inline-block;
+      vertical-align: middle;
+      color: #979797;
+      padding: 0px;
+    }
 }

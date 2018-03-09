@@ -1,4 +1,6 @@
 .co2ok_container .co2ok_checkbox_container .inner_checkbox_label:after, .co2ok_container .co2ok_checkbox_container.selected .inner_checkbox_label {
+  background: -webkit-linear-gradient(#1DEFAC 10.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
+  background: -o-linear-gradient(#1DEFAC 10.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
   background: linear-gradient(#1DEFAC 10.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%); }
 
 .co2ok_container {
@@ -30,6 +32,9 @@
         width: 16px;
         margin-top: 2px;
         display: inline-block; }
+        @media (max-width: 768px) {
+          .co2ok_container .co2ok_payoff #p img {
+            width: 20px; } }
   .co2ok_container .co2ok_checkbox_container {
     border-radius: 10px;
     box-sizing: border-box;
@@ -102,12 +107,11 @@ img#co2ok_logo {
   margin: 17px 20px 14px 5px; }
 
 .co2ok_infobox_container {
-  width: 300px;
-  height: 310px;
+  width: 350px;
   overflow: hidden;
   position: absolute;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -175px;
   opacity: 0;
   -webkit-transition: opacity 1.2s;
   transition: opacity 1.2s;
@@ -115,13 +119,46 @@ img#co2ok_logo {
   display: none;
   background: white;
   border-radius: 15px;
-  margin-top: -50px;
+  box-sizing: border-box;
+  padding: 10px;
   border: 3px solid #eee;
   border-image-slice: 1; }
   .co2ok_infobox_container.ShowInfoBox {
     display: block;
     opacity: 1; }
-
-.co2ok_infobox_container span {
-  float: right;
-  padding: 0px; }
+  .co2ok_infobox_container .inner-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px; }
+    .co2ok_infobox_container .inner-wrapper .svg-img {
+      display: flex;
+      justify-content: center;
+      /* align horizontal */
+      align-items: center;
+      /* align vertical */
+      height: 50%;
+      width: 58%;
+      align-items: center;
+      justify-content: center; }
+    .co2ok_infobox_container .inner-wrapper .text-block {
+      margin: 0px;
+      font-size: 0.9em;
+      line-height: normal;
+      box-sizing: border-box;
+      text-align: left;
+      padding: 5px;
+      border-radius: 5px;
+      border: 2px solid #28db83;
+      text-decoration: none; }
+      .co2ok_infobox_container .inner-wrapper .text-block.greyBorder {
+        border-color: #b8b8b8; }
+  .co2ok_infobox_container a {
+    text-decoration: underline; }
+  .co2ok_infobox_container img, .co2ok_infobox_container span {
+    display: inline-block;
+    vertical-align: middle;
+    color: #979797;
+    padding: 0px; }
