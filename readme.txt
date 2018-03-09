@@ -3,8 +3,8 @@ Contributors: co2ok
 Donate link: http://co2ok.eco/
 Tags: climate neutral, CO2, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental
 Requires at least: 4.0
-Tested up to: 4.9
-WC tested up to: 3.2.5
+Tested up to: 4.9.4
+WC tested up to: 3.3.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -44,6 +44,17 @@ Besides the option that the CO2 compensation button provides, nothing changes. Y
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.1.0
+* New design, even fresher now
+* Corrected VAT calculation
+* Made error handling more robust
+* Fixed button on cart page (broken by WC 3.3) 
+* Expanded TDD test coverage
+* Implemented remote logging (currently disabled - we need to discuss this with the WP plugin team first)
+
+= 1.0.0.16
+* Reverts to previous release
 
 = 1.0.0.15
 * Fresh new design
