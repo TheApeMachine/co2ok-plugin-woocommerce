@@ -116,9 +116,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         // Write to remote log
         try {
-            $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
-            $remote = LogEntries::getLogger($token, true, true);
-            $remote->error( explode("\n", $logmsg(Co2ok_Plugin::formatBacktrace($trace))) ); // explode for multiline
+            // NB currently disabled to avoid violation of WordPress policy.
+            // We need to discuss this with WP first, figure out an allowable way.
+            //
+            // $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
+            // $remote = LogEntries::getLogger($token, true, true);
+            // $remote->error( explode("\n", $logmsg(Co2ok_Plugin::formatBacktrace($trace))) ); // explode for multiline
         } catch (Exception $e) { // fail silently
         }
     }
