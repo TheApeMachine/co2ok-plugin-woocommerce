@@ -154,7 +154,12 @@ img#co2ok_logo {
       text-align: left;
       padding: 5px;
       border-radius: 5px;
-      border: 2px solid #28db83; }
+      border: 2px solid #28db83;
+      text-decoration: none; }
+      .co2ok_infobox_container .inner-wrapper .text-block.greyBorder {
+        border-color: #b8b8b8; }
+  .co2ok_infobox_container a {
+    text-decoration: underline; }
   .co2ok_infobox_container img, .co2ok_infobox_container span {
     display: inline-block;
     vertical-align: middle;
