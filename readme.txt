@@ -5,7 +5,7 @@ Tags: climate neutral, CO2, CO2 footprint, carbon footprint, carbon emissions, c
 Requires at least: 4.0
 Tested up to: 4.9.4
 WC tested up to: 3.3.3
-Stable tag: trunk
+Stable tag: 1.0.0.16
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
