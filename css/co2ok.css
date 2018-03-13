@@ -108,15 +108,6 @@ img#co2ok_logo {
 
 .co2ok_infobox_container {
   width: 350px;
-  overflow: hidden;
-  position: absolute;
-  left: 50%;
-  margin-left: -175px;
-  opacity: 0;
-  -webkit-transition: opacity 1.2s;
-  transition: opacity 1.2s;
-  z-index: 10000;
-  display: none;
   background: white;
   border-radius: 15px;
   box-sizing: border-box;

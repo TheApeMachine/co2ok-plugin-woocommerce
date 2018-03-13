@@ -39,7 +39,7 @@
     </span>
 
 
-    <div class="co2ok_infobox_container">
+    <div class="co2ok_infobox_container co2ok-popper">
 
         <div class="inner-wrapper">
           <p class="text-block greyBorder"><?php echo __('During manufacturing and shipping of products, greenhouse gases are emitted',  'co2ok-for-woocommerce' );?></p>
