@@ -151,13 +151,20 @@
      margin: 17px 20px 14px 5px;
 }
  .co2ok_infobox_container {
+     position: absolute;
      width: 350px;
      background: white;
      border-radius: 15px;
      box-sizing: border-box;
+     z-index: 999999;
+     display: none;
      padding: 10px;
      border: 3px solid #eee;
      border-image-slice: 1;
+     @media #{$small} {
+        margin-left: -150px;
+        width: 300px;
+      }
      &.ShowInfoBox{
          display: block;
          opacity: 1
