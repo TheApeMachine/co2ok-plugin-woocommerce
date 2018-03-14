@@ -3,11 +3,12 @@ var Co2ok_JS = function ()
 
     var player;
     var image_url = plugin.url;
+
     return {
 
         Init: function ()
         {
-
+            this.placeInfoBox()
             this.RegisterBindings();
             this.RegisterInfoBox();
 
@@ -170,17 +171,33 @@ var Co2ok_JS = function ()
         },
 
         placeInfoBox: function() {
+
           var infoButton = jQuery('.co2ok_info');
           var infoBox = jQuery('.co2ok_infobox_container');
           var offset = infoButton.offset();
 
-          offset.left = offset.left - (infoBox.width() / 2);
-          offset.top = offset.top + infoButton.height();
-
           infoBox.remove();
           jQuery('body').append(infoBox)
 
-          infoBox.css(offset);
+          if (jQuery(window).width() < 768) {
+            offset.top = offset.top + infoButton.height();
+            infoBox.css({
+              top: offset.top,
+              margin: '0 auto',
+              left: 10,
+            });
+          }else {
+            offset.left = offset.left - (infoBox.width() / 2);
+            offset.top = offset.top + infoButton.height();
+            infoBox.css({
+              ...offset,
+              margin: '0',
+            }
+            );
+          }
+
+
+
         },
 
         IsMobile : function()
