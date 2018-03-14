@@ -32,7 +32,7 @@ var Co2ok_JS = function ()
                 });
 
                 if (!(jQuery('#co2ok_cart').is(":checked"))) {
-                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
+                      jQuery("#co2ok_logo").attr("src", image_url + '/new_logo_test.svg');
                 }
 
                 if(jQuery('#co2ok_cart').is(":checked"))
