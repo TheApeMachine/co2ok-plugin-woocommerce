@@ -19,7 +19,7 @@
               <?php // TODO: Replace text with static vars ?>
 
               <?php echo __( 'Make ', 'co2ok-for-woocommerce' );
-                  echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
+                  echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/new_logo_test.svg', 'co2ok_logo', 'co2ok_logo');
               ?>
               <span class="compensation_amount">+<?php echo $currency_symbol.''. $surcharge ?> </span>
           </div>
