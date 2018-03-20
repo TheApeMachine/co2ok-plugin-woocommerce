@@ -237,8 +237,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
         else
         {
-           try{ $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl); }
-           catch (Exception $e) { $formattedError = json_encode($e); failGracefully($formattedError); }
+           try{ if (\co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient){
+           $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);}
+           else
+           {
+            $message = "No CO2ok_GraphQLClient available";
+              echo "<script type='text/javascript'>alert('$message');</script>";
+           }
+           }
+           
+           //catch (Exception $e) { $formattedError = json_encode($e); Co2ok_Plugin::failGracefully($formattedError); }
+           catch (Exception $e) { $formattedError = json_encode($response['data']); Co2ok_Plugin::failGracefully($formattedError);}
+           
         }
     }
 
