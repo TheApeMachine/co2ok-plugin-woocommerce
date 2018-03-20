@@ -237,6 +237,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
         else
         {
+           try{ 
+           $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl); 
+           } catch (Exception $e) { $formattedError = json_encode($e); failGracefully($formattedError); 
+           }
+           
+           /**
            $woocommercePathExists = '\co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient';
            if (file_exists (woocommercePathExists) {
            $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
@@ -247,13 +253,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
               echo "<script type='text/javascript'>alert('$message');</script>";
            }
            }
+           */
            
-           
+           /**
            //try{
            //$graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);}
            //catch (Exception $e) { $formattedError = json_encode($response['data']); Co2ok_Plugin::failGracefully($formattedError);}
            //catch (Exception $e) { $formattedError = json_encode($e); Co2ok_Plugin::failGracefully($formattedError); }
            //catch (Exception $e) { $formattedError = json_encode($response['data']); Co2ok_Plugin::failGracefully($formattedError);}
+           */
            
         }
     }
