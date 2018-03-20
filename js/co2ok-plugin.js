@@ -38,7 +38,7 @@ var Co2ok_JS = function ()
                 if(jQuery('#co2ok_cart').is(":checked"))
                 {
                     // change image source
-                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_ok_wit.svg');
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_white.svg');
                 }
 
         },
