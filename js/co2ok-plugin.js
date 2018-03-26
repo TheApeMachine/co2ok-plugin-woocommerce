@@ -32,13 +32,13 @@ var Co2ok_JS = function ()
                 });
 
                 if (!(jQuery('#co2ok_cart').is(":checked"))) {
-                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.png');
+                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
                 }
 
                 if(jQuery('#co2ok_cart').is(":checked"))
                 {
                     // change image source
-                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.png');
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
                 }
 
         },
