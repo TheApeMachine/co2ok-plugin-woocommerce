@@ -1,45 +1,48 @@
 <svg width="234" height="102" viewBox="0 0 234 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <title>Logo</title>
 <desc>Created using Figma</desc>
-<g id="Canvas" transform="translate(-2626 -2813)">
+<g id="Canvas" transform="translate(149 359)">
 <g id="Logo">
 <g id="Typo">
 <g id="CO">
 <g id="CO">
-<use xlink:href="#path0_fill" transform="translate(2626 2813)" fill="#606468"/>
+<use xlink:href="#path0_fill" transform="translate(-149 -359)" fill="#606468"/>
 </g>
 <mask id="mask0_outline" mask-type="alpha">
 <g id="CO">
-<use xlink:href="#path0_fill" transform="translate(2626 2813)" fill="#FFFFFF"/>
+<use xlink:href="#path0_fill" transform="translate(-149 -359)" fill="#FFFFFF"/>
 </g>
 </mask>
 <g id="Shadow" mask="url(#mask0_outline)">
-<use xlink:href="#path1_fill" transform="translate(2722 2861)" fill="url(#paint2_linear)"/>
+<use xlink:href="#path1_fill" transform="translate(-53 -311)" fill="url(#paint2_linear)"/>
 </g>
 </g>
 <g id="2">
 <g id="Mask">
-<use xlink:href="#path2_fill" transform="translate(2722 2872.65)" fill="#606468"/>
+<use xlink:href="#path2_fill" transform="translate(-53 -299.35)" fill="#606468"/>
 </g>
 <mask id="mask1_outline" mask-type="alpha">
 <g id="Mask">
-<use xlink:href="#path2_fill" transform="translate(2722 2872.65)" fill="#FFFFFF"/>
+<use xlink:href="#path2_fill" transform="translate(-53 -299.35)" fill="#FFFFFF"/>
 </g>
 </mask>
 <g id="Rectangle" mask="url(#mask1_outline)">
-<use xlink:href="#path3_fill" transform="translate(2736 2887)" fill="url(#paint5_linear)"/>
+<use xlink:href="#path3_fill" transform="translate(-39 -285)" fill="url(#paint5_linear)"/>
 </g>
 </g>
 </g>
 <g id="OK">
 <g id="Combined Shape">
-<use xlink:href="#path4_fill" transform="translate(2772 2827)" fill="url(#paint6_linear)"/>
+<use xlink:href="#path4_fill" transform="translate(-3 -345)" fill="url(#paint6_linear)"/>
 </g>
 <g id="Group">
 <g id="K" opacity="0.294441">
-<use xlink:href="#path5_fill" transform="translate(2838.32 2846.41)" fill="url(#paint7_linear)"/>
+<use xlink:href="#path5_fill" transform="translate(63.3244 -325.593)" fill="url(#paint7_linear)"/>
 </g>
 </g>
+</g>
+<g id="XMLID 42">
+<use xlink:href="#path6_fill" transform="translate(-67 -333)" fill="#0ABB4D"/>
 </g>
 </g>
 </g>
@@ -64,7 +67,8 @@
 <path id="path1_fill" fill-rule="evenodd" d="M 0 0L 36 0L 36 11.67L 0 11.67L 0 0Z"/>
 <path id="path2_fill" fill-rule="evenodd" d="M 50 28.35L 50 42.35L 16.6667 42.35L 16.6667 27.35C 16.7142 24.874 17.2963 22.7629 18.6857 20.7491C 21.0963 17.2207 31.0981 14.1667 30.1006 14.3271L 0 14.35L 0 0L 33.4166 0C 42.691 0 50 5.83123 50 13.66C 50 16.2361 49.1806 18.6641 47.7438 20.7491C 45.3688 24.2274 41.2838 27.5581 36.4625 28.35L 50 28.35Z"/>
 <path id="path3_fill" fill-rule="evenodd" d="M 0 0L 28 0L 28 14L 0 14L 0 0Z"/>
-<path id="path4_fill" fill-rule="evenodd" d="M 23 46C 10.2974 46 0 35.7026 0 23C 0 10.2974 10.2974 0 23 0C 35.7026 0 46 10.2974 46 23C 46 35.7026 35.7026 46 23 46ZM 23 34C 29.0752 34 34 29.0752 34 23C 34 16.9248 29.0752 12 23 12C 16.9248 12 12 16.9248 12 23C 12 29.0752 16.9248 34 23 34ZM 49 46L 59.2659 46L 59.2659 36.7937L 66.3245 27.3948L 76.4771 46L 88 46L 72.3838 19.4072L 86.9844 0L 75.4617 0L 59.2659 21.9893L 59.2659 0L 49 0L 49 46Z"/>
+<path id="path4_fill" fill-rule="evenodd" d="M 23 46C 10.2975 46 0 35.7025 0 23C 0 10.2975 10.2975 0 23 0C 35.7025 0 46 10.2975 46 23C 46 35.7025 35.7025 46 23 46ZM 23 34C 29.0751 34 34 29.0751 34 23C 34 16.9249 29.0751 12 23 12C 16.9249 12 12 16.9249 12 23C 12 29.0751 16.9249 34 23 34ZM 49 46L 59.2658 46L 59.2658 36.7936L 66.3244 27.3947L 76.4772 46L 88 46L 72.3838 19.4073L 86.9845 0L 75.4616 0L 59.2658 21.9893L 59.2658 0L 49 0L 49 46Z"/>
 <path id="path5_fill" fill-rule="evenodd" d="M 6.05943 0L 21.6756 26.5927L 10.1528 26.5927L 0 7.98745L 6.05943 0Z"/>
+<path id="path6_fill" d="M 27 7.94118C 27 3.61765 23.8235 0 19.8529 0C 17.0294 0 14.7353 1.7647 13.5 4.23528C 12.3529 1.67646 9.88235 0 7.14705 0C 3.17647 0 2.69273e-06 3.52941 2.69273e-06 7.94118C 2.69273e-06 10.5882 0.970588 13.0588 2.82353 14.4706L 13.5882 24.9706C 13.5882 24.9706 24.7941 13.5882 24.4412 14.1176C 25.9412 12.2647 27 10.7647 27 7.94118Z"/>
 </defs>
 </svg>
