@@ -95,13 +95,13 @@ var Co2ok_JS = function ()
                 //
                 //alert("mofo");
                 if (!(jQuery(this).is(":checked"))) {
-                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.png');
+                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
                 }
 
                 if(jQuery(this).is(":checked"))
                 {
                     // change image source
-                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.png');
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
 
                     jQuery('.co2ok_checkbox_container').addClass('selected');
                     jQuery('.co2ok_checkbox_container').removeClass('unselected');
