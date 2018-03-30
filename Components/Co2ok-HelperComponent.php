@@ -19,7 +19,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
             if (isset($id))
                 $img_html .= 'id="' . $id . '" ';
 
-            return $img_html . '" />';
+            return $img_html . ' />';
         }
 
 
