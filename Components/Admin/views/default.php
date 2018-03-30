@@ -1,6 +1,6 @@
 <div style="margin-top: 20px;">
 
-    <img src="<?php echo esc_url(plugins_url('../images/logo.png', __FILE__)); ?>" style="float:left;width:200px;"/>
+    <img src="<?php echo esc_url(plugins_url('../images/logo.svg', __FILE__)); ?>" style="float:left;width:200px;"/>
     <h1 style="margin-left: 20px;display: inline-block;"> Plugin Settings </h1>
     </br>
     </br>
