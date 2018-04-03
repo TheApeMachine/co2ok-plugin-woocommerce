@@ -8,6 +8,27 @@ A WooCommerce plugin to integrate CO2ok
 
 Some prose detailing installation
 
+### Gulp & scss
+
+To power up the development process we decided to use gulp for our task
+which is currently just converting SCSS to css and minify it.
+
+How to start with gulp and SCSS
+
+SCSS is something on it's own, it's quite close to how css but on steroids
+You can more learn about scss [here](https://sass-lang.com/).
+
+To get Gulp working you follow the following steps:
+
+1. Have Node.js and NPM installed on your OS.
+2. Open your Terminal
+3. Navigate into the plugin directory.
+4. run `npm install gulp -g` to install Gulp globally.
+5. Run `npm install` in the root folder.
+6. after all packages are installed run `gulp`
+7. Gulp should be starting now and automatic converting SCSS to css every time a `.scss` file is changed
+
+
 ## Contributing
 
 Some prose detailing contributing
