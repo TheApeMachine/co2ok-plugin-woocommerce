@@ -5,7 +5,7 @@ Tags: climate neutral, CO2, CO2 footprint, carbon footprint, carbon emissions, c
 Requires at least: 4.0
 Tested up to: 4.9.4
 WC tested up to: 3.3.4
-Stable tag: 1.0.1.0
+Stable tag: 1.0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,9 @@ Besides the option that the CO2 compensation button provides, nothing changes. Y
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.1.1
+* Fixes security issue
 
 = 1.0.1.0
 * New design, even fresher now
