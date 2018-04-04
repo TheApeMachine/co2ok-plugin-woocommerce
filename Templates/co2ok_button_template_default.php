@@ -16,7 +16,6 @@
 
             </div>
 
-              <?php // TODO: Replace text with static vars ?>
 
               <?php echo __( 'Make ', 'co2ok-for-woocommerce' );
                   echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
@@ -28,7 +27,6 @@
 
 
     <span class="co2ok_payoff">
-      <?php // TODO: Replace text with static vars ?>
 
         <?php
             echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
