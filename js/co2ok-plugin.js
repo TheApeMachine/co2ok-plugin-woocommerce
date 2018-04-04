@@ -186,21 +186,28 @@ var Co2ok_JS = function ()
           infoBox.remove();
           jQuery('body').append(infoBox)
 
-          if (jQuery(window).width() < 768) {
+          console.log(jQuery(window).width());
+
+          if (jQuery(window).width() < 480) {
+            console.log('iemobile')
+
             offset.top = offset.top + infoButton.height();
             infoBox.css({
               top: offset.top,
               margin: '0 auto',
-              display: 'block',
+              // display: 'block',
               left: '50%',
               transform: 'translateX(-50%)'
             });
           }else {
+            console.log('web')
+
             offset.left = offset.left - (infoBox.width() / 2);
             offset.top = offset.top + infoButton.height();
             infoBox.css({
               ...offset,
               margin: '0',
+              transform: 'none'
             }
             );
           }
