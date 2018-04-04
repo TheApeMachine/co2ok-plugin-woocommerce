@@ -249,6 +249,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         global $woocommerce;
 
         $this->percentage = filter_var ( $_POST['percentage'], FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
+        if ($this->percentage < 0) {
+            die("Something went wrong. Please try again");
+        }
 
         $woocommerce->session->percentage = $this->percentage;
 
