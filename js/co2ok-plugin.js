@@ -186,10 +186,7 @@ var Co2ok_JS = function ()
           infoBox.remove();
           jQuery('body').append(infoBox)
 
-          console.log(jQuery(window).width());
-
           if (jQuery(window).width() < 480) {
-            console.log('iemobile')
 
             offset.top = offset.top + infoButton.height();
             infoBox.css({
@@ -199,8 +196,8 @@ var Co2ok_JS = function ()
               left: '50%',
               transform: 'translateX(-50%)'
             });
+
           }else {
-            console.log('web')
 
             offset.left = offset.left - (infoBox.width() / 2);
             offset.top = offset.top + infoButton.height();
