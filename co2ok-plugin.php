@@ -48,7 +48,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     private $surcharge  = 0;
 
     private $helperComponent;
-    
+
     /*
      * Returns the result of a debug_backtrace() as a pretty-printed string
      * @param  array   $trace Result of debug_backtrace()
@@ -65,14 +65,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 // Z:\private\exposing\webserver\directory\co2ok-plugin-woocommerce\co2ok_plugin.php -> **\co2ok_plugin.php
                 $location = preg_replace('#.*[\\\/]#', '**\\', $location);
             }
-            
+
             // Format caller
             $caller = "";
             if (array_key_exists("class", $line)) {
                 $caller = $line["class"] . $line["type"];
             }
             $caller .= $line["function"];
-            
+
             // Format state, append to $caller
             if (!$safe || $index == count($trace) - 1) { // If unsafe or last call
                 if (array_key_exists("object", $line) && !empty($line["object"])) {
@@ -104,7 +104,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // Format error notice
         $now = date("Ymd_HisT");
         $logmsg = function ($info) use ($now, $error) { return sprintf("[%s:FAIL] %s\n%s\n", $now, $error, $info); };
-        
+
         // Generate backtrace
         $trace = debug_backtrace();
         array_shift($trace); // remove call to this method
@@ -279,7 +279,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true);
         wp_enqueue_script('co2ok_js_cdn');
-
         wp_register_script('co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__).'?plugin_version='.self::VERSION);
         wp_enqueue_script('co2ok_js_wp', "", array(), null, true);
         wp_localize_script('co2ok_js_wp', 'ajax_object',
@@ -297,9 +296,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
          *         TODO this should be conditional
          * (eg only when visited from our IPs)
          */
-        
+
         $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
-        
+
         $log = LogEntries::getLogger($token,true,true); // create persistent SSL-based connection
         $log->info("some information");
         $log->notice(json_encode(["status"=>"ok","message"=>"send some json"]));
@@ -346,7 +345,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         });
     }
 
-    
+
     final private function co2ok_deleteTransaction($order_id)
     {
         $order = wc_get_order($order_id);
@@ -404,7 +403,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         if ($woocommerce->session->percentage)
             $this->percentage = $woocommerce->session->percentage;
 
-    
+
         $order_total = $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total;
         $tax_rates = \WC_Tax::get_base_tax_rates( );
 
@@ -422,7 +421,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         if ($add_tax)
             $this->surcharge = (1 + $highest_tax_rate) * round($surcharge, 2);
-        
+
         return $this->surcharge;
     }
 
