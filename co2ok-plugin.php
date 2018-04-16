@@ -117,12 +117,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         // Write to remote log
         try {
-            // NB currently disabled to avoid violation of WordPress policy.
-            // We need to discuss this with WP first, figure out an allowable way.
+            // NB currently enabled to troubleshoot missing transactions
+            // We urgently need to discuss this with WP, figure out if this is allowable.
             //
-            // $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
-            // $remote = LogEntries::getLogger($token, true, true);
-            // $remote->error( explode("\n", $logmsg(Co2ok_Plugin::formatBacktrace($trace))) ); // explode for multiline
+            // @reviewers: we've done our best to limit the amount of logging, please 
+            // contact us if this approach is unacceptable
+            //
+            $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
+            $remote = LogEntries::getLogger($token, true, true);
+            $remote->error( explode("\n", $logmsg(Co2ok_Plugin::formatBacktrace($trace))) ); // explode for multiline
         } catch (Exception $e) { // fail silently
         }
     }
@@ -144,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             {
                 if (is_wp_error($response)) { // ignore valid responses
                     $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
-                    Co2ok_Plugin::failGracefully($formattedError);
+                    // Co2ok_Plugin::failGracefully($formattedError);
                     return;
                 }
                 if(!is_array($response['body']))
@@ -158,7 +161,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 else // TO DO error handling...
                 {
                     $formattedError = json_encode($response['data']);
-                    Co2ok_Plugin::failGracefully($formattedError);
+                    // Co2ok_Plugin::failGracefully($formattedError);
                 }
             });
     }
@@ -291,18 +294,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final public function co2ok_load_plugin_textdomain()
     {
         load_plugin_textdomain( 'co2ok-for-woocommerce', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
-
-        /**
-         *         TODO this should be conditional
-         * (eg only when visited from our IPs)
-         */
-
-        $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
-
-        $log = LogEntries::getLogger($token,true,true); // create persistent SSL-based connection
-        $log->info("some information");
-        $log->notice(json_encode(["status"=>"ok","message"=>"send some json"]));
-
     }
 
     final private function co2ok_storeTransaction($order_id)
@@ -340,8 +331,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
         , function ($response)// Callback after request
         {
-           // echo print_r($response,1);
-            // TODO error handling
+            if (is_wp_error($response)) { // ignore valid responses
+                $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
+                Co2ok_Plugin::failGracefully($formattedError);
+            }
         });
     }
 
@@ -370,7 +363,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             {
                 if (is_wp_error($response)) { // ignore valid responses
                     $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
-                    Co2ok_Plugin::failGracefully($formattedError);
+                    // Co2ok_Plugin::failGracefully($formattedError);
                 }
             });
     }
