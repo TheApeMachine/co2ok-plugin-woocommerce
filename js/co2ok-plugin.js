@@ -247,6 +247,10 @@ var Co2ok_JS = function ()
 
             if(!_this.IsMobile())
             {
+              jQuery(".co2ok_info").mouseenter(function() {
+                _this.placeInfoBox();
+              });
+
               jQuery(document).mouseover(function(e) {
                 if (
                   !(
