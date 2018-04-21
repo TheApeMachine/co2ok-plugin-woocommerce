@@ -35,7 +35,6 @@ var Co2ok_JS = function ()
 
                 if(jQuery('#co2ok_cart').is(":checked"))
                 {
-                    // change image source
                     jQuery("#co2ok_logo").attr("src", image_url + '/logo_ok_wit.svg');
                 }
 
@@ -85,20 +84,16 @@ var Co2ok_JS = function ()
         },
         RegisterBindings: function()
         {
-          //  alert("mofo");
-
 
             jQuery('#co2ok_cart').click(function (event)
             {
-                //
-                //alert("mofo");
+
                 if (!(jQuery(this).is(":checked"))) {
                       jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
                 }
 
                 if(jQuery(this).is(":checked"))
                 {
-                    // change image source
                     jQuery("#co2ok_logo").attr("src", image_url + '/logo_ok_wit.svg');
 
                     jQuery('.co2ok_checkbox_container').addClass('selected');
@@ -108,7 +103,7 @@ var Co2ok_JS = function ()
                     } else {
                         jQuery('form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_cart_hidden" checked value="1" style="display:none">');
                     }
-                    
+
                     if (jQuery('#co2ok_checkout_hidden').length === 0) {
                         jQuery('form.woocommerce-checkout').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="1" style="display:none">');
                     }
@@ -116,7 +111,7 @@ var Co2ok_JS = function ()
                         jQuery('#co2ok_checkout_hidden').remove();
                         jQuery('form.woocommerce-checkout').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="1" style="display:none">');
                     }
-                    
+
                 }else {
                     jQuery('.co2ok_checkbox_container').removeClass('selected');
                     jQuery('.co2ok_checkbox_container').addClass('unselected');
