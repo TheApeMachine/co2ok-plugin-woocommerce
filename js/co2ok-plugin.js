@@ -193,12 +193,20 @@ var Co2ok_JS = function ()
         {
             jQuery(".co2ok_infobox_container").removeClass('infobox-hidden')
             jQuery(".co2ok_infobox_container").addClass('ShowInfoBox')
+            jQuery(".co2ok_container").css({
+              marginBottom: 200
+            });
         },
 
         hideInfoBox : function()
         {
             jQuery(".co2ok_infobox_container").removeClass('ShowInfoBox')
             jQuery(".co2ok_infobox_container").addClass('infobox-hidden')
+
+            jQuery(".co2ok_container").css({
+              marginBottom: 0
+            });
+
         },
         modalRegex: function(e)
         {
