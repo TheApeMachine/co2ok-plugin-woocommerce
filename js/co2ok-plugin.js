@@ -8,6 +8,7 @@ var Co2ok_JS = function ()
         {
 
             this.RegisterBindings();
+            this.placeInfoBox();
             this.RegisterInfoBox();
 
             var _this = this;
