@@ -226,7 +226,7 @@ var Co2ok_JS = function ()
 
             jQuery('body').click(function(e)
             {
-              if(!modalRegex(e)){
+              if(!_this.modalRegex(e)){
                 _this.hideInfoBox();
               }
               else {
