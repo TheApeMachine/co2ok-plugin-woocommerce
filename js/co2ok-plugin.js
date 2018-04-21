@@ -221,15 +221,17 @@ var Co2ok_JS = function ()
 
             if(!_this.IsMobile())
             {
-                jQuery('.co2ok_info, .co2ok_infobox_container').mouseenter(function()
-                {
-                  _this.ShowInfoBox();
-                })
-
-                .mouseleave(function()
-                {
+              jQuery(document).mouseover(function(e) {
+                if (
+                  !(
+                    _this.modalRegex(e)
+                  )
+                ) {
                   _this.hideInfoBox();
-                })
+                } else {
+                  _this.ShowInfoBox();
+                }
+              });
             }
         }
     }
