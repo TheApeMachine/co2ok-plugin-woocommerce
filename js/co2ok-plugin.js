@@ -1,6 +1,5 @@
 var Co2ok_JS = function ()
 {
-    var player;
     var image_url = plugin.url;
     return {
 
