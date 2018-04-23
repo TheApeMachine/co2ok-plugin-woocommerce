@@ -22,7 +22,6 @@
 namespace co2ok_plugin_woocommerce;
 
 use cbschuld\LogEntries;
-// use palanik\wrapi;  
 
 require "vendor/autoload.php";
 
