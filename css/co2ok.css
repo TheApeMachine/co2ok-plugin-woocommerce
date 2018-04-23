@@ -1,7 +1,7 @@
 .co2ok_container .co2ok_checkbox_container .inner_checkbox_label:after, .co2ok_container .co2ok_checkbox_container.selected .inner_checkbox_label {
-  background: -webkit-linear-gradient(#1DEFAC 10.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
-  background: -o-linear-gradient(#1DEFAC 10.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
-  background: linear-gradient(#1DEFAC 10.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%); }
+  background: -webkit-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
+  background: -o-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
+  background: linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%); }
 
 .co2ok_container {
   display: inline-block;
@@ -13,7 +13,7 @@
   margin-left: 3px; }
   .co2ok_container .co2ok_payoff {
     width: 100%;
-    margin-top: 6px;
+    margin-top: 10px;
     font-size: 14px;
     text-align: center;
     font-family: Roboto, sans-serif;
@@ -31,7 +31,7 @@
       margin-left: 12px; }
       .co2ok_container .co2ok_payoff #p img {
         width: 16px;
-        margin-top: 2px;
+        margin-top: -6px;
         display: inline-block; }
         @media (max-width: 768px) {
           .co2ok_container .co2ok_payoff #p img {
@@ -85,11 +85,17 @@
     .co2ok_container .co2ok_checkbox_container #co2ok_cart_field {
       display: none; }
     .co2ok_container .co2ok_checkbox_container.unselected .compensation_amount {
-      color: #06d367; }
+      color: #06d367;
+      padding-top: 3px;
+      font-weight: 500; }
+    .co2ok_container .co2ok_checkbox_container.unselected .make {
+      padding-top: 3px; }
     .co2ok_container .co2ok_checkbox_container.selected {
       color: white;
-      text-shadow: 2px 2px 8px #6d6d6d;
+      text-shadow: 1px 1px 4px #929292;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); }
+      .co2ok_container .co2ok_checkbox_container.selected .make {
+        padding-top: 3px; }
       .co2ok_container .co2ok_checkbox_container.selected .co2ok_payoff {
         margin-bottom: 400px; }
       .co2ok_container .co2ok_checkbox_container.selected #checkbox {
@@ -101,11 +107,14 @@
         background-image: url("../images/vinkje_co2ok.png") !important;
         font-size: 20px; }
       .co2ok_container .co2ok_checkbox_container.selected .compensation_amount {
-        color: white; }
+        color: white;
+        font-size: 20px;
+        padding-top: 3px;
+        font-weight: 500; }
 
 img#co2ok_logo {
   display: inline-block;
-  width: 75px;
+  width: 60px;
   vertical-align: middle;
   margin: 0px 0px 0px 5px; }
 
