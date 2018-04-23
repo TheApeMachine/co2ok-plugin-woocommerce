@@ -22,6 +22,8 @@
 namespace co2ok_plugin_woocommerce;
 
 use cbschuld\LogEntries;
+// use palanik\wrapi;  
+
 require "vendor/autoload.php";
 
 /**
@@ -182,8 +184,26 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
     //This function is called when the user activates the plugin.
-    static function co2ok_Deactivated()
+    final static function co2ok_Deactivated()
     {
+         
+        // Connect to Slack with Key
+        $slack = new \wrapi\slack\slack("xoxp-165016128450-323539307572-352410647575-f7bc604342ce8e02394188257954c6d7");
+        
+        // Format message
+        $message = "Woo-plugin ".date("d/m/Y - H:i:s")." uitgezet door: ".$_SERVER['SERVER_NAME']." met versie: ".self::VERSION;
+        
+        // Send message to channel
+        $response = $slack->chat->postMessage(array(
+            "channel" => "#sales-notifications",
+            "text" => $message,
+            "username" => "Woo log:",
+            "as_user" => false,
+            "parse" => "full",
+            "link_names" => 1,
+            "unfurl_links" => true,
+            "unfurl_media" => false
+        ));
     }
 
     /**
