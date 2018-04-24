@@ -208,7 +208,7 @@ jQuery(document).ready(function() {
       offset.left = offset.left - infoBox.width() / 2;
       offset.top = offset.top + infoButton.height();
       infoBox.css({
-        ...offset,
+        // ...offset,
         margin: "0",
         transform: "none"
       });
