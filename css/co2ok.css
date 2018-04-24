@@ -35,7 +35,7 @@
         display: inline-block; }
         @media (max-width: 768px) {
           .co2ok_container .co2ok_payoff #p img {
-            width: 20px; } }
+            width: 16px; } }
   .co2ok_container .co2ok_checkbox_container {
     border-radius: 10px;
     box-sizing: border-box;
@@ -108,15 +108,17 @@
         font-size: 20px; }
       .co2ok_container .co2ok_checkbox_container.selected .compensation_amount {
         color: white;
+        padding-top: 11px;
+        margin-right: 10px;
+        float: right;
         font-size: 20px;
-        padding-top: 3px;
         font-weight: 500; }
 
 img#co2ok_logo {
   display: inline-block;
   width: 60px;
   vertical-align: middle;
-  margin: 0px 0px 0px 5px; }
+  margin: 11px 0px 0px 3px; }
 
 .co2ok_infobox_container {
   position: absolute;
