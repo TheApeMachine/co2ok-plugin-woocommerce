@@ -153,6 +153,32 @@ var Co2ok_JS = function ()
                 event.stopPropagation();
             });
         },
+        placeInfoBox : function() {
+          var infoButton = jQuery(".co2ok_info");
+          var infoBox = jQuery(".co2ok_infobox_container");
+          var offset = infoButton.offset();
+
+          infoBox.remove();
+          jQuery("body").append(infoBox);
+
+          if (jQuery(window).width() < 480) {
+            offset.top = offset.top + infoButton.height();
+            infoBox.css({
+              top: offset.top,
+              margin: "0 auto",
+              left: "50%",
+              transform: "translateX(-50%)"
+            });
+          } else {
+            offset.left = offset.left - infoBox.width() / 2;
+            offset.top = offset.top + infoButton.height();
+            infoBox.css({
+              ...offset,
+              margin: "0",
+              transform: "none"
+            });
+          }
+        },
         ShowInfoBox  : function()
         {
             jQuery(".co2ok_infobox_container").removeClass('infobox-hidden')
