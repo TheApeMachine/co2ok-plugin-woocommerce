@@ -1,7 +1,8 @@
 var Co2ok_JS = function ()
 {
-    var player;
+
     var image_url = plugin.url;
+
     return {
 
         Init: function ()
@@ -30,12 +31,11 @@ var Co2ok_JS = function ()
                 });
 
                 if (!(jQuery('#co2ok_cart').is(":checked"))) {
-                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
                 }
 
                 if(jQuery('#co2ok_cart').is(":checked"))
                 {
-                    // change image source
                     jQuery("#co2ok_logo").attr("src", image_url + '/logo_ok_wit.svg');
                 }
 
@@ -85,20 +85,17 @@ var Co2ok_JS = function ()
         },
         RegisterBindings: function()
         {
-          //  alert("mofo");
-
 
             jQuery('#co2ok_cart').click(function (event)
             {
-                //
-                //alert("mofo");
+
                 if (!(jQuery(this).is(":checked"))) {
                       jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
                 }
 
                 if(jQuery(this).is(":checked"))
                 {
-                    // change image source
+
                     jQuery("#co2ok_logo").attr("src", image_url + '/logo_ok_wit.svg');
 
                     jQuery('.co2ok_checkbox_container').addClass('selected');
