@@ -229,15 +229,19 @@ var Co2ok_JS = function ()
 
             if(!_this.IsMobile())
             {
-                jQuery('.co2ok_info, .co2ok_infobox_container').mouseenter(function()
-                {
-                  _this.ShowInfoBox();
-                })
+              jQuery(".co2ok_info").mouseenter(function() {
+                _this.placeInfoBox();
+              });
 
-                .mouseleave(function()
-                {
-                  _this.hideInfoBox();
-                })
+              jQuery('.co2ok_info, .co2ok_infobox_container').mouseenter(function()
+              {
+                _this.ShowInfoBox();
+              })
+
+              .mouseleave(function()
+              {
+                _this.hideInfoBox();
+              })
             }
         }
     }
