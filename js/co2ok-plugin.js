@@ -183,12 +183,18 @@ var Co2ok_JS = function ()
         {
             jQuery(".co2ok_infobox_container").removeClass('infobox-hidden')
             jQuery(".co2ok_infobox_container").addClass('ShowInfoBox')
+            jQuery(".co2ok_container").css({
+              marginBottom: 200
+            });
         },
 
         hideInfoBox : function()
         {
             jQuery(".co2ok_infobox_container").removeClass('ShowInfoBox')
             jQuery(".co2ok_infobox_container").addClass('infobox-hidden')
+            jQuery(".co2ok_container").css({
+              marginBottom: 0
+            });
         },
         modalRegex: function(e)
          {
@@ -216,7 +222,8 @@ var Co2ok_JS = function ()
 
             jQuery('body').click(function(e)
             {
-              if(!(jQuery(e.target).hasClass('svg-img') || jQuery(e.target).hasClass('text-block') || jQuery(e.target).hasClass('inner-wrapper') || jQuery(e.target).hasClass('co2ok_info') || jQuery(e.target).hasClass('co2ok_infobox_container') || e.target.localName === 'a')){
+              if(!_this.modalRegex(e))
+              {
                 _this.hideInfoBox();
               }
               else {
@@ -227,7 +234,7 @@ var Co2ok_JS = function ()
 
             jQuery('body').on("touchstart",function(e){
 
-              if(!(jQuery(e.target).hasClass('svg-img') || jQuery(e.target).hasClass('text-block') || jQuery(e.target).hasClass('inner-wrapper') || jQuery(e.target).hasClass('co2ok_info') || jQuery(e.target).hasClass('co2ok_infobox_container') || e.target.localName === 'a')){
+              if(!_this.modalRegex(e)){
                 _this.hideInfoBox();
               }
               else {
