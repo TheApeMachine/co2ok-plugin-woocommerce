@@ -190,7 +190,15 @@ var Co2ok_JS = function ()
             jQuery(".co2ok_infobox_container").removeClass('ShowInfoBox')
             jQuery(".co2ok_infobox_container").addClass('infobox-hidden')
         },
-
+        modalRegex: function(e)
+         {
+             return jQuery(e.target).hasClass("svg-img") ||
+             jQuery(e.target).hasClass("text-block") ||
+             jQuery(e.target).hasClass("inner-wrapper") ||
+             jQuery(e.target).hasClass("co2ok_info") ||
+             jQuery(e.target).hasClass("co2ok_infobox_container") ||
+             jQuery(e.target).hasClass("hover-link");
+         },
         IsMobile : function()
         {
             var isMobile = false;
