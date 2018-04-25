@@ -113,17 +113,20 @@
 
              .compensation_amount {
                  color:#06d367;
-                 padding-top: 3px;
+                 padding-top: 13px;
+                 margin-right: 10px;
+                 float: right;
+                 font-size: 20px;
                  font-weight: 500;
             }
             .make {
-                padding-top: 3px;
+                padding-top: 2px;
             }
 
         }
          &.selected {
              .make{
-                 padding-top: 3px;
+                 padding-top: 2px;
              }
 
              .inner_checkbox_label {
@@ -147,7 +150,7 @@
             }
              .compensation_amount {
                  color: white;
-                 padding-top: 11px;
+                 padding-top: 13px;
                  margin-right: 10px;
                  float: right;
                  font-size: 20px;
@@ -160,7 +163,7 @@
      display: inline-block;
      width: 60px;
      vertical-align: middle;
-     margin: 11px 0px 0px 3px;
+     margin: 9px 0px 0px 3px;
 }
  .co2ok_infobox_container {
      position: absolute;
