@@ -1,6 +1,54 @@
 @import "./helpers/helpers.scss";
 
 .co2ok_container {
+
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    blockquote, q {
+        quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+
+
      display: inline-block;
      position: relative;
      font-family: Roboto, sans-serif;
@@ -8,11 +56,12 @@
      z-index: 10;
      width: 259px;
      margin-left: 3px;
+     .pointer {cursor: pointer;}
 
 
      .co2ok_payoff {
          width: 100%;
-         margin-top: 6px;
+         margin-top: 10px;
          font-size: 14px;
          text-align: center;
          font-family: $font;
@@ -30,10 +79,10 @@
              margin-left: 12px;
              & img{
                  width: 16px;
-                 margin-top: 2px;
+                 margin-top: -6px;
                  display: inline-block;
                  @media #{$small} {
-                  width: 20px;
+                  width: 16px;
                  }
             }
         }
@@ -57,6 +106,7 @@
            background: $white;
            border-radius: $borderRadius;
          }
+
 
          .inner_checkbox_label {
              &:after{
@@ -112,10 +162,21 @@
 
              .compensation_amount {
                  color:#06d367;
+                 padding-top: 14px;
+                 margin-right: 10px;
+                 float: right;
+                 font-size: 20px;
+                 font-weight: 500;
+            }
+            .make {
+                padding-top: 0px;
             }
 
         }
          &.selected {
+             .make{
+                 padding-top: 0px;
+             }
 
              .inner_checkbox_label {
                @extend %gradient;
@@ -124,7 +185,7 @@
                margin-bottom: 400px;
              }
              color:white;
-             text-shadow: 2px 2px 8px #6d6d6d;
+             text-shadow: 1px 1px 4px #929292;
              box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
 
              #checkbox {
@@ -138,6 +199,11 @@
             }
              .compensation_amount {
                  color: white;
+                 padding-top: 14px;
+                 margin-right: 10px;
+                 float: right;
+                 font-size: 20px;
+                 font-weight: 500;
             }
         }
     }
@@ -146,7 +212,7 @@
      display: inline-block;
      width: 75px;
      vertical-align: middle;
-     margin: 0px 0px 0px 5px;
+     margin: 9px 0px 0px 3px;
 }
  .co2ok_infobox_container {
      position: absolute;
