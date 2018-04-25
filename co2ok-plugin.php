@@ -21,6 +21,20 @@
  */
 namespace co2ok_plugin_woocommerce;
 
+/**
+  * Only activate plugin on cart and checkout page
+  */
+
+$request_uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+$is_cart = strpos( $request_uri, '/cart/' );
+$is_checkout = strpos( $request_uri, '/checkout/' );
+$load_plugin = (($is_cart) || ($is_checkout)) ? true : false;
+
+// add filter in front pages only
+if ($load_plugin === false){
+    return; 
+}
+
 use cbschuld\LogEntries;
 
 require "vendor/autoload.php";
@@ -193,9 +207,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
      */
     final public function __construct()
     {
+
         /**
          * Check if WooCommerce is active
          **/
+
         if (in_array('woocommerce/woocommerce.php', apply_filters(
             'active_plugins', get_option('active_plugins'))))
         {
@@ -513,6 +529,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters(
         }
 }
 */
+
 
 $co2okPlugin = new \co2ok_plugin_woocommerce\Co2ok_Plugin();
 
