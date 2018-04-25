@@ -6,20 +6,71 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.1.2
+ * Version: 1.0.1.3
  *         (Remember to change the VERSION constant, below, as well!)
  * Author:
  * Milo de Vries,
  * Chris Fuller,
  * Ryan George
  * Text Domain: co2ok-for-woocommerce
- *
+ * WC tested up to: 3.3.5
  * Author URI: http://www.co2ok.eco/
  * License: GPLv2
  * @package co2ok-plugin-woocommerce
  *
  */
 namespace co2ok_plugin_woocommerce;
+
+/* 
+* Freemius integration
+*/
+
+// Create a helper function for easy SDK access.
+function co2okfreemius() {
+    global $co2okfreemius;
+
+    if ( ! isset( $co2okfreemius ) ) {
+        // Include Freemius SDK.
+        require_once dirname(__FILE__) . '/freemius/start.php';
+
+        $co2okfreemius = fs_dynamic_init( array(
+            'id'                  => '2027',
+            'slug'                => 'co2ok-for-woocommerce',
+            'type'                => 'plugin',
+            'public_key'          => 'pk_84d5649b281a6ee8e02ae09c6eb58',
+            'is_premium'          => false,
+            'has_addons'          => false,
+            'has_paid_plans'      => false,
+            'menu'                => array(
+                'slug'           => 'co2ok-plugin',
+                'account'        => false,
+                'support'        => false,
+            ),
+        ) );
+    }
+
+    return $co2okfreemius;
+}
+
+// Init Freemius.
+co2okfreemius();
+// Signal that SDK was initiated.
+do_action( 'co2okfreemius_loaded' );
+
+/**
+  * Only activate plugin on cart and checkout page
+  */
+
+$request_uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+$is_cart = strpos( $request_uri, '/cart/' );
+$is_checkout = strpos( $request_uri, '/checkout/' );
+$is_backend = strpos( $request_uri, '/wp-admin/' );
+$load_plugin = ( ($is_cart) || ($is_checkout) || ($is_backend) ) ? true : false;
+
+// add filter in front pages only
+if ($load_plugin === false){
+    return; 
+}
 
 use cbschuld\LogEntries;
 
