@@ -47,6 +47,8 @@
   .co2ok_container table {
     border-collapse: collapse;
     border-spacing: 0; }
+  .co2ok_container .pointer {
+    cursor: pointer; }
   .co2ok_container .co2ok_payoff {
     width: 100%;
     margin-top: 10px;
