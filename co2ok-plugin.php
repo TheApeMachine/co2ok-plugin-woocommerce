@@ -375,11 +375,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         global $woocommerce;
         switch ($new_status) {
             case "processing":
-                if ($woocommerce->session->co2ok == 1) {
+                $order = wc_get_order($order_id);
+                $fees = $order->get_fees();
+
+                foreach ($fees as $fee) {
+                if ($fee->get_name() == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
                     // The user did opt for co2 compensation
                     $this->co2ok_storeTransaction($order_id);
+                    break;
                 }
-                break;
 
             case "refunded":
             case "cancelled":
