@@ -10,27 +10,17 @@
             ), $co2_ok_session_opted);
         ?>
 
-            <table>
-            <td class="d0">
         <div id="checkbox_label">
           <div class="inner_checkbox_label">
             <div id="checkbox">
 
             </div>
-            </td>
-
-            
-              <td class="d1">
               <span class="make"><?php echo __( 'Make ', 'co2ok-for-woocommerce' ); ?> </span>
               <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); ?>
-              </td>
-              <td class="d2">
               <span class="compensation_amount">+<?php echo $currency_symbol.''. $surcharge ?> </span>
-              </td>
               
           </div>
         </div>
-        </table>
     </span>
 
 
