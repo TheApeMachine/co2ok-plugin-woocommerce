@@ -46,7 +46,8 @@
     content: none; }
   .co2ok_container table {
     border-collapse: collapse;
-    border-spacing: 0; }
+    border-spacing: 0;
+    width: 100%; }
     .co2ok_container table .d1 {
       text-align: left; }
     .co2ok_container table .d2 {
