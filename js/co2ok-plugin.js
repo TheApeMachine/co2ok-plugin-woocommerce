@@ -19,14 +19,7 @@ jQuery(document).ready(function() {
         GetPercentageFromMiddleware();
       }
     });
-/*
-    jQuery("img#co2ok_info_hover_image").on("error", function() {
-      jQuery("#co2ok_info_hover_image").attr(
-        "src",
-        "https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png"
-      );
-    });
-*/
+
     if (!jQuery("#co2ok_cart").is(":checked")) {
       jQuery("#co2ok_logo").attr("src", image_url + "/logo.svg");
     }
