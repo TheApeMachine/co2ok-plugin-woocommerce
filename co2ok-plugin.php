@@ -8,12 +8,15 @@
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
  * Version: 1.0.1.3
  *         (Remember to change the VERSION constant, below, as well!)
+ * 
+ * Tested up to: 4.9.4
+ * WC tested up to: 3.3.5
+ * 
  * Author:
  * Milo de Vries,
  * Chris Fuller,
  * Ryan George
  * Text Domain: co2ok-for-woocommerce
- * WC tested up to: 3.3.5
  * Author URI: http://www.co2ok.eco/
  * License: GPLv2
  * @package co2ok-plugin-woocommerce
@@ -77,7 +80,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.1.2';
+    const VERSION = '1.0.1.3';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
