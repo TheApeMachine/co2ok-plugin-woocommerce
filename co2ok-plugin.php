@@ -57,20 +57,6 @@ co2okfreemius();
 // Signal that SDK was initiated.
 do_action( 'co2okfreemius_loaded' );
 
-/**
-  * Only activate plugin on cart and checkout page
-  */
-
-$request_uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
-$is_cart = strpos( $request_uri, '/cart/' );
-$is_checkout = strpos( $request_uri, '/checkout/' );
-$is_backend = strpos( $request_uri, '/wp-admin/' );
-$load_plugin = ( ($is_cart) || ($is_checkout) || ($is_backend) ) ? true : false;
-
-// add filter in front pages only
-if ($load_plugin === false){
-    return; 
-}
 
 use cbschuld\LogEntries;
 
