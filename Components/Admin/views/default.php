@@ -23,10 +23,10 @@
                 <div class="form-wrap">
                     <h3>
                         <h1>Thanks for helping out the world :)</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe reprehenderit eaque deserunt aspernatur cumque magni culpa excepturi ullam laboriosam corrupti corporis non sint, quibusdam, nam facere. Quo deserunt, pariatur voluptatibus ab sed quae culpa ad repellendus omnis autem voluptates.</p>
+                        <p>You are a hero. We strongly believe that no fight has been more important, and this needs to be fought in any way possible.</p>
                         
                         <h2>Compensation preferences:</h2>
-                        <p>By default we have set the button to off. But you can decide to set the CO2 OK button to default on. This way yopu are 
+                        <p>By default we have set the button to OFF. But you can decide to set the CO2 OK button to default ON. This way you are in control,
                         helping the environment even more!</p>
                         
                         <form method="POST">
@@ -35,7 +35,7 @@
                             <label style="display: inline" for="on">Turn on compensation over all purchases. (Preferred)</label>
                             <br>
                             <input type="radio" name="co2ok_optin" id="off" value="off" <?php if($co2ok_optin == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">Turn on the option to let my customers decide. (Default)</label>
+                            <label style="display: inline" for="off">Turn on this option to let your customers decide. (Default)</label>
                             
                             <!--                             
                             <br><br>
@@ -49,11 +49,11 @@
                         </form>
                         
                         <h2>Want to help us some more?</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum neque, quo similique consectetur eius optio quisquam facere, labore temporibus reiciendis repudiandae ab quod at repellat nesciunt! Dolor laudantium consectetur dicta.</p>
+                        <p>We nee everybody on our team. So like us on social media, share our posts!.</p>
                         <h2>Like us on:</h2>
-                        <p><a href="#"><span>Facebook</span></a></p>
-                        <p><a href="#"><span>Instagram</span></a></p>
-                        <p><a href="#"><span>Patriot</span></a></p>
+                        <p><a href="https://www.instagram.com/co2ok.eco/" target="#co2ok"><span>Instagram</span></a></p>
+                        <p><a href="https://www.facebook.com/CO2ok/" target="#co2ok"><span>Facebook</span></a></p>
+                        <p><a href="https://twitter.com/CO2ok_eco" target="#co2ok" ><span>Twitter</span></a></p>
                         <br>
                         <h2>Need help?</h2>
                         <p><a href="mailto: support@co2ok.eco"><span>Send a mail to our support.</span></a></p>

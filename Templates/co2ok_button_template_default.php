@@ -15,15 +15,9 @@
             <div id="checkbox">  
             </div>
 
-<<<<<<< HEAD
-
-              <span class="make"><?php echo __( 'Make ', 'co2ok-for-woocommerce' ); ?> </span>
-              <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); ?>
-=======
               <?php echo __( 'Make ', 'co2ok-for-woocommerce' );
                   echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
               ?>
->>>>>>> optin
               <span class="compensation_amount">+<?php echo $currency_symbol.''. $surcharge ?> </span>
           </div>
         </div>
