@@ -60,9 +60,6 @@ co2okfreemius();
 // Signal that SDK was initiated.
 do_action( 'co2okfreemius_loaded' );
 
-<<<<<<< HEAD
-
-=======
 /**
   * Only activate plugin on cart and checkout page
   */
@@ -79,7 +76,6 @@ if ($load_plugin === false){
     return; 
 }
 */
->>>>>>> 82f3eae... optin
 use cbschuld\LogEntries;
 
 require "vendor/autoload.php";
@@ -99,13 +95,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-<<<<<<< HEAD
     const VERSION = '1.0.1.3';
 
-=======
-    const VERSION = '1.0.1.2';
-    
->>>>>>> 82f3eae... optin
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
     // Percentage should be returned by the middleware, else: 1%
@@ -257,10 +248,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
      */
     final public function __construct()
     {
-<<<<<<< HEAD
-=======
-        
->>>>>>> 82f3eae... optin
         /**
          * Check if WooCommerce is active
          **/

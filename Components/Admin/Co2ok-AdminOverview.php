@@ -44,7 +44,7 @@ class Co2ok_AdminOverview
 
     function co2ok_plugin_setup_menu()
     {
-        add_menu_page( 'Co2ok Plugin Page', 'Co2ok Plugin', 'manage_options', 'co2ok-plugin', array($this, 'co2ok_plugin_admin_overview'));
+        add_menu_page( 'Co2ok Plugin Page', 'CO&#8322;ok Plugin', 'manage_options', 'co2ok-plugin', array($this, 'co2ok_plugin_admin_overview'));
     }
 
     function co2ok_plugin_admin_overview()

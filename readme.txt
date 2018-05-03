@@ -46,8 +46,7 @@ Besides the option that the CO2 compensation button provides, nothing changes. Y
 == Changelog ==
 
 = 1.0.1.3
-* Reverts JS implementation to working one
-* Implements the fixes from 1.0.1.2
+* Reverts JS implementation to more compatible one
 * Fixes minor CSS issues
 * Implements optional Freemius analytics
 * Fixes some transactions not being stored in the CO2ok backend

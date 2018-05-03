@@ -11,7 +11,7 @@
 
 <div style="margin-top: 20px;">
 
-    <img src="<?php echo esc_url(plugins_url('../images/logo.png', __FILE__)); ?>" style="float:left;width:200px;"/>
+    <img src="<?php echo esc_url(plugins_url('../../../images/logo.svg', __FILE__)); ?>" style="float:left;width:110px;"/>
     <h1 style="margin-left: 20px;display: inline-block;"> Plugin Settings </h1>
     </br>
     </br>
@@ -22,44 +22,49 @@
             <div class="col-wrap">
                 <div class="form-wrap">
                     <h3>
-                        <h1>Thanks for helping out the world :)</h1>
-                        <p>You are a hero. We strongly believe that no fight has been more important, and this needs to be fought in any way possible.</p>
+                        <h1>Thanks for helping us fight climate change! :)</h1>
+                        <p>You are our hero. We strongly believe that no fight has been more important, and this needs
+                             to be fought in any way possible. And it's not only the climate that benefits;</p>
+                        <img src=https://s3.eu-central-1.amazonaws.com/co2ok-static/Lesotho-cookstoves.jpg width=300>
+                        <p><small>Additional benefits are less deforestation and health benefits, due to decreasing 
+                            smoke and poisonous carbon monoxide.</small>
                         
-                        <h2>Compensation preferences:</h2>
+                        <h2>Coming soon! </h2>
+                        <p>In our next update we will give you the choice to set the default state of the compensation 
+                            option and choose a different button design. These features are almost done, but we won't 
+                            ship them until they're extremely well tested and polished. Let us know if you have other
+                             ideas how we can improve our service/plugin!</p>
+
+                        <!-- <h2>Compensation preferences:</h2>
                         <p>By default we have set the button to OFF. But you can decide to set the CO2 OK button to default ON. This way you are in control,
                         helping the environment even more!</p>
                         
                         <form method="POST">
                         
                             <input type="radio" name="co2ok_optin" id="on" value="on" <?php if($co2ok_optin == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="on">Turn on compensation over all purchases. (Preferred)</label>
+                            <label style="display: inline" for="on">Compensation default ON. (Preferred)</label>
                             <br>
                             <input type="radio" name="co2ok_optin" id="off" value="off" <?php if($co2ok_optin == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">Turn on this option to let your customers decide. (Default)</label>
+                            <label style="display: inline" for="off">Compensation default OFF.</label>
                             
-                            <!--                             
-                            <br><br>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente doloribus quasi nobis distinctio, minima similique a quos unde quam hic.</p>
-                            <input type="checkbox" name="compensate_all" id="no" value="no" checked=checked>
-                            <label style="display: inline" for="no">Auto reload page after click.</label>
-                             -->
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
 
-                        </form>
+                        </form> -->
                         
                         <h2>Want to help us some more?</h2>
-                        <p>We nee everybody on our team. So like us on social media, share our posts!.</p>
+                        <p>We need everybody on our team. So follow us on social media, share our posts!.</p>
                         <h2>Like us on:</h2>
                         <p><a href="https://www.instagram.com/co2ok.eco/" target="#co2ok"><span>Instagram</span></a></p>
                         <p><a href="https://www.facebook.com/CO2ok/" target="#co2ok"><span>Facebook</span></a></p>
                         <p><a href="https://twitter.com/CO2ok_eco" target="#co2ok" ><span>Twitter</span></a></p>
                         <br>
-                        <h2>Need help?</h2>
-                        <p><a href="mailto: support@co2ok.eco"><span>Send a mail to our support.</span></a></p>
+                        <h2>Something not working for you? Have a great idea or any other feedback? </h2>
+                        <p>Call/text/WhatsApp us: <a href="tel:+31639765259">+31639765259</a></p>
+                        <p>Drop us a line: <a href="mailto: make@co2ok.eco"><span>make@co2ok.eco</span></a></p>
                         <br>
-                        <p>Thanks,<br>The CO2ok team.</p>
-                        <p><a href="#">www.co2ok.eco</a></p>
+                        <p>Thanks,<br>The CO&#8322;ok team.</p>
+                        <p><a href="www.co2ok.eco">www.co2ok.eco</a></p>
                         <br>
                         <hr>
 
