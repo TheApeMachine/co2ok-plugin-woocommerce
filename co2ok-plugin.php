@@ -61,6 +61,7 @@ do_action( 'co2okfreemius_loaded' );
   * Only activate plugin on cart and checkout page
   */
 
+/*
 $request_uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
 $is_cart = strpos( $request_uri, '/cart/' );
 $is_checkout = strpos( $request_uri, '/checkout/' );
@@ -71,7 +72,7 @@ $load_plugin = ( ($is_cart) || ($is_checkout) || ($is_backend) ) ? true : false;
 if ($load_plugin === false){
     return; 
 }
-
+*/
 use cbschuld\LogEntries;
 
 require "vendor/autoload.php";
@@ -92,7 +93,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
      * This plugin's version
      */
     const VERSION = '1.0.1.2';
-
+    
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
     // Percentage should be returned by the middleware, else: 1%
@@ -244,7 +245,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
      */
     final public function __construct()
     {
-
+        
         /**
          * Check if WooCommerce is active
          **/
@@ -555,18 +556,34 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 }
 endif; //! class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' )
 
-/*
-if (in_array('woocommerce/woocommerce.php', apply_filters(
-    'active_plugins', get_option('active_plugins'))))
-{
-    if ( !function_exists( 'is_checkout' ) ) {
-        require_once '../woocommerce/includes/wc-conditional-functions.php';
 
-        if( is_checkout() || is_cart() )
 
-        }
-}
-*/
+// called only after woocommerce has finished loading
+// add_action( 'woocommerce_init', array( &$this, 'woocommerce_loaded' ) );
+
+
+// // add_action( 'woocommerce_init', 'process_post' );
+
+// // function process_post() {
+// //      error_log('stuff');
+// // }
+
+// if (in_array('woocommerce/woocommerce.php', apply_filters(
+//     'active_plugins', get_option('active_plugins'))))
+// {
+//     // WooCommerce::init();
+//     // add_action( 'muplugins_loaded', 'my_plugin_override' );
+
+//     // if ( !function_exists( 'is_checkout' ) || !function_exists( 'is_cart' ) ) {
+        
+//     //         error_log("Should not render");
+
+//     //     } else {
+
+//     //         if( is_checkout() || is_cart() ) error_log("Should render");
+            
+//     //     }
+// }
 
 
 $co2okPlugin = new \co2ok_plugin_woocommerce\Co2ok_Plugin();
