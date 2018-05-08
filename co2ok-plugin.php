@@ -9,7 +9,7 @@
  * Version: 1.0.1.3
  *         (Remember to change the VERSION constant, below, as well!)
  * 
- * Tested up to: 4.9.4
+ * Tested up to: 4.9.5
  * WC tested up to: 3.3.5
  * 
  * Author:

@@ -3,7 +3,7 @@ Contributors: co2ok
 Donate link: http://co2ok.eco/
 Tags: climate neutral, CO2, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental
 Requires at least: 4.0
-Tested up to: 4.9.4
+Tested up to: 4.9.5
 WC tested up to: 3.3.5
 Stable tag: 1.0.1.3
 License: GPLv2 or later
