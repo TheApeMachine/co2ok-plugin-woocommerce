@@ -297,7 +297,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
         else
         {
-           throw new \Exception( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ));
+            // TODO this needs to be a prettier warning, but at least it doesn't break WP.
+            trigger_error( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ), E_USER_WARNING);  
         }
     }
 
