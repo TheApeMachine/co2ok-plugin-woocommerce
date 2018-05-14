@@ -133,11 +133,16 @@ var Co2ok_JS = function ()
         },
         RegisterBindings: function()
         {
+            console.log('Register Bindings')
 
             jQuery('#co2ok_cart').click(function (event)
             {
+                console.log('niet gechecked')
 
-                if (!(jQuery(this).is(":checked"))) {
+                // if (!(jQuery(this).is(":checked"))) {
+                //    if (! jQuery(this).attr('checked')) {
+                    if (!(jQuery('#co2ok_cart').is(":checked"))) {
+                    console.log('niet gechecked')
                       jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
                 }
 

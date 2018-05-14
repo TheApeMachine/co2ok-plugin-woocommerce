@@ -30,30 +30,33 @@ namespace co2ok_plugin_woocommerce;
 */
 
 // Create a helper function for easy SDK access.
-function co2okfreemius() {
-    global $co2okfreemius;
 
-    if ( ! isset( $co2okfreemius ) ) {
-        // Include Freemius SDK.
-        require_once dirname(__FILE__) . '/freemius/start.php';
+if ( !function_exists( 'co2ok_plugin_woocommerce\co2okfreemius' ) ) {
+    function co2okfreemius() {
+        global $co2okfreemius;
 
-        $co2okfreemius = fs_dynamic_init( array(
-            'id'                  => '2027',
-            'slug'                => 'co2ok-for-woocommerce',
-            'type'                => 'plugin',
-            'public_key'          => 'pk_84d5649b281a6ee8e02ae09c6eb58',
-            'is_premium'          => false,
-            'has_addons'          => false,
-            'has_paid_plans'      => false,
-            'menu'                => array(
-                'slug'           => 'co2ok-plugin',
-                'account'        => false,
-                'support'        => false,
-            ),
-        ) );
+        if ( ! isset( $co2okfreemius ) ) {
+            // Include Freemius SDK.
+            require_once dirname(__FILE__) . '/freemius/start.php';
+
+            $co2okfreemius = fs_dynamic_init( array(
+                'id'                  => '2027',
+                'slug'                => 'co2ok-for-woocommerce',
+                'type'                => 'plugin',
+                'public_key'          => 'pk_84d5649b281a6ee8e02ae09c6eb58',
+                'is_premium'          => false,
+                'has_addons'          => false,
+                'has_paid_plans'      => false,
+                'menu'                => array(
+                    'slug'           => 'co2ok-plugin',
+                    'account'        => false,
+                    'support'        => false,
+                ),
+            ) );
+        }
+
+        return $co2okfreemius;
     }
-
-    return $co2okfreemius;
 }
 
 // Init Freemius.
@@ -252,9 +255,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         /**
          * Check if WooCommerce is active
          **/
-        if (in_array('woocommerce/woocommerce.php', apply_filters(
-            'active_plugins', get_option('active_plugins'))))
-        {
+        if ( ! function_exists( 'co2ok_plugin_woocommerce\is_woocommerce_activated' ) ) {
+            function is_woocommerce_activated() {
+                if ( class_exists( 'woocommerce' ) ) { return true; } else { return false; }
+            }
+        }
+        // if (in_array('woocommerce/woocommerce.php', apply_filters(
+        //     'active_plugins', get_option('active_plugins'))))
+        // if (is_woocommerce_activated())
+        // {
                 /**
                  * Load translations
                  */
@@ -295,12 +304,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 if (!$alreadyActivated)
                     Co2ok_Plugin::registerMerchant();
 
-        }
-        else
-        {
-            // TODO this needs to be a prettier warning, but at least it doesn't break WP.
-            trigger_error( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ), E_USER_WARNING);  
-        }
+        // }
+        // else
+        // {
+        //     // TODO this needs to be a prettier warning, but at least it doesn't break WP.
+        //     trigger_error( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ), E_USER_WARNING);  
+        // }
     }
 
     final public function co2ok_ajax_set_percentage()
@@ -339,6 +348,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_javascript()
     {
+        wp_enqueue_script('jquery');
         wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true);
         wp_enqueue_script('co2ok_js_cdn');
         wp_register_script('co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__).'?plugin_version='.self::VERSION);
@@ -469,14 +479,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
 
         $order_total = $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total;
-        $tax_rates = \WC_Tax::get_base_tax_rates( );
+        // $tax_rates = \WC_Tax::get_base_tax_rates( );
 
         $highest_tax_rate = 0;
-        foreach ($tax_rates as $tax_rate)
-        {
-            if($highest_tax_rate < $tax_rate['rate'] )
-                $highest_tax_rate = $tax_rate['rate'];
-        }
+        // foreach ($tax_rates as $tax_rate)
+        // {
+        //     if($highest_tax_rate < $tax_rate['rate'] )
+        //         $highest_tax_rate = $tax_rate['rate'];
+        // }
         $highest_tax_rate = ((int)$highest_tax_rate) / 100;
         $order_total_with_tax = ($order_total * $highest_tax_rate) + $order_total;
 
@@ -500,18 +510,22 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $_product = $values['data'];
 
             $product_data = array();
-            $product_data['name'] = $_product->get_name();
+            // $product_data['name'] = $_product->get_name();
+            $product_data['name'] = version_compare( WC_VERSION, '3.0', '<' ) ? $product->name : $product->get_name();
             $product_data['quantity'] = $values['quantity'];
             $product_data['brand'] = "";
-            $product_data['description'] = $_product->get_description();
-            $product_data['shortDescription'] = $_product->get_short_description();
+            // // $product_data['description'] = $_product->get_description();
+            $product_data['description'] = version_compare( WC_VERSION, '3.0', '<' ) ? $product->description : $product->get_description();
+            // $product_data['shortDescription'] = $_product->get_short_description();
+            $product_data['shortDescription'] = version_compare( WC_VERSION, '3.0', '<' ) ? $product->shortDescription : $product->get_shortDescription();
             $product_data['sku'] = $_product->get_sku();
-           // $product_data['gtin'] = $_product->get;
+            // $product_data['gtin'] = $_product->get;
             $product_data['price'] = $_product->get_price();
             $product_data['taxClass'] = $_product->get_tax_class();
             $product_data['weight'] = $_product->get_weight();
             $product_data['attributes'] = $_product->get_attributes();
-            $product_data['defaultAttributes'] = $_product->get_default_attributes();
+            // $product_data['defaultAttributes'] = $_product->get_default_attributes();
+            $product_data['defaultAttributes'] = version_compare( WC_VERSION, '3.0', '<' ) ? $product->defaultAttributes : $product->get_defaultAttributes();
 
             $cart[] = $product_data;
         }
