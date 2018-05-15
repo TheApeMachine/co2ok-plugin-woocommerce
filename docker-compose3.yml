@@ -1,0 +1,24 @@
+webserver:
+   container_name: woocommerce
+   image: wordpress:latest
+   environment:
+    WORDPRESS_DB_USER: wordpress
+    WORDPRESS_DB_PASSWORD: wordpress
+    WP_DEBUG: 'true'
+   links:
+    - dbserver:mysql
+   ports:
+    - 8080:80
+   volumes:
+    - ./:/var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/
+
+dbserver:
+   container_name: woo_mariadb
+   image: mariadb
+   environment:
+    MYSQL_ROOT_PASSWORD: somewordpress
+    MYSQL_DATABASE: wordpress
+    MYSQL_USER: wordpress
+    MYSQL_PASSWORD: wordpress
+   ports:
+    - 3307:3306
