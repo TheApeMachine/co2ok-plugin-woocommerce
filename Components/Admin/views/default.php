@@ -53,6 +53,27 @@
 
                         </form> -->
                         
+
+                        <h2>Choose Button Style:</h2>
+                        <p>By default we set the button to a fully shaped style. You can also choose to pick a minimal style.</p>
+                        
+                        <form method="POST">
+                        
+                            <input type="radio" name="co2ok_buttonstyle" id="on" value="on" <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "default" ?> >
+                            <label style="display: inline" for="on">Button style is default.</label>
+                            <br>
+                            <input type="radio" name="co2ok_buttonstyle" id="off" value="off" <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "minimal" ?> >
+                            <label style="display: inline" for="off">Button style is minimal.</label>
+                            
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+
+                        </form>
+                        <!--
+                        gebruik deze var
+                        co2ok_button_template
+                        -->
+
                         <h2>Want to help us some more?</h2>
                         <p>We need everybody on our team. So follow us on social media, share our posts!.</p>
                         <h2>Like us on:</h2>
