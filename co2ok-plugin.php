@@ -410,7 +410,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final private function co2ok_deleteTransaction($order_id)
     {
-        $order = wc_get_order($order_id);
+        $order = wc_get_order_id_by_order_key($order_id);
 
         $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
@@ -442,7 +442,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         global $woocommerce;
         switch ($new_status) {
             case "processing":
-                $order = wc_get_order($order_id);
+                // $order = get_order($order_id);
+                $order = new WC_Order($order_id);
                 $fees = $order->get_fees();
 
                 foreach ($fees as $fee) {

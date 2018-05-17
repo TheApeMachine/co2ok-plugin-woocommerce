@@ -1,24 +1,26 @@
-db:
-  image: mysql:5.7
-  restart: always
-  ports:
-    - 3306:3306
-  volumes:
-    - db_data:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: secret
-
-wordpress:
-  links:
-    - db:mysql
-  image: wordpress:3.9.1
-  restart: always
-  volumes:
-    # - ./wp-content:/var/www/html/wp-content
-    - ./:/var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/
-  environment:
-    WORDPRESS_DB_HOST: db
-    WORDPRESS_DB_PASSWORD: secret
-  ports:
+webserver:
+   container_name: woocommerce
+   image: wordpress:latest
+   environment:
+    WORDPRESS_DB_USER: wordpress
+    WORDPRESS_DB_PASSWORD: wordpress
+    WP_DEBUG: 'true'
+   links:
+    - dbserver:mysql
+   ports:
     - 8080:80
-    - 443:443
+   volumes:
+    - ./:/var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/
+
+dbserver:
+   container_name: woo_mariadb
+   image: mariadb
+   volumes:
+    - db_data3:/var/lib/mysql
+   environment:
+    MYSQL_ROOT_PASSWORD: somewordpress
+    MYSQL_DATABASE: wordpress
+    MYSQL_USER: wordpress
+    MYSQL_PASSWORD: wordpress
+   ports:
+    - 3307:3306
