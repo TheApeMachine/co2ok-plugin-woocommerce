@@ -33,6 +33,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
             // Render checkbox according to admin settings
             $optinIsTrue = get_option('co2ok_optin', 'off');
 
+            // Setting the co2ok button style, if nothing is set, sets to Default
             echo $templateRenderer->render(get_option('co2ok_button_template', 'co2ok_button_template_default'),
             array('cart' => $cart,
                     'co2_ok_session_opted' =>  $woocommerce->session->co2ok,
