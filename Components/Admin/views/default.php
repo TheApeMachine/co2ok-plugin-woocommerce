@@ -59,16 +59,32 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_buttonstyle" id="on" value="on" <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "default" ?> >
-                            <label style="display: inline" for="on">Button style is default.</label>
+                            <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="default" checked="checked"
+                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "default"; 
+                            //echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'default'? ' checked' : ''; ?> >
+                            <label style="display: inline" for="on">Default button style</label>
                             <br>
-                            <input type="radio" name="co2ok_buttonstyle" id="off" value="off" <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "minimal" ?> >
-                            <label style="display: inline" for="off">Button style is minimal.</label>
+                            <input type="radio" name="co2ok_button_template" id="button_style_radio_minimal" value="minimal" 
+                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "minimal";
+                            echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'minimal'? ' checked' : '';  ?> >
+                            <label style="display: inline" for="off">Minimal button style</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
 
                         </form>
+                        
+                        <p>The button design is set to <?php echo get_option('co2ok_button_template'), '.</br>'; ?></p>
+                        <img src=" 
+                        <?php 
+                        if(get_option('co2ok_button_template') == 'minimal')
+                        {
+                            echo esc_url(plugins_url('../../../images/button_minimal_co2ok.png', __FILE__));
+                        } else {
+                            echo esc_url(plugins_url('../../../images/button_default_co2ok.png', __FILE__));
+                        }
+                        ?>"/>
+
                         <!--
                         gebruik deze var
                         co2ok_button_template

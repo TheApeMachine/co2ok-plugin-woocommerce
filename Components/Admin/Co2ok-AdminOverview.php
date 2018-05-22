@@ -52,7 +52,7 @@ class Co2ok_AdminOverview
         // Posts the state of the co2ok button style (either Default or Minimal)
         if (isset($_POST['co2ok_button_template'])) {
             update_option('co2ok_button_template', $_POST['co2ok_button_template']);
-            $co2ok_button_template = $_POST['co2ok_button_template'];
+            //$co2ok_button_template = $_POST['co2ok_button_template'];
         }
 
         if (isset($_POST['co2ok_statistics']))
