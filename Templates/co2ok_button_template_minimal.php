@@ -27,7 +27,7 @@
     <span class="co2ok_payoff">
 
         <?php
-            echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
+            echo  __( 'Test', 'co2ok-for-woocommerce' );
             ?>
         <span id="p">
             <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/info.svg', 'co2ok_info', 'co2ok_info'); ?>

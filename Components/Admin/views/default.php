@@ -59,14 +59,14 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="default" checked="checked"
-                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "default"; 
-                            //echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'default'? ' checked' : ''; ?> >
+                            <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="co2ok_button_template_default" checked="checked"
+                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "co2ok_button_template_default"; 
+                            echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'co2ok_button_template_default'? ' checked' : ''; ?> >
                             <label style="display: inline" for="on">Default button style</label>
                             <br>
-                            <input type="radio" name="co2ok_button_template" id="button_style_radio_minimal" value="minimal" 
-                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "minimal";
-                            echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'minimal'? ' checked' : '';  ?> >
+                            <input type="radio" name="co2ok_button_template" id="button_style_radio_minimal" value="co2ok_button_template_minimal" 
+                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "co2ok_button_template_minimal";
+                            echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'co2ok_button_template_minimal'? ' checked' : '';  ?> >
                             <label style="display: inline" for="off">Minimal button style</label>
                             
                             <p style="margin-top: 12px">
@@ -77,7 +77,7 @@
                         <p>The button design is set to <?php echo get_option('co2ok_button_template'), '.</br>'; ?></p>
                         <img src=" 
                         <?php 
-                        if(get_option('co2ok_button_template') == 'minimal')
+                        if(get_option('co2ok_button_template') == 'co2ok_button_template_minimal')
                         {
                             echo esc_url(plugins_url('../../../images/button_minimal_co2ok.png', __FILE__));
                         } else {
