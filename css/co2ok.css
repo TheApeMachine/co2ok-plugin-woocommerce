@@ -74,6 +74,29 @@
         @media (max-width: 768px) {
           .co2ok_container .co2ok_payoff #p img {
             width: 16px; } }
+  .co2ok_container .co2ok_payoff_minimal {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: inline-block;
+    letter-spacing: -0.0538461em;
+    margin-left: -5%;
+    color: #4D5155; }
+    .co2ok_container .co2ok_payoff_minimal #p_minimal {
+      vertical-align: middle;
+      display: inline-block;
+      margin-left: 12px; }
+      .co2ok_container .co2ok_payoff_minimal #p_minimal img {
+        width: 16px;
+        margin-top: -6px;
+        display: inline-block; }
+        @media (max-width: 768px) {
+          .co2ok_container .co2ok_payoff_minimal #p_minimal img {
+            width: 16px; } }
   .co2ok_container .co2ok_checkbox_container {
     border-radius: 10px;
     box-sizing: border-box;
@@ -215,3 +238,5 @@ img#co2ok_logo {
     vertical-align: middle;
     color: #979797;
     padding: 0px; }
+  .co2ok_infobox_container .minimal {
+    background-color: black; }

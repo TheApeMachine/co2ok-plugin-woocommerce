@@ -1,4 +1,4 @@
-<div class="co2ok_container" data-cart="<?php echo $cart ?>">
+<div class="co2ok_container minimal"data-cart="<?php echo $cart ?>">
 
     <span class="co2ok_checkbox_container <?php echo ($co2_ok_session_opted == 1 || $co2ok_optin == 'on' ? 'selected' : 'unselected' )?>">
         <?php
@@ -10,7 +10,7 @@
             ), $co2_ok_session_opted);
         ?>
 
-        <div id="checkbox_label">
+        <!--<div id="checkbox_label">-->
           <div class="inner_checkbox_label">
             <div id="checkbox">  
             </div>
@@ -18,22 +18,33 @@
               <?php echo __( 'Make ', 'co2ok-for-woocommerce' );
                   echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
               ?>
-              <span class="compensation_amount">+<?php echo $currency_symbol.''. $surcharge ?> </span>
+              <!--<div id="checkbox_label">-->
+                <!--<div class="inner_checkbox_label">-->
+              <span class="compensation_amount_minimal">+<?php echo $currency_symbol.''. $surcharge ?> </span>
+        <!--</div>-->
+        <!--</div>-->
+
+
+              <span class="co2ok_payoff_minimal">
+                    <span id="p_minimal">
+                        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/info.svg', 'co2ok_info', 'co2ok_info'); ?>
+                    </span>
+                </span>
           </div>
-        </div>
+        <!--</div>-->
     </span>
 
-
+    <!-- temp, remove later
     <span class="co2ok_payoff">
 
         <?php
-            echo  __( 'Test', 'co2ok-for-woocommerce' );
+            //echo  __( 'Test', 'co2ok-for-woocommerce' );
             ?>
         <span id="p">
-            <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/info.svg', 'co2ok_info', 'co2ok_info'); ?>
+            <?php //echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/info.svg', 'co2ok_info', 'co2ok_info'); ?>
         </span>
     </span>
-
+        -->
 
     <div class="co2ok_infobox_container co2ok-popper">
 

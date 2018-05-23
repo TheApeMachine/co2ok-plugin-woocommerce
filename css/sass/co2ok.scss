@@ -2,7 +2,6 @@
 
 .co2ok_container {
 
-
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
@@ -47,16 +46,14 @@
         border-spacing: 0;
     }
 
-
-
-     display: inline-block;
-     position: relative;
-     font-family: Roboto, sans-serif;
-     color:#606468;
-     z-index: 10;
-     width: 259px;
-     margin-left: 3px;
-     .pointer {cursor: pointer;}
+        display: inline-block;
+        position: relative;
+        font-family: Roboto, sans-serif;
+        color:#606468;
+        z-index: 10;
+        width: 259px;
+        margin-left: 3px;
+        .pointer {cursor: pointer;}
 
 
      .co2ok_payoff {
@@ -87,6 +84,36 @@
             }
         }
     }
+
+    .co2ok_payoff_minimal {
+        //width: 100%;
+        //float: left;
+        margin-top: 10px;
+        font-size: 14px;
+        text-align: center;
+        font-family: $font;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        display: inline-block;
+        letter-spacing: -0.0538461em;
+        margin-left: -5%;
+        color: #4D5155;
+        //width: 110%;
+        #p_minimal {
+            vertical-align: middle;
+            display: inline-block;
+            margin-left: 12px;
+            & img{
+                width: 16px;
+                margin-top: -6px;
+                display: inline-block;
+                @media #{$small} {
+                 width: 16px;
+                }
+           }
+       }
+   }
 
      .co2ok_checkbox_container {
 
@@ -279,4 +306,10 @@
       color: #979797;
       padding: 0px;
     }
+    .minimal {
+        background-color: black;
+    }
 }
+
+
+// Minimal Design
