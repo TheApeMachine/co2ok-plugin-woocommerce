@@ -74,7 +74,15 @@
 
                         </form>
                         
-                        <p>The button design is set to <?php echo get_option('co2ok_button_template'), '.</br>'; ?></p>
+                        <p>The button design is set to <?php 
+                        if (get_option('co2ok_button_template') == 'co2ok_button_template_default')
+                        {
+                            echo "default";
+                        }
+                        else {
+                            echo "minimal";
+                        }
+                        '.</br>'; ?></p>
                         <img src=" 
                         <?php 
                         if(get_option('co2ok_button_template') == 'co2ok_button_template_minimal')
@@ -91,7 +99,7 @@
                         -->
 
                         <h2>Want to help us some more?</h2>
-                        <p>We need everybody on our team. So follow us on social media, share our posts!.</p>
+                        <p>We need everybody on our team. So follow us on social media, share our posts!</p>
                         <h2>Like us on:</h2>
                         <p><a href="https://www.instagram.com/co2ok.eco/" target="_blank"><span>Instagram</span></a></p>
                         <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>

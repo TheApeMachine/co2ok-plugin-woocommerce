@@ -1,6 +1,6 @@
-<div class="co2ok_container minimal"data-cart="<?php echo $cart ?>">
+<div class="co2ok_container co2ok_container_minimal"data-cart="<?php echo $cart ?>">
 
-    <span class="co2ok_checkbox_container <?php echo ($co2_ok_session_opted == 1 || $co2ok_optin == 'on' ? 'selected' : 'unselected' )?>">
+    <span class="co2ok_checkbox_container co2ok_checkbox_container_minimal <?php echo ($co2_ok_session_opted == 1 || $co2ok_optin == 'on' ? 'selected' : 'unselected' )?>">
         <?php
             woocommerce_form_field('co2ok_cart', array(
                 'type' => 'checkbox',
@@ -10,19 +10,19 @@
             ), $co2_ok_session_opted);
         ?>
 
-        <!--<div id="checkbox_label">-->
-          <div class="inner_checkbox_label">
+
+          <div class="inner_checkbox_label inner_checkbox_label_minimal">
             <div id="checkbox">  
             </div>
 
               <?php echo __( 'Make ', 'co2ok-for-woocommerce' );
                   echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
               ?>
-              <!--<div id="checkbox_label">-->
-                <!--<div class="inner_checkbox_label">-->
-              <span class="compensation_amount_minimal">+<?php echo $currency_symbol.''. $surcharge ?> </span>
-        <!--</div>-->
-        <!--</div>-->
+              <div class="compensation_amount_label_minimal">
+                <div class="inner_compensation_amount_label_minimal">
+                    <span class="compensation_amount_minimal">+<?php echo $currency_symbol.''. $surcharge ?> </span>
+                </div>
+              </div>
 
 
               <span class="co2ok_payoff_minimal">
@@ -31,20 +31,9 @@
                     </span>
                 </span>
           </div>
-        <!--</div>-->
-    </span>
+          </div>
 
-    <!-- temp, remove later
-    <span class="co2ok_payoff">
-
-        <?php
-            //echo  __( 'Test', 'co2ok-for-woocommerce' );
-            ?>
-        <span id="p">
-            <?php //echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/info.svg', 'co2ok_info', 'co2ok_info'); ?>
-        </span>
     </span>
-        -->
 
     <div class="co2ok_infobox_container co2ok-popper">
 

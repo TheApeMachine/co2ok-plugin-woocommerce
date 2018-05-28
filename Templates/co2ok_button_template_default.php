@@ -1,6 +1,6 @@
-<div class="co2ok_container" data-cart="<?php echo $cart ?>">
+<div class="co2ok_container co2ok_container_default" data-cart="<?php echo $cart ?>">
 
-    <span class="co2ok_checkbox_container <?php echo ($co2_ok_session_opted == 1 || $co2ok_optin == 'on' ? 'selected' : 'unselected' )?>">
+    <span class="co2ok_checkbox_container co2ok_checkbox_container_default <?php echo ($co2_ok_session_opted == 1 || $co2ok_optin == 'on' ? 'selected' : 'unselected' )?>">
         <?php
             woocommerce_form_field('co2ok_cart', array(
                 'type' => 'checkbox',
@@ -11,14 +11,14 @@
         ?>
 
         <div id="checkbox_label">
-          <div class="inner_checkbox_label">
+          <div class="inner_checkbox_label inner_checkbox_label_default">
             <div id="checkbox">  
             </div>
 
               <?php echo __( 'Make ', 'co2ok-for-woocommerce' );
                   echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
               ?>
-              <span class="compensation_amount">+<?php echo $currency_symbol.''. $surcharge ?> </span>
+              <span class="compensation_amount_default">+<?php echo $currency_symbol.''. $surcharge ?> </span>
           </div>
         </div>
     </span>
