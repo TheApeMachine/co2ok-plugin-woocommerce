@@ -1,4 +1,4 @@
-.co2ok_container_default .co2ok_checkbox_container_default .inner_checkbox_label_default:after, .co2ok_container_default .co2ok_checkbox_container_default.selected .inner_checkbox_label_default, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal {
+.co2ok_container_default .co2ok_checkbox_container_default .inner_checkbox_label_default:after, .co2ok_container_default .co2ok_checkbox_container_default.selected .inner_checkbox_label_default, .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .compensation_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal .inner_compensation_amount_label_minimal {
   background: -webkit-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
   background: -o-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
   background: linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%); }
@@ -223,60 +223,98 @@ img#co2ok_logo {
 
 .co2ok_container_minimal {
   width: 320px; }
-  .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected {
-    box-shadow: none; }
-  .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal {
-    background: white;
-    position: relative;
-    display: inline-block;
-    font-size: 22px;
-    width: 100px;
-    height: 54px;
-    border-radius: 10px;
-    transition: all 0.4s ease;
-    margin: 0;
-    padding: 5px;
-    border: 10px #06d367;
-    font: inherit;
-    vertical-align: baseline;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    text-rendering: optimizeLegibility;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    position: relative;
-    top: -2px;
-    bottom: -2px;
-    left: -2px;
-    right: -2px;
-    content: '';
-    z-index: -1; }
-    .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal > * {
+  .co2ok_container_minimal .co2ok_checkbox_container_minimal {
+    font-weight: 500; }
+    .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected {
+      box-shadow: none; }
+      .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .compensation_amount_label_minimal {
+        color: #05B139; }
+    .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal {
+      background: #E1E6E7;
+      position: relative;
       display: inline-block;
-      vertical-align: middle; }
-  .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal:after .co2ok_payoff_minimal {
-    padding-left: 10px;
-    margin-top: 10px;
-    font-size: 14px;
-    text-align: center;
-    font-family: Roboto, sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    display: inline-block;
-    letter-spacing: -0.0538461em;
-    margin-left: -5%;
-    color: #4D5155; }
-    .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal:after .co2ok_payoff_minimal #p_minimal {
-      vertical-align: middle;
+      font-size: 22px;
+      width: 105px;
+      height: 48px;
+      border-radius: 30px;
+      transition: all 0.4s ease;
+      margin: 0;
+      padding: 5px;
+      border: 10px #06d367;
+      font: inherit;
+      vertical-align: baseline;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      text-rendering: optimizeLegibility;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      position: relative;
+      top: 5px;
+      content: '';
+      z-index: -1; }
+      .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal > * {
+        display: inline-block;
+        vertical-align: middle; }
+      .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal .inner_compensation_amount_label_minimal {
+        background: white;
+        position: relative;
+        display: inline-block;
+        font-size: 22px;
+        width: 97px;
+        height: 40px;
+        border-radius: 23px;
+        transition: all 0.4s ease;
+        margin: 0;
+        padding: 5px;
+        border: 10px #06d367;
+        font: inherit;
+        vertical-align: baseline;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+        text-rendering: optimizeLegibility;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        position: relative;
+        top: -1px;
+        bottom: -2px;
+        left: -1px;
+        right: -2px;
+        content: '';
+        z-index: -1; }
+        .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal .inner_compensation_amount_label_minimal > * {
+          display: inline-block;
+          vertical-align: middle; }
+        .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal .inner_compensation_amount_label_minimal .compensation_amount_minimal {
+          position: relative;
+          margin: 0;
+          top: 50%;
+          left: 50%;
+          margin-right: -50%;
+          transform: translate(-50%, -50%); }
+    .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal:after .co2ok_payoff_minimal {
+      padding-left: 10px;
+      margin-top: 10px;
+      font-size: 14px;
+      text-align: center;
+      font-family: Roboto, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
       display: inline-block;
-      padding: none;
-      margin-left: 6px; }
-      .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal:after .co2ok_payoff_minimal #p_minimal img {
-        width: 16px;
-        margin-top: -6px;
-        display: inline-block; }
-        @media (max-width: 768px) {
-          .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal:after .co2ok_payoff_minimal #p_minimal img {
-            width: 16px; } }
+      letter-spacing: -0.0538461em;
+      margin-left: -5%;
+      color: #4D5155; }
+      .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal:after .co2ok_payoff_minimal #p_minimal {
+        vertical-align: middle;
+        display: inline-block;
+        padding: none;
+        margin-left: 6px; }
+        .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal:after .co2ok_payoff_minimal #p_minimal img {
+          width: 16px;
+          margin-top: -6px;
+          display: inline-block; }
+          @media (max-width: 768px) {
+            .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal:after .co2ok_payoff_minimal #p_minimal img {
+              width: 16px; } }

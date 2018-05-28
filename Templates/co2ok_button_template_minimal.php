@@ -19,7 +19,9 @@
                   echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
               ?>
               <div class="compensation_amount_label_minimal">
+                  <div class="inner_compensation_amount_label_minimal">
                     <span class="compensation_amount_minimal">+<?php echo $currency_symbol.''. $surcharge ?> </span>
+                </div>
               </div>
 
 

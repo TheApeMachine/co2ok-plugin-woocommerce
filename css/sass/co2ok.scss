@@ -307,21 +307,28 @@
 .co2ok_container_minimal {
     width: 320px;
     .co2ok_checkbox_container_minimal {
+        font-weight: 500;
         &.selected {
             box-shadow: none;
+            .inner_checkbox_label_minimal {
+                .compensation_amount_label_minimal{
+                    @extend %gradient;
+                    color: #05B139;
+                }
+            }
         }
 
         .inner_checkbox_label_minimal {
 
             .compensation_amount_label_minimal{
                     
-                background: white;
+                background: #E1E6E7;
                 position: relative;
                 display: inline-block;
                 font-size: 22px;
-                width: 100px;
-                height: 54px;
-                border-radius: 10px;
+                width: 105px;
+                height: 48px;
+                border-radius: 30px;
                 transition: all 0.4s ease;
                 margin: 0;
                 padding: 5px;
@@ -335,18 +342,60 @@
                 -moz-box-sizing: border-box;
                 -webkit-box-sizing: border-box;
                 position: relative;
-                top: -2px;
-                bottom: -2px;
-                left: -2px;
-                right: -2px;
+                top: 5px;
                 content: '';
                 z-index: -1;
                 @extend %gradient;
-    
+            
+
                   > * {
                      display: inline-block;
                      vertical-align: middle;
                    }
+
+                .inner_compensation_amount_label_minimal {
+                background: white;
+                position: relative;
+                display: inline-block;
+                font-size: 22px;
+                width: 97px;
+                height: 40px;
+                border-radius: 23px;
+                transition: all 0.4s ease;
+                margin: 0;
+                padding: 5px;
+                border: 10px #06d367;
+                font: inherit;
+                vertical-align: baseline;
+                box-sizing: border-box;
+                -webkit-tap-highlight-color: transparent;
+                text-rendering: optimizeLegibility;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                position: relative;
+                top: -1px;
+                bottom: -2px;
+                left: -1px;
+                right: -2px;
+                content: '';
+                z-index: -1;
+                @extend %gradient;
+                    
+                  > * {
+                     display: inline-block;
+                     vertical-align: middle;
+                   }
+
+                   .compensation_amount_minimal{
+                       position: relative;
+                       margin: 0;
+                       top: 50%;
+                       left: 50%;
+                       margin-right: -50%;
+                       transform: translate(-50%, -50%);
+                   }
+                }
             }
 
             &:after{

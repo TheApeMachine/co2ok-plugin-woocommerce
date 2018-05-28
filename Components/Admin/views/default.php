@@ -59,13 +59,20 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="co2ok_button_template_default" checked="checked"
-                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "co2ok_button_template_default"; 
+                            <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="co2ok_button_template_default"
+                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "co2ok_button_template_default"; /* Is deze nodig? */
+                            if (get_option('co2ok_button_template') == 'co2ok_button_template_default') {
+                                echo ' checked';
+                            }
                             echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'co2ok_button_template_default'? ' checked' : ''; ?> >
                             <label style="display: inline" for="on">Default button style</label>
                             <br>
+
                             <input type="radio" name="co2ok_button_template" id="button_style_radio_minimal" value="co2ok_button_template_minimal" 
-                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "co2ok_button_template_minimal";
+                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "co2ok_button_template_minimal"; /* Is deze nodig? */
+                            if (get_option('co2ok_button_template') == 'co2ok_button_template_minimal') {
+                                echo ' checked';
+                            }
                             echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'co2ok_button_template_minimal'? ' checked' : '';  ?> >
                             <label style="display: inline" for="off">Minimal button style</label>
                             
@@ -92,11 +99,6 @@
                             echo esc_url(plugins_url('../../../images/button_default_co2ok.png', __FILE__));
                         }
                         ?>"/>
-
-                        <!--
-                        gebruik deze var
-                        co2ok_button_template
-                        -->
 
                         <h2>Want to help us some more?</h2>
                         <p>We need everybody on our team. So follow us on social media, share our posts!</p>
