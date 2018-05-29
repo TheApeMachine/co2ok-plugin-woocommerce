@@ -15,10 +15,12 @@
             <div id="checkbox">  
             </div>
 
-              <?php echo __( 'Make ', 'co2ok-for-woocommerce' );
+              <?php echo __( 'Make ', 'co2ok-for-woocommerce' ); ?>
+              <img 
+              <?php 
                     // Replaced co2ok_logo with co2ok_logo_minimal to keep the same logo, rather than switching between a white and default logo.
                   echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo_minimal');
-              ?>
+              ?> alt="Maak mijn aankoop klimaatneutraal " title="Maak mijn aankoop klimaatneutraal " >
               <div class="compensation_amount_label_minimal"> <!-- Creates Outer Border for Compensation Amount label -->
                   <div class="inner_compensation_amount_label_minimal"> <!-- Creates inner shape for Compensation Amount label -->
                     <span class="compensation_amount_minimal">+<?php echo $currency_symbol.''. $surcharge ?> </span>
