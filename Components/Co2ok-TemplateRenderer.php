@@ -39,14 +39,6 @@ class Co2ok_TemplateRenderer
         else
         {
             echo ' Selected Template not found ..';
-            /*
-            // Tests what kind of value enters (to check if the name is correct)
-            // Please keep in temporarily for educational reminder purposes
-            echo '<pre>';
-            print_r($file);
-            print_r($template_name);
-            echo '</pre>';
-            */
 
             return false;
         }

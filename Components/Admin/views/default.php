@@ -34,45 +34,31 @@
                         <p>In our next update we will give you the choice to set the default state of the compensation 
                             option and choose a different button design. These features are almost done, but we won't 
                             ship them until they're extremely well tested and polished. Let us know if you have other
-                             ideas how we can improve our service/plugin!</p>
-
-                        <!-- <h2>Compensation preferences:</h2>
-                        <p>By default we have set the button to OFF. But you can decide to set the CO2 OK button to default ON. This way you are in control,
-                        helping the environment even more!</p>
-                        
-                        <form method="POST">
-                        
-                            <input type="radio" name="co2ok_optin" id="on" value="on" <?php if($co2ok_optin == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="on">Compensation default ON. (Preferred)</label>
-                            <br>
-                            <input type="radio" name="co2ok_optin" id="off" value="off" <?php if($co2ok_optin == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">Compensation default OFF.</label>
-                            
-                            <p style="margin-top: 12px">
-                                <input type="submit" value="Save" class="button button-primary button-large"></p>
-
-                        </form> -->
-                        
+                             ideas how we can improve our service/plugin!</p>     
 
                         <h2>Choose Button Style:</h2>
                         <p>By default we set the button to a fully shaped style. You can also choose to pick a minimal style.</p>
                         
                         <form method="POST">
                         
+                            <!-- Radiobutton for Default Button Design -->
                             <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="co2ok_button_template_default"
-                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "co2ok_button_template_default"; /* Is deze nodig? */
+                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "co2ok_button_template_default";
                             if (get_option('co2ok_button_template') == 'co2ok_button_template_default') {
-                                echo ' checked';
+                                echo ' checked'; // Sets the radiobutton checked when receiving "default" from server, for when page is re-entered
                             }
+                            // Below Sets the radiobutton checked when receiving "default" from server, for when page is re-loaded
                             echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'co2ok_button_template_default'? ' checked' : ''; ?> >
                             <label style="display: inline" for="on">Default button style</label>
                             <br>
-
+                            
+                            <!-- Radiobutton for Minimal Button Design -->
                             <input type="radio" name="co2ok_button_template" id="button_style_radio_minimal" value="co2ok_button_template_minimal" 
-                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "co2ok_button_template_minimal"; /* Is deze nodig? */
+                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "co2ok_button_template_minimal";
                             if (get_option('co2ok_button_template') == 'co2ok_button_template_minimal') {
-                                echo ' checked';
+                                echo ' checked'; // Sets the radiobutton checked when receiving "minimal" from server, for when page is re-entered
                             }
+                            // Below Sets the radiobutton checked when receiving "minimal" from server, for when page is re-loaded
                             echo isset($_POST['co2ok_button_template']) && $_POST['co2ok_button_template']== 'co2ok_button_template_minimal'? ' checked' : '';  ?> >
                             <label style="display: inline" for="off">Minimal button style</label>
                             
@@ -82,6 +68,7 @@
                         </form>
                         
                         <p>The button design is set to <?php 
+                        // Tells the viewer whether the template is set to default or minimal
                         if (get_option('co2ok_button_template') == 'co2ok_button_template_default')
                         {
                             echo "default";
@@ -92,6 +79,7 @@
                         '.</br>'; ?></p>
                         <img src=" 
                         <?php 
+                        // Views either default or minimal image, so the viewer has visual feedback
                         if(get_option('co2ok_button_template') == 'co2ok_button_template_minimal')
                         {
                             echo esc_url(plugins_url('../../../images/button_minimal_co2ok.png', __FILE__));

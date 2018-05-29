@@ -272,6 +272,8 @@ img#co2ok_logo_minimal {
     }
 }
 
+// Seperate parts for Default Button Design
+
 .co2ok_container_default {
     width: 259px;
     .co2ok_checkbox_container_default{
@@ -309,6 +311,8 @@ img#co2ok_logo_minimal {
         }
     }
 }
+
+// Seperate parts for Minimal Button Design
 
 .co2ok_container_minimal {
     width: 320px;
@@ -404,7 +408,6 @@ img#co2ok_logo_minimal {
                 }
             }
 
-            //&:after{
                 .co2ok_payoff_minimal {
                     //width: 100%;
                     //float: left;
@@ -437,7 +440,6 @@ img#co2ok_logo_minimal {
                         }
                     }
                 }
-            //}
         }
     }
 }
