@@ -16,7 +16,7 @@
             </div>
 
               <?php echo __( 'Make ', 'co2ok-for-woocommerce' );
-                  echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo');
+                  echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo_minimal');
               ?>
               <div class="compensation_amount_label_minimal">
                   <div class="inner_compensation_amount_label_minimal">

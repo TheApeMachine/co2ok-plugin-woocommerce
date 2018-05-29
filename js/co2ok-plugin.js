@@ -30,10 +30,6 @@ var Co2ok_JS = function ()
                     jQuery("#co2ok_info_hover_image").attr("src","https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png");
                 });
 
-                if ((jQuery('#co2ok_cart').is(":checked")) && jQuery('co2ok_button_template').is('co2ok_button_template_minimal')) {
-                    jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
-                }
-
                 if (!(jQuery('#co2ok_cart').is(":checked"))) {
                     jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
                 }
@@ -99,12 +95,7 @@ var Co2ok_JS = function ()
 
                 if(jQuery(this).is(":checked"))
                 {
-                    if (jQuery('co2ok_button_template').is('co2ok_button_template_minimal')) {
-                        jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
-                    }
-                    if (jQuery('co2ok_button_template').is('co2ok_button_template_default')) {
-                        jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
-                    }
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
 
                     jQuery('.co2ok_checkbox_container').addClass('selected');
                     jQuery('.co2ok_checkbox_container').removeClass('unselected');
