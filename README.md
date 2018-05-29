@@ -31,7 +31,25 @@ To get Gulp working you follow the following steps:
 
 ## Contributing
 
-Some prose detailing contributing
+ 1. **Fork** the repo on GitHub
+ 2. **Clone** the project to your own machine
+ 3. **Commit** changes to your own branch
+ 4. **Push** your work back up to your fork
+ 5. Submit a **Pull request** so that we can review your changes
+
+### Branches will have the following structure
+
+  **{Fix/Feature}/{What-your-doing}**
+
+### Commit messages
+
+  Commit messages will need be written in present tense like this:
+
+  ❌ "Fix error messages" 
+
+  And not like this:
+
+  ✅ "Fixed error messages"
 
 ## License
 
