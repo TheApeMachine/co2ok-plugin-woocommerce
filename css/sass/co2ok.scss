@@ -329,14 +329,14 @@ img#co2ok_logo_minimal {
             .compensation_amount_label_minimal{
                     
                 background: #E1E6E7;
-                position: relative;
+                position: absolute;
                 display: inline-block;
                 font-size: 22px;
                 width: 72px;
                 height: 26px;
                 border-radius: 30px;
                 transition: all 0.4s ease;
-                margin: 0;
+                margin-left: -5px;
                 padding: 5px;
                 border: 10px #06d367;
                 font: inherit;
@@ -347,8 +347,8 @@ img#co2ok_logo_minimal {
                 box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 -webkit-box-sizing: border-box;
-                position: relative;
-                top: 14px;
+                top: 13px;
+                left: 160px;
                 content: '';
                 z-index: -1;
                 @extend %gradient;
@@ -361,7 +361,7 @@ img#co2ok_logo_minimal {
 
                 .inner_compensation_amount_label_minimal {
                 background: white;
-                position: relative;
+                position: absolute;
                 display: inline-block;
                 font-size: 22px;
                 width: 68px;
@@ -380,9 +380,9 @@ img#co2ok_logo_minimal {
                 -moz-box-sizing: border-box;
                 -webkit-box-sizing: border-box;
                 position: relative;
-                top: -3px;
+                top: 2px;
                 bottom: -2px;
-                left: -2.5px;
+                left: 1.5px;
                 right: -2px;
                 content: '';
                 z-index: -1;
@@ -394,10 +394,10 @@ img#co2ok_logo_minimal {
                    }
 
                    .compensation_amount_minimal{
-                       position: relative;
+                       position: absolute;
                        margin: 0;
                        font-size: 11pt;
-                       top: -7%;
+                       top: 50%;
                        left: 50%;
                        margin-right: -50%;
                        transform: translate(-50%, -50%);
@@ -409,6 +409,7 @@ img#co2ok_logo_minimal {
                 .co2ok_payoff_minimal {
                     //width: 100%;
                     //float: left;
+                    position: absolute;
                     padding-left: 10px;
                     font-size: 14px;
                     text-align: center;
@@ -418,8 +419,8 @@ img#co2ok_logo_minimal {
                     line-height: normal;
                     display: inline-block;
                     letter-spacing: -0.0538461em;
-                    margin-top: 2px;
-                    margin-left: -5%;
+                    top: 19px;
+                    margin-left: 66px;
                     color: #4D5155;
                     //width: 110%;
                     #p_minimal {
