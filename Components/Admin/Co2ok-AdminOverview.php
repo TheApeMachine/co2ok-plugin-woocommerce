@@ -49,7 +49,8 @@ class Co2ok_AdminOverview
 
     function co2ok_plugin_admin_overview()
     {
-        // Posts the state of the co2ok button style (either Default or Minimal)
+        // Receives Post from Plugin-Settings in the browser and updates 
+        // the state of the co2ok button style to WP database
         if (isset($_POST['co2ok_button_template'])) {
             update_option('co2ok_button_template', $_POST['co2ok_button_template']);
         }
