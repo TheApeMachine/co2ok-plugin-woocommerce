@@ -147,6 +147,12 @@ img#co2ok_logo_minimal {
   vertical-align: middle;
   margin: 3px 0px 0px 0px; }
 
+img#co2ok_logo_minimal_info {
+  display: inline-block;
+  width: 75px;
+  vertical-align: middle;
+  margin: 9px 0px 0px 0px; }
+
 .co2ok_infobox_container {
   position: absolute;
   width: 350px;
