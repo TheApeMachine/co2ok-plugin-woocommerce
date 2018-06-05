@@ -438,9 +438,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     if ($fee->get_name() == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
                         // The user did opt for co2 compensation
                         $this->co2ok_storeTransaction($order_id);
-                        break;
                     }
                 }
+                break;
 
             case "refunded":
             case "cancelled":
