@@ -2,7 +2,6 @@
 
 .co2ok_container {
 
-
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
@@ -47,19 +46,16 @@
         border-spacing: 0;
     }
 
+    display: inline-block;
+    position: relative;
+    font-family: Roboto, sans-serif;
+    color:#606468;
+    z-index: 10;
+    margin-left: 3px;
+    .pointer {cursor: pointer;}
 
 
-     display: inline-block;
-     position: relative;
-     font-family: Roboto, sans-serif;
-     color:#606468;
-     z-index: 10;
-     width: 259px;
-     margin-left: 3px;
-     .pointer {cursor: pointer;}
-
-
-     .co2ok_payoff {
+    .co2ok_payoff {
          width: 100%;
          margin-top: 10px;
          font-size: 14px;
@@ -87,6 +83,8 @@
             }
         }
     }
+
+   
 
      .co2ok_checkbox_container {
 
@@ -119,7 +117,6 @@
                  left: -2px;
                  right: -2px;
                  content: '';
-                 @extend %gradient;
                  z-index: -1;
                  border-radius: 12px;
             }
@@ -130,7 +127,6 @@
              width: 100%;
              height: 54px;
              background-position: center;
-             background: white;
              background-size: 100%;
              border-radius: 10px;
              transition:all 0.4s ease;
@@ -160,12 +156,6 @@
 
          &.unselected {
 
-             .compensation_amount {
-                 color:#06d367;
-                 padding-top: 1px;
-                 font-size: 20px;
-                 font-weight: 500;
-            }
             .make {
                 padding-top: 0px;
             }
@@ -177,14 +167,13 @@
              }
 
              .inner_checkbox_label {
-               @extend %gradient;
+
              }
              .co2ok_payoff{
                margin-bottom: 400px;
              }
-             color:white;
-             text-shadow: 1px 1px 4px #929292;
-             box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+             
+             
 
              #checkbox {
                  padding: 2px;
@@ -195,20 +184,27 @@
                  background-image: url("../images/vinkje_co2ok.png") !important;
                  font-size: 20px;
             }
-             .compensation_amount {
-                 color: white;
-                 padding-top: 1px;
-                 font-size: 20px;
-                 font-weight: 500;
-            }
         }
     }
 }
+
  img#co2ok_logo {
      display: inline-block;
      width: 75px;
      vertical-align: middle;
      margin: 9px 0px 0px 3px;
+}
+img#co2ok_logo_minimal {
+    display: inline-block;
+    width: 52px;
+    vertical-align: middle;
+    margin: 3px 0px 0px 0px;
+}
+img#co2ok_logo_minimal_info {
+    display: inline-block;
+    width: 75px;
+    vertical-align: middle;
+    margin: 9px 0px 0px 0px;
 }
  .co2ok_infobox_container {
      position: absolute;
@@ -274,5 +270,177 @@
       vertical-align: middle;
       color: #979797;
       padding: 0px;
+    }
+    .minimal {
+        background-color: black;
+    }
+}
+
+// Seperate parts for Default Button Design
+
+.co2ok_container_default {
+    width: 259px;
+    .co2ok_checkbox_container_default{
+        .inner_checkbox_label_default {
+            &:after {
+                @extend %gradient;
+            }
+            background: white;
+        }
+        &.selected {
+            color:white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+            text-shadow: 1px 1px 4px #929292;
+            .inner_checkbox_label_default {
+                @extend %gradient;
+            }
+            .compensation_amount_default {
+                color: white;
+                padding-top: 14px;
+                margin-right: 10px;
+                float: right;
+                font-size: 20px;
+                font-weight: 500;
+           }
+        }
+        &.unselected {
+            .compensation_amount_default {
+                color:#06d367;
+                padding-top: 14px;
+                margin-right: 10px;
+                float: right;
+                font-size: 20px;
+                font-weight: 500;
+           }
+        }
+    }
+}
+
+// Seperate parts for Minimal Button Design
+
+.co2ok_container_minimal {
+    width: 320px;
+    .co2ok_checkbox_container_minimal {
+        font-weight: 500;
+        &.selected {
+            box-shadow: none;
+            .inner_checkbox_label_minimal {
+                .compensation_amount_label_minimal{
+                    @extend %gradient;
+                    color: #05B139;
+                }
+            }
+        }
+
+        .inner_checkbox_label_minimal {
+
+            .compensation_amount_label_minimal{
+                    
+                background: #E1E6E7;
+                position: absolute;
+                display: inline-block;
+                font-size: 22px;
+                width: 72px;
+                height: 26px;
+                border-radius: 30px;
+                transition: all 0.4s ease;
+                margin-left: -5px;
+                padding: 5px;
+                border: 10px #06d367;
+                font: inherit;
+                vertical-align: baseline;
+                box-sizing: border-box;
+                -webkit-tap-highlight-color: transparent;
+                text-rendering: optimizeLegibility;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                top: 13px;
+                left: 160px;
+                content: '';
+                z-index: -1;
+                @extend %gradient;
+            
+
+                  > * {
+                     display: inline-block;
+                     vertical-align: middle;
+                   }
+
+                .inner_compensation_amount_label_minimal {
+                background: white;
+                position: absolute;
+                display: inline-block;
+                font-size: 22px;
+                width: 68px;
+                height: 22px;
+                border-radius: 23px;
+                transition: all 0.4s ease;
+                margin: 0;
+                padding: 5px;
+                border: 10px #06d367;
+                font: inherit;
+                vertical-align: baseline;
+                box-sizing: border-box;
+                -webkit-tap-highlight-color: transparent;
+                text-rendering: optimizeLegibility;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                top: 2px;
+                bottom: -2px;
+                left: 2.5px;
+                right: -2px;
+                content: '';
+                z-index: -1;
+                @extend %gradient;
+                    
+                  > * {
+                     display: inline-block;
+                     vertical-align: middle;
+                   }
+
+                   .compensation_amount_minimal{
+                       position: absolute;
+                       margin: 0;
+                       font-size: 11pt;
+                       top: 50%;
+                       left: 50%;
+                       margin-right: -50%;
+                       transform: translate(-50%, -50%);
+                   }
+                }
+            }
+
+                .co2ok_payoff_minimal {
+                    position: absolute;
+                    padding-left: 10px;
+                    font-size: 14px;
+                    text-align: center;
+                    font-family: $font;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    display: inline-block;
+                    letter-spacing: -0.0538461em;
+                    top: 19px;
+                    margin-left: 66px;
+                    color: #4D5155;
+                    #p_minimal {
+                        vertical-align: middle;
+                        display: inline-block;
+                        padding: none;
+                        margin-left: 6px;
+                        & img{
+                            width: 16px;
+                            margin-top: -6px;
+                            display: inline-block;
+                            @media #{$small} {
+                             width: 16px;
+                            }
+                        }
+                    }
+                }
+        }
     }
 }

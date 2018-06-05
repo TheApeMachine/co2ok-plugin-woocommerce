@@ -28,6 +28,11 @@ To get Gulp working you follow the following steps:
 6. after all packages are installed run `gulp`
 7. Gulp should be starting now and automatic converting SCSS to css every time a `.scss` file is changed
 
+- if you run into problems/errors with step 4. or 5. on Windows, these might be possible solutions (still in the root directory):
+1. run `npm install --global --production windows-build-tools`
+2. run `npm install -g which` 
+3. run `which node`
+4. run `npm install node-gyp@latest` 
 
 ## Contributing
 

@@ -49,9 +49,10 @@ class Co2ok_AdminOverview
 
     function co2ok_plugin_admin_overview()
     {
-        if (isset($_POST['co2ok_template_style'])) {
-            update_option('co2ok_button_template', $_POST['co2ok_template_style']);
-            $co2ok_template_style = $_POST['co2ok_template_style'];
+        // Receives Post from Plugin-Settings in the browser and updates 
+        // the state of the co2ok button style to WP database
+        if (isset($_POST['co2ok_button_template'])) {
+            update_option('co2ok_button_template', $_POST['co2ok_button_template']);
         }
 
         if (isset($_POST['co2ok_statistics']))
@@ -104,7 +105,7 @@ class Co2ok_AdminOverview
                 });
         }
 
-        $co2ok_template_style = get_option('co2ok_button_template', 'co2ok_button_template_default');
+        $co2ok_button_template = get_option('co2ok_button_template', 'co2ok_button_template_default');
         $co2ok_statistics = get_option('co2ok_statistics', 'off');
         $co2ok_optin = get_option('co2ok_optin', 'off');
       

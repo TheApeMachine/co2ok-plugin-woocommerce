@@ -34,9 +34,9 @@
                         <p>In our next update we will give you the choice to set the default state of the compensation 
                             option and choose a different button design. These features are almost done, but we won't 
                             ship them until they're extremely well tested and polished. Let us know if you have other
-                             ideas how we can improve our service/plugin!</p>
+                             ideas how we can improve our service/plugin!</p>     
 
-                        <!-- <h2>Compensation preferences:</h2>
+                        <!--<h2>Compensation preferences:</h2>
                         <p>By default we have set the button to OFF. But you can decide to set the CO2 OK button to default ON. This way you are in control,
                         helping the environment even more!</p>
                         
@@ -50,11 +50,48 @@
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
+                        </form>-->
 
-                        </form> -->
+                        <h2>Choose Button Style:</h2>
+                        <p>We've done our best to create an optimised and fetching design for our button - but we've also created a minimal design, for the minimalists :)</p>
                         
+                        <form method="POST">
+                        
+                            <!-- Radiobutton for Default Button Design -->
+                            <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="co2ok_button_template_default"
+                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "checked"; ?> >
+                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_default">
+                                <img src="<?php echo esc_url(plugins_url('../../../images/button_default_co2ok.png', __FILE__));?>" 
+                                style="vertical-align: middle; width: 210px;"/>
+                            </label>
+                            <br>
+                            
+                            <!-- Radiobutton for Minimal Button Design -->
+                            <input type="radio" name="co2ok_button_template" id="button_style_radio_minimal" value="co2ok_button_template_minimal" 
+                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "checked"; ?> >
+                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_minimal">
+                                <img src="<?php echo esc_url(plugins_url('../../../images/button_minimal_co2ok.png', __FILE__));?>" 
+                                style="vertical-align: middle; width: 200px;"/>
+                            </label>
+
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+
+                        </form>
+                        
+                        <p>The button design is set to <?php 
+                        // Tells the viewer whether the template is set to default or minimal
+                        if (get_option('co2ok_button_template') == 'co2ok_button_template_default')
+                        {
+                            echo "default";
+                        }
+                        else {
+                            echo "minimal";
+                        }
+                        '.</br>'; ?></p>
+
                         <h2>Want to help us some more?</h2>
-                        <p>We need everybody on our team. So follow us on social media, share our posts!.</p>
+                        <p>We need everybody on our team. So follow us on social media, share our posts!</p>
                         <h2>Like us on:</h2>
                         <p><a href="https://www.instagram.com/co2ok.eco/" target="_blank"><span>Instagram</span></a></p>
                         <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>
