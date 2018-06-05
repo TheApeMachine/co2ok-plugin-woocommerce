@@ -59,16 +59,20 @@
                         
                             <!-- Radiobutton for Default Button Design -->
                             <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="co2ok_button_template_default"
-                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "checked";
-                            ?> >
-                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_default"><img src="<?php echo esc_url(plugins_url('../../../images/button_default_co2ok.png', __FILE__));?>" style="vertical-align: middle; width: 210px;"/></label>
+                            <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "checked"; ?> >
+                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_default">
+                                <img src="<?php echo esc_url(plugins_url('../../../images/button_default_co2ok.png', __FILE__));?>" 
+                                style="vertical-align: middle; width: 210px;"/>
+                            </label>
                             <br>
                             
                             <!-- Radiobutton for Minimal Button Design -->
                             <input type="radio" name="co2ok_button_template" id="button_style_radio_minimal" value="co2ok_button_template_minimal" 
-                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "checked";
-                            ?> >
-                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_minimal"><img src="<?php echo esc_url(plugins_url('../../../images/button_minimal_co2ok.png', __FILE__));?>" style="vertical-align: middle; width: 200px;"/></label>
+                            <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "checked"; ?> >
+                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_minimal">
+                                <img src="<?php echo esc_url(plugins_url('../../../images/button_minimal_co2ok.png', __FILE__));?>" 
+                                style="vertical-align: middle; width: 200px;"/>
+                            </label>
 
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
