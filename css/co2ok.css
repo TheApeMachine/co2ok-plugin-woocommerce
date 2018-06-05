@@ -125,8 +125,6 @@
     .co2ok_container .co2ok_checkbox_container.unselected .compensation_amount {
       color: #06d367;
       padding-top: 1px;
-      /*margin-right: 10px;
-                 float: right;*/
       font-size: 20px;
       font-weight: 500; }
     .co2ok_container .co2ok_checkbox_container.unselected .make {
@@ -150,8 +148,6 @@
       .co2ok_container .co2ok_checkbox_container.selected .compensation_amount {
         color: white;
         padding-top: 1px;
-        /*margin-right: 10px;
-                 float: right;*/
         font-size: 20px;
         font-weight: 500; }
 
