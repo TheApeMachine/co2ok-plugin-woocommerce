@@ -117,7 +117,6 @@
                  left: -2px;
                  right: -2px;
                  content: '';
-                 //@extend %gradient;
                  z-index: -1;
                  border-radius: 12px;
             }
@@ -128,7 +127,6 @@
              width: 100%;
              height: 54px;
              background-position: center;
-             //background: white;
              background-size: 100%;
              border-radius: 10px;
              transition:all 0.4s ease;
@@ -169,7 +167,7 @@
              }
 
              .inner_checkbox_label {
-               //@extend %gradient;
+
              }
              .co2ok_payoff{
                margin-bottom: 400px;
@@ -415,8 +413,6 @@ img#co2ok_logo_minimal_info {
             }
 
                 .co2ok_payoff_minimal {
-                    //width: 100%;
-                    //float: left;
                     position: absolute;
                     padding-left: 10px;
                     font-size: 14px;
@@ -430,7 +426,6 @@ img#co2ok_logo_minimal_info {
                     top: 19px;
                     margin-left: 66px;
                     color: #4D5155;
-                    //width: 110%;
                     #p_minimal {
                         vertical-align: middle;
                         display: inline-block;
