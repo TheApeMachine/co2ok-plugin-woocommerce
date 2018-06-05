@@ -38,7 +38,7 @@ class Co2ok_TemplateRenderer
         }
         else
         {
-            echo ' Selected Template not found aaaaaarg ? wuuut ? my head hurts..';
+            echo ' Selected Template not found ..';
             return false;
         }
 

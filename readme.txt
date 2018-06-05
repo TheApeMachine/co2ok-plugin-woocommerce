@@ -3,9 +3,9 @@ Contributors: co2ok
 Donate link: http://co2ok.eco/
 Tags: climate neutral, CO2, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental
 Requires at least: 4.0
-Tested up to: 4.9.4
-WC tested up to: 3.3.4
-Stable tag: 1.0.1.2
+Tested up to: 4.9.5
+WC tested up to: 3.3.5
+Stable tag: 1.0.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,13 @@ Besides the option that the CO2 compensation button provides, nothing changes. Y
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.1.3
+* Reverts JS implementation to more compatible one
+* Fixes minor CSS issues
+* Implements optional Freemius analytics
+* Fixes some transactions not being stored in the CO2ok backend
+* Improves settings page
 
 = 1.0.1.2
 * Fixes info-hover's invisibility in some webshops

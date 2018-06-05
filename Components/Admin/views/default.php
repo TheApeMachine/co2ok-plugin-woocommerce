@@ -1,29 +1,78 @@
+<?php
+
+        add_action( 'admin_post_co2ok_save_options', 'co2ok_save_options' );
+        
+        function co2ok_save_options() {
+            echo('Hello World');
+            print_r($_POST);
+        }
+
+?>
+
 <div style="margin-top: 20px;">
 
-    <img src="<?php echo esc_url(plugins_url('../images/logo.svg', __FILE__)); ?>" style="float:left;width:200px;"/>
+    <img src="<?php echo esc_url(plugins_url('../../../images/logo.svg', __FILE__)); ?>" style="float:left;width:110px;"/>
     <h1 style="margin-left: 20px;display: inline-block;"> Plugin Settings </h1>
-    </br>
-    </br>
+</br>
+</br>
 
-    <form method="POST" style="display: block;clear: both; margin-top: 20px;">
+    <div id="col-container">
+        
+        <div id="col-left">
+            <div class="col-wrap">
+                <div class="form-wrap">
+                    <h3>
+                        <h1>Thanks for helping us fight climate change! :)</h1>
+                        <img src="<?php echo esc_url(plugins_url('../../../images/happy-flower300.gif', __FILE__)); ?>"/>
+                        <p>You are our hero. We strongly believe that no fight has been more important, and this needs
+                            to be fought in any way possible. And it's not only the climate that benefits;</p>
+                            <img src="<?php echo esc_url(plugins_url('../../../images/Lesotho-cookstoves.jpg', __FILE__)); ?>" width=300px/>
+                            <p><small>Additional benefits are less deforestation and health benefits, due to decreasing 
+                                smoke and poisonous carbon monoxide.</small>
+                                
+                        <h2>Coming soon! </h2>
+                        <p>In our next update we will give you the choice to set the default state of the compensation 
+                            option and choose a different button design. These features are almost done, but we won't 
+                            ship them until they're extremely well tested and polished. Let us know if you have other
+                             ideas how we can improve our service/plugin!</p>
 
-        <input name="co2ok_statistics" <?php if($co2ok_statistics == 'on') echo "checked" ?> type="checkbox"/>
-        <label for="plugin_language">Help us improve our product (we will never impact the stability of your shop through this!). </label>
+                        <!-- <h2>Compensation preferences:</h2>
+                        <p>By default we have set the button to OFF. But you can decide to set the CO2 OK button to default ON. This way you are in control,
+                        helping the environment even more!</p>
+                        
+                        <form method="POST">
+                        
+                            <input type="radio" name="co2ok_optin" id="on" value="on" <?php if($co2ok_optin == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="on">Compensation default ON. (Preferred)</label>
+                            <br>
+                            <input type="radio" name="co2ok_optin" id="off" value="off" <?php if($co2ok_optin == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="off">Compensation default OFF.</label>
+                            
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
 
-        </br>
-        </br>
+                        </form> -->
+                        
+                        <h2>Want to help us some more?</h2>
+                        <p>We need everybody on our team. So follow us on social media, share our posts!.</p>
+                        <h2>Like us on:</h2>
+                        <p><a href="https://www.instagram.com/co2ok.eco/" target="_blank"><span>Instagram</span></a></p>
+                        <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>
+                        <p><a href="https://twitter.com/CO2ok_eco" target="_blank" ><span>Twitter</span></a></p>
+                        <br>
+                        <h2>Something not working for you? Have a great idea or any other feedback? </h2>
+                        <p>Call/text/WhatsApp us: <a href="tel:+31639765259">+31639765259</a></p>
+                        <p>Drop us a line: <a href="mailto: make@co2ok.eco"><span>make@co2ok.eco</span></a></p>
+                        <br>
+                        <p>Thanks,<br>The CO&#8322;ok team.</p>
+                        <p><a href="http://www.co2ok.eco" target="_blank">www.co2ok.eco</a></p>
+                        <br>
+                        <hr>
 
-        <label for="co2ok_template_style" ><strong> Button Style </strong> </label>
-        </br></br>
-        <div class="example_button" style="border:1px solid grey; border-radius:12px; padding:20px; max-width: 300px; displat:inline-block;">
-            <input type="radio" name="co2ok_template_style" value="co2ok_button_template_default" <?php if($co2ok_template_style == 'co2ok_button_template_default') echo 'checked' ?> >Default
 
-            </br></br>
-            <img src="<?php echo esc_url(plugins_url('../images/site_render_button_default.png', __FILE__)); ?>"/>
+                    </h3>
+                </div>
+            </div>
         </div>
-        </br>
-        <input type="submit" value="Save" class="button button-primary button-large">
-    </form>
-
-</div>
-
+    </div>
+ 
