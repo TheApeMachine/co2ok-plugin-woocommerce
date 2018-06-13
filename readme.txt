@@ -1,25 +1,32 @@
 === CO2ok for Woocommerce ===
 Contributors: co2ok
 Donate link: http://co2ok.eco/
-Tags: climate neutral, CO2, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental
+Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental
 Requires at least: 4.0
-Tested up to: 4.9.5
-WC tested up to: 3.3.5
+Tested up to: 4.9.6
+WC tested up to: 3.4.2
 Stable tag: 1.0.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Give your customers the choice to make their purchase climate neutral with CO2ok. 
+Give your customers the choice to make their purchase climate neutral with CO₂ok. 
 
 == Description ==
 
-By enabling your customers to make their purchase climate neutral with CO₂ok together we can drive back climate change. CO₂ok lets you increase your conversion with no upfront or recurring costs.
+As awareness about the importance of preserving the environment continues to grow among consumers, companies are increasingly looking for ways to “go green”. Of course, you need to protect your bottom line as well. By enabling your customers to make their purchase climate neutral with CO₂ok, you can do your bit to drive back climate change. CO₂ok lets you increase your conversion with no upfront or recurring costs.
 
-Help build a better future.
+* Improve your corporate image
+* Help fight climate change
+* Sell more
 
-[more information on our site](http://www.co2ok.eco/retailers/)
+Help us fight climate change.
 
-We're just starting! Please let us know if you have feedback/questions or something doesn't work as expected: we're online almost 24/7 on the chat function on our website, or drop us a line : <make@co2ok.eco>
+How it works
+The compensation gets paid to you by the customer. CO₂ok sends a digital invoice at the end of each 3 month term. With the proceeds we support Atmosfair, a certified organisation which produces several CO₂-compensating projects each year.
+
+[more information on our site](http://www.co2ok.eco/en/retailers/)
+
+We're just starting! Please let us know if you have feedback/questions or something doesn't work as expected: drop us a line : <make@co2ok.eco> or use the support section on wordpress.org
 
 [Terms of Service](http://www.co2ok.eco/wp-content/uploads/2017/10/ToS.pdf)
 
@@ -35,7 +42,13 @@ Once installed activate the plugin through the 'Plugins' screen in WordPress
 
 = What changes for my customers? =
 
-Besides the option that the CO2 compensation button provides, nothing changes. Your customers aren't troubled with registration or added steps - they just check out as always,regardless of whether they opted for CO2 compensation or not.
+Besides the option that the CO2 compensation button provides, nothing changes. Your customers aren't troubled with registration or added steps - they just check out as always, regardless of whether they opted for CO2 compensation or not.
+
+= Privacy considerations =
+
+We gather as little data as possible, specifically:
+- the WordPress admin email address, for sending invoices
+- limited information about transactions with CO2 compensation selected (orderid, order total and compensation amount) 
 
 == Screenshots ==
 
