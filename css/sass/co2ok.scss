@@ -325,7 +325,7 @@ img#co2ok_logo_minimal_info {
         &.selected {
             box-shadow: none;
             .inner_checkbox_label_minimal {
-                .compensation_amount_label_minimal{
+                .comp_amount_label_minimal{
                     @extend %gradient;
                     color: #05B139;
                 }
@@ -334,7 +334,7 @@ img#co2ok_logo_minimal_info {
 
         .inner_checkbox_label_minimal {
 
-            .compensation_amount_label_minimal{
+            .comp_amount_label_minimal{
                     
                 background: #E1E6E7;
                 position: absolute;
@@ -367,7 +367,7 @@ img#co2ok_logo_minimal_info {
                      vertical-align: middle;
                    }
 
-                .inner_compensation_amount_label_minimal {
+                .inner_comp_amount_label_minimal {
                 background: white;
                 position: absolute;
                 display: inline-block;

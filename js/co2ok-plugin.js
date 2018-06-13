@@ -79,7 +79,7 @@ var Co2ok_JS = function ()
                 jQuery.post(ajax_object.ajax_url, data, function(response)
                 {
                     if (typeof response.compensation_amount != 'undefined') {
-                        jQuery('.compensation_amount').html('+'+response.compensation_amount);
+                        jQuery('[class*="compensation_amount"]').html('+'+response.compensation_amount);
                     }
                 });
             });

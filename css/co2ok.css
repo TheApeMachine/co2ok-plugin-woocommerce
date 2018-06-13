@@ -1,4 +1,4 @@
-.co2ok_container_default .co2ok_checkbox_container_default .inner_checkbox_label_default:after, .co2ok_container_default .co2ok_checkbox_container_default.selected .inner_checkbox_label_default, .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .compensation_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal .inner_compensation_amount_label_minimal {
+.co2ok_container_default .co2ok_checkbox_container_default .inner_checkbox_label_default:after, .co2ok_container_default .co2ok_checkbox_container_default.selected .inner_checkbox_label_default, .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .comp_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal {
   background: -webkit-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
   background: -o-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
   background: linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%); }
@@ -239,9 +239,9 @@ img#co2ok_logo_minimal_info {
     font-weight: 500; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected {
       box-shadow: none; }
-      .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .compensation_amount_label_minimal {
+      .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .comp_amount_label_minimal {
         color: #05B139; }
-    .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal {
+    .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal {
       background: #E1E6E7;
       position: absolute;
       display: inline-block;
@@ -265,10 +265,10 @@ img#co2ok_logo_minimal_info {
       left: 160px;
       content: '';
       z-index: -1; }
-      .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal > * {
+      .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal > * {
         display: inline-block;
         vertical-align: middle; }
-      .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal .inner_compensation_amount_label_minimal {
+      .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal {
         background: white;
         position: absolute;
         display: inline-block;
@@ -294,10 +294,10 @@ img#co2ok_logo_minimal_info {
         right: -2px;
         content: '';
         z-index: -1; }
-        .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal .inner_compensation_amount_label_minimal > * {
+        .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal > * {
           display: inline-block;
           vertical-align: middle; }
-        .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .compensation_amount_label_minimal .inner_compensation_amount_label_minimal .compensation_amount_minimal {
+        .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal .compensation_amount_minimal {
           position: absolute;
           margin: 0;
           font-size: 11pt;
