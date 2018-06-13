@@ -14,11 +14,11 @@ var Co2ok_JS = function ()
             var _this = this;
 
             jQuery(document).ready(function () {
+                jQuery( document.body ).on( 'updated_cart_totals', function(){
+                    _this.GetPercentageFromMiddleware();
+                });
+                
                 if(window.location.href.indexOf("cart") > -1 || window.location.href.indexOf("checkout") > -1) {
-                    jQuery( document.body ).on( 'updated_cart_totals', function(){
-                        _this.GetPercentageFromMiddleware();
-                    });
-
                     _this.GetPercentageFromMiddleware();
                 }
 
@@ -78,7 +78,9 @@ var Co2ok_JS = function ()
                 };
                 jQuery.post(ajax_object.ajax_url, data, function(response)
                 {
-                    jQuery('.compensation_amount').html('+'+response.compensation_amount);
+                    if (typeof response.compensation_amount != 'undefined') {
+                        jQuery('.compensation_amount').html('+'+response.compensation_amount);
+                    }
                 });
             });
 
