@@ -5,7 +5,7 @@ Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carb
 Requires at least: 4.0
 Tested up to: 4.9.6
 WC tested up to: 3.4.2
-Stable tag: 1.0.1.3
+Stable tag: 1.0.1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,13 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.1.4
+* Adds minimal design option for our button
+* Updates Freemius SDK for GDPR compliance
+* Fixes bugs with non-updating amount on button
+* Includes Roboto font via httpS (thanks Linda!)
+* Minor fixes
 
 = 1.0.1.3
 * Reverts JS implementation to more compatible one
