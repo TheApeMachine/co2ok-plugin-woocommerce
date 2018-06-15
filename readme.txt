@@ -60,7 +60,7 @@ We gather as little data as possible, specifically:
 
 = 1.0.1.5
 * Fixes some CSS issues
-* Adds explanatory sentence to minimal button design
+* Adds explanatory sentence to the minimal button design
 
 = 1.0.1.4
 * Adds minimal design option for our button
