@@ -5,7 +5,7 @@ Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carb
 Requires at least: 4.0
 Tested up to: 4.9.6
 WC tested up to: 3.4.2
-Stable tag: 1.0.1.4
+Stable tag: 1.0.1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,10 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.1.5
+* Fixes some CSS issues
+* Adds explanatory sentence to minimal button design
 
 = 1.0.1.4
 * Adds minimal design option for our button
