@@ -308,8 +308,11 @@ img#co2ok_logo_minimal_info {
                 float: right;
                 font-size: 20px;
                 font-weight: 500;
+                letter-spacing: 0px;
+                font-family: Roboto, sans-serif;
            }
            .make_minimal {
+            letter-spacing: 0px;
             font-family: Roboto, sans-serif;
            }
         }
@@ -325,6 +328,8 @@ img#co2ok_logo_minimal_info {
                 float: right;
                 font-size: 20px;
                 font-weight: 500;
+                letter-spacing: 0px;
+                font-family: Roboto, sans-serif;
            }
            .make_minimal {
             font-family: Roboto, sans-serif;
@@ -425,6 +430,8 @@ img#co2ok_logo_minimal_info {
                        left: 50%;
                        margin-right: -50%;
                        transform: translate(-50%, -50%);
+                       letter-spacing: 0px;
+                        font-family: Roboto, sans-serif;
                    }
                 }
             }
@@ -465,6 +472,7 @@ img#co2ok_logo_minimal_info {
             font-size: 10pt;
             left: 40.5px;
             top: -12px;
+            letter-spacing: -0.0538461em;
             font-family: Roboto, sans-serif;
         }
     }
