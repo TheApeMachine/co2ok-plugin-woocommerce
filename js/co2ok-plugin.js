@@ -104,11 +104,11 @@ var Co2ok_JS = function ()
                     jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_cart_hidden" checked value="1" style="display:none">');
 
                     if (jQuery('#co2ok_checkout_hidden').length === 0) {
-                        jQuery('form.woocommerce-checkout').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="1" style="display:none">');
+                        jQuery('form.woocommerce-checkout, .woocommerce form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="1" style="display:none">');
                     }
                     else {
                         jQuery('#co2ok_checkout_hidden').remove();
-                        jQuery('form.woocommerce-checkout').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="1" style="display:none">');
+                        jQuery('form.woocommerce-checkout, .woocommerce form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="1" style="display:none">');
                     }
 
                 }else {
@@ -117,22 +117,22 @@ var Co2ok_JS = function ()
                     jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_cart_hidden"  checked value="0" style="display:none">');
 
                     if (jQuery('#co2ok_checkout_hidden').length === 0) {
-                        jQuery('form.woocommerce-checkout').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="0" style="display:none">');
+                        jQuery('form.woocommerce-checkout, .woocommerce form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="0" style="display:none">');
                     }
                     else {
                         jQuery('#co2ok_checkout_hidden').remove();
-                        jQuery('form.woocommerce-checkout').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="0" style="display:none">');
+                        jQuery('form.woocommerce-checkout, .woocommerce form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="0" style="display:none">');
                     }
 
                 }
 
 
-                jQuery('.woocommerce-cart-form').find('input.qty').first().unbind();
-                jQuery('.woocommerce-cart-form').find('input.qty').first().bind('change', function()
+                jQuery('.woocommerce-cart-form, .woocommerce form').find('input.qty').first().unbind();
+                jQuery('.woocommerce-cart-form, .woocommerce form').find('input.qty').first().bind('change', function()
                 {
                     setTimeout(function()
                     {
-                        jQuery(".woocommerce-cart-form").submit();
+                        jQuery("[name='update_cart']").trigger("click"); 
                     },200);
                 });
 
