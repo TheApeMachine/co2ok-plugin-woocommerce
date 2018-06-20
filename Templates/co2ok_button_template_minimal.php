@@ -39,7 +39,7 @@
                   echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
               ?>
             </span>
-          </div>
+
 
     </span>
 
