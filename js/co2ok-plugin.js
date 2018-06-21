@@ -139,6 +139,7 @@ var Co2ok_JS = function ()
                 setTimeout(function()
                 {
                     jQuery('body').trigger('update_checkout');
+                    jQuery("[name='update_cart']").trigger("click"); 
                 },200);
 
 
