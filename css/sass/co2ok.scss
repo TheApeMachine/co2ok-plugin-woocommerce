@@ -54,6 +54,9 @@
     margin-left: 3px;
     .pointer {cursor: pointer;}
 
+    .co2ok_adaptive_color {
+        color: white;
+    }
 
     .co2ok_payoff {
          width: 100%;
@@ -343,6 +346,9 @@ img#co2ok_logo_minimal_info {
 .co2ok_container_minimal {
     width: 320px;
     .co2ok_checkbox_container_minimal {
+        .co2ok_adaptive_color {
+            color: white;
+        }
         font-weight: 500;
         &.selected {
             box-shadow: none;

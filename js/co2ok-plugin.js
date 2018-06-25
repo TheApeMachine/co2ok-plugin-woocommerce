@@ -2,6 +2,45 @@ var Co2ok_JS = function ()
 {
 
     var image_url = plugin.url;
+    
+    function getBackground(jqueryElement) {
+        // Is current element's background color set?
+        var color = jqueryElement.css("background-color");
+        
+        if (color !== 'rgba(0, 0, 0, 0)') {
+            // if so then return that color
+            return color;
+        }
+    
+        // if not: are you at the body element?
+        if (jqueryElement.is("body")) {
+            // return known 'false' value
+            return false;
+        } else {
+            // call getBackground with parent item
+            return getBackground(jqueryElement.parent());
+        }
+    }
+
+    function calcBackgroundBrightness($) {
+            var bgColor = getBackground(jQuery("#co2ok_cart")); //Grab the background colour of the element
+    
+            var rgb = bgColor.substring(bgColor.indexOf('(') + 1, bgColor.lastIndexOf(')')).split(/,\s*/), // Calculate the brightness of the element
+                red = rgb[0],
+                green = rgb[1],
+                blue = rgb[2],
+                brightness = Math.sqrt((.241 * (red * red)) + (.671 * (green * green)) + (.068 * (blue * blue)));
+           
+            return brightness;
+    }
+
+    jQuery(function() {
+        if (calcBackgroundBrightness() > 185) { //Set the text color based on the brightness
+            jQuery( ".co2ok_adaptive_color_default" ).removeClass( "co2ok_adaptive_color" );
+        } else {
+            jQuery( ".co2ok_adaptive_color_default" ).addClass( "co2ok_adaptive_color" );
+        }
+    });
 
     return {
 
@@ -37,6 +76,13 @@ var Co2ok_JS = function ()
                 if(jQuery('#co2ok_cart').is(":checked"))
                 {
                     jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
+                }
+
+                if(calcBackgroundBrightness() > 185){ // picks logo based on background brightness for minimal button design
+                    jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo.svg');
+                }
+                else {
+                    jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo_licht.svg');
                 }
 
         },
