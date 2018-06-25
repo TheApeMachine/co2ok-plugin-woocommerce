@@ -513,22 +513,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $_product = $values['data'];
 
             $product_data = array();
-            // $product_data['name'] = $_product->get_name();
-            $product_data['name'] = version_compare( WC_VERSION, '3.0', '<' ) ? $product->name : $product->get_name();
+            $product_data['name'] = version_compare( WC_VERSION, '2.7', '<' ) ? $product->name : $_product->get_name();
             $product_data['quantity'] = $values['quantity'];
             $product_data['brand'] = "";
-            // // $product_data['description'] = $_product->get_description();
-            $product_data['description'] = version_compare( WC_VERSION, '3.0', '<' ) ? $product->description : $product->get_description();
-            // $product_data['shortDescription'] = $_product->get_short_description();
-            $product_data['shortDescription'] = version_compare( WC_VERSION, '3.0', '<' ) ? $product->shortDescription : $product->get_shortDescription();
+            $product_data['description'] = version_compare( WC_VERSION, '2.7', '<' ) ? $product->description : $_product->get_description();
+            $product_data['shortDescription'] = version_compare( WC_VERSION, '2.7', '<' ) ? $product->shortDescription : $_product->get_short_description();
             $product_data['sku'] = $_product->get_sku();
             // $product_data['gtin'] = $_product->get;
             $product_data['price'] = $_product->get_price();
             $product_data['taxClass'] = $_product->get_tax_class();
             $product_data['weight'] = $_product->get_weight();
             $product_data['attributes'] = $_product->get_attributes();
-            // $product_data['defaultAttributes'] = $_product->get_default_attributes();
-            $product_data['defaultAttributes'] = version_compare( WC_VERSION, '3.0', '<' ) ? $product->defaultAttributes : $product->get_defaultAttributes();
+            $product_data['defaultAttributes'] = version_compare( WC_VERSION, '2.7', '<' ) ? $product->defaultAttributes : $_product->get_default_attributes();
 
             $cart[] = $product_data;
         }
