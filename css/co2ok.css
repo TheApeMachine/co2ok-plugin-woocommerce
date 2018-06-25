@@ -10,7 +10,8 @@
   font-family: Roboto, sans-serif;
   color: #606468;
   z-index: 10;
-  margin-left: 3px; }
+  margin-left: 3px;
+  cursor: pointer; }
   .co2ok_container html, .co2ok_container body, .co2ok_container div, .co2ok_container span, .co2ok_container applet, .co2ok_container object, .co2ok_container iframe,
   .co2ok_container h1, .co2ok_container h2, .co2ok_container h3, .co2ok_container h4, .co2ok_container h5, .co2ok_container h6, .co2ok_container p, .co2ok_container blockquote, .co2ok_container pre,
   .co2ok_container a, .co2ok_container abbr, .co2ok_container acronym, .co2ok_container address, .co2ok_container big, .co2ok_container cite, .co2ok_container code,
@@ -46,8 +47,6 @@
   .co2ok_container table {
     border-collapse: collapse;
     border-spacing: 0; }
-  .co2ok_container .pointer {
-    cursor: pointer; }
   .co2ok_container .co2ok_payoff {
     width: 100%;
     margin-top: 7px;
