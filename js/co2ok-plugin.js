@@ -23,15 +23,15 @@ var Co2ok_JS = function ()
     }
 
     function calcBackgroundBrightness($) {
-            var bgColor = getBackground(jQuery("#co2ok_cart")); //Grab the background colour of the element
+        var bgColor = getBackground(jQuery("#co2ok_cart")); //Grab the background colour of the element
     
-            var rgb = bgColor.substring(bgColor.indexOf('(') + 1, bgColor.lastIndexOf(')')).split(/,\s*/), // Calculate the brightness of the element
-                red = rgb[0],
-                green = rgb[1],
-                blue = rgb[2],
-                brightness = Math.sqrt((.241 * (red * red)) + (.671 * (green * green)) + (.068 * (blue * blue)));
+        var rgb = bgColor.substring(bgColor.indexOf('(') + 1, bgColor.lastIndexOf(')')).split(/,\s*/), // Calculate the brightness of the element
+            red = rgb[0],
+            green = rgb[1],
+            blue = rgb[2],
+            brightness = Math.sqrt((.241 * (red * red)) + (.671 * (green * green)) + (.068 * (blue * blue)));
            
-            return brightness;
+        return brightness;
     }
 
     jQuery(function() {
