@@ -252,18 +252,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
      */
     final public function __construct()
     {
-        /**
-         * Check if WooCommerce is active
-         **/
-        if ( ! function_exists( 'co2ok_plugin_woocommerce\is_woocommerce_activated' ) ) {
-            function is_woocommerce_activated() {
-                if ( class_exists( 'woocommerce' ) ) { return true; } else { return false; }
-            }
-        }
-        // if (in_array('woocommerce/woocommerce.php', apply_filters(
-        //     'active_plugins', get_option('active_plugins'))))
-        // if (is_woocommerce_activated())
-        // {
                 /**
                  * Load translations
                  */
@@ -304,12 +292,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 if (!$alreadyActivated)
                     Co2ok_Plugin::registerMerchant();
 
-        // }
-        // else
-        // {
-        //     // TODO this needs to be a prettier warning, but at least it doesn't break WP.
-        //     trigger_error( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ), E_USER_WARNING);  
-        // }
     }
 
     final public function co2ok_ajax_set_percentage()
