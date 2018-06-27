@@ -47,6 +47,10 @@
   .co2ok_container table {
     border-collapse: collapse;
     border-spacing: 0; }
+  .co2ok_container .pointer {
+    cursor: pointer; }
+  .co2ok_container .co2ok_adaptive_color {
+    color: white; }
   .co2ok_container .co2ok_payoff {
     width: 100%;
     margin-top: 7px;
@@ -255,6 +259,8 @@ img#co2ok_logo_minimal_info {
   width: 320px; }
   .co2ok_container_minimal .co2ok_checkbox_container_minimal {
     font-weight: 500; }
+    .co2ok_container_minimal .co2ok_checkbox_container_minimal .co2ok_adaptive_color {
+      color: white; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected {
       box-shadow: none; }
       .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .comp_amount_label_minimal {
