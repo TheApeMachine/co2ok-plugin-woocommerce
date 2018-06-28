@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.1.7
+ * Version: 1.0.1.6
  *         (Remember to change the VERSION constant, below, as well!)
  * 
  * Tested up to: 4.9.6
@@ -20,7 +20,7 @@
  * Text Domain: co2ok-for-woocommerce
  * Author URI: http://www.co2ok.eco/
  * License: GPLv2
- * @package co2ok-plugin-woocommerce
+ * @package co2ok-plugin-woocommerce-max
  *
  */
 namespace co2ok_plugin_woocommerce;
@@ -349,13 +349,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final private function co2ok_storeTransaction($order_id)
     {
-        $order = wc_get_order($order_id);
+        $order = new \WC_Order($order_id);
         $fees = $order->get_fees();
 
         $compensationCost = 0;
         foreach ($fees as $fee) {
-            if ($fee->get_name() == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
-                $compensationCost = $fee->get_total();
+            $feeName = method_exists($fee, 'get_name') ? $fee->get_name() : $fee['name'];
+
+            if ($feeName == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
+                $compensationCost = $fee['line_total'];
                 break;
             }
         }
@@ -417,19 +419,19 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     // Co2ok_Plugin::failGracefully($formattedError);
                 }
             });
-    }
-
-    final public function co2ok_store_transaction_when_compensating($order_id, $old_status, $new_status)
-    {
-        global $woocommerce;
-        switch ($new_status) {
-            case "processing":
+        }
+        
+        final public function co2ok_store_transaction_when_compensating($order_id, $old_status, $new_status)
+        {
+            global $woocommerce;
+            switch ($new_status) {
+                case "processing":
                 // $order = get_order($order_id);
                 $order = new \WC_Order($order_id);
                 $fees = $order->get_fees();
-
+                
                 foreach ($fees as $fee) {
-                    $feeName = method_exists($fee, 'get_name') ? $fee->get_name() : $fee->name;
+                    $feeName = method_exists($fee, 'get_name') ? $fee->get_name() : $fee['name'];
 
                     if ($feeName == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
                         // The user did opt for co2 compensation
@@ -466,7 +468,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $order_total = $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total;
         // $tax_rates = \WC_Tax::get_base_tax_rates( );
 
-        $highest_tax_rate = 0;
+        $highest_tax_rate = 21;
         // foreach ($tax_rates as $tax_rate)
         // {
         //     if($highest_tax_rate < $tax_rate['rate'] )
@@ -495,18 +497,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $_product = $values['data'];
 
             $product_data = array();
-            $product_data['name'] = version_compare( WC_VERSION, '2.7', '<' ) ? $product->name : $_product->get_name();
+            $product_data['name'] = version_compare( WC_VERSION, '2.7', '<' ) ? $_product->name : $_product->get_name();
             $product_data['quantity'] = $values['quantity'];
             $product_data['brand'] = "";
-            $product_data['description'] = version_compare( WC_VERSION, '2.7', '<' ) ? $product->description : $_product->get_description();
-            $product_data['shortDescription'] = version_compare( WC_VERSION, '2.7', '<' ) ? $product->shortDescription : $_product->get_short_description();
+            $product_data['description'] = version_compare( WC_VERSION, '2.7', '<' ) ? $_product->description : $_product->get_description();
+            $product_data['shortDescription'] = version_compare( WC_VERSION, '2.7', '<' ) ? $_product->shortDescription : $_product->get_short_description();
             $product_data['sku'] = $_product->get_sku();
             // $product_data['gtin'] = $_product->get;
             $product_data['price'] = $_product->get_price();
             $product_data['taxClass'] = $_product->get_tax_class();
             $product_data['weight'] = $_product->get_weight();
             $product_data['attributes'] = $_product->get_attributes();
-            $product_data['defaultAttributes'] = version_compare( WC_VERSION, '2.7', '<' ) ? $product->defaultAttributes : $_product->get_default_attributes();
+            $product_data['defaultAttributes'] = version_compare( WC_VERSION, '2.7', '<' ) ? $_product->defaultAttributes : $_product->get_default_attributes();
 
             $cart[] = $product_data;
         }

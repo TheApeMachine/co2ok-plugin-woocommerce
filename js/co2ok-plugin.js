@@ -183,14 +183,7 @@ var Co2ok_JS = function ()
                 {
                     setTimeout(function()
                     {
-<<<<<<< c8a8a40085a7e3e555bfe90c7ab7e6dd072355b9
                         jQuery("[name='update_cart']").trigger("click"); 
-=======
-                        // jQuery(".woocommerce-cart-form").submit();
-                        // jQuery('body').trigger('update_cart');
-                        jQuery("[name='update_cart']").trigger("click"); 
-                        console.log('update cart')
->>>>>>> Fixes remaining issues with WC2.1
                     },200);
                 });
                 
@@ -198,10 +191,6 @@ var Co2ok_JS = function ()
                 {
                     jQuery('body').trigger('update_checkout');
                     jQuery("[name='update_cart']").trigger("click"); 
-<<<<<<< c8a8a40085a7e3e555bfe90c7ab7e6dd072355b9
-=======
-                    console.log('update checkout')
->>>>>>> Fixes remaining issues with WC2.1
                 },200);
 
 
