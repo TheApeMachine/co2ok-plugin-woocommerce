@@ -308,4 +308,8 @@ var Co2ok_JS = function ()
             }
         }
     }
-}().Init();
+}
+
+jQuery(document).ready(function() {
+    Co2ok_JS().Init()
+})
