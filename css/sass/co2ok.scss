@@ -160,7 +160,7 @@
          &.unselected {
 
             .make {
-                padding-top: 0px;
+                margin-bottom: 2px;
                 font-size: 20px;
                 font-family: Roboto, sans-serif;
             }
@@ -169,7 +169,7 @@
          &.selected {
              .make{
                  color: white;
-                 padding-top: 0px;
+                 margin-bottom: 2px;
                  font-size: 20px;
                  font-family: Roboto, sans-serif;
              }
