@@ -221,7 +221,8 @@ var Co2ok_JS = function ()
             offset.left = offset.left - infoBox.width() / 2;
             offset.top = offset.top + infoButton.height();
             infoBox.css({
-              ...offset,
+              top: offset.top,
+              left: offset.left,
               margin: "0",
               transform: "none"
             });
