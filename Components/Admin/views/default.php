@@ -30,11 +30,18 @@
                             <p><small>Additional benefits are less deforestation and health benefits, due to decreasing 
                                 smoke and poisonous carbon monoxide.</small>
                                 
+                        <h2>Want to help us some more?</h2>
+                        <p>If you do, please leave us a <a href=https://wordpress.org/support/view/plugin-reviews/co2ok-for-woocommerce?rate=5#new-post>5★ rating on WordPress.org</a>. It would be of great help to us.</p>
+                        <p>We need everybody on our team. So follow us on social media, share our posts, spread the love!</p>
+                        <h2>Like us on:</h2>
+                        <p><a href="https://www.instagram.com/co2ok.eco/" target="_blank"><span>Instagram</span></a></p>
+                        <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>
+                        <p><a href="https://twitter.com/CO2ok_eco" target="_blank" ><span>Twitter</span></a></p>
+
                         <h2>Coming soon! </h2>
                         <p>In our next update we will give you the choice to set the default state of the compensation 
-                            option and choose a different button design. These features are almost done, but we won't 
-                            ship them until they're extremely well tested and polished. Let us know if you have other
-                             ideas how we can improve our service/plugin!</p>     
+                            option. This feature is almost done, but we won't ship it until it's extremely well tested and polished. Let us know if you have other
+                            ideas how we can improve our service/plugin!</p>     
 
                         <!--<h2>Compensation preferences:</h2>
                         <p>By default we have set the button to OFF. But you can decide to set the CO2 OK button to default ON. This way you are in control,
@@ -78,25 +85,8 @@
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
 
                         </form>
-                        
-                        <p>The button design is set to <?php 
-                        // Tells the viewer whether the template is set to default or minimal
-                        if (get_option('co2ok_button_template') == 'co2ok_button_template_default')
-                        {
-                            echo "default";
-                        }
-                        else {
-                            echo "minimal";
-                        }
-                        '.</br>'; ?></p>
+                    
 
-                        <h2>Want to help us some more?</h2>
-                        <p>We need everybody on our team. So follow us on social media, share our posts!</p>
-                        <h2>Like us on:</h2>
-                        <p><a href="https://www.instagram.com/co2ok.eco/" target="_blank"><span>Instagram</span></a></p>
-                        <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>
-                        <p><a href="https://twitter.com/CO2ok_eco" target="_blank" ><span>Twitter</span></a></p>
-                        <br>
                         <h2>Something not working for you? Have a great idea or any other feedback? </h2>
                         <p>Call/text/WhatsApp us: <a href="tel:+31639765259">+31639765259</a></p>
                         <p>Drop us a line: <a href="mailto: make@co2ok.eco"><span>make@co2ok.eco</span></a></p>
@@ -105,7 +95,6 @@
                         <p><a href="http://www.co2ok.eco" target="_blank">www.co2ok.eco</a></p>
                         <br>
                         <hr>
-
 
                     </h3>
                 </div>
