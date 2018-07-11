@@ -280,12 +280,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                  */
 
                 /**
-                 * Register Front End
+                 * Register Front End: stylesheet, font and javascript
                  */
                 add_action('wp_enqueue_scripts', array($this, 'co2ok_stylesheet'));
                 add_action('wp_enqueue_scripts', array($this, 'co2ok_font'));
                 add_action('wp_enqueue_scripts', array($this, 'co2ok_javascript'));
 
+                // Register ajax actions
                 add_action('wp_ajax_nopriv_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
                 add_action('wp_ajax_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
 
@@ -303,6 +304,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
     }
 
+    // sends JSON response to an AJAX request with calculated percentage if the woocommerce percentage is present
+    // and if the percentage isn't 0
     final public function co2ok_ajax_set_percentage()
     {
         if( empty($_POST) )
@@ -326,6 +329,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         wp_send_json($return);
     }
 
+    // registers co2ok.css stylesheet and then loads through enqueue
     final public function co2ok_stylesheet()
     {
         wp_register_style('co2ok_stylesheet', plugins_url('css/co2ok.css', __FILE__).'?plugin_version='.self::VERSION);
@@ -339,10 +343,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_javascript()
     {
+        // Register and load co2ok javascript files:
+        // co2ok_js_cdn - co2ok javascript library
+        // co2ok_js_wp - co2ok plugin javascript
         wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true);
         wp_enqueue_script('co2ok_js_cdn');
         wp_register_script('co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__).'?plugin_version='.self::VERSION);
         wp_enqueue_script('co2ok_js_wp', "", array(), null, true);
+
+        // Localize the script with new data
         wp_localize_script('co2ok_js_wp', 'ajax_object',
             array('ajax_url' => admin_url('admin-ajax.php')));
         wp_localize_script('co2ok_js_wp', 'plugin',
@@ -350,11 +359,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     }
 
+    // Load co2ok plugin textdomain
     final public function co2ok_load_plugin_textdomain()
     {
         load_plugin_textdomain( 'co2ok-for-woocommerce', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
     }
 
+    // Stores co2ok Transaction if the order fees aren't 0
     final private function co2ok_storeTransaction($order_id)
     {
         $order = wc_get_order($order_id);
@@ -427,6 +438,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             });
     }
 
+    // store the co2ok transaction based on cases: processing, refunded, cancelled
     final public function co2ok_store_transaction_when_compensating($order_id, $old_status, $new_status)
     {
         global $woocommerce;
