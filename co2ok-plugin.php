@@ -305,7 +305,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
     // sends JSON response to an AJAX request with calculated percentage if the woocommerce percentage is present
-    // and if the percentage isn't 0
+    // and if the percentage isn't negative
     final public function co2ok_ajax_set_percentage()
     {
         if( empty($_POST) )
@@ -359,7 +359,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     }
 
-    // Load co2ok plugin textdomain
     final public function co2ok_load_plugin_textdomain()
     {
         load_plugin_textdomain( 'co2ok-for-woocommerce', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
@@ -438,7 +437,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             });
     }
 
-    // store the co2ok transaction based on cases: processing, refunded, cancelled
+    // store, refund or cancel the co2ok transaction based on cases
     final public function co2ok_store_transaction_when_compensating($order_id, $old_status, $new_status)
     {
         global $woocommerce;
