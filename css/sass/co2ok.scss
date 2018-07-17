@@ -60,7 +60,7 @@
 
     .co2ok_payoff {
          width: 100%;
-         margin-top: 7px;
+         margin-top: -22px;
          font-size: 14px;
          text-align: center;
          font-family: $font;
@@ -69,20 +69,26 @@
          line-height: normal;
          display: block;
          letter-spacing: -0.0538461em;
-         margin-left: -5%;
+         //margin-left: -3%;
          color: #4D5155;
          width: 110%;
          #p {
              vertical-align: middle;
              display: inline-block;
-             margin-left: 12px;
-             & img{
-                 width: 18px;
-                 //margin-top: -6px;
-                 display: inline-block;
-                 @media #{$small} {
-                  width: 18px;
-                 }
+             margin-left: -6px;
+            .co2ok_info_hitarea{
+                height: 72px;
+                width: 72px;
+                background-color: rgba(0, 0, 0, 0);
+                border-radius: 50%;
+                display: inline-block;
+                margin-left: -17px;
+                position: relative;
+                & img{
+                    width: 18px;
+                    margin-top: 25px;
+                    display: inline-block;
+                }
             }
         }
     }
@@ -479,12 +485,19 @@ img#co2ok_logo_minimal_info {
                         display: inline-block;
                         padding: none;
                         margin-left: 7px;
-                        & img{
-                            width: 18px;
-                            margin-top: -3px;
+                        .co2ok_info_hitarea{
+                            height: 72px;
+                            width: 72px;
+                            background-color: rgba(0, 0, 0, 0);
+                            border-radius: 50%;
                             display: inline-block;
-                            @media #{$small} {
-                             width: 16px;
+                            margin-left: -25px;
+                            position: relative;
+                            bottom: 30px;
+                            & img{
+                                width: 18px;
+                                margin-top: 27px;
+                                display: inline-block;
                             }
                         }
                     }

@@ -242,6 +242,8 @@ var Co2ok_JS = function ()
             jQuery(".co2ok_container").css({
               marginBottom: 200
             });
+            var elmnt = document.getElementById("infobox-view");
+            elmnt.scrollIntoView(false); // false leads to bottom of the infobox
         },
 
         hideInfoBox : function()
@@ -258,6 +260,7 @@ var Co2ok_JS = function ()
              jQuery(e.target).hasClass("text-block") ||
              jQuery(e.target).hasClass("inner-wrapper") ||
              jQuery(e.target).hasClass("co2ok_info") ||
+             jQuery(e.target).hasClass("co2ok_info_hitarea") ||
              jQuery(e.target).hasClass("co2ok_infobox_container") ||
              jQuery(e.target).hasClass("hover-link");
          },
