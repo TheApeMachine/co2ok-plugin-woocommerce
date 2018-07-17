@@ -31,17 +31,12 @@
                                 smoke and poisonous carbon monoxide.</small>
                                 
                         <h2>Want to help us some more?</h2>
-                        <p>If you do, please leave us a <a href=https://wordpress.org/support/view/plugin-reviews/co2ok-for-woocommerce?rate=5#new-post>5★ rating on WordPress.org</a>. It would be of great help to us.</p>
+                        <p>If you do, please leave us a <a href=https://wordpress.org/support/view/plugin-reviews/co2ok-for-woocommerce?rate=5#new-post>5★ rating on WordPress.org</a>. It would be a great help to us.</p>
                         <p>We need everybody on our team. So follow us on social media, share our posts, spread the love!</p>
-                        <h2>Like us on:</h2>
+                        <h2>Follow us on:</h2>
                         <p><a href="https://www.instagram.com/co2ok.eco/" target="_blank"><span>Instagram</span></a></p>
                         <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>
-                        <p><a href="https://twitter.com/CO2ok_eco" target="_blank" ><span>Twitter</span></a></p>
-
-                        <h2>Coming soon! </h2>
-                        <p>In our next update we will give you the choice to set the default state of the compensation 
-                            option. This feature is almost done, but we won't ship it until it's extremely well tested and polished. Let us know if you have other
-                            ideas how we can improve our service/plugin!</p>     
+                        <p><a href="https://twitter.com/CO2ok_eco" target="_blank" ><span>Twitter</span></a></p> 
 
                         <h2>Compensation preferences:</h2>
                         <p>By default we have set the button to OFF. But you can decide to set the CO2 OK button to default ON. This way you are in control,
