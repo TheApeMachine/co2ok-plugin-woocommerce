@@ -34,7 +34,7 @@ var Co2ok_JS = function ()
         return brightness;
     }
 
-    jQuery(function() {
+    function adaptiveTextColor() {
         var isIE = /*@cc_on!@*/false || !!document.documentMode, // Internet Explorer 6-11
         isEdge = !isIE && !!window.StyleMedia; // Edge 20+
     
@@ -47,7 +47,7 @@ var Co2ok_JS = function ()
         } else {
             jQuery( ".co2ok_adaptive_color_default" ).addClass( "co2ok_adaptive_color" );
         }
-    });
+    };
 
     return {
 
@@ -69,21 +69,18 @@ var Co2ok_JS = function ()
                 }
 
             });
-
-            jQuery("img#co2ok_info_hover_image")
-                .on('error', function()
-                {
-                    jQuery("#co2ok_info_hover_image").attr("src","https://s3.eu-central-1.amazonaws.com/co2ok-static/info-hover.png");
-                });
-
-                if (!(jQuery('#co2ok_cart').is(":checked"))) {
-                    jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
-                }
-
-                if(jQuery('#co2ok_cart').is(":checked"))
-                {
-                    jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
-                }
+            
+            if (!(jQuery('#co2ok_cart').is(":checked"))) {
+                jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
+            }
+            
+            if(jQuery('#co2ok_cart').is(":checked"))
+            {
+                jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
+            }
+            
+            if(jQuery("#co2ok_cart").length){ // if the co2ok cart is present, set text and logo based on background brightness
+                adaptiveTextColor();
 
                 if(calcBackgroundBrightness() > 185){ // picks logo based on background brightness for minimal button design
                     jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo.svg');
@@ -91,6 +88,7 @@ var Co2ok_JS = function ()
                 else {
                     jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo_licht.svg');
                 }
+            }
 
         },
         GetPercentageFromMiddleware: function()
