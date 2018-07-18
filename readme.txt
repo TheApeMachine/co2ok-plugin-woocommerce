@@ -5,7 +5,7 @@ Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carb
 Requires at least: 4.0
 Tested up to: 4.9.7
 WC tested up to: 3.4.3
-Stable tag: 1.0.2.0
+Stable tag: 1.0.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,9 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.2.1
+* Hotfix to fix JS compatiblity with some themes
 
 = 1.0.2.0
 * Adds opt-out feature (please let us know what you think!)
