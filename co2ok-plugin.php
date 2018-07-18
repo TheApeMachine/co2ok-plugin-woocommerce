@@ -264,9 +264,57 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $this->helperComponent = new \co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent();
 
                 add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
-                add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                //add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                 add_action('woocommerce_cart_calculate_fees', array($this, 'co2ok_woocommerce_custom_surcharge'));
 
+                $disable_co2ok_button_on_cart = get_option('disable_co2ok_button_on_cart', 'false');
+                if ( isset ($_GET['disable_co2ok_button_on_cart=true'] )) {
+                    $disable_co2ok_button_on_cart= 'true';
+                    echo("<script>console.log('PHP: get is true');</script>");
+                    echo("<script>console.log('GET:".$_GET."');</script>");
+                    echo "<pre>";
+                    echo "POST";
+                    print_r($_POST);
+                    echo "GET";
+                    print_r($_POST);
+                    echo "</pre>";
+                }
+                
+                if ( isset ($_GET['disable_co2ok_button_on_cart=false'] )) {
+                    $disable_co2ok_button_on_cart= 'false';
+                    echo("<script>console.log('PHP: get is false');</script>");
+                    echo("<script>console.log('GET:".$_GET."');</script>");
+                    echo "<pre>";
+                    echo "POST";
+                    print_r($_POST);
+                    echo "GET";
+                    print_r($_POST);
+                    echo "</pre>";
+                }
+
+                if ( $disable_co2ok_button_on_cart == 0 ) {
+                    add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                    echo("<script>console.log('PHP: action is true');</script>");
+                    echo("<script>console.log('GET:".$_GET."');</script>");
+                    echo "<pre>";
+                    echo "POST";
+                    print_r($_POST);
+                    echo "GET";
+                    print_r($_POST);
+                    echo "</pre>";
+                }
+
+                if ( $disable_co2ok_button_on_cart == 1 ) {
+                    remove_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                    echo("<script>console.log('PHP: action is false');</script>");
+                    echo("<script>console.log('GET:".$_GET."');</script>");
+                    echo "<pre>";
+                    echo "POST";
+                    print_r($_POST);
+                    echo "GET";
+                    print_r($_POST);
+                    echo "</pre>";
+                }
                 /**
                  * Woocommerce' state for an order that's accepted and should be
                  * stored on our end is 'processing'

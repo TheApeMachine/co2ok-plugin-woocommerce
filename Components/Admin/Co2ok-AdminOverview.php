@@ -65,6 +65,11 @@ class Co2ok_AdminOverview
             update_option('co2ok_optout', $_POST['co2ok_optout']);
         }
 
+        if (isset($_POST['disable_co2ok_button_on_cart']))
+        {
+            update_option('disable_co2ok_button_on_cart', $_POST['disable_co2ok_button_on_cart']);
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             if (!isset($_POST['co2ok_statistics']))
@@ -79,13 +84,20 @@ class Co2ok_AdminOverview
                 update_option('co2ok_optout', 'off');
             }
 
+            if (!isset($_POST['disable_co2ok_button_on_cart']))
+            {
+                $_POST['disable_co2ok_button_on_cart'] = 'false';
+                update_option('disable_co2ok_button_on_cart', 'false');
+            }
+
             $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(\co2ok_plugin_woocommerce\Co2ok_Plugin::$co2okApiUrl);
 
             $merchantId = get_option('co2ok_id', false);
             $co2ok_statistics = get_option('co2ok_statistics', 'off');
             $co2ok_optout = get_option('co2ok_optout', 'off');
+            $disable_co2ok_button_on_cart = get_option('disable_co2ok_button_on_cart', 'false');
 
-            $graphQLClient->mutation(function ($mutation) use ($merchantId, $co2ok_statistics, $co2ok_optout)
+            $graphQLClient->mutation(function ($mutation) use ($merchantId, $co2ok_statistics, $co2ok_optout, $disable_co2ok_button_on_cart)
             {
                 $mutation->setFunctionName('updateMerchant');
 
@@ -93,7 +105,8 @@ class Co2ok_AdminOverview
                     array(
                         'merchantId' => $merchantId,
                         'sendStats' => $co2ok_statistics,
-                        'optout' => $co2ok_optout
+                        'optout' => $co2ok_optout,
+                        'disable_co2ok_button_on_cart' => $disable_co2ok_button_on_cart
                     )
                 );
                 $mutation->setFunctionReturnTypes(array('ok'));
@@ -108,6 +121,7 @@ class Co2ok_AdminOverview
         $co2ok_button_template = get_option('co2ok_button_template', 'co2ok_button_template_default');
         $co2ok_statistics = get_option('co2ok_statistics', 'off');
         $co2ok_optout = get_option('co2ok_optout', 'off');
+        $disable_co2ok_button_on_cart = get_option('disable_co2ok_button_on_cart', 'false');
       
         include_once plugin_dir_path(__FILE__).'views/default.php';
     }
