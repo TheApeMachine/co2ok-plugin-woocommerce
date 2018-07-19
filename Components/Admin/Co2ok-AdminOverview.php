@@ -116,7 +116,6 @@ class Co2ok_AdminOverview
         $co2ok_button_template = get_option('co2ok_button_template', 'co2ok_button_template_default');
         $co2ok_statistics = get_option('co2ok_statistics', 'off');
         $co2ok_optout = get_option('co2ok_optout', 'off');
-        $disable_co2ok_button_on_cart = get_option('disable_co2ok_button_on_cart', 'false');
       
         include_once plugin_dir_path(__FILE__).'views/default.php';
     }
