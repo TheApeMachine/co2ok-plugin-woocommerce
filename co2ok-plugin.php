@@ -101,7 +101,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
     // Percentage should be returned by the middleware, else: 1%
-    private $percentage = 1;
+    private $percentage = 0.826446280991736;
     private $surcharge  = 0;
 
     private $helperComponent;

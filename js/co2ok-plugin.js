@@ -64,9 +64,7 @@ var Co2ok_JS = function ()
                     _this.GetPercentageFromMiddleware();
                 });
                 
-                if(window.location.href.indexOf("cart") > -1 || window.location.href.indexOf("checkout") > -1) {
-                    _this.GetPercentageFromMiddleware();
-                }
+                _this.GetPercentageFromMiddleware();
 
             });
             
