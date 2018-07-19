@@ -58,6 +58,10 @@ We gather as little data as possible, specifically:
 
 == Changelog ==
 
+= 1.0.2.2
+* Only scroll for hoverbox on mobile
+* Fixes VAT being applied twice on cart page
+
 = 1.0.2.1
 * Hotfix to fix JS compatiblity with some themes
 
