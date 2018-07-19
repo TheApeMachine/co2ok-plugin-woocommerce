@@ -267,30 +267,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                 add_action('woocommerce_cart_calculate_fees', array($this, 'co2ok_woocommerce_custom_surcharge'));
 
-                // Check if a value is given in the search bar for the Disable co2ok button on Cart option
-                $disable_co2ok_button_on_cart = isset($_GET['disable_co2ok_button_on_cart']) ? $_GET['disable_co2ok_button_on_cart'] : '';
-
-                // If there is nothing set for the Disable Button on Cart option, just add the button
-                if ( !isset($_GET['disable_co2ok_button_on_cart']) &&  $disable_co2ok_button_on_cart == '' ){
-                    add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
-                }
-
-                // User needs to insert what is inside the following braces (&disable_co2ok_button_on_cart=true)
-                // in the search bar to use this action
-                // Removes the button at Cart Page if the disable option is True and saves this to the wp database
-                if ( $disable_co2ok_button_on_cart == 'true' ) {
-                    remove_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
-                    update_option('disable_co2ok_button_on_cart', 'true');
-                }
-
-                // User needs to insert what is inside the following braces (&disable_co2ok_button_on_cart=false)
-                // in the search bar to use this action
-                // Adds the button at Cart Page if the disable option is True and saves this to the wp database
-                if (  $disable_co2ok_button_on_cart == 'false' ) {
-                    add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
-                    update_option('disable_co2ok_button_on_cart', 'false');
-                }
-
                 // Retrieve the disable button state (Either 'true' or 'false') from the wp databse
                 $saved_disabled_co2ok_button_on_cart = get_option('disable_co2ok_button_on_cart', 'false');
 
