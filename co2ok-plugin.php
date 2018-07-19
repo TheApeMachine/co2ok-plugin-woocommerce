@@ -285,8 +285,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $this->helperComponent = new \co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent();
 
                 add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
-                add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                
+                $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
+                if ( $co2ok_disable_button_on_cart == 'false' )
+                    add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                
                 add_action('woocommerce_cart_calculate_fees', array($this, 'co2ok_woocommerce_custom_surcharge'));
+
 
                 /**
                  * Woocommerce' state for an order that's accepted and should be
