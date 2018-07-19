@@ -264,40 +264,44 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $this->helperComponent = new \co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent();
 
                 add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
-                //add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                 add_action('woocommerce_cart_calculate_fees', array($this, 'co2ok_woocommerce_custom_surcharge'));
 
+                // Check if a value is given in the search bar for the Disable co2ok button on Cart option
                 $disable_co2ok_button_on_cart = isset($_GET['disable_co2ok_button_on_cart']) ? $_GET['disable_co2ok_button_on_cart'] : '';
-                // $disable_co2ok_button_on_cart = get_option('disable_co2ok_button_on_cart', 'false');
+
+                // If there is nothing set for the Disable Button on Cart option, just add the button
                 if ( !isset($_GET['disable_co2ok_button_on_cart']) &&  $disable_co2ok_button_on_cart == '' ){
                     add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                 }
+
+                // User needs to insert what is inside the following braces (&disable_co2ok_button_on_cart=true)
+                // in the search bar to use this action
+                // Removes the button at Cart Page if the disable option is True and saves this to the wp database
                 if ( $disable_co2ok_button_on_cart == 'true' ) {
                     remove_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                     update_option('disable_co2ok_button_on_cart', 'true');
-                    // $disable_co2ok_button_on_cart= 'true';
-                    echo("<script>console.log('PHP: get is true');</script>");
-                    echo("<script>console.log('GET:".$_GET."');</script>");
-                    echo "<pre>";
-                    echo "POST";
-                    print_r($_POST);
-                    echo "GET";
-                    print_r($_GET);
-                    echo "</pre>";
                 }
-                
+
+                // User needs to insert what is inside the following braces (&disable_co2ok_button_on_cart=false)
+                // in the search bar to use this action
+                // Adds the button at Cart Page if the disable option is True and saves this to the wp database
                 if (  $disable_co2ok_button_on_cart == 'false' ) {
                     add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
-                    // $disable_co2ok_button_on_cart= 'false';
                     update_option('disable_co2ok_button_on_cart', 'false');
-                    echo("<script>console.log('PHP: get is false');</script>");
-                    echo("<script>console.log('GET:".$_GET."');</script>");
-                    echo "<pre>";
-                    echo "POST";
-                    print_r($_POST);
-                    echo "GET";
-                    print_r($_GET);
-                    echo "</pre>";
+                }
+
+                // Retrieve the disable button state (Either 'true' or 'false') from the wp databse
+                $saved_disabled_co2ok_button_on_cart = get_option('disable_co2ok_button_on_cart', 'false');
+
+                // If the retrieved state for disable button on Cart Page is True, remove the Button from Cart Page
+                if ( $saved_disabled_co2ok_button_on_cart == 'true' ) {
+                    remove_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                }
+
+                // If the retrieved state for disable button on Cart Page is False, add the Button to Cart Page
+                if ( $saved_disabled_co2ok_button_on_cart == 'false' ) {
+                    add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                 }
 
                 /**
