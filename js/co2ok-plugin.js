@@ -322,5 +322,7 @@ var Co2ok_JS = function ()
 }
 
 jQuery(document).ready(function() {
-    Co2ok_JS().Init()
+    if(jQuery("#co2ok_cart").length){
+        Co2ok_JS().Init()
+    }
 })
