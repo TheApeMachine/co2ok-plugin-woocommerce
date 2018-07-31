@@ -385,6 +385,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         $order = wc_get_order($order_id);
         $fees = $order->get_fees();
+        $customerEmail = get_email($context = 'view');
 
         $compensationCost = 0;
         foreach ($fees as $fee) {
