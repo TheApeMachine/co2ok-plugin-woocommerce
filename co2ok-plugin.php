@@ -62,6 +62,7 @@ co2okfreemius();
 do_action( 'co2okfreemius_loaded' );
 
 // Freemius opt-in Text Customization
+// TODO text bij verse install, string heet connect-message ipv connect-message_on-update
 function my_fs_custom_connect_message_on_update(
     $message,
     $user_first_name,
