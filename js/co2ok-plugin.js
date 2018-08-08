@@ -78,14 +78,14 @@ var Co2ok_JS = function ()
             }
             
             if(jQuery("#co2ok_cart").length){ // if the co2ok cart is present, set text and logo based on background brightness
-                adaptiveTextColor();
+                // adaptiveTextColor();
 
-                if(calcBackgroundBrightness() > 185){ // picks logo based on background brightness for minimal button design
+                // if(calcBackgroundBrightness() > 185){ // picks logo based on background brightness for minimal button design
                     jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo.svg');
-                }
-                else {
-                    jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo_licht.svg');
-                }
+                // }
+                // else {
+                //     jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo_licht.svg');
+                // }
             }
 
         },
