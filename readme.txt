@@ -3,9 +3,9 @@ Contributors: co2ok
 Donate link: http://co2ok.eco/
 Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental
 Requires at least: 4.0
-Tested up to: 4.9.7
-WC tested up to: 3.4.3
-Stable tag: 1.0.2.2
+Tested up to: 4.9.8
+WC tested up to: 3.4.4
+Stable tag: 1.0.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,9 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.2.3
+* fixes bugs with hoverbox and adaptive text colour
 
 = 1.0.2.2
 * Only scroll for hoverbox on mobile
