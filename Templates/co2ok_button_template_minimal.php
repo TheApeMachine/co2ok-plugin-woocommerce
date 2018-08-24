@@ -10,7 +10,7 @@
             ), $co2ok_session_opted);
         ?>
 
-
+        <!-- <a href="#" input type="button" role="button" tabindex="0"> -->
           <div class="inner_checkbox_label inner_checkbox_label_minimal">
             <div id="checkbox">  
             </div>
@@ -25,17 +25,21 @@
                     <span class="compensation_amount_minimal">+<?php echo $currency_symbol.''. $surcharge ?> </span>
                 </div>
               </div>
-
+          
 
               <span class="co2ok_payoff_minimal">
                     <span id="p_minimal">
+                    
                       <span class="co2ok_info_hitarea">
+                      <!-- <a href="#" input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea"> -->
                         <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/info.svg', 'co2ok_info', 'co2ok_info'); ?>
+                        <!-- </a> -->
                       </span>
                     </span>
                 </span>
                 
           </div>
+          <!-- </a> -->
             <span class="co2ok_payoff_sentence_minimal co2ok_adaptive_color_default">
               <?php
                   echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
