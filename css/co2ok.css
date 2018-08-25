@@ -11,8 +11,7 @@
   color: #606468;
   z-index: 10;
   margin-left: 3px;
-  cursor: pointer;
-  }
+  cursor: pointer; }
   .co2ok_container html, .co2ok_container body, .co2ok_container div, .co2ok_container span, .co2ok_container applet, .co2ok_container object, .co2ok_container iframe,
   .co2ok_container h1, .co2ok_container h2, .co2ok_container h3, .co2ok_container h4, .co2ok_container h5, .co2ok_container h6, .co2ok_container p, .co2ok_container blockquote, .co2ok_container pre,
   .co2ok_container a, .co2ok_container abbr, .co2ok_container acronym, .co2ok_container address, .co2ok_container big, .co2ok_container cite, .co2ok_container code,
@@ -26,13 +25,12 @@
   .co2ok_container figure, .co2ok_container figcaption, .co2ok_container footer, .co2ok_container header, .co2ok_container hgroup,
   .co2ok_container menu, .co2ok_container nav, .co2ok_container output, .co2ok_container ruby, .co2ok_container section, .co2ok_container summary,
   .co2ok_container time, .co2ok_container mark, .co2ok_container audio, .co2ok_container video {
-    /* margin: 0; */
-    /* padding: 0; */
-    /* border: 0; */
-    /* font-size: 100%; */
-    /* font: inherit; */
-    /* vertical-align: baseline; */
-    }
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline; }
   .co2ok_container article, .co2ok_container aside, .co2ok_container details, .co2ok_container figcaption, .co2ok_container figure,
   .co2ok_container footer, .co2ok_container header, .co2ok_container hgroup, .co2ok_container menu, .co2ok_container nav, .co2ok_container section {
     display: block; }
@@ -89,8 +87,7 @@
     position: relative;
     height: 54px; }
     .co2ok_container .co2ok_checkbox_container > * {
-      background-position: center;
-      }
+      background-position: center; }
     .co2ok_container .co2ok_checkbox_container #checkbox_label {
       background: #fff;
       border-radius: 10px; }
@@ -131,12 +128,15 @@
     .co2ok_container .co2ok_checkbox_container.unselected .make {
       margin-bottom: 2px;
       font-size: 20px;
-      font-family: Roboto, sans-serif; }
+      font-family: Roboto, sans-serif;
+      color: #05B139;
+      font-weight: 500; }
     .co2ok_container .co2ok_checkbox_container.selected .make {
       color: white;
       margin-bottom: 2px;
       font-size: 20px;
-      font-family: Roboto, sans-serif; }
+      font-family: Roboto, sans-serif;
+      font-weight: 500; }
     .co2ok_container .co2ok_checkbox_container.selected .co2ok_payoff {
       margin-bottom: 400px; }
     .co2ok_container .co2ok_checkbox_container.selected #checkbox {
@@ -271,7 +271,7 @@ img#co2ok_logo_minimal_info {
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-    color: #06d367;
+    color: #05B139;
     padding-left: 4px;
     left: -10px;
     margin-top: 12px;
