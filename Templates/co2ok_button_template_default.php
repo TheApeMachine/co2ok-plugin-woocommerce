@@ -52,7 +52,7 @@
 
         <div class="inner-wrapper">
         <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/even.svg', 'svg-img-large', '  co2ok_info_hover_image'); ?>
-        <a href="#" input type="text" role="button" tabindex="0" class="selectable-text">
+        <a href="#" input type="text" role="button" tabindex="0" class="selectable-text" style="outline: none;">
         <p class="text-block greyBorder"><?php echo __('We prevent the same amount of emissions',  'co2ok-for-woocommerce' );?></p>
         </a>
         </div>

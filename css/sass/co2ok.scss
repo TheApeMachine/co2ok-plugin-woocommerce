@@ -349,10 +349,6 @@ img#co2ok_logo_minimal_info {
                 letter-spacing: 0px;
                 font-family: Roboto, sans-serif;
            }
-           .make_minimal {
-            letter-spacing: 0px;
-            font-family: Roboto, sans-serif;
-           }
         }
         &.unselected {
             .compensation_amount_default {
@@ -372,6 +368,11 @@ img#co2ok_logo_minimal_info {
            }
            .make_minimal {
             font-family: Roboto, sans-serif;
+            a:link, a:visited, a:hover, a:active{
+                letter-spacing: 0px;
+                font-family: Roboto, sans-serif;
+                color: #4D5155;
+                }
            }
         }
     }
@@ -382,6 +383,14 @@ img#co2ok_logo_minimal_info {
 .co2ok_container_minimal {
     width: 320px;
     .co2ok_checkbox_container_minimal {
+
+        .co2ok_nolink {
+            color: inherit;
+            margin: 0px;
+            padding: 0px;
+            display: inherit;
+        }
+
         .co2ok_adaptive_color {
             color: white;
         }
@@ -474,6 +483,14 @@ img#co2ok_logo_minimal_info {
                        transform: translate(-50%, -50%);
                        letter-spacing: 0px;
                         font-family: Roboto, sans-serif;
+                        margin-bottom: 2px;
+                        &.selected {
+                            color: #05B139;
+                        }
+                        &.unselected {
+                            color: #4D5155;
+                        }
+                        font-weight: 500;
                    }
                 }
             }

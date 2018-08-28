@@ -10,8 +10,8 @@
             ), $co2ok_session_opted);
         ?>
 
-        <!-- <a href="#" input type="button" role="button" tabindex="0"> -->
-          <div class="inner_checkbox_label inner_checkbox_label_minimal">
+        <a href="#" input type="button" role="button" tabindex="0" style="outline: none;" class="co2ok_nolink">
+          <div class="inner_checkbox_label inner_checkbox_label_minimal" input type="button" role="button" tabindex="0" style="outline: none;">
             <div id="checkbox">  
             </div>
 
@@ -26,20 +26,19 @@
                 </div>
               </div>
           
-
               <span class="co2ok_payoff_minimal">
+                <span input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea co2ok_nolink" style="outline: none;">
                     <span id="p_minimal">
                     
                       <span class="co2ok_info_hitarea">
-                      <!-- <a href="#" input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea"> -->
                         <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/info.svg', 'co2ok_info', 'co2ok_info'); ?>
-                        <!-- </a> -->
                       </span>
                     </span>
-                </span>
+               </span>
+              </span>
                 
           </div>
-          <!-- </a> -->
+          </a>
             <span class="co2ok_payoff_sentence_minimal co2ok_adaptive_color_default">
               <?php
                   echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
@@ -52,17 +51,23 @@
     <div class="co2ok_infobox_container co2ok-popper" id="infobox-view">
 
         <div class="inner-wrapper">
+        <a href="#" input type="text" role="button" tabindex="0" class="selectable-text first-text-to-select" style="outline: none;">
           <p class="text-block greyBorder"><?php echo __('During manufacturing and shipping of products, greenhouse gases are emitted',  'co2ok-for-woocommerce' );?></p>
-          <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/fout.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
+        </a>
+        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/fout.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
         </div>
 
         <div class="inner-wrapper">
           <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/even.svg', 'svg-img-large', '  co2ok_info_hover_image'); ?>
+          <a href="#" input type="text" role="button" tabindex="0" class="selectable-text">
           <p class="text-block greyBorder"><?php echo __('We prevent the same amount of emissions',  'co2ok-for-woocommerce' );?></p>
+          </a>
         </div>
 
         <div class="inner-wrapper">
+        <a href="#" input type="text" role="button" tabindex="0" class="selectable-text">
           <p class="text-block"><?php echo __('This way, your purchase is climate neutral!',  'co2ok-for-woocommerce' );?></p>
+          </a>
         </div>
 
         <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo hover-link', 'co2ok_logo_minimal_info'); ?></a>

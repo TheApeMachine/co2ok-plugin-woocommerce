@@ -28,9 +28,10 @@
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
+    font-size: 0%;
     font: inherit;
-    vertical-align: baseline; }
+    vertical-align: baseline;
+    }
   .co2ok_container article, .co2ok_container aside, .co2ok_container details, .co2ok_container figcaption, .co2ok_container figure,
   .co2ok_container footer, .co2ok_container header, .co2ok_container hgroup, .co2ok_container menu, .co2ok_container nav, .co2ok_container section {
     display: block; }
@@ -264,9 +265,6 @@ img#co2ok_logo_minimal_info {
       font-weight: 500;
       letter-spacing: 0px;
       font-family: Roboto, sans-serif; }
-    .co2ok_container_default .co2ok_checkbox_container_default.selected .make_minimal {
-      letter-spacing: 0px;
-      font-family: Roboto, sans-serif; }
   .co2ok_container_default .co2ok_checkbox_container_default.unselected .compensation_amount_default {
     position: relative;
     overflow: hidden;
@@ -283,11 +281,21 @@ img#co2ok_logo_minimal_info {
     font-family: Roboto, sans-serif; }
   .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal {
     font-family: Roboto, sans-serif; }
+    .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal a:link, .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal a:visited, .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal a:hover, .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal a:active {
+      letter-spacing: 0px;
+      font-family: Roboto, sans-serif;
+      color: #4D5155; }
 
 .co2ok_container_minimal {
   width: 320px; }
   .co2ok_container_minimal .co2ok_checkbox_container_minimal {
     font-weight: 500; }
+    .co2ok_container_minimal .co2ok_checkbox_container_minimal .co2ok_nolink {
+      color: inherit;
+      margin: 0px;
+      padding: 0px;
+      display: inherit;
+      }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal .co2ok_adaptive_color {
       color: white; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected {
@@ -359,7 +367,13 @@ img#co2ok_logo_minimal_info {
           margin-right: -50%;
           transform: translate(-50%, -50%);
           letter-spacing: 0px;
-          font-family: Roboto, sans-serif; }
+          font-family: Roboto, sans-serif;
+          margin-bottom: 2px;
+          font-weight: 500; }
+          .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal .compensation_amount_minimal.selected {
+            color: #05B139; }
+          .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal .compensation_amount_minimal.unselected {
+            color: #4D5155; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .co2ok_payoff_minimal {
       position: absolute;
       padding-left: 10px;
