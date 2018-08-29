@@ -28,10 +28,9 @@
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 0%;
+    font-size: 100%;
     font: inherit;
-    vertical-align: baseline;
-    }
+    vertical-align: baseline; }
   .co2ok_container article, .co2ok_container aside, .co2ok_container details, .co2ok_container figcaption, .co2ok_container figure,
   .co2ok_container footer, .co2ok_container header, .co2ok_container hgroup, .co2ok_container menu, .co2ok_container nav, .co2ok_container section {
     display: block; }
@@ -130,7 +129,7 @@
       margin-bottom: 2px;
       font-size: 20px;
       font-family: Roboto, sans-serif;
-      color: #05B139;
+      color: #606468;
       font-weight: 500; }
     .co2ok_container .co2ok_checkbox_container.selected .make {
       color: white;
@@ -294,8 +293,7 @@ img#co2ok_logo_minimal_info {
       color: inherit;
       margin: 0px;
       padding: 0px;
-      display: inherit;
-      }
+      display: inherit; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal .co2ok_adaptive_color {
       color: white; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected {
