@@ -81,6 +81,22 @@
 
                         </form>
                     
+                        <h2>Button Placement:</h2>
+                        <p>By default we automatically generate the button on the Cart and Checkout pages in Cart Collaterals. But you can decide to place the button in specific locations on your webpage using a shortcode. 
+                        To use the shortcode you need to copy and paste the following;
+                        helping the environment even more!</p>
+                        
+                        <form method="POST">
+                        
+                            <input type="radio" name="co2ok_shortcode" id="off" value="off" <?php if($co2ok_shortcode == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="off">Automatically generate button. (Default)</label>
+                            <br>
+                            <input type="radio" name="co2ok_shortcode" id="on" value="on" <?php if($co2ok_shortcode == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="on">Use shortcode for button placement.</label>
+                            
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+                        </form>
 
                         <h2>Something not working for you? Have a great idea or any other feedback? </h2>
                         <p>Call/text/WhatsApp us: <a href="tel:+31639765259">+31639765259</a></p>

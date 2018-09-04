@@ -284,11 +284,26 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
                 $this->helperComponent = new \co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent();
 
-                add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
-                
-                $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
-                if ( $co2ok_disable_button_on_cart == 'false' )
-                    add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                $co2ok_placement_shortcode = get_option('co2ok_shortcode', 'off');
+
+                if ($co2ok_placement_shortcode == 'off') {
+                    echo "<script>console.log( 'Debug Objects: we got to off' );</script>";
+                    add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
+                    
+                    $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
+                    if ( $co2ok_disable_button_on_cart == 'false' )
+                        add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                }
+                else if ($co2ok_placement_shortcode == 'on') {
+                    add_action('woocommerce_cart_collaterals'||'woocommerce_after_order_notes', 'co2ok_register_shortcodes');
+                    echo "<script>console.log( 'Debug Objects: we got to on' );</script>";
+
+                    function co2ok_register_shortcodes() {
+                        echo "<script>console.log( 'Debug Objects: we got to register shortcodes' );</script>";
+                        add_shortcode('co2ok_button_short', 'co2ok_shortcode_checkbox');
+                    
+                    }
+                }
                 
                 add_action('woocommerce_cart_calculate_fees', array($this, 'co2ok_woocommerce_custom_surcharge'));
 
@@ -571,6 +586,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_checkout_checkbox()
     {
+        $this->renderCheckbox();
+    }
+
+    final public function co2ok_shortcode_checkbox(){
         $this->renderCheckbox();
     }
 
