@@ -287,17 +287,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 /*
                  * Use either default, shortcode or woocommerce specific area's for co2ok button placement
                  */
-                $co2ok_placement_shortcode = get_option('co2ok_shortcode', 'off');
+                $co2ok_placement = get_option('co2ok_placement', 'off');
                 $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
 
-                if ($co2ok_placement_shortcode == 'off') {
+                if ($co2ok_placement == 'off') {
                     add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
                     
                     $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
                     if ( $co2ok_disable_button_on_cart == 'false' )
                         add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                 }
-                else if ($co2ok_placement_shortcode == 'on') {
+                else if ($co2ok_placement == 'on') {
                     switch ($co2ok_checkout_placement) {
                         case "before_checkout_form":
                             add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
@@ -621,7 +621,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $this->renderCheckbox();
     }
 
-    final public function co2ok_shortcode_checkbox(){
+    final public function co2ok_placement_checkbox(){
         $this->renderCheckbox();
     }
 

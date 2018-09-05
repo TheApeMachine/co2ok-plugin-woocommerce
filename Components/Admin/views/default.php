@@ -87,10 +87,10 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_off" value="off" <?php if($co2ok_shortcode == 'off') echo "checked"; $co2ok_checkout_placement = "none" ?> >
+                            <input type="radio" name="co2ok_placement" id="co2ok_placement_off" value="off" <?php if($co2ok_placement == 'off') echo "checked"; $co2ok_checkout_placement = "none" ?> >
                             <label style="display: inline" for="off">Automatically generate button. (Default)</label>
                             </br>
-                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_on" value="on" <?php if($co2ok_shortcode == 'on') echo "checked"; ?> >
+                            <input type="radio" name="co2ok_placement" id="co2ok_placement_on" value="on" <?php if($co2ok_placement == 'on') echo "checked"; ?> >
                             <label style="display: inline" for="on">Pick a Checkout Page location.</label>
                             </br>
 
@@ -111,13 +111,13 @@
 
                         <script type="text/javascript">
                         // Make co2ok button checkout placement selection menu appear or disappear
-                        jQuery("#co2ok_shortcode_on").click(function() {
+                        jQuery("#co2ok_placement_on").click(function() {
                             jQuery('#co2ok_checkout_placement').css({"display":"block"});
                         });
-                        if (jQuery('#co2ok_shortcode_on').attr("checked")) {
+                        if (jQuery('#co2ok_placement_on').attr("checked")) {
                             jQuery('#co2ok_checkout_placement').css({"display":"block"});
                         };
-                        jQuery("#co2ok_shortcode_off").click(function() {
+                        jQuery("#co2ok_placement_off").click(function() {
                             jQuery('#co2ok_checkout_placement').css({"display":"none"});
                         });
                         </script>
