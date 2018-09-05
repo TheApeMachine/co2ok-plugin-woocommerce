@@ -62,7 +62,7 @@
                             <!-- Radiobutton for Default Button Design -->
                             <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="co2ok_button_template_default"
                             <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "checked"; ?> >
-                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_default">
+                            <label style="display: inline-block; vertical-align: middle;" for="button_style_radio_default">
                                 <img src="<?php echo esc_url(plugins_url('../../../images/button_default_co2ok.png', __FILE__));?>" 
                                 style="vertical-align: middle; width: 210px;"/>
                             </label>
@@ -71,7 +71,7 @@
                             <!-- Radiobutton for Minimal Button Design -->
                             <input type="radio" name="co2ok_button_template" id="button_style_radio_minimal" value="co2ok_button_template_minimal" 
                             <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "checked"; ?> >
-                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_minimal">
+                            <label style="display: inline-block; vertical-align: middle;" for="button_style_radio_minimal">
                                 <img src="<?php echo esc_url(plugins_url('../../../images/button_minimal_co2ok.png', __FILE__));?>" 
                                 style="vertical-align: middle; width: 200px;"/>
                             </label>
@@ -88,15 +88,55 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_shortcode" id="off" value="off" <?php if($co2ok_shortcode == 'off') echo "checked" ?> >
+                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_off" value="off" <?php if($co2ok_shortcode == 'off') echo "checked" ?> >
                             <label style="display: inline" for="off">Automatically generate button. (Default)</label>
-                            <br>
-                            <input type="radio" name="co2ok_shortcode" id="on" value="on" <?php if($co2ok_shortcode == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="on">Use shortcode for button placement.</label>
+                            </br>
+                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_short" value="short" <?php if($co2ok_shortcode == 'short') echo "checked" ?> >
+                            <label style="display: inline" for="short">Use shortcode for button placement.</label>
+                            </br>
+                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_on" value="on" <?php if($co2ok_shortcode == 'on') echo "checked";
                             
+                            ?> >
+                            <label style="display: inline" for="on">Use one of the general placements in the checkout.</label>
+                            </br>
+
+                            <select name="co2ok_checkout_placement" style="display:none;" id="co2ok_checkout_placement">
+                                <option value="before_checkout_form">Before checkout form</option>
+                                <option value="checkout_before_customer_details">Checkout before customer details</option>
+                                <option value="after_checkout_billing_form">After checkout billing form</option>
+                                <option value="before_order_notes">Before order notes</option>
+                                <option value="after_order_notes">After order notes</option>
+                                <option value="review_order_after_order_total">Review order after order total</option>
+                                <option value="review_order_before_submit">Review order before submit</option>
+                                <option value="review_order_after_submit">Review order after submit</option>
+                            </select>
+
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>
+                        
+                        <pre>
+$_POST:
+<?php
+   print_r($_POST);
+?>
+</pre>
+
+                        <script type="text/javascript">
+                        // Make co2ok button checkout placement selection menu appear or disappear
+                        jQuery("#co2ok_shortcode_on").click(function() {
+                            jQuery('#co2ok_checkout_placement').css({"display":"block"});
+                        });
+                        if (jQuery('#co2ok_shortcode_on').attr("checked")) {
+                            jQuery('#co2ok_checkout_placement').css({"display":"block"});
+                        };
+                        jQuery("#co2ok_shortcode_off").click(function() {
+                            jQuery('#co2ok_checkout_placement').css({"display":"none"});
+                        });
+                        jQuery("#co2ok_shortcode_short").click(function() {
+                            jQuery('#co2ok_checkout_placement').css({"display":"none"});
+                        });
+                        </script>
 
                         <h2>Something not working for you? Have a great idea or any other feedback? </h2>
                         <p>Call/text/WhatsApp us: <a href="tel:+31639765259">+31639765259</a></p>
