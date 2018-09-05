@@ -291,7 +291,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
 
                 if ($co2ok_placement_shortcode == 'off') {
-                    echo "<script>console.log( 'Debug Objects: we got to off' );</script>";
                     add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
                     
                     $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
@@ -305,27 +304,36 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     switch ($co2ok_checkout_placement) {
                         case "before_checkout_form":
                             add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
+                            add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                             break;
                         case "checkout_before_customer_details":
                             add_action('woocommerce_checkout_before_customer_details', array($this, 'co2ok_checkout_checkbox'));
+                            add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                             break;
                         case "after_checkout_billing_form":
                             add_action('woocommerce_after_checkout_billing_form', array($this, 'co2ok_checkout_checkbox'));
-                            break;
-                        case "before_checkout_form":
-                            add_action('woocommerce_before_order_notes', array($this, 'co2ok_checkout_checkbox'));
+                            add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                             break;
                         case "after_order_notes":
                             add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
+                            add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                             break;
                         case "review_order_after_order_total":
                             add_action('woocommerce_review_order_after_order_total', array($this, 'co2ok_checkout_checkbox'));
+                            add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                             break;
                         case "review_order_before_submit":
                             add_action('woocommerce_review_order_before_submit', array($this, 'co2ok_checkout_checkbox'));
+                            add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                             break;
-                        case "review_order_after_submit":
-                            add_action('woocommerce_review_order_after_submit', array($this, 'co2ok_checkout_checkbox'));
+                        // The case below is temporarily removed due to a visual bug: The button hovering over the Place Order button
+                        // on the checkout page of webshops
+                        // ---------------------------------
+                        // case "review_order_after_submit":
+                        //     add_action('woocommerce_review_order_after_submit', array($this, 'co2ok_checkout_checkbox'));
+                        //     add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                        //     break;
+                        case "none": // this case is needed to remove the placement when you switch back to "Default" - don't remove this case
                             break;
                     }
 

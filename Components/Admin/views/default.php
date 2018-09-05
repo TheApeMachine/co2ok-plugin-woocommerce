@@ -82,45 +82,38 @@
                         </form>
                     
                         <h2>Button Placement:</h2>
-                        <p>By default we automatically generate the button on the Cart and Checkout pages in Cart Collaterals. But you can decide to place the button in specific locations on your webpage using a shortcode. 
-                        To use the shortcode you need to copy and paste the following;
-                        helping the environment even more!</p>
+                        <p>By default we automatically generate the button on the Cart and Checkout pages. But you can decide to place the button on specific locations on your Checkout webpage. 
+                        <!-- </br></br>To use the shortcode you need to copy and paste the following in the html of your page, on the location you want the button to appear; </br><strong>[co2ok_button_short]</strong> -->
+                        </br>You can pick these from the dropdown menu, which appears when you click on the "Pick a Checkout Page location" button.</p>
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_off" value="off" <?php if($co2ok_shortcode == 'off') echo "checked" ?> >
+                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_off" value="off" <?php if($co2ok_shortcode == 'off') echo "checked"; $co2ok_checkout_placement = "none" ?> >
                             <label style="display: inline" for="off">Automatically generate button. (Default)</label>
                             </br>
-                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_short" value="short" <?php if($co2ok_shortcode == 'short') echo "checked" ?> >
-                            <label style="display: inline" for="short">Use shortcode for button placement.</label>
-                            </br>
+                            <!-- <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_short" value="short" <?php //if($co2ok_shortcode == 'short') echo "checked"; $co2ok_checkout_placement = "none"; ?> > -->
+                            <!-- <label style="display: inline" for="short">Use shortcode for button placement.</label> -->
+                            <!-- </br> -->
                             <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_on" value="on" <?php if($co2ok_shortcode == 'on') echo "checked";
                             
                             ?> >
-                            <label style="display: inline" for="on">Use one of the general placements in the checkout.</label>
+                            <label style="display: inline" for="on">Pick a Checkout Page location.</label>
                             </br>
 
                             <select name="co2ok_checkout_placement" style="display:none;" id="co2ok_checkout_placement">
-                                <option value="before_checkout_form">Before checkout form</option>
-                                <option value="checkout_before_customer_details">Checkout before customer details</option>
-                                <option value="after_checkout_billing_form">After checkout billing form</option>
-                                <option value="before_order_notes">Before order notes</option>
-                                <option value="after_order_notes">After order notes</option>
-                                <option value="review_order_after_order_total">Review order after order total</option>
-                                <option value="review_order_before_submit">Review order before submit</option>
-                                <option value="review_order_after_submit">Review order after submit</option>
+                                <option value="before_checkout_form" <?php if($co2ok_checkout_placement == 'before_checkout_form') echo "selected" ?>>Before the Checkout Form</option>
+                                <option value="checkout_before_customer_details" <?php if($co2ok_checkout_placement == 'checkout_before_customer_details') echo "selected" ?>>Before Customer Details</option>
+                                <option value="after_checkout_billing_form" <?php if($co2ok_checkout_placement == 'after_checkout_billing_form') echo "selected" ?>>After Billing Details Form</option>
+                                <option value="after_order_notes" <?php if($co2ok_checkout_placement == 'after_order_notes') echo "selected" ?>>After Order Notes</option>
+                                <option value="review_order_after_order_total" <?php if($co2ok_checkout_placement == 'review_order_after_order_total') echo "selected" ?>>After Order Total</option>
+                                <option value="review_order_before_submit" <?php if($co2ok_checkout_placement == 'review_order_before_submit') echo "selected" ?>>Before "Place Order"</option>
+                                <!-- <option value="review_order_after_submit" <?php //if($co2ok_checkout_placement == 'review_order_after_submit') echo "selected" ?>>After "Place Order"</option> -->
+                                <option value="none" <?php if($co2ok_checkout_placement == 'none') echo "selected" ?> style="display:none;">Please Choose a Selection</option>
                             </select>
 
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>
-                        
-                        <pre>
-$_POST:
-<?php
-   print_r($_POST);
-?>
-</pre>
 
                         <script type="text/javascript">
                         // Make co2ok button checkout placement selection menu appear or disappear
