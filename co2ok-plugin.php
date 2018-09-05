@@ -621,10 +621,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $this->renderCheckbox();
     }
 
-    final public function co2ok_placement_checkbox(){
-        $this->renderCheckbox();
-    }
-
     final public function co2ok_woocommerce_custom_surcharge($cart)
     {
         $this->surcharge = $this->co2ok_calculateSurcharge();
