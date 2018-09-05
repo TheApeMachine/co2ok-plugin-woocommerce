@@ -83,7 +83,6 @@
                     
                         <h2>Button Placement:</h2>
                         <p>By default we automatically generate the button on the Cart and Checkout pages. But you can decide to place the button on specific locations on your Checkout webpage. 
-                        <!-- </br></br>To use the shortcode you need to copy and paste the following in the html of your page, on the location you want the button to appear; </br><strong>[co2ok_button_short]</strong> -->
                         </br>You can pick these from the dropdown menu, which appears when you click on the "Pick a Checkout Page location" button.</p>
                         
                         <form method="POST">
@@ -91,12 +90,7 @@
                             <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_off" value="off" <?php if($co2ok_shortcode == 'off') echo "checked"; $co2ok_checkout_placement = "none" ?> >
                             <label style="display: inline" for="off">Automatically generate button. (Default)</label>
                             </br>
-                            <!-- <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_short" value="short" <?php //if($co2ok_shortcode == 'short') echo "checked"; $co2ok_checkout_placement = "none"; ?> > -->
-                            <!-- <label style="display: inline" for="short">Use shortcode for button placement.</label> -->
-                            <!-- </br> -->
-                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_on" value="on" <?php if($co2ok_shortcode == 'on') echo "checked";
-                            
-                            ?> >
+                            <input type="radio" name="co2ok_shortcode" id="co2ok_shortcode_on" value="on" <?php if($co2ok_shortcode == 'on') echo "checked"; ?> >
                             <label style="display: inline" for="on">Pick a Checkout Page location.</label>
                             </br>
 
@@ -124,9 +118,6 @@
                             jQuery('#co2ok_checkout_placement').css({"display":"block"});
                         };
                         jQuery("#co2ok_shortcode_off").click(function() {
-                            jQuery('#co2ok_checkout_placement').css({"display":"none"});
-                        });
-                        jQuery("#co2ok_shortcode_short").click(function() {
                             jQuery('#co2ok_checkout_placement').css({"display":"none"});
                         });
                         </script>

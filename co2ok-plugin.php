@@ -297,9 +297,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     if ( $co2ok_disable_button_on_cart == 'false' )
                         add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                 }
-                else if ($co2ok_placement_shortcode == 'short') {
-                    add_shortcode('co2ok_button_short', array($this, 'co2ok_shortcode_checkbox'));                    
-                }
                 else if ($co2ok_placement_shortcode == 'on') {
                     switch ($co2ok_checkout_placement) {
                         case "before_checkout_form":
