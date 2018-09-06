@@ -82,13 +82,13 @@
                         </form>
                     
                         <h2>Button Placement:</h2>
-                        <p>By default we automatically generate the button on the Cart and Checkout pages. But you can decide to place the button on specific locations on your Checkout webpage. 
+                        <p>By default we automatically place the button on the Checkout page. But you can decide to place the button on specific locations on your Checkout webpage. 
                         </br>You can pick these from the dropdown menu, which appears when you click on the "Pick a Checkout Page location" button.</p>
                         
                         <form method="POST">
                         
                             <input type="radio" name="co2ok_placement" id="co2ok_placement_off" value="off" <?php if($co2ok_placement == 'off') echo "checked"; $co2ok_checkout_placement = "none" ?> >
-                            <label style="display: inline" for="off">Automatically generate button. (Default)</label>
+                            <label style="display: inline" for="off">Automatically place button. (Default)</label>
                             </br>
                             <input type="radio" name="co2ok_placement" id="co2ok_placement_on" value="on" <?php if($co2ok_placement == 'on') echo "checked"; ?> >
                             <label style="display: inline" for="on">Pick a Checkout Page location.</label>
