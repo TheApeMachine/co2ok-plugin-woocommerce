@@ -252,6 +252,56 @@ var Co2ok_JS = function ()
               marginBottom: 0
             });
         },
+
+        placeVideoRewardBox : function() {
+            var infoButton = jQuery(".co2ok_info");
+            var videoRewardBox = jQuery(".co2ok_videoRewardBox_container");
+            var offset = infoButton.offset();
+  
+            videoRewardBox.remove();
+            jQuery("body").append(videoRewardBox);
+  
+            if (jQuery(window).width() < 480) {
+              offset.top = offset.top + infoButton.height();
+              videoRewardBox.css({
+                top: offset.top,
+                margin: "0 auto",
+                left: "50%",
+                transform: "translateX(-50%)"
+              });
+            } else {
+              offset.left = offset.left - videoRewardBox.width() / 2;
+              offset.top = offset.top + infoButton.height();
+              videoRewardBox.css({
+                top: offset.top,
+                left: offset.left,
+                margin: "0",
+                transform: "none"
+              });
+            }
+          },
+          ShowVideoRewardBox  : function()
+          {
+              jQuery(".co2ok_videoRewardBox_container").removeClass('VideoRewardBox-hidden')
+              jQuery(".co2ok_videoRewardBox_container").addClass('ShowVideoRewardBox')
+              jQuery(".co2ok_videoRewardBox_container").css({
+                marginBottom: 200
+              });
+              if (this.IsMobile() == true ) {
+                  var elmnt = document.getElementById("videoRewardBox-view");
+                  elmnt.scrollIntoView(false); // false leads to bottom of the infobox
+              }
+          },
+          hideVideoRewardBox : function()
+          {
+              jQuery(".co2ok_videoRewardBox_container").removeClass('ShowVideoRewardBox')
+              jQuery(".co2ok_videoRewardBox_container").addClass('VideoRewardBox-hidden')
+              jQuery(".co2ok_videoRewardBox_container").css({
+                marginBottom: 0
+              });
+          },
+
+
         modalRegex: function(e)
          {
              return jQuery(e.target).hasClass("svg-img") ||
