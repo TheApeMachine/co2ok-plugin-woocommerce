@@ -323,11 +323,11 @@ img#co2ok_logo_minimal_info {
      }
     &.ShowVideoRewardBox{
         display: block;
-        opacity: 1
+        opacity: 1;
     }
-   &.VideoRewardBox-hidden{
-    display: none;
-    opacity: 0
+    &.VideoRewardBox-hidden{
+        display: none;
+        opacity: 0;
     }
    .inner-wrapper {
      display: flex;

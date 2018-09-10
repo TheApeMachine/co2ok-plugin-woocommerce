@@ -139,14 +139,19 @@ var Co2ok_JS = function ()
 
             jQuery('#co2ok_cart').click(function (event)
             {
-
+                
                 if (!(jQuery(this).is(":checked"))) {
-                      jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
+                    jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
                 }
-
+                
                 if(jQuery(this).is(":checked"))
                 {
                     jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
+                    
+                    var _this = this;
+                    console.log(_this);
+                    _this.placeVideoRewardBox();
+                    _this.ShowVideoRewardBox();
 
                     jQuery('.co2ok_checkbox_container').addClass('selected');
                     jQuery('.co2ok_checkbox_container').removeClass('unselected');
@@ -348,7 +353,7 @@ var Co2ok_JS = function ()
               else {
                 _this.ShowInfoBox();
               }
-            })
+            });
 
             if(!_this.IsMobile())
             {

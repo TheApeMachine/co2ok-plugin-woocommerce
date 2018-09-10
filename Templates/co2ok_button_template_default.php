@@ -65,6 +65,10 @@
         <div class="inner-wrapper">
         <p class="text-block greyBorder"><?php echo __('During manufacturing and shipping of products, greenhouse gases are emitted',  'co2ok-for-woocommerce' );?></p>
         <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/fout.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
+            <video width="320" height="240" autoplay>
+            <source src="/co2ok-plugin-woocommerce/images/happy-flower.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>
         </div>
 
         <div class="inner-wrapper">
