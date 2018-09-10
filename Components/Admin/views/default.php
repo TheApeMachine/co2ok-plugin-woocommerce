@@ -62,7 +62,7 @@
                             <!-- Radiobutton for Default Button Design -->
                             <input type="radio" name="co2ok_button_template" id="button_style_radio_default" value="co2ok_button_template_default"
                             <?php if($co2ok_button_template == 'co2ok_button_template_default') echo "checked"; ?> >
-                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_default">
+                            <label style="display: inline-block; vertical-align: middle;" for="button_style_radio_default">
                                 <img src="<?php echo esc_url(plugins_url('../../../images/button_default_co2ok.png', __FILE__));?>" 
                                 style="vertical-align: middle; width: 210px;"/>
                             </label>
@@ -71,7 +71,7 @@
                             <!-- Radiobutton for Minimal Button Design -->
                             <input type="radio" name="co2ok_button_template" id="button_style_radio_minimal" value="co2ok_button_template_minimal" 
                             <?php if($co2ok_button_template == 'co2ok_button_template_minimal') echo "checked"; ?> >
-                            <label style="display: inline-block; height: 100%; vertical-align: middle;" for="button_style_radio_minimal">
+                            <label style="display: inline-block; vertical-align: middle;" for="button_style_radio_minimal">
                                 <img src="<?php echo esc_url(plugins_url('../../../images/button_minimal_co2ok.png', __FILE__));?>" 
                                 style="vertical-align: middle; width: 200px;"/>
                             </label>
@@ -81,6 +81,24 @@
 
                         </form>
                     
+                        <h2>Button Placement:</h2>
+                        <p>By default we automatically place the button on the Checkout page. But you can also decide to place the button on specific locations on your Checkout webpage: </p>
+                        
+                        <form method="POST">
+
+                            <select name="co2ok_checkout_placement" style="display:block;" id="co2ok_checkout_placement">
+                                <option value="after_order_notes" <?php if($co2ok_checkout_placement == 'after_order_notes') echo "selected" ?>>Default</option>
+                                <option value="before_checkout_form" <?php if($co2ok_checkout_placement == 'before_checkout_form') echo "selected" ?>>Before the Checkout Form</option>
+                                <option value="checkout_before_customer_details" <?php if($co2ok_checkout_placement == 'checkout_before_customer_details') echo "selected" ?>>Before Customer Details</option>
+                                <option value="after_checkout_billing_form" <?php if($co2ok_checkout_placement == 'after_checkout_billing_form') echo "selected" ?>>After Billing Details Form</option>
+                                <option value="review_order_after_order_total" <?php if($co2ok_checkout_placement == 'review_order_after_order_total') echo "selected" ?>>After Order Total</option>
+                                <option value="review_order_before_submit" <?php if($co2ok_checkout_placement == 'review_order_before_submit') echo "selected" ?>>Before "Place Order"</option>
+                            </select>
+
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+                        </form>
+
 
                         <h2>Something not working for you? Have a great idea or any other feedback? </h2>
                         <p>Call/text/WhatsApp us: <a href="tel:+31639765259">+31639765259</a></p>
