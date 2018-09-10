@@ -82,45 +82,23 @@
                         </form>
                     
                         <h2>Button Placement:</h2>
-                        <p>By default we automatically place the button on the Checkout page. But you can decide to place the button on specific locations on your Checkout webpage. 
-                        </br>You can pick these from the dropdown menu, which appears when you click on the "Pick a Checkout Page location" button.</p>
+                        <p>By default we automatically place the button on the Checkout page. But you can also decide to place the button on specific locations on your Checkout webpage: </p>
                         
                         <form method="POST">
-                        
-                            <input type="radio" name="co2ok_placement" id="co2ok_placement_off" value="off" <?php if($co2ok_placement == 'off') echo "checked"; $co2ok_checkout_placement = "none" ?> >
-                            <label style="display: inline" for="off">Automatically place button. (Default)</label>
-                            </br>
-                            <input type="radio" name="co2ok_placement" id="co2ok_placement_on" value="on" <?php if($co2ok_placement == 'on') echo "checked"; ?> >
-                            <label style="display: inline" for="on">Pick a Checkout Page location.</label>
-                            </br>
 
-                            <select name="co2ok_checkout_placement" style="display:none;" id="co2ok_checkout_placement">
+                            <select name="co2ok_checkout_placement" style="display:block;" id="co2ok_checkout_placement">
+                                <option value="after_order_notes" <?php if($co2ok_checkout_placement == 'after_order_notes') echo "selected" ?>>Default</option>
                                 <option value="before_checkout_form" <?php if($co2ok_checkout_placement == 'before_checkout_form') echo "selected" ?>>Before the Checkout Form</option>
                                 <option value="checkout_before_customer_details" <?php if($co2ok_checkout_placement == 'checkout_before_customer_details') echo "selected" ?>>Before Customer Details</option>
                                 <option value="after_checkout_billing_form" <?php if($co2ok_checkout_placement == 'after_checkout_billing_form') echo "selected" ?>>After Billing Details Form</option>
-                                <option value="after_order_notes" <?php if($co2ok_checkout_placement == 'after_order_notes') echo "selected" ?>>After Order Notes</option>
                                 <option value="review_order_after_order_total" <?php if($co2ok_checkout_placement == 'review_order_after_order_total') echo "selected" ?>>After Order Total</option>
                                 <option value="review_order_before_submit" <?php if($co2ok_checkout_placement == 'review_order_before_submit') echo "selected" ?>>Before "Place Order"</option>
-                                <!-- <option value="review_order_after_submit" <?php //if($co2ok_checkout_placement == 'review_order_after_submit') echo "selected" ?>>After "Place Order"</option> -->
-                                <option value="none" <?php if($co2ok_checkout_placement == 'none') echo "selected" ?> style="display:none;">Please Choose a Selection</option>
                             </select>
 
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>
 
-                        <script type="text/javascript">
-                        // Make co2ok button checkout placement selection menu appear or disappear
-                        jQuery("#co2ok_placement_on").click(function() {
-                            jQuery('#co2ok_checkout_placement').css({"display":"block"});
-                        });
-                        if (jQuery('#co2ok_placement_on').attr("checked")) {
-                            jQuery('#co2ok_checkout_placement').css({"display":"block"});
-                        };
-                        jQuery("#co2ok_placement_off").click(function() {
-                            jQuery('#co2ok_checkout_placement').css({"display":"none"});
-                        });
-                        </script>
 
                         <h2>Something not working for you? Have a great idea or any other feedback? </h2>
                         <p>Call/text/WhatsApp us: <a href="tel:+31639765259">+31639765259</a></p>
