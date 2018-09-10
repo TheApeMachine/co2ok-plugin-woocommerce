@@ -84,18 +84,6 @@ class Co2ok_AdminOverview
                 update_option('co2ok_statistics', 'off');
             }
 
-            if (!isset($_POST['co2ok_optout']))
-            {
-                $_POST['co2ok_optout'] = 'off';
-                update_option('co2ok_optout', 'off');
-            }
-
-            if (!isset($_POST['co2ok_checkout_placement']))
-            {
-                $_POST['co2ok_checkout_placement'] = 'after_order_notes';
-                update_option('co2ok_checkout_placement', 'after_order_notes');
-            }
-
             $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(\co2ok_plugin_woocommerce\Co2ok_Plugin::$co2okApiUrl);
 
             $merchantId = get_option('co2ok_id', false);
