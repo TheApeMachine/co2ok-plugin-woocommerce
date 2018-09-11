@@ -56,14 +56,18 @@ function co2okfreemius() {
     return $co2okfreemius;
 }
 
+
+// Freemius opt-in Text Customization
+// TODO text bij verse install, string heet connect-message ipv connect-message_on-update
+
 // Init Freemius.
 co2okfreemius();
 // Signal that SDK was initiated.
 do_action( 'co2okfreemius_loaded' );
 
-// Freemius opt-in Text Customization
-// TODO text bij verse install, string heet connect-message ipv connect-message_on-update
-function my_fs_custom_connect_message_on_update(
+global $co2okfreemius;
+
+function co2ok_fs_custom_connect_message_on_update(
     $message,
     $user_first_name,
     $product_title,
@@ -81,15 +85,16 @@ function my_fs_custom_connect_message_on_update(
         $freemius_link
     );
 }
- 
-co2okfreemius()->add_filter('connect_message_on_update', 'my_fs_custom_connect_message_on_update', 10, 6);
+
+$co2okfreemius->add_filter('connect_message_on_update', 'co2ok_plugin_woocommerce\co2ok_fs_custom_connect_message_on_update', 10, 6);
 
 // Freemius opt-in Icon Customization
-function my_fs_custom_icon() {
-    return dirname( __FILE__ ) . '/images/co2ok_freemius_logo.{png|jpg|gif|svg}';
+function co2ok_fs_custom_icon() {
+    return dirname( __FILE__ ) . '/images/co2ok_freemius_logo.png';
 }
- 
-co2okfreemius()->add_filter( 'plugin_icon' , 'my_fs_custom_icon' );
+$co2okfreemius->add_filter( 'plugin_icon' , 'co2ok_plugin_woocommerce\co2ok_fs_custom_icon' );
+
+
 
 /**
   * Only activate plugin on cart and checkout page
