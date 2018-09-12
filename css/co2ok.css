@@ -128,12 +128,15 @@
     .co2ok_container .co2ok_checkbox_container.unselected .make {
       margin-bottom: 2px;
       font-size: 20px;
-      font-family: Roboto, sans-serif; }
+      font-family: Roboto, sans-serif;
+      color: #606468;
+      font-weight: 500; }
     .co2ok_container .co2ok_checkbox_container.selected .make {
       color: white;
       margin-bottom: 2px;
       font-size: 20px;
-      font-family: Roboto, sans-serif; }
+      font-family: Roboto, sans-serif;
+      font-weight: 500; }
     .co2ok_container .co2ok_checkbox_container.selected .co2ok_payoff {
       margin-bottom: 400px; }
     .co2ok_container .co2ok_checkbox_container.selected #checkbox {
@@ -210,6 +213,13 @@ img#co2ok_logo_minimal_info {
       width: 65%;
       align-items: center;
       justify-content: center; }
+    .co2ok_infobox_container .inner-wrapper .selectable-text {
+      text-decoration: none;
+      font-weight: 100;
+      color: black;
+      /* unvisited, visited, mouse over and selected link */ }
+      .co2ok_infobox_container .inner-wrapper .selectable-text a:link, .co2ok_infobox_container .inner-wrapper .selectable-text a:visited, .co2ok_infobox_container .inner-wrapper .selectable-text a:hover, .co2ok_infobox_container .inner-wrapper .selectable-text a:active {
+        color: black; }
     .co2ok_infobox_container .inner-wrapper .text-block {
       margin: 0px;
       font-size: 1em;
@@ -254,14 +264,11 @@ img#co2ok_logo_minimal_info {
       font-weight: 500;
       letter-spacing: 0px;
       font-family: Roboto, sans-serif; }
-    .co2ok_container_default .co2ok_checkbox_container_default.selected .make_minimal {
-      letter-spacing: 0px;
-      font-family: Roboto, sans-serif; }
   .co2ok_container_default .co2ok_checkbox_container_default.unselected .compensation_amount_default {
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-    color: #06d367;
+    color: #05B139;
     padding-left: 4px;
     left: -10px;
     margin-top: 12px;
@@ -273,11 +280,20 @@ img#co2ok_logo_minimal_info {
     font-family: Roboto, sans-serif; }
   .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal {
     font-family: Roboto, sans-serif; }
+    .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal a:link, .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal a:visited, .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal a:hover, .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal a:active {
+      letter-spacing: 0px;
+      font-family: Roboto, sans-serif;
+      color: #4D5155; }
 
 .co2ok_container_minimal {
   width: 320px; }
   .co2ok_container_minimal .co2ok_checkbox_container_minimal {
     font-weight: 500; }
+    .co2ok_container_minimal .co2ok_checkbox_container_minimal .co2ok_nolink {
+      color: inherit;
+      margin: 0px;
+      padding: 0px;
+      display: inherit; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal .co2ok_adaptive_color {
       color: white; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected {
@@ -349,7 +365,13 @@ img#co2ok_logo_minimal_info {
           margin-right: -50%;
           transform: translate(-50%, -50%);
           letter-spacing: 0px;
-          font-family: Roboto, sans-serif; }
+          font-family: Roboto, sans-serif;
+          margin-bottom: 2px;
+          font-weight: 500; }
+          .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal .compensation_amount_minimal.selected {
+            color: #05B139; }
+          .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal .compensation_amount_minimal.unselected {
+            color: #4D5155; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .co2ok_payoff_minimal {
       position: absolute;
       padding-left: 10px;
