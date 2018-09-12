@@ -86,7 +86,7 @@ function co2ok_fs_custom_connect_message_on_update(
     );
 }
 
-$co2okfreemius->add_filter('connect_message_on_update', 'co2ok_plugin_woocommerce\co2ok_fs_custom_connect_message_on_update', 10, 6);
+$co2okfreemius->add_filter('connect_message', 'co2ok_plugin_woocommerce\co2ok_fs_custom_connect_message_on_update', 10, 6);
 
 // Freemius opt-in Icon Customization
 function co2ok_fs_custom_icon() {
