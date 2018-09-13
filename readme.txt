@@ -24,9 +24,8 @@ During installation an account for our service will be created automatically. Us
 **Features**
 * Multi-language (currently English and Dutch - let us know which language you need!)
 * Clear information 'hoverbox' - customers don't need to visit our site for explanation
-* Flexible placement on the shopping cart page
-* Admin overview of collected fees
-
+* Flexible placement on the checkout page
+* 2 button designs available
 
 **How it works**
 
@@ -37,15 +36,11 @@ Using our button, shown on the shopping cart and checkout pages, the customer ca
 4. These projects actively reduce the amount of emitted CO₂. This CO₂ reduction matches the emission of their purchase – thereby making it climate neutral!
 The compensation fee gets paid to you by the customer. CO₂ok sends a digital invoice at the end of each 3 month term. With the proceeds we finance CO₂-compensating projects.
 
-
 **Go green**
 As retailer, you naturally try to run your business as sustainably as possible. However, some things are beyond your control – the manufacturing and shipping of your products for example. Manufacturers take too long to become climate neutral. CO₂ok fills this gap and allows your customers to buy everything they want, without contributing to climate change!
 
-
 **Higher conversion rate, more turnover**
 Consumer research has shown that associating your business with a cause not only strengthens your brand, but reduces shopping cart abandonment, increases customer loyalty & lifetime value and increases overall sales. This is also called ‘Cause Marketing’. Additionally, being listed in our partner index will help more environmentally conscious customers find your store.
-
- 
 
 **Easy integration and use**
 Installing our extension takes just a few minutes, for customers, using it is just one click. Nothing about the ordering-process changes. You won’t lose customers by any tedious procedures. If you bump into a problem with the extension, we’re always available through mail or by phone.
@@ -54,7 +49,7 @@ Installing our extension takes just a few minutes, for customers, using it is ju
 
 [more information on our site](http://www.co2ok.eco/en/retailers/)
 
-We're just starting! Please let us know if you have feedback/questions or something doesn't work as expected: drop us a line : <make@co2ok.eco> or use the support section on wordpress.org
+Please let us know if you have feedback/questions or something doesn't work as expected: drop us a line : <make@co2ok.eco> or use the support section on wordpress.org
 
 [Terms of Service](http://www.co2ok.eco/wp-content/uploads/2017/10/ToS.pdf)
 
