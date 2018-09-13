@@ -56,10 +56,45 @@ function co2okfreemius() {
     return $co2okfreemius;
 }
 
+
+// Freemius opt-in Text Customization
+// TODO text bij verse install, string heet connect-message ipv connect-message_on-update
+
 // Init Freemius.
 co2okfreemius();
 // Signal that SDK was initiated.
 do_action( 'co2okfreemius_loaded' );
+
+global $co2okfreemius;
+
+function co2ok_fs_custom_connect_message_on_update(
+    $message,
+    $user_first_name,
+    $product_title,
+    $user_login,
+    $site_link,
+    $freemius_link
+) {
+    return sprintf(
+        __( 'Hey %1$s', 'co2ok-for-woocommerce' ) . ',<br>' .
+        __( 'Great that you want to help fight climate change! Press the blue button to help us improve CO2ok with some anonymous data.', 'co2ok-for-woocommerce' ),
+        $user_first_name,
+        '<b>' . $product_title . '</b>',
+        '<b>' . $user_login . '</b>',
+        $site_link,
+        $freemius_link
+    );
+}
+
+$co2okfreemius->add_filter('connect_message', 'co2ok_plugin_woocommerce\co2ok_fs_custom_connect_message_on_update', 10, 6);
+
+// Freemius opt-in Icon Customization
+function co2ok_fs_custom_icon() {
+    return dirname( __FILE__ ) . '/images/co2ok_freemius_logo.png';
+}
+$co2okfreemius->add_filter( 'plugin_icon' , 'co2ok_plugin_woocommerce\co2ok_fs_custom_icon' );
+
+
 
 /**
   * Only activate plugin on cart and checkout page
