@@ -77,7 +77,7 @@ function co2ok_fs_custom_connect_message_on_update(
 ) {
     return sprintf(
         __( 'Hey %1$s', 'co2ok-for-woocommerce' ) . ',<br>' .
-        __( 'Great that you want to help us improve CO2ok! If you opt-in, some anonymous usage data of CO2ok will be sent to %5$s.', 'co2ok-for-woocommerce' ),
+        __( 'Great that you want to help fight climate change! Press the blue button to help us improve CO2ok with some anonymous data.', 'co2ok-for-woocommerce' ),
         $user_first_name,
         '<b>' . $product_title . '</b>',
         '<b>' . $user_login . '</b>',
