@@ -10,8 +10,8 @@
             ), $co2ok_session_opted);
         ?>
 
-        <a href="#" input type="button" role="button" tabindex="0" style="outline: none;" class="co2ok_nolink">
-          <div class="inner_checkbox_label inner_checkbox_label_minimal" input type="button" role="button" tabindex="0" style="outline: none;">
+        <a href="#" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;" class="co2ok_nolink">
+          <div class="inner_checkbox_label inner_checkbox_label_minimal" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;">
             <div id="checkbox">  
             </div>
 
@@ -27,7 +27,7 @@
               </div>
           
               <span class="co2ok_payoff_minimal">
-                <span input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea co2ok_nolink" style="outline: none;">
+                <span input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea co2ok_nolink" style="outline: none; -webkit-appearance: none;">
                     <span id="p_minimal">
                     
                       <span class="co2ok_info_hitarea">
@@ -51,7 +51,7 @@
     <div class="co2ok_infobox_container co2ok-popper" id="infobox-view">
 
         <div class="inner-wrapper">
-        <a href="#" input type="text" role="button" tabindex="0" class="selectable-text first-text-to-select" style="outline: none;">
+        <a href="#" input type="text" role="button" tabindex="0" class="selectable-text first-text-to-select" style="outline: none; -webkit-appearance: none;">
           <p class="text-block greyBorder"><?php echo __('During manufacturing and shipping of products, greenhouse gases are emitted',  'co2ok-for-woocommerce' );?></p>
         </a>
         <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/fout.svg', 'svg-img', '  co2ok_info_hover_image'); ?>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="inner-wrapper">
-        <a href="#" input type="text" role="button" tabindex="0" class="selectable-text">
+        <a href="#" input type="text" role="button" tabindex="0" class="selectable-text" style="outline: none; -webkit-appearance: none;">
           <p class="text-block"><?php echo __('This way, your purchase is climate neutral!',  'co2ok-for-woocommerce' );?></p>
           </a>
         </div>

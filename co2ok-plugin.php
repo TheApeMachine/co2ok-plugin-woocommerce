@@ -306,10 +306,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                         add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
                         add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
                         break;
-                    case "review_order_after_order_total":
-                        add_action('woocommerce_review_order_after_order_total', array($this, 'co2ok_checkout_checkbox'));
-                        add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
-                        break;
                     case "review_order_before_submit":
                         add_action('woocommerce_review_order_before_submit', array($this, 'co2ok_checkout_checkbox'));
                         add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
