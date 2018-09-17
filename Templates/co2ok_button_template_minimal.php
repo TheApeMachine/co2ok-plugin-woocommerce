@@ -68,5 +68,14 @@
             ?></a> </span>
     </div>
 
+    <div class="co2ok_videoRewardBox_container" id="videoRewardBox-view">
+
+        <video width="320" height="240" autoplay id="co2ok_videoReward">
+          <source src="/wp-content/plugins/co2ok-plugin-woocommerce/images/happy-flower.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+    </div>
+
 
 </div>

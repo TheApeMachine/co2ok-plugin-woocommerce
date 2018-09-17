@@ -234,7 +234,8 @@ img#co2ok_logo_minimal_info {
 
 .co2ok_videoRewardBox_container {
   position: absolute;
-  width: 350px;
+  width: 345px;
+  height: 250px;
   background: white;
   border-radius: 15px;
   box-sizing: border-box;
@@ -255,54 +256,8 @@ img#co2ok_logo_minimal_info {
   .co2ok_videoRewardBox_container.VideoRewardBox-hidden {
     display: none;
     opacity: 0; }
-  .co2ok_videoRewardBox_container .inner-wrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px; }
-    .co2ok_videoRewardBox_container .inner-wrapper .svg-img {
-      display: flex;
-      justify-content: center;
-      /* align horizontal */
-      align-items: center;
-      /* align vertical */
-      height: 50%;
-      width: 58%;
-      align-items: center;
-      justify-content: center; }
-    .co2ok_videoRewardBox_container .inner-wrapper .svg-img-large {
-      display: flex;
-      justify-content: center;
-      /* align horizontal */
-      align-items: center;
-      /* align vertical */
-      height: 60%;
-      width: 65%;
-      align-items: center;
-      justify-content: center; }
-    .co2ok_videoRewardBox_container .inner-wrapper .text-block {
-      margin: 0px;
-      font-size: 1em;
-      line-height: normal;
-      box-sizing: border-box;
-      text-align: left;
-      padding: 5px;
-      border-radius: 5px;
-      border: 2px solid #28db83;
-      text-decoration: none; }
-      .co2ok_videoRewardBox_container .inner-wrapper .text-block.greyBorder {
-        border-color: #b8b8b8; }
-  .co2ok_videoRewardBox_container a {
-    text-decoration: underline; }
-  .co2ok_videoRewardBox_container img, .co2ok_videoRewardBox_container span {
-    display: inline-block;
-    vertical-align: middle;
-    color: #979797;
-    padding: 0px; }
-  .co2ok_videoRewardBox_container .minimal {
-    background-color: black; }
+  .co2ok_videoRewardBox_container #co2ok_videoReward {
+    padding-bottom: 15px; }
 
 .co2ok_container_default {
   width: 244px; }
