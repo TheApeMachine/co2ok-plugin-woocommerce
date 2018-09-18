@@ -143,7 +143,6 @@ var Co2ok_JS = function ()
 
                  function placeVideoRewardBox() {
 
-                    // alert('placeVideoRewardBox');
                     var infoButton = jQuery(".co2ok_info");
                     var videoRewardBox = jQuery(".co2ok_videoRewardBox_container");
                     var offset = infoButton.offset();
@@ -193,7 +192,6 @@ var Co2ok_JS = function ()
                         var elmnt = document.getElementById("videoRewardBox-view");
                         elmnt.scrollIntoView(false); // false leads to bottom of the infobox
 
-                        // var videoReward = document.getElementById("co2ok_videoReward");
                         jQuery("#co2ok_videoReward").css(
                             "width", "266px",
                             "padding-bottom", "0px"

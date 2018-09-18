@@ -22,6 +22,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
             return $img_html . ' />';
         }
 
+        static public function RenderRandomizedVideo()
+        {
+            $rewardVideo[] = array();
+            $rewardVideo[1] = 'happy-flower';
+            // $rewardVideo[2] = ''; // new video's can be put here
+
+            $pickedVideo = rand(1,count($rewardVideo));
+
+            $video_html = '<source src="/wp-content/plugins/co2ok-plugin-woocommerce/images/' . $rewardVideo[$pickedVideo] . '.mp4" type="video/mp4">';
+
+            return $video_html;
+        }
 
         public function RenderCheckbox($surcharge, $cart)
         {
