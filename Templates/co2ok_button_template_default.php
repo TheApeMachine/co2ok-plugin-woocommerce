@@ -70,6 +70,17 @@
             ?></a> </span>
         </div>
 
+        
+        <div class="co2ok_videoRewardBox_container" id="videoRewardBox-view">
+
+            <video width="320" height="240" autoplay id="co2ok_videoReward">
+            <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderRandomizedVideo(); ?>
+                Your browser does not support the video tag.
+            </video>
+
+        </div>
+
+
     </span>
 
 
