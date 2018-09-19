@@ -89,10 +89,10 @@ class Co2ok_AdminOverview
             $merchantId = get_option('co2ok_id', false);
             $co2ok_statistics = get_option('co2ok_statistics', 'off');
             $co2ok_optout = get_option('co2ok_optout', 'off');
-            $disable_co2ok_button_on_cart = get_option('disable_co2ok_button_on_cart', 'false');
+            $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
             $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
 
-            $graphQLClient->mutation(function ($mutation) use ($merchantId, $co2ok_statistics, $co2ok_optout, $disable_co2ok_button_on_cart, $co2ok_checkout_placement)
+            $graphQLClient->mutation(function ($mutation) use ($merchantId, $co2ok_statistics, $co2ok_optout, $co2ok_disable_button_on_cart, $co2ok_checkout_placement)
             {
                 $mutation->setFunctionName('updateMerchant');
 
@@ -101,7 +101,7 @@ class Co2ok_AdminOverview
                         'merchantId' => $merchantId,
                         'sendStats' => $co2ok_statistics,
                         'optout' => $co2ok_optout,
-                        'disable_co2ok_button_on_cart' => $disable_co2ok_button_on_cart,
+                        'co2ok_disable_button_on_cart' => $co2ok_disable_button_on_cart,
                         'co2ok_checkout_placement' => $co2ok_checkout_placement
                     )
                 );
@@ -117,6 +117,7 @@ class Co2ok_AdminOverview
         $co2ok_button_template = get_option('co2ok_button_template', 'co2ok_button_template_default');
         $co2ok_statistics = get_option('co2ok_statistics', 'off');
         $co2ok_optout = get_option('co2ok_optout', 'off');
+        $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
         $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
       
         include_once plugin_dir_path(__FILE__).'views/default.php';
