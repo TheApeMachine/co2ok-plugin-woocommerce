@@ -63,3 +63,11 @@ msgstr "Wij voorkomen evenveel uitstoot"
 #: Templates/co2ok_button_template_default.php:55
 msgid "This way, your purchase is climate neutral!"
 msgstr "Zo is je aankoop klimaatneutraal!"
+
+#: Templates/co2ok_plugin.php:79
+msgid "Hey %1$s"
+msgstr "Hey %1$s"
+
+#: Templates/co2ok_plugin.php:80
+msgid "Great that you want to help fight climate change! Press the blue button to help us improve CO2ok with some anonymous data."
+msgstr "Gaaf dat jullie meedoen met klimaatverandering bestrijden! Druk op de blauwe knop om ons te helpen met CO2ok te verbeteren met wat anonieme data."

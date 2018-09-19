@@ -362,6 +362,11 @@ var Co2ok_JS = function ()
 
             var _this = this;
 
+            jQuery(".co2ok_info_keyboardarea").focus(function(){
+                _this.ShowInfoBox();
+                jQuery(".first-text-to-select").focus();
+            });
+
             jQuery('body').click(function(e)
             {
               if(!_this.modalRegex(e))

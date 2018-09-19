@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.2.3
+ * Version: 1.0.2.4
  *         (Remember to change the VERSION constant, below, as well!)
  * 
  * Tested up to: 4.9.8
@@ -56,10 +56,45 @@ function co2okfreemius() {
     return $co2okfreemius;
 }
 
+
+// Freemius opt-in Text Customization
+// TODO text bij verse install, string heet connect-message ipv connect-message_on-update
+
 // Init Freemius.
 co2okfreemius();
 // Signal that SDK was initiated.
 do_action( 'co2okfreemius_loaded' );
+
+global $co2okfreemius;
+
+function co2ok_fs_custom_connect_message_on_update(
+    $message,
+    $user_first_name,
+    $product_title,
+    $user_login,
+    $site_link,
+    $freemius_link
+) {
+    return sprintf(
+        __( 'Hey %1$s', 'co2ok-for-woocommerce' ) . ',<br>' .
+        __( 'Great that you want to help fight climate change! Press the blue button to help us improve CO2ok with some anonymous data.', 'co2ok-for-woocommerce' ),
+        $user_first_name,
+        '<b>' . $product_title . '</b>',
+        '<b>' . $user_login . '</b>',
+        $site_link,
+        $freemius_link
+    );
+}
+
+$co2okfreemius->add_filter('connect_message', 'co2ok_plugin_woocommerce\co2ok_fs_custom_connect_message_on_update', 10, 6);
+
+// Freemius opt-in Icon Customization
+function co2ok_fs_custom_icon() {
+    return dirname( __FILE__ ) . '/images/co2ok_freemius_logo.png';
+}
+$co2okfreemius->add_filter( 'plugin_icon' , 'co2ok_plugin_woocommerce\co2ok_fs_custom_icon' );
+
+
 
 /**
   * Only activate plugin on cart and checkout page
@@ -96,7 +131,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.2.3';
+    const VERSION = '1.0.2.4';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -284,11 +319,43 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
                 $this->helperComponent = new \co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent();
 
-                add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
-                
-                $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
-                if ( $co2ok_disable_button_on_cart == 'false' )
+                /*
+                 * Use either default, shortcode or woocommerce specific area's for co2ok button placement
+                 */
+                $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
+
+                $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');	
+                if ( $co2ok_disable_button_on_cart == 'false' )	
                     add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+
+                switch ($co2ok_checkout_placement) {
+                    case "before_checkout_form":
+                        add_action('woocommerce_before_checkout_form', array($this, 'co2ok_checkout_checkbox'));
+                        break;
+                    case "checkout_before_customer_details":
+                        add_action('woocommerce_checkout_before_customer_details', array($this, 'co2ok_checkout_checkbox'));
+                        break;
+                    case "after_checkout_billing_form":
+                        add_action('woocommerce_after_checkout_billing_form', array($this, 'co2ok_checkout_checkbox'));
+                        break;
+                    case "after_order_notes":
+                        add_action('woocommerce_after_order_notes', array($this, 'co2ok_checkout_checkbox'));
+                        break;
+                    case "review_order_before_submit":
+                        add_action('woocommerce_review_order_before_submit', array($this, 'co2ok_checkout_checkbox'));
+                        break;
+                    // The case below is temporarily removed due to a visual bug: The button hovering over the Place Order button
+                    // on the checkout page of webshops
+                    // ---------------------------------
+                    // case "review_order_after_submit":
+                    //     add_action('woocommerce_review_order_after_submit', array($this, 'co2ok_checkout_checkbox'));
+                    //     add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
+                    //     break;
+                    // case "none": // this case is needed to remove the placement when you switch back to "Default" - don't remove this case
+                        // break;
+                    }
+
+                
                 
                 add_action('woocommerce_cart_calculate_fees', array($this, 'co2ok_woocommerce_custom_surcharge'));
 
