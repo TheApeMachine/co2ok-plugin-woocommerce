@@ -30,9 +30,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
             $rewardVideo[2] = 'cat-high-five';
             $rewardVideo[3] = 'happy-globe';
 
-            $pickedVideo = rand(1,count($rewardVideo));
+            $pickedVideo = mt_rand(0,count($rewardVideo) - 1);
 
-            $video_html = '<source src="../images/' . $rewardVideo[$pickedVideo] . '.mp4" type="video/mp4">';
+            $videopath = esc_url(plugins_url('images/'.$rewardVideo[$pickedVideo], __FILE__));
+            $videopath = str_ireplace( '/Components', '', $videopath );
+
+            $video_html = '<source src="' . $videopath . '.mp4" type="video/mp4">';
 
             return $video_html;
         }
