@@ -5,7 +5,7 @@ Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carb
 Requires at least: 4.0
 Tested up to: 4.9.8
 WC tested up to: 3.4.4
-Stable tag: 1.0.2.6
+Stable tag: 1.0.2.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,8 +83,8 @@ We gather as little data as possible, specifically:
 
 == Changelog ==
 
-= 1.0.2.6
-* Fixes bug with the awesome gifs
+= 1.0.2.7
+* Fixes bugs with the awesome gifs
 
 = 1.0.2.5
 * Adds awesome gifs!
