@@ -11,13 +11,6 @@ var co2ok_global = {
       return IsMobile;
   
     },
-    
-    test: function()
-    {
-  
-      alert('HALLO');
-
-    }
 
 }
 
