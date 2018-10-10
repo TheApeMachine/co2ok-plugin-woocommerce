@@ -28,7 +28,7 @@ namespace co2ok_plugin_woocommerce;
 /* 
 * Freemius integration
 */
-
+        
 // Create a helper function for easy SDK access.
 function co2okfreemius() {
     global $co2okfreemius;
@@ -46,9 +46,9 @@ function co2okfreemius() {
             'has_addons'          => false,
             'has_paid_plans'      => false,
             'menu'                => array(
-                'slug'           => 'co2ok-plugin',
-                'account'        => false,
-                'support'        => false,
+            'slug'                => 'co2ok-plugin',
+            'account'             => false,
+            'support'             => false,
             ),
         ) );
     }

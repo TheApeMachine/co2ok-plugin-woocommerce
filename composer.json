@@ -1,6 +1,6 @@
 {
     "require": {
         "cbschuld/LogEntries": "^1.0",
-        "wrapi/slack": "^0.1.6"
+        "euautomation/graphql-client": "^0.2.0"
     }
 }

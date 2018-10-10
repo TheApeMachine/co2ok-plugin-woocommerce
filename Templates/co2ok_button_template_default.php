@@ -15,12 +15,29 @@
                 <div class="inner_checkbox_label inner_checkbox_label_default">
                     <div id="checkbox">  
                     </div>
+                    <?php 
+                  // $client = \Softonic\GraphQL\ClientBuilder::build('https://test-api.co2ok.eco/graphql');
+                    $client = new \EUAutomation\GraphQL\Client('https://test-api.co2ok.eco/graphql');
 
+
+                    $query = <<<'MUTATION'
+                    mutation registerMerchant($name: String, $email: String){
+                            merchant {
+                                id
+                                secret
+                            }
+                            ok
+                          }
+
+MUTATION;
+                        
+                        $variables = ["$name, $email"];
+                        $response = $client->raw($query, $variables);
+                        ?>
                     <span class="make"><?php echo __( 'Make ', 'co2ok-for-woocommerce' ); ?> </span>
                     <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); ?>
-                    <span class="compensation_amount_default">+<?php echo $currency_symbol.''. $surcharge ?> </span>
-                    
-                </div>
+                    <span class="compensation_amount_default">+ <?php echo $response ?> </span>
+              
             </a>
         </div>
     </span>
@@ -88,3 +105,10 @@
 
 
 </div>
+
+
+
+ 
+Fatal error: 
+Uncaught Error: Call to undefined method Softonic\GraphQL\Client::MUTATION() in /var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/Templates/co2ok_button_template_default.php:37 
+Stack trace: #0 /var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/Components/Co2ok-TemplateRenderer.php(53): include() #1 /var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/Components/Co2ok-TemplateRenderer.php(24): co2ok_plugin_woocommerce\Components\Co2ok_TemplateRenderer->render_template('/var/www/html/w...', Array) #2 /var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/Components/Co2ok-HelperComponent.php(54): co2ok_plugin_woocommerce\Components\Co2ok_TemplateRenderer->render('co2ok_button_te...', Array) #3 /var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/co2ok-plugin.php(631): co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent->RenderCheckbox('0,10', '%5B%7B%22name%2...') #4 /var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/co2ok-plugin.php(636): co2ok_plugin_woocommerce\Co2ok_P in /var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/Templates/co2ok_button_template_default.php on line 37
