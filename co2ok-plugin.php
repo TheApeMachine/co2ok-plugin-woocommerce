@@ -16,7 +16,7 @@
  * Milo de Vries,
  * Chris Fuller,
  * Ryan George,
- * Michiel Tienhoven
+ * Michiel van Tienhoven
  * Text Domain: co2ok-for-woocommerce
  * Author URI: http://www.co2ok.eco/
  * License: GPLv2
