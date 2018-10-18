@@ -127,7 +127,7 @@
       display: none; }
     .co2ok_container .co2ok_checkbox_container.unselected .make {
       margin-bottom: 2px;
-      font-size: 20px;
+      font-size: 21px;
       font-family: Roboto, sans-serif;
       color: #606468;
       font-weight: 500; }
@@ -149,10 +149,12 @@
       font-size: 20px; }
 
 img#co2ok_logo {
-  display: inline-block;
-  width: 62px;
-  vertical-align: middle;
-  margin: 5px 0px 0px 0px; }
+    display: inline-block;
+    width: 55px;
+    vertical-align: middle;
+    margin: 5px 0px 0px 0px;
+    position: relative;
+    bottom: 1px; }
 
 img#co2ok_logo_minimal {
   display: inline-block;

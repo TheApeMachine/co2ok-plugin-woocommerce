@@ -13,18 +13,25 @@
         <div id="checkbox_label">
             <a href="#!" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;">
                 <div class="inner_checkbox_label inner_checkbox_label_default">
-                    <div id="checkbox">  
+                    <div id="checkbox">
                     </div>
 
                     <span class="make"><?php echo __( 'Make ', 'co2ok-for-woocommerce' ); ?> </span>
                     <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo'); ?>
                     <span class="compensation_amount_default">+<?php echo $currency_symbol.''. $surcharge ?> </span>
-                    
+
+                    <?php
+
+                        $priceArr = str_split($surcharge);
+                        $price_length = count($priceArr);
+
+                     ?>
+
                 </div>
             </a>
         </div>
     </span>
-    
+
 
 
     <span class="co2ok_payoff">
@@ -70,7 +77,7 @@
             ?></a> </span>
         </div>
 
-        
+
         <div class="co2ok_videoRewardBox_container" id="videoRewardBox-view">
 
             <video width="320" height="240" autoplay id="co2ok_videoReward">
@@ -84,7 +91,41 @@
     </span>
 
 
-    
-
-
 </div>
+
+<script type="text/javascript">
+
+   //cad = compensation_amount_default
+   var qty = document.querySelector(".qty");
+   var qtyVal = qty.value.length;
+   var make = document.querySelector('.make');
+   var co2ok_logo = document.querySelector('#co2ok_logo');
+   var updateCard = document.querySelectorAll(".button");
+   var cad = document.querySelector('.compensation_amount_default');
+
+   function updatePriceLength()
+   {
+
+
+     if(qtyVal > 1)
+     {
+
+        cad.style.fontSize = 18 - qtyVal+'px';
+        cad.style.marginTop = 12 + qtyVal+'px';
+        make.style.fontSize = 21 - qtyVal+'px';
+        co2ok_logo.style.width = 55 - qtyVal+'px';
+
+      }else{
+
+        cad.style.fontSize = '18px';
+        cad.style.marginTop = '12px';
+        make.style.fontSize = '21px';
+        co2ok_logo.style.width = '55px';
+
+      }
+
+   }
+   updatePriceLength();
+
+
+</script>

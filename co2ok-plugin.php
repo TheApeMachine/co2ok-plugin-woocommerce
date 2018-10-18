@@ -8,10 +8,10 @@
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
  * Version: 1.0.2.7
  *         (Remember to change the VERSION constant, below, as well!)
- * 
+ *
  * Tested up to: 4.9.8
  * WC tested up to: 3.4.5
- * 
+ *
  * Author:
  * Milo de Vries,
  * Chris Fuller,
@@ -25,7 +25,7 @@
  */
 namespace co2ok_plugin_woocommerce;
 
-/* 
+/*
 * Freemius integration
 */
 
@@ -109,7 +109,7 @@ $load_plugin = ( ($is_cart) || ($is_checkout) || ($is_backend) ) ? true : false;
 
 // add filter in front pages only
 if ($load_plugin === false){
-    return; 
+    return;
 }
 */
 use cbschuld\LogEntries;
@@ -212,7 +212,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             // NB currently enabled to troubleshoot missing transactions
             // We urgently need to discuss this with WP, figure out if this is allowable.
             //
-            // @reviewers: we've done our best to limit the amount of logging, please 
+            // @reviewers: we've done our best to limit the amount of logging, please
             // contact us if this approach is unacceptable
             //
             $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
@@ -232,7 +232,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // Write to remote log
         try {
             // Only called when user has opted in to allow anymous tracking
-            // @reviewers: we've done our best to limit the amount of logging, please 
+            // @reviewers: we've done our best to limit the amount of logging, please
             // contact us if this approach is unacceptable
             //
             $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
@@ -297,7 +297,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     //This function is called when the user activates the plugin.
     final static function co2ok_Deactivated()
     {
-         
+
     }
 
     /**
@@ -324,8 +324,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                  */
                 $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
 
-                $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');	
-                if ( $co2ok_disable_button_on_cart == 'false' )	
+                $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
+                if ( $co2ok_disable_button_on_cart == 'false' )
                     add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
 
                 switch ($co2ok_checkout_placement) {
@@ -355,8 +355,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                         // break;
                     }
 
-                
-                
+
+
                 add_action('woocommerce_cart_calculate_fees', array($this, 'co2ok_woocommerce_custom_surcharge'));
 
 
@@ -392,7 +392,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         else
         {
             // TODO this needs to be a prettier warning, but at least it doesn't break WP.
-            trigger_error( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ), E_USER_WARNING);  
+            trigger_error( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ), E_USER_WARNING);
         }
     }
 
@@ -429,6 +429,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         wp_enqueue_style( 'co2ok-google-fonts', 'https://fonts.googleapis.com/css?family=Roboto:400,500,700', false );
     }
+
+    function namespace_async_scripts( $tag, $handle ) {
+      // Just return the tag normally if this isn't one we want to async
+      if ( 'co2ok_js_cdn' !== $handle ) {
+          return $tag;
+          return str_replace( 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', ' async src', $tag );
+      }
+
+    }
+     //add_filter( 'script_loader_tag', 'namespace_async_scripts', 10, 2 );
+
 
     final public function co2ok_javascript()
     {
@@ -553,7 +564,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             case "cancelled":
                 $order = wc_get_order($order_id);
                 $fees = $order->get_fees();
-                
+
                 foreach ($fees as $fee) {
                     if ($fee->get_name() == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
                         $this->co2ok_deleteTransaction($order_id);
@@ -570,7 +581,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         global $woocommerce;
 
-        if ($woocommerce->session->percentage)	
+        if ($woocommerce->session->percentage)
             $this->percentage = $woocommerce->session->percentage;
 
         $order_total = $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total;
@@ -663,7 +674,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
 
         $optoutIsTrue = get_option('co2ok_optout', 'off');
-        
+
         if ($optoutIsTrue == 'on' && ! $woocommerce->session->__isset('co2ok'))
             $woocommerce->session->co2ok = 1;
 
@@ -693,13 +704,13 @@ endif; //! class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' )
 //     // add_action( 'muplugins_loaded', 'my_plugin_override' );
 
 //     // if ( !function_exists( 'is_checkout' ) || !function_exists( 'is_cart' ) ) {
-        
+
 //     //         error_log("Should not render");
 
 //     //     } else {
 
 //     //         if( is_checkout() || is_cart() ) error_log("Should render");
-            
+
 //     //     }
 // }
 
