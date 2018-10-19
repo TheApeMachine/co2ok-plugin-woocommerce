@@ -10,12 +10,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
 
         }
 
-        static public function RenderImage($uri, $class = null, $id = null)
+        static public function RenderImage($uri, $class = null, $class_global = null, $id = null)
         {
             $img_html = '<img alt="Maak mijn aankoop klimaatneutraal " title="Maak mijn aankoop klimaatneutraal " src="' .esc_url(plugins_url($uri, __FILE__)) . '" ';
             $img_html = str_ireplace( '/Components', '', $img_html );
             if (isset($class))
-                $img_html .= 'class="' . $class . '" ';
+                $img_html .= 'class="' . $class .' '. $class_global .  '"';
             if (isset($id))
                 $img_html .= 'id="' . $id . '" ';
 
@@ -54,9 +54,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                     'surcharge' => $surcharge
                 )
             );
-            
 
-            
+
+
         }
 
     }

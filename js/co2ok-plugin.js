@@ -83,25 +83,71 @@ var Co2ok_JS = function ()
                     _this.GetPercentageFromMiddleware();
                     var cad = document.querySelector('.compensation_amount_default');
                     var make = document.querySelector('.make');
-                    var co2ok_logo = document.querySelector('#co2ok_logo');
+                    var co2ok_logo = document.querySelector('.co2ok_logo_default');
+
+                    //cad = compensation_amount_minimun
+                    var cad_minimal = document.querySelector('.compensation_amount_minimal');
+                    var make_minimal_minimal = document.querySelector('.make_minimal');
+                    var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
+
                     var qty = document.querySelector('.qty');console.log(qty.value.length);
                     var qtyVal = qty.value.length;
+                    var global = document.querySelector('.global');
 
-
-                    if(qtyVal > 1)
+                    if(global.className == 'inner_checkbox_label inner_checkbox_label_default')
                     {
 
-                       cad.style.fontSize = 18 - qtyVal+'px';
-                       cad.style.marginTop = 12 + qtyVal+'px';
-                       make.style.fontSize = 21 - qtyVal+'px';
-                       co2ok_logo.style.width = 55 - qtyVal+'px';
+                      defaultButton();
 
                     }else{
 
-                      cad.style.fontSize = '18px';
-                      cad.style.marginTop = '12px';
-                      make.style.fontSize = '21px';
-                      co2ok_logo.style.width = '55px';
+                      minimunButton();
+
+                    }
+
+
+                    function defaultButton()
+                    {
+
+                      if(qtyVal > 1)
+                      {
+
+                        cad.style.fontSize = 18 - qtyVal+'px';
+                        cad.style.marginTop = 12 + qtyVal+'px';
+                        make.style.fontSize = 21 - qtyVal+'px';
+                        co2ok_logo.style.width = 55 - qtyVal+'px';
+
+                      }else{
+
+                        cad.style.fontSize = '18px';
+                        cad.style.marginTop = '12px';
+                        make.style.fontSize = '21px';
+                        co2ok_logo.style.width = '55px';
+
+                      }
+
+                    }
+
+
+                    function minimunButton()
+                    {
+
+                      if(qtyVal > 1)
+                      {
+
+                         cad_minimal.style.fontSize = 15 - qtyVal+'px';
+                        // cad_minimal.style.marginTop = 9 + qtyVal+'px';
+                         mak_minimale.style.fontSize = 18 - qtyVal+'px';
+                         co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
+
+                      }else{
+
+                        cad_minimal.style.fontSize = '18px';
+                      //  cad_minimal.style.marginTop = '12px';
+                        make_minimal.style.fontSize = '21px';
+                        co2ok_logo_minimal.style.width = '55px';
+
+                      }
 
                     }
 
