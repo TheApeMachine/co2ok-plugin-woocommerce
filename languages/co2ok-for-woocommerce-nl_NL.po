@@ -41,8 +41,8 @@ msgid "http://www.co2ok.eco/"
 msgstr ""
 
 #: co2ok-plugin.php:206 co2ok-plugin.php:344
-msgid "CO2 compensation (Inc. VAT)"
-msgstr "CO2 compensatie (Inc. BTW)"
+msgid "CO2 compensation"
+msgstr "CO2 compensatie"
 
 #: Templates/co2ok_button_template_default.php:21
 msgid "Make "
