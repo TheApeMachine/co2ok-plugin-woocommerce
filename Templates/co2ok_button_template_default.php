@@ -70,7 +70,7 @@
         </a>
         </div>
 
-        <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo hover-link', 'co2ok_logo'); ?></a>
+        <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo_default_info hover-link', 'co2ok_logo_default_info'); ?></a>
         <span class="hover-link">
           <a  class="hover-link" target="_blank" href="http://www.co2ok.eco/co2-compensatie"><?php
             echo  __( 'How CO&#8322; compensation works', 'co2ok-for-woocommerce' );

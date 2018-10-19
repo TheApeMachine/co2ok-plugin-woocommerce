@@ -217,9 +217,15 @@ img#co2ok_logo_minimal {
     vertical-align: middle;
     margin: 3px 0px 0px 0px;
 }
-img#co2ok_logo_minimal_info {
+.co2ok_logo_minimal_info {
     display: inline-block;
-    width: 75px;
+    width: 25%;
+    vertical-align: middle;
+    margin: 9px 0px 0px 0px;
+}
+.co2ok_logo_default_info {
+    display: inline-block;
+    width: 25%;
     vertical-align: middle;
     margin: 9px 0px 0px 0px;
 }
