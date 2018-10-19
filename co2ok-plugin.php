@@ -466,7 +466,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $compensationCost = 0;
         foreach ($fees as $fee) {
-            if ($fee->get_name() == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
+            if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
                 $compensationCost = $fee->get_total();
                 break;
             }
@@ -544,7 +544,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     $orderTotal = $order->get_total();
                     $compensationCost = 0;
                     foreach ($fees as $fee) {
-                        if ($fee->get_name() == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
+                        if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
                             $compensationCost = $fee->get_total();
                             break;
                         }
@@ -553,7 +553,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
 
                 foreach ($fees as $fee) {
-                    if ($fee->get_name() == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
+                    if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
                         // The user did opt for co2 compensation
                         $this->co2ok_storeTransaction($order_id);
                     }
@@ -566,7 +566,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $fees = $order->get_fees();
 
                 foreach ($fees as $fee) {
-                    if ($fee->get_name() == __( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' )) {
+                    if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
                         $this->co2ok_deleteTransaction($order_id);
                     }
                 }
@@ -679,7 +679,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $woocommerce->session->co2ok = 1;
 
         if ($woocommerce->session->co2ok == 1)
-            $woocommerce->cart->add_fee(__( 'CO2 compensation (Inc. VAT)', 'co2ok-for-woocommerce' ), $this->surcharge, true, '');
+            $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, '');
 
     }
 }
