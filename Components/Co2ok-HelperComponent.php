@@ -55,8 +55,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                 )
             );
 
-
-
         }
 
     }

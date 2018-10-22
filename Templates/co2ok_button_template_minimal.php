@@ -100,24 +100,6 @@
    var qtyVal = qty.value.length;
    var global = document.querySelector('.global');
 
-   // if(global.className == 'inner_checkbox_label inner_checkbox_label_default')
-   // {
-   //
-   //   defaultButton();
-   //
-   // }else{
-   //
-   //   minimunButton();
-   //
-   // }
-
-
-   // function defaultButton()
-   // {
-   //
-
-
-
    function minimunButton()
    {
 
@@ -125,14 +107,12 @@
      {
 
         cad_minimal.style.fontSize = 15 - qtyVal+'px';
-       // cad_minimal.style.marginTop = 9 + qtyVal+'px';
         mak_minimale.style.fontSize = 18 - qtyVal+'px';
         co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
 
      }else{
 
        cad_minimal.style.fontSize = '18px';
-     //  cad_minimal.style.marginTop = '12px';
        make_minimal.style.fontSize = '21px';
        co2ok_logo_minimal.style.width = '55px';
 
