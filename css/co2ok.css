@@ -124,7 +124,7 @@
       border-radius: 3px;
       margin: 12px 0px 14px 8px; }
     .co2ok_container .co2ok_checkbox_container #co2ok_cart_field {
-      display: none; }
+      display: none !important; }
     .co2ok_container .co2ok_checkbox_container.unselected .make {
       margin-bottom: 2px;
       font-size: 20px;
