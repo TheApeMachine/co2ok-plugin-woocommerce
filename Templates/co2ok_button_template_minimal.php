@@ -11,11 +11,11 @@
         ?>
 
         <a href="#!" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;" class="co2ok_nolink">
-          <div class="inner_checkbox_label inner_checkbox_label_minimal global" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;">
+          <div class="inner_checkbox_label inner_checkbox_label_minimal co2ok_global_temp" id="minimal_co2ok_temp" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;">
             <div id="checkbox">
             </div>
 
-              <span class="make_minimal co2ok_adaptive_color_default make_global"><?php echo __( 'Make ', 'co2ok-for-woocommerce' ); ?></span>
+              <span class="make_co2ok_minimal co2ok_adaptive_color_default make_co2ok_global"><?php echo __( 'Make ', 'co2ok-for-woocommerce' ); ?></span>
               <?php
                     // Replaced co2ok_logo with co2ok_logo_minimal to keep the same logo, rather than switching between a white and default logo.
                   echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo_minimal', 'co2ok_logo_minimal');
@@ -88,58 +88,3 @@
 
 
 </div>
-
-<script type="text/javascript">
-
-   //cad = compensation_amount_minimun
-   var cad_minimal = document.querySelector('.compensation_amount_minimal');
-   var make_minimal_minimal = document.querySelector('.make_minimal');
-   var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
-
-   var qty = document.querySelector('.qty');console.log(qty.value.length);
-   var qtyVal = qty.value.length;
-   var global = document.querySelector('.global');
-
-   // if(global.className == 'inner_checkbox_label inner_checkbox_label_default')
-   // {
-   //
-   //   defaultButton();
-   //
-   // }else{
-   //
-   //   minimunButton();
-   //
-   // }
-
-
-   // function defaultButton()
-   // {
-   //
-
-
-
-   function minimunButton()
-   {
-
-     if(qtyVal > 1)
-     {
-
-        cad_minimal.style.fontSize = 15 - qtyVal+'px';
-       // cad_minimal.style.marginTop = 9 + qtyVal+'px';
-        mak_minimale.style.fontSize = 18 - qtyVal+'px';
-        co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
-
-     }else{
-
-       cad_minimal.style.fontSize = '18px';
-     //  cad_minimal.style.marginTop = '12px';
-       make_minimal.style.fontSize = '21px';
-       co2ok_logo_minimal.style.width = '55px';
-
-     }
-
-   }
-   minimunButton();
-
-
-</script>
