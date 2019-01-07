@@ -671,6 +671,83 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, '');
 
     }
+
+    //gets the schedules
+    wp_get_schedules();
+
+    // hook which should call our function
+    add_action( 'bl_cron_hook', 'co2ok_logWeeklyParticipation' );
+
+    // adds weekly schedule to the schedules
+    add_filter( 'cron_schedules', 'cron_add_weekly' );
+
+    function cron_add_weekly( $schedules ) {
+        // Adds once weekly to the existing schedules.
+        $schedules['weekly'] = array(
+            'interval' => 604800,
+            'display' => __( 'Once Weekly' )
+        );
+        return $schedules;
+    }
+
+    // ensure the task is not already scheduled
+    if ( ! wp_next_scheduled( 'bl_cron_hook' ) ) {
+        wp_schedule_event( time(), 'weekly', 'bl_cron_hook' );
+    }
+
+
+    function co2ok_logWeeklyParticipation(){
+        global $woocommerce;
+
+        $args = array(
+            'date_completed' => '>' . ( time() - 604800 ),
+        );
+        $orders = wc_get_orders( $args );
+
+        $parti = 0; // participated
+        $unparti = 0; // unparticipated
+        
+        foreach ($orders as $order) {
+            $order = wc_get_order($order_id);
+                $fees = $order->get_fees();
+            
+                foreach ($fees as $fee) {
+                    if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
+                        $parti ++;
+                    }
+                    $unparti ++;
+                }
+            }
+        }
+
+        $total = $parti + $unparti;
+        $division = 100 / $total;
+        $perc_parti = $division * $parti;
+        // $perc_unparti = $division * $unparti;
+        // echo ""
+        echo "Participated amount: $perc_parti <br>";
+        // echo "Unparticipated amont: $perc_unparti <br>";
+
+        // Dit moet nog de passende variabelen worden, dit is de logging
+        Co2ok_Plugin::remoteLogging(json_encode([$perc_parti]));
+    }
+
+
+    // This has to be implemented in deactivation of the CO2ok plugin!!!!
+    // Otherwise the schedule will still operate when our plugin is deactivated!!!
+    // Paste this in the deactivation of the plugin!!!!1!
+
+    $timestamp = wp_next_scheduled( 'bl_cron_hook' );
+    wp_unschedule_event( $timestamp, 'bl_cron_hook' );
+
+    // below is another option for when the plugin is deactivated
+
+    /*register_deactivation_hook( __FILE__, 'bl_deactivate' );
+    
+    function bl_deactivate() {
+    $timestamp = wp_next_scheduled( 'bl_cron_hook' );
+    wp_unschedule_event( $timestamp, 'bl_cron_hook' );
+    }*/
 }
 endif; //! class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' )
 
