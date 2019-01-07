@@ -687,30 +687,30 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
     //gets the schedules
-    wp_get_schedules();
+    // wp_get_schedules();
 
     // hook which should call our logWeeklyParticipation function
-    add_action( 'bl_cron_hook', 'co2ok_logWeeklyParticipation' );
+    // add_action( 'bl_cron_hook', 'co2ok_logWeeklyParticipation' );
 
-    // adds weekly schedule to the schedules
-    add_filter( 'cron_schedules', 'cron_add_weekly' );
+    // // adds weekly schedule to the schedules
+    // add_filter( 'cron_schedules', 'cron_add_weekly' );
 
-    function cron_add_weekly( $schedules ) {
-        // Adds once weekly to the existing schedules.
-        $schedules['weekly'] = array(
-            'interval' => 604800,
-            'display' => __( 'Once Weekly' )
-        );
-        return $schedules;
-    }
+    // function cron_add_weekly( $schedules ) {
+    //     // Adds once weekly to the existing schedules.
+    //     $schedules['weekly'] = array(
+    //         'interval' => 604800,
+    //         'display' => __( 'Once Weekly' )
+    //     );
+    //     return $schedules;
+    // }
 
-    // ensure the task is not already scheduled
-    if ( ! wp_next_scheduled( 'bl_cron_hook' ) ) {
-        wp_schedule_event( time(), 'weekly', 'bl_cron_hook' );
-    }
+    // // ensure the task is not already scheduled
+    // if ( ! wp_next_scheduled( 'bl_cron_hook' ) ) {
+    //     wp_schedule_event( time(), 'weekly', 'bl_cron_hook' );
+    // }
 
 
-    function co2ok_logWeeklyParticipation(){
+    public function co2ok_logWeeklyParticipation(){
         global $woocommerce;
 
         $args = array(
@@ -732,14 +732,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     $unparti ++;
                 }
             }
-        }
+        
 
         $total = $parti + $unparti;
         $division = 100 / $total;
         $perc_parti = $division * $parti;
         // $perc_unparti = $division * $unparti;
         // echo ""
-        echo "Participated amount: $perc_parti <br>";
+        return "Participated amount: $perc_parti <br>";
         // echo "Unparticipated amont: $perc_unparti <br>";
 
         // Dit moet nog de passende variabelen worden, dit is de logging
