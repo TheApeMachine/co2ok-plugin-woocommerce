@@ -294,10 +294,24 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
     }
 
-    //This function is called when the user activates the plugin.
+    //This function is called when the user deactivates the plugin.
     final static function co2ok_Deactivated()
     {
+    // This has to be implemented in deactivation of the CO2ok plugin!!!!
+    // Otherwise the schedule will still operate when our plugin is deactivated!!!
+    // Paste this in the deactivation of the plugin!!!!1!
 
+    $timestamp = wp_next_scheduled( 'bl_cron_hook' );
+    wp_unschedule_event( $timestamp, 'bl_cron_hook' );
+
+    // below is another option for when the plugin is deactivated
+
+    /*register_deactivation_hook( __FILE__, 'bl_deactivate' );
+    
+    function bl_deactivate() {
+    $timestamp = wp_next_scheduled( 'bl_cron_hook' );
+    wp_unschedule_event( $timestamp, 'bl_cron_hook' );
+    }*/
     }
 
     /**
@@ -675,7 +689,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     //gets the schedules
     wp_get_schedules();
 
-    // hook which should call our function
+    // hook which should call our logWeeklyParticipation function
     add_action( 'bl_cron_hook', 'co2ok_logWeeklyParticipation' );
 
     // adds weekly schedule to the schedules
@@ -731,23 +745,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // Dit moet nog de passende variabelen worden, dit is de logging
         Co2ok_Plugin::remoteLogging(json_encode([$perc_parti]));
     }
-
-
-    // This has to be implemented in deactivation of the CO2ok plugin!!!!
-    // Otherwise the schedule will still operate when our plugin is deactivated!!!
-    // Paste this in the deactivation of the plugin!!!!1!
-
-    $timestamp = wp_next_scheduled( 'bl_cron_hook' );
-    wp_unschedule_event( $timestamp, 'bl_cron_hook' );
-
-    // below is another option for when the plugin is deactivated
-
-    /*register_deactivation_hook( __FILE__, 'bl_deactivate' );
     
-    function bl_deactivate() {
-    $timestamp = wp_next_scheduled( 'bl_cron_hook' );
-    wp_unschedule_event( $timestamp, 'bl_cron_hook' );
-    }*/
 }
 endif; //! class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' )
 
