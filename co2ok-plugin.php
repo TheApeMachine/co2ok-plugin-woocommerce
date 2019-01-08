@@ -724,23 +724,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $perc_parti = "Participation= ".($division * $parti)."%";
         $ordersize = "Ordertotal= ".sizeof($orders);
         $merchantId = "merchantId= ".get_option('co2ok_id', false);
-        return 
-        // $perc_unparti = $division * $unparti;
-        // echo ""
-        // print_r($fees);
-        // print_r($args);
-        // print_r($orders);
-        // // print_r($fees);
-        // sizeof($orders);
-
-        // "Parti: $parti </br>
-        // Unparti: $unparti </br>
-        // Orders: $orders </br>
-        // Total: $total </br>
-        // args: $args </br>
-        // fees: $fees </br>
-        // Participated amount: $perc_parti </br>";
-
+        return
         // Remote log for participation, ordertotal and merchantId
         Co2ok_Plugin::remoteLogging(json_encode([$perc_parti, $ordersize, $merchantId]));
     }
