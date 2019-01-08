@@ -297,21 +297,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     //This function is called when the user deactivates the plugin.
     final static function co2ok_Deactivated()
     {
-    // This has to be implemented in deactivation of the CO2ok plugin!!!!
-    // Otherwise the schedule will still operate when our plugin is deactivated!!!
-    // Paste this in the deactivation of the plugin!!!!1!
-
-    $timestamp = wp_next_scheduled( 'bl_cron_hook' );
-    wp_unschedule_event( $timestamp, 'bl_cron_hook' );
-
-    // below is another option for when the plugin is deactivated
-
-    /*register_deactivation_hook( __FILE__, 'bl_deactivate' );
-    
-    function bl_deactivate() {
-    $timestamp = wp_next_scheduled( 'bl_cron_hook' );
-    wp_unschedule_event( $timestamp, 'bl_cron_hook' );
-    }*/
+        // This has to be implemented in deactivation of the CO2ok plugin!!!
+        $timestamp = wp_next_scheduled( 'co2ok_weekly_cron_hook' );
+        wp_unschedule_event( $timestamp, 'co2ok_weekly_cron_hook' );
     }
 
     /**
@@ -395,6 +383,23 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
                 add_action('wp_ajax_nopriv_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
                 add_action('wp_ajax_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
+
+                // ensure weekly participation log is called only once
+                if ( !wp_get_schedules()) {
+                    // gets the schedules
+                    wp_get_schedules();
+
+                    // hook which should call our logWeeklyParticipation function
+                    add_action( 'co2ok_weekly_cron_hook', 'co2ok_logWeeklyParticipation' );
+
+                    // adds weekly schedule to the schedules
+                    add_filter( 'cron_schedules', 'cron_add_weekly' );
+                }
+                
+                 // ensure the weekly participation log task is not already scheduled
+                if ( ! wp_next_scheduled( 'co2ok_weekly_cron_hook' ) ) {
+                    wp_schedule_event( time(), 'weekly', 'co2ok_weekly_cron_hook' );
+                }
 
                 // Check if merchant is registered, if for whatever reason this merchant is in fact not a registered merchant,
                 // Maybe the api was down when this user registered the plugin, in that case we want to re-register !
@@ -686,31 +691,16 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     }
 
-    //gets the schedules
-    // wp_get_schedules();
+    function cron_add_weekly( $schedules ) {
+        // Adds once weekly to the existing schedules.
+        $schedules['weekly'] = array(
+            'interval' => 604800,
+            'display' => __( 'Once Weekly' )
+        );
+        return $schedules;
+    }
 
-    // hook which should call our logWeeklyParticipation function
-    // add_action( 'bl_cron_hook', 'co2ok_logWeeklyParticipation' );
-
-    // // adds weekly schedule to the schedules
-    // add_filter( 'cron_schedules', 'cron_add_weekly' );
-
-    // function cron_add_weekly( $schedules ) {
-    //     // Adds once weekly to the existing schedules.
-    //     $schedules['weekly'] = array(
-    //         'interval' => 604800,
-    //         'display' => __( 'Once Weekly' )
-    //     );
-    //     return $schedules;
-    // }
-
-    // // ensure the task is not already scheduled
-    // if ( ! wp_next_scheduled( 'bl_cron_hook' ) ) {
-    //     wp_schedule_event( time(), 'weekly', 'bl_cron_hook' );
-    // }
-
-
-    public function co2ok_logWeeklyParticipation(){
+    static public function co2ok_logWeeklyParticipation(){
         global $woocommerce;
 
         $args = array(
@@ -719,31 +709,40 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $orders = wc_get_orders( $args );
 
         $parti = 0; // participated
-        $unparti = 0; // unparticipated
         
         foreach ($orders as $order) {
-            $order = wc_get_order($order_id);
-                $fees = $order->get_fees();
-            
-                foreach ($fees as $fee) {
-                    if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
-                        $parti ++;
-                    }
-                    $unparti ++;
+            $fees = $order->get_fees();
+
+            foreach ($fees as $fee) {
+                if ($fee->get_name() == __( 'CO2 compensatie (Inc. BTW)'||'CO2 compensation', 'co2ok-for-woocommerce' )) {
+                    $parti ++;
                 }
             }
+        }
         
-
-        $total = $parti + $unparti;
-        $division = 100 / $total;
-        $perc_parti = $division * $parti;
+        $division = 100 / sizeof($orders);
+        $perc_parti = "Participation= ".($division * $parti)."%";
+        $ordersize = "Ordertotal= ".sizeof($orders);
+        $merchantId = "merchantId= ".get_option('co2ok_id', false);
+        return 
         // $perc_unparti = $division * $unparti;
         // echo ""
-        return "Participated amount: $perc_parti <br>";
-        // echo "Unparticipated amont: $perc_unparti <br>";
+        // print_r($fees);
+        // print_r($args);
+        // print_r($orders);
+        // // print_r($fees);
+        // sizeof($orders);
 
-        // Dit moet nog de passende variabelen worden, dit is de logging
-        Co2ok_Plugin::remoteLogging(json_encode([$perc_parti]));
+        // "Parti: $parti </br>
+        // Unparti: $unparti </br>
+        // Orders: $orders </br>
+        // Total: $total </br>
+        // args: $args </br>
+        // fees: $fees </br>
+        // Participated amount: $perc_parti </br>";
+
+        // Remote log for participation, ordertotal and merchantId
+        Co2ok_Plugin::remoteLogging(json_encode([$perc_parti, $ordersize, $merchantId]));
     }
     
 }
