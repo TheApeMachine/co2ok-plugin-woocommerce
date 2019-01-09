@@ -94,7 +94,14 @@ function co2ok_fs_custom_icon() {
 }
 $co2okfreemius->add_filter( 'plugin_icon' , 'co2ok_plugin_woocommerce\co2ok_fs_custom_icon' );
 
-
+function cron_add_weekly( $schedules ) {
+    // Adds once weekly to the existing schedules.
+    $schedules['weekly'] = array(
+        'interval' => 604800,
+        'display' => __( 'Once Weekly' )
+    );
+    return $schedules;
+}
 
 /**
   * Only activate plugin on cart and checkout page
@@ -385,9 +392,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 add_action('wp_ajax_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
 
                 // ensure weekly participation log is called only once
+                if ( ! wp_next_scheduled( 'co2ok_weekly_cron_hook' ) ) {
+
                 if ( !has_action( 'co2ok_weekly_cron_hook', 'co2ok_logWeeklyParticipation' )) {
+
+                    // Co2ok_Plugin::remoteLogging(json_encode([ wp_get_schedules()]));
+
+                    // cron_add_weekly( wp_get_schedules() );
+                    // wp_get_schedules( cron_add_weekly($schedules) );
+                    // $schedules['weekly']
                     // gets the schedules
-                    wp_get_schedules();
+                    // wp_get_schedules();
 
                     // hook which should call our logWeeklyParticipation function
                     add_action( 'co2ok_weekly_cron_hook', 'co2ok_logWeeklyParticipation' );
@@ -397,7 +412,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
                 
                  // ensure the weekly participation log task is not already scheduled
-                if ( ! wp_next_scheduled( 'co2ok_weekly_cron_hook' ) ) {
                     wp_schedule_event( time(), 'weekly', 'co2ok_weekly_cron_hook' );
                 }
 
@@ -691,20 +705,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     }
 
-    function cron_add_weekly( $schedules ) {
-        // Adds once weekly to the existing schedules.
-        $schedules['weekly'] = array(
-            'interval' => 604800,
-            'display' => __( 'Once Weekly' )
-        );
-        return $schedules;
-    }
-
     static public function co2ok_logWeeklyParticipation(){
         global $woocommerce;
 
         $args = array(
-            'date_completed' => '>' . ( time() - 604800 ),
+        'date_completed' => '>' . ( time() - 604800 ),
         );
         $orders = wc_get_orders( $args );
 
