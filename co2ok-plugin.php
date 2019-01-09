@@ -385,7 +385,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 add_action('wp_ajax_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
 
                 // ensure weekly participation log is called only once
-                if ( !wp_get_schedules()) {
+                if ( !has_action( 'co2ok_weekly_cron_hook', 'co2ok_logWeeklyParticipation' )) {
                     // gets the schedules
                     wp_get_schedules();
 
