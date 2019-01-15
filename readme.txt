@@ -83,7 +83,7 @@ We gather as little data as possible, specifically:
 
 == Changelog ==
 
-= 1.0.2.7
+= 1.0.2.8
 * fixes CSS issue on checkout page in some shops
 * corrects VAT message
 * adds support for large compensation amounts
