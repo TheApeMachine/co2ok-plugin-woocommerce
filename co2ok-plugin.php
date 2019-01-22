@@ -94,14 +94,14 @@ function co2ok_fs_custom_icon() {
 }
 $co2okfreemius->add_filter( 'plugin_icon' , 'co2ok_plugin_woocommerce\co2ok_fs_custom_icon' );
 
-// function cron_add_weekly( $schedules ) {
-//     // Adds once weekly to the existing schedules.
-//     $schedules['weekly'] = array(
-//         'interval' => 604800,
-//         'display' => __( 'Once Weekly' )
-//     );
-//     return $schedules;
-// }
+function cron_add_weekly( $schedules ) {
+    // Adds once weekly to the existing schedules.
+    $schedules['weekly'] = array(
+        'interval' => 604800,
+        'display' => __( 'Once Weekly' )
+    );
+    return $schedules;
+}
 
 /**
   * Only activate plugin on cart and checkout page
@@ -394,26 +394,25 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 // ensure weekly participation log is called only once
                 if ( ! wp_next_scheduled( 'co2ok_weekly_cron_hook' ) ) {
 
-                if ( !has_action( 'co2ok_weekly_cron_hook', 'co2ok_logWeeklyParticipation' )) {
-                    // Co2ok_Plugin::remoteLogging(json_encode([wp_get_schedules()]));
+                    if ( !has_action( 'co2ok_weekly_cron_hook', 'co2ok_logWeeklyParticipation' )) {
+                        // Co2ok_Plugin::remoteLogging(json_encode([wp_get_schedules()]));
 
-                    // Co2ok_Plugin::remoteLogging(json_encode([ wp_get_schedules()]));
+                        // Co2ok_Plugin::remoteLogging(json_encode([ wp_get_schedules()]));
 
-                    // cron_add_weekly( wp_get_schedules() );
-                    // wp_get_schedules( cron_add_weekly($schedules) );
-                    // $schedules['weekly']
-                    // gets the schedules
-                    wp_get_schedules();
-
-                    // hook which should call our logWeeklyParticipation function
-                    add_action( 'co2ok_weekly_cron_hook', 'co2ok_logWeeklyParticipation' );
-
-                    // adds weekly schedule to the schedules
-                    // add_filter( 'cron_schedules', 'cron_add_weekly' );
-                }
+                        // cron_add_weekly( wp_get_schedules() );
+                        // wp_get_schedules( cron_add_weekly($schedules) );
+                        // $schedules['weekly']
+                        // gets the schedules
+                        wp_get_schedules();
+                        
+                        // hook which should call our logWeeklyParticipation function
+                        add_action( 'co2ok_weekly_cron_hook', 'co2ok_logWeeklyParticipation' );
+                        
+                        // adds weekly schedule to the schedules
+                        add_filter( 'cron_schedules', 'co2ok_plugin_woocommerce\cron_add_weekly' );
+                    }
                 
-                 // ensure the weekly participation log task is not already scheduled
-                    wp_schedule_event( time(), 'daily', 'co2ok_weekly_cron_hook' );
+                    wp_schedule_event( time(), 'hourly', 'co2ok_weekly_cron_hook' );
                 }
 
                 // Check if merchant is registered, if for whatever reason this merchant is in fact not a registered merchant,
