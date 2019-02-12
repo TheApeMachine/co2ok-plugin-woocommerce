@@ -379,9 +379,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 add_action('wp_enqueue_scripts', array($this, 'co2ok_font'));
                 add_action('wp_enqueue_scripts', array($this, 'co2ok_javascript'));
 
-                add_action('wp_ajax_nopriv_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
-                add_action('wp_ajax_co2ok_ajax_set_percentage', array($this, 'co2ok_ajax_set_percentage'));
-
                 // Check if merchant is registered, if for whatever reason this merchant is in fact not a registered merchant,
                 // Maybe the api was down when this user registered the plugin, in that case we want to re-register !
                 $alreadyActivated = get_option('co2ok_id', false);
@@ -394,29 +391,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             // TODO this needs to be a prettier warning, but at least it doesn't break WP.
             trigger_error( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ), E_USER_WARNING);
         }
-    }
-
-    final public function co2ok_ajax_set_percentage()
-    {
-        if( empty($_POST) )
-            die('Security check');
-
-        global $woocommerce;
-
-        $this->percentage = filter_var ( $_POST['percentage'], FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
-        if ($this->percentage < 0) {
-            die("Something went wrong. Please try again");
-        }
-
-        $woocommerce->session->percentage = $this->percentage;
-
-        $this->surcharge = $this->co2ok_calculateSurcharge($add_tax = true);
-
-        $return = array(
-            'compensation_amount'	=> get_woocommerce_currency_symbol() . number_format($this->surcharge, 2, ',', ' ')
-        );
-
-        wp_send_json($return);
     }
 
     final public function co2ok_stylesheet()
@@ -432,8 +406,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_javascript()
     {
-        wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true);
-        wp_enqueue_script('co2ok_js_cdn');
         wp_register_script('co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__).'?plugin_version='.self::VERSION);
         wp_enqueue_script('co2ok_js_wp', "", array(), null, true);
         wp_localize_script('co2ok_js_wp', 'ajax_object',

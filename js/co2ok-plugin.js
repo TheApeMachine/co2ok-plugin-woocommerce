@@ -153,7 +153,6 @@ var Co2ok_JS = function ()
                 function compensationAmountTextSize() {
 
                     //cad = compensation_amount_default
-                    _this.GetPercentageFromMiddleware();
                     var pathName = window.location.pathname;
                     var make_minimal = document.querySelector('.make_co2ok_minimal');
 
@@ -302,8 +301,6 @@ var Co2ok_JS = function ()
 
                 });
 
-                _this.GetPercentageFromMiddleware();
-
             });
 
             if (!(jQuery('#co2ok_cart').is(":checked"))) {
@@ -327,52 +324,7 @@ var Co2ok_JS = function ()
             }
 
         },
-        GetPercentageFromMiddleware: function()
-        {
-            var merchant_id = jQuery('.co2ok_container').attr('data-merchant-id');
-            var products = JSON.parse(decodeURIComponent(jQuery('.co2ok_container').attr('data-cart')));
-
-            var CartData = {
-                products: []
-            }
-
-            jQuery(products).each(function(i)
-            {
-                var ProductData ={
-                    name: products[i].name,
-                    brand: products[i].brand,
-                    description: products[i].description,
-                    shortDescription: products[i].shortDescription,
-                    sku: products[i].sku,
-                    gtin: products[i].gtin,
-                    price: products[i].price,
-                    taxClass: products[i].taxClass,
-                    weight: products[i].weight,
-                    attributes: products[i].attributes,
-                    defaultAttributes: products[i].defaultAttributes,
-                    quantity: products[i].quantity,
-                }
-                CartData.products.push(ProductData);
-            });
-
-            var promise = CO2ok.getFootprint(merchant_id,CartData);
-
-            promise.then(function(percentage)
-            {
-                var data = {
-                    'action': 'co2ok_ajax_set_percentage',
-                    'percentage': percentage
-                };
-                jQuery.post(ajax_object.ajax_url, data, function(response)
-                {
-                    if (typeof response.compensation_amount != 'undefined') {
-                        jQuery('[class*="compensation_amount"]').html('+'+response.compensation_amount);
-                    }
-                });
-            });
-
-        },
-
+      
         RegisterBindings: function()
         {
 
