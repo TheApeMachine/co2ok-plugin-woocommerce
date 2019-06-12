@@ -325,6 +325,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                  */
                 $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'checkout_order_review');
 
+                add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
+                    $order = wc_get_order( $order_id );
+                    $customer_id = $order->get_customer_id();
+                    if (! (ord($customer_id) % 2 == 0)) {
+                        $order->update_meta_data( 'co2ok-shown', 'true' );
+                        $order->save();
+                    }
+                } , 10, 2);
+
                 $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
                 if ( $co2ok_disable_button_on_cart == 'false' )
                     add_action('woocommerce_cart_collaterals', array($this, 'co2ok_cart_checkbox'));
@@ -644,12 +653,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_cart_checkbox()
     {
+        $co2ok_hide_button = ord(\WC()->session->get_customer_id()) % 2 == 0;
+        if ( !$co2ok_hide_button) {
         $this->renderCheckbox();
+        }
     }
 
     final public function co2ok_checkout_checkbox()
     {
+        $co2ok_hide_button = ord(\WC()->session->get_customer_id()) % 2 == 0;
+        if ( !$co2ok_hide_button) {
         $this->renderCheckbox();
+        }
     }
 
     final public function co2ok_woocommerce_custom_surcharge($cart)
