@@ -24,6 +24,51 @@
                     <h3>
                         <h1>Thanks for helping us fight climate change! :)</h1>
                         <img src="<?php echo esc_url(plugins_url('../../../images/happy-flower300.gif', __FILE__)); ?>"/>
+
+                        <?php
+                        global $woocommerce;
+                        $args = array(
+                        // of mss date_paid, maar iig niet _completed
+                        // 'date_completed' => '>' . ( time() - 604800 ),
+                        'date_created' => '2019-06-15...2020-01-01',
+                        );
+                        $orders = wc_get_orders( $args );
+                        $shown_count = 0; // orders with CO2ok shown
+
+                        $x = 0;
+
+                        foreach ($orders as $order) {
+                            // echo 'ordertje';
+                            // echo var_dump(wc_get_order( $order->id ));
+                            $shown = $order->get_meta( 'co2ok-shown' );
+                            // $shown = $order->get_meta( 'currency' );
+                            
+                            // echo '<pre> die ding'; print_r($shown); echo '</pre>';
+                            // echo '<pre> das ding'. strlen($shown) . '</pre>';
+                            // if ($x < 1){
+                            //     // echo var_dump(wc_get_order( $order->id ));
+                            //     $x ++;
+                            //     echo '<pre>'; print_r($shown); echo '</pre>';
+                            // }  
+                            
+                            if ($shown) {
+                                // echo var_dump(wc_get_order( $order->id ));
+                                $shown_count ++;
+                            }
+                        }
+                        
+                        echo "<h2>A/B testing results</h2>";
+                        echo "CO2ok shown orders: " . $shown_count . " total order count: " . sizeof($orders) ."</br>";
+                        // $division = 100 / sizeof($orders);
+                        // $perc_parti = "Participation= ".($division * $parti)."%";
+                        // $ordersize = "Ordertotal= ".sizeof($orders);
+
+                        $percentage = $shown_count / (sizeof($orders) - $shown_count);
+
+                        echo "Conversie verhoging: " . round(($percentage * 100 - 100), 2) . "% </br>";
+
+                        ?>
+
                         <p>You are our hero. We strongly believe that no fight has been more important, and this needs
                             to be fought in any way possible. And it's not only the climate that benefits;</p>
                             <img src="<?php echo esc_url(plugins_url('../../../images/Lesotho-cookstoves.jpg', __FILE__)); ?>" width=300px/>
