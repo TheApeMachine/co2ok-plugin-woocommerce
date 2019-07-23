@@ -30,7 +30,7 @@
                         $args = array(
                         // of mss date_paid, maar iig niet _completed
                         // 'date_completed' => '>' . ( time() - 604800 ),
-                        'date_created' => '2019-06-15...2020-01-01',
+                        'date_created' => '2019-06-13...2020-01-01',
                         );
                         $orders = wc_get_orders( $args );
                         $shown_count = 0; // orders with CO2ok shown
