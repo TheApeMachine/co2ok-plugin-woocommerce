@@ -25,10 +25,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
         static public function RenderRandomizedVideo()
         {
             $rewardVideo[] = array();
-            $rewardVideo[0] = 'happy-piggy-loop';
-            $rewardVideo[1] = 'happy-flower';
-            $rewardVideo[2] = 'cat-high-five';
-            $rewardVideo[3] = 'happy-globe';
+            // $rewardVideo[0] = 'happy-piggy-loop';
+            $rewardVideo[0] = 'happy-flower';
+            // $rewardVideo[2] = 'cat-high-five';
+            $rewardVideo[1] = 'happy-globe';
 
             $pickedVideo = mt_rand(0,count($rewardVideo) - 1);
 
