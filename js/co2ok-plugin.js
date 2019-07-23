@@ -1,4 +1,4 @@
-var global = document.querySelector('.co2ok_global_temp');
+var co2ok_temp_global = document.querySelector('.co2ok_global_temp');
 
 
 function minimumButton()
@@ -173,7 +173,7 @@ var Co2ok_JS = function ()
                       var qty = document.querySelector('.qty');
                       var qtyVal = qty.value.length;
 
-                      if(global.id == 'default_co2ok_temp')
+                      if(co2ok_temp_global.id == 'default_co2ok_temp')
                       {
 
                         defaultButton();
@@ -250,7 +250,7 @@ var Co2ok_JS = function ()
                       var compensation_amount_minimal = document.querySelector('.compensation_amount_minimal');
 
                         var compensationAmountLength = compensation_amount_global.textContent.length;
-                        if(global.id == 'default_co2ok_temp')
+                        if(co2ok_temp_global.id == 'default_co2ok_temp')
                         {
 
                             if(productQuantityLength > 1)
