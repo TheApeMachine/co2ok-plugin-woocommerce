@@ -42,16 +42,16 @@ function defaultButton()
     if(qtyVal > 1)
     {
 
-       cad.style.fontSize = 18 - qtyVal+'px';
+       cad.style.fontSize = 16 - qtyVal+'px';
        cad.style.marginTop = 12 + qtyVal+'px';
-       make.style.fontSize = 21 - qtyVal+'px';
+       make.style.fontSize = 18 - qtyVal+'px';
        co2ok_logo.style.width = 55 - qtyVal+'px';
 
     }else{
 
-      cad.style.fontSize = '18px';
+      cad.style.fontSize = '16px';
       cad.style.marginTop = '12px';
-      make.style.fontSize = '21px';
+      make.style.fontSize = '18px';
       co2ok_logo.style.width = '55px';
 
     }
@@ -197,16 +197,16 @@ var Co2ok_JS = function ()
                       if(qtyVal > 1)
                       {
 
-                        cad.style.fontSize = 18 - qtyVal+'px';
-                        cad.style.marginTop = 12 + qtyVal+'px';
-                        make.style.fontSize = 21 - qtyVal+'px';
+                        cad.style.fontSize = 16 - qtyVal+'px';
+                        cad.style.marginTop = 10 + qtyVal+'px';
+                        make.style.fontSize = 18 - qtyVal+'px';
                         co2ok_logo.style.width = 55 - qtyVal+'px';
 
                       }else{
 
-                        cad.style.fontSize = '18px';
-                        cad.style.marginTop = '12px';
-                        make.style.fontSize = '21px';
+                        cad.style.fontSize = '16px';
+                        cad.style.marginTop = '10px';
+                        make.style.fontSize = '18px';
                         co2ok_logo.style.width = '55px';
 
                       }
