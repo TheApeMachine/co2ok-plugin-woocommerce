@@ -263,8 +263,8 @@ var Co2ok_JS = function ()
 
                             }else{
 
-                              cad.style.fontSize = '18px';
-                              make.style.fontSize = '21px';
+                              cad.style.fontSize = '16px';
+                              make.style.fontSize = '18px';
                               co2ok_logo.style.width = '55px';
 
                             }
