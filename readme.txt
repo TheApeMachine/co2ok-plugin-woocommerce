@@ -5,7 +5,7 @@ Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carb
 Requires at least: 4.0
 Tested up to: 5.2.2
 WC tested up to: 3.6.5
-Stable tag: 1.0.3.0
+Stable tag: 1.0.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ During installation an account for our service will be created automatically. Us
 
 
 **Features**
-* Multi-language (currently English and Dutch - let us know which language you need!)
+* Multi-language (currently English, Dutch and German - let us know which language you need!)
 * Clear information 'hoverbox' - customers don't need to visit our site for explanation
 * Flexible placement on the checkout page
 * 2 button designs available
@@ -82,6 +82,10 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.3.1
+* Reduced size of default button design
+* Increased reliability of transaction storing
 
 = 1.0.3.0
 * Fixes conflict with Belco.io plugin
