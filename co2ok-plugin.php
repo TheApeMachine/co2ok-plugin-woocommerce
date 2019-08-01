@@ -346,7 +346,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
                     $order = wc_get_order( $order_id );
                     $customer_id = $order->get_customer_id();
-                    if (! (ord($customer_id) % 2 == 0)) {
+                    // hier zat denk ik de bug
+                    if ( (ord($customer_id) % 2 == 0)) {
                         $order->update_meta_data( 'co2ok-shown', 'true' );
                         $order->save();
                     }
