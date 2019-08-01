@@ -38,8 +38,8 @@
                         $x = 0;
 
                         foreach ($orders as $order) {
-                            // echo 'ordertje';
-                            // echo var_dump(wc_get_order( $order->id ));
+                            echo 'ordertje';
+                            echo var_dump(wc_get_order( $order->id ));
                             $shown = $order->get_meta( 'co2ok-shown' );
                             // $shown = $order->get_meta( 'currency' );
                             
