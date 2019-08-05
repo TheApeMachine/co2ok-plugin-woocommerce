@@ -25,21 +25,43 @@
                         <h1>Thanks for helping us fight climate change! :)</h1>
                         <img src="<?php echo esc_url(plugins_url('../../../images/happy-flower300.gif', __FILE__)); ?>"/>
 
+
+                        <?= '<pre>'; print_r( wp_next_scheduled( 'co2ok_hoer_cron_hook' ) ); echo '</pre>'; ?>
+                        <?= '<pre>'; print_r( _get_cron_array() ); echo '</pre>'; ?>
                         <?php
+
+                        error_log('henk');
+
                         global $woocommerce;
                         $args = array(
                         // of mss date_paid, maar iig niet _completed
                         // 'date_completed' => '>' . ( time() - 604800 ),
                         'date_created' => '2019-06-13...2020-01-01',
+                        'order' => 'ASC',
                         );
                         $orders = wc_get_orders( $args );
                         $shown_count = 0; // orders with CO2ok shown
+                        $order_count = 0; // orders
+                        $shown_found = false; 
+                        $orders_after_shown = 0; // used to keep track of order after A/B test has stopped
 
                         $x = 0;
 
+                        /* idee om de count slimmer te doen:
+                        - counter reset bij eerste shown
+                        BB: periode stoppen bij update of laatste shown (ugh)
+                        */
+
                         foreach ($orders as $order) {
+                            if (defined('WP_DEBUG') && true === WP_DEBUG) {
+                                echo 'd00d';
+                             }
+                            // $order = wc_get_order( $order_id );
+                            $customer_id = $order->get_customer_id();
+                            echo $customer_id;
                             echo 'ordertje';
-                            echo var_dump(wc_get_order( $order->id ));
+                            // echo var_dump(wc_get_order( $order->id ));
+                            echo var_dump(wc_get_order( $order ));
                             $shown = $order->get_meta( 'co2ok-shown' );
                             // $shown = $order->get_meta( 'currency' );
                             
@@ -50,22 +72,34 @@
                             //     $x ++;
                             //     echo '<pre>'; print_r($shown); echo '</pre>';
                             // }  
+                            $order_count ++;
+                            $orders_after_shown ++;
                             
+                            // count the number of orders with CO2ok shown
                             if ($shown) {
                                 // echo var_dump(wc_get_order( $order->id ));
                                 $shown_count ++;
+
+                                // reset the order count once the first 
+                                if (! $shown_found) {
+                                    $shown_found = true;
+                                    $order_count = 0;
+                                }
+                                $orders_after_shown = 0;
                             }
                         }
                         
                         echo "<h2>A/B testing results</h2>";
-                        echo "CO2ok shown orders: " . $shown_count . " total order count: " . sizeof($orders) ."</br>";
+                        echo "CO2ok shown orders: " . $shown_count . " total order count: " . $order_count . " A/B test orders:". ($order_count - $orders_after_shown) ."</br>";
                         // $division = 100 / sizeof($orders);
                         // $perc_parti = "Participation= ".($division * $parti)."%";
                         // $ordersize = "Ordertotal= ".sizeof($orders);
 
-                        $percentage = $shown_count / (sizeof($orders) - $shown_count);
+                        $percentage = $shown_count / (($order_count - $orders_after_shown) - $shown_count);
 
                         echo "Conversie verhoging: " . round(($percentage * 100 - 100), 2) . "% </br>";
+
+                        // \co2ok_plugin_woocommerce\Co2ok_Plugin::co2ok_calculate_ab_results();
 
                         ?>
 
