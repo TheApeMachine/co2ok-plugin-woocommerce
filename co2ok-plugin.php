@@ -345,9 +345,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
                 add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
                     $order = wc_get_order( $order_id );
-                    $customer_id = $order->get_customer_id();
-                    // hier zat denk ik de bug
-                    if ( (ord($customer_id) % 2 == 0)) {
+                    // hier zat de bug:
+                    // $customer_id = $order->get_customer_id();
+                    $customer_id = \WC()->session->get_customer_id();
+                    // error_log($order);
+                    // error_log($customer_id);
+                    if ( ! (ord($customer_id) % 2 == 0)) {
                         $order->update_meta_data( 'co2ok-shown', 'true' );
                         $order->save();
                     }
@@ -417,7 +420,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 // Check if merchant is registered, if for whatever reason this merchant is in fact not a registered merchant,
                 // Maybe the api was down when this user registered the plugin, in that case we want to re-register !
                 $alreadyActivated = get_option('co2ok_id', false);
-                if (!$alreadyActivated)
+                if (!$alreadyActivated){
                     Co2ok_Plugin::registerMerchant();
 
                 add_filter( 'cron_schedules', array($this, 'cron_add_weekly' ));
@@ -438,6 +441,110 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 add_action( 'co2ok_clv_cron_hook', array($this, 'co2ok_calculate_clv' ));
 
                 add_action('init', array($this, 'co2ok_register_shortcodes'));
+                }
+                
+                // ensure weekly participation log is called only once
+                // if ( ! wp_next_scheduled( 'co2ok_ho_cron_hook' ) ) {
+                    // if ( !has_action( 'co2ok_ho_cron_hook', 'co2ok_calculate_ab_results' )) {
+                        // Co2ok_Plugin::remoteLogging(json_encode([wp_get_schedules()]));
+                        // Co2ok_Plugin::remoteLogging(json_encode([ wp_get_schedules()]));
+                        // cron_add_daily( wp_get_schedules() );
+                        // wp_get_schedules( cron_add_daily($schedules) );
+                        // $schedules['daily']
+                        // gets the schedules
+                        // wp_get_schedules();
+                        
+                        // hook which should call our logdailyParticipation function
+                        // add_action( 'co2ok_ho_cron_hook', 'co2ok_calculate_ab_results' );
+                        // add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
+                            add_action( 'co2ok_ho_cron_hook', function()
+                            {
+                                error_log('AB die scheiße!');
+                                global $woocommerce;
+                                $args = array(
+                                    // of mss date_paid, maar iig niet _completed
+                                    // 'date_completed' => '>' . ( time() - 604800 ),
+                                    'date_created' => '2019-06-13...2020-01-01',
+                                    'order' => 'ASC',
+                                );
+                                $orders = wc_get_orders( $args );
+                                $shown_count = 0; // orders with CO2ok shown
+                                $order_count = 0; // orders
+                                $shown_found = false; 
+                                $orders_after_shown = 0; // used to keep track of order after A/B test has stopped
+                                
+                                // $x = 0;
+                                
+                                /* idee om de count slimmer te doen:
+                                - counter reset bij eerste shown
+                                BB: periode stoppen bij update of laatste shown (ugh)
+                                */
+                                
+                    foreach ($orders as $order) {
+                        if (defined('WP_DEBUG') && true === WP_DEBUG) {
+                            echo 'd00d';
+                        }
+                        // $order = wc_get_order( $order_id );
+                        $customer_id = $order->get_customer_id();
+                        // echo $customer_id;
+                        // echo 'ordertje';
+                        // echo var_dump(wc_get_order( $order->id ));
+                        // echo var_dump(wc_get_order( $order ));
+                        $shown = $order->get_meta( 'co2ok-shown' );
+                        // $shown = $order->get_meta( 'currency' );
+                        
+                        // echo '<pre> die ding'; print_r($shown); echo '</pre>';
+                        // echo '<pre> das ding'. strlen($shown) . '</pre>';
+                        // if ($x < 1){
+                            //     // echo var_dump(wc_get_order( $order->id ));
+                            //     $x ++;
+                            //     echo '<pre>'; print_r($shown); echo '</pre>';
+                            // }  
+                            $order_count ++;
+                            $orders_after_shown ++;
+                            
+                            // count the number of orders with CO2ok shown
+                            if ($shown) {
+                                // echo var_dump(wc_get_order( $order->id ));
+                                $shown_count ++;
+                                
+                                // reset the order count once the first 
+                                if (! $shown_found) {
+                                    $shown_found = true;
+                                    $order_count = 0;
+                                }
+                                $orders_after_shown = 0;
+                            }
+                        }
+                        
+                        // echo "<h2>A/B testing results</h2>";
+                        // echo "CO2ok shown orders: " . $shown_count . " total order count: " . $order_count . " A/B test orders:". ($order_count - $orders_after_shown) ."</br>";
+                        // $division = 100 / sizeof($orders);
+                        // $perc_parti = "Participation= ".($division * $parti)."%";
+                        // $ordersize = "Ordertotal= ".sizeof($orders);
+                        
+                        $percentage = $shown_count / (($order_count - $orders_after_shown) - $shown_count);
+                        
+                        // echo "Conversie verhoging: " . round(($percentage * 100 - 100), 2) . "% </br>";
+                        
+                        $merchantId = get_option('co2ok_id', false);
+                        
+                        // remote log: shown orders, total orders, percentage, merchantID
+                        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $merchantId, $shown_count, ($order_count - $orders_after_shown), round(($percentage * 100 - 100), 2)]));
+                    }
+                );
+                
+                wp_schedule_event( time(), 'hourly', 'co2ok_ho_cron_hook' );
+                
+                error_log('hier');
+                add_action( 'co2ok_h_cron_hook', function()
+                {
+                    error_log('h');
+                });
+                
+                wp_schedule_event( time(), 'hourly', 'co2ok_h_cron_hook' );
+                // }
+                // }
         }
         else
         {
@@ -765,6 +872,83 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             'display' => __( 'Once Weekly' )
         );
         return $schedules;
+    }
+
+    final public function co2ok_calculate_ab_results()
+    {
+
+        error_log('AB die scheiße!');
+        global $woocommerce;
+        $args = array(
+        // of mss date_paid, maar iig niet _completed
+        // 'date_completed' => '>' . ( time() - 604800 ),
+        'date_created' => '2019-06-13...2020-01-01',
+        'order' => 'ASC',
+        );
+        $orders = wc_get_orders( $args );
+        $shown_count = 0; // orders with CO2ok shown
+        $order_count = 0; // orders
+        $shown_found = false; 
+        $orders_after_shown = 0; // used to keep track of order after A/B test has stopped
+
+        // $x = 0;
+
+        /* idee om de count slimmer te doen:
+        - counter reset bij eerste shown
+        BB: periode stoppen bij update of laatste shown (ugh)
+        */
+
+        foreach ($orders as $order) {
+            if (defined('WP_DEBUG') && true === WP_DEBUG) {
+                echo 'd00d';
+             }
+            // $order = wc_get_order( $order_id );
+            $customer_id = $order->get_customer_id();
+            // echo $customer_id;
+            // echo 'ordertje';
+            // echo var_dump(wc_get_order( $order->id ));
+            // echo var_dump(wc_get_order( $order ));
+            $shown = $order->get_meta( 'co2ok-shown' );
+            // $shown = $order->get_meta( 'currency' );
+            
+            // echo '<pre> die ding'; print_r($shown); echo '</pre>';
+            // echo '<pre> das ding'. strlen($shown) . '</pre>';
+            // if ($x < 1){
+            //     // echo var_dump(wc_get_order( $order->id ));
+            //     $x ++;
+            //     echo '<pre>'; print_r($shown); echo '</pre>';
+            // }  
+            $order_count ++;
+            $orders_after_shown ++;
+            
+            // count the number of orders with CO2ok shown
+            if ($shown) {
+                // echo var_dump(wc_get_order( $order->id ));
+                $shown_count ++;
+
+                // reset the order count once the first 
+                if (! $shown_found) {
+                    $shown_found = true;
+                    $order_count = 0;
+                }
+                $orders_after_shown = 0;
+            }
+        }
+        
+        // echo "<h2>A/B testing results</h2>";
+        // echo "CO2ok shown orders: " . $shown_count . " total order count: " . $order_count . " A/B test orders:". ($order_count - $orders_after_shown) ."</br>";
+        // $division = 100 / sizeof($orders);
+        // $perc_parti = "Participation= ".($division * $parti)."%";
+        // $ordersize = "Ordertotal= ".sizeof($orders);
+
+        $percentage = $shown_count / (($order_count - $orders_after_shown) - $shown_count);
+
+        // echo "Conversie verhoging: " . round(($percentage * 100 - 100), 2) . "% </br>";
+
+        $merchantId = get_option('co2ok_id', false);
+
+        // remote log: shown orders, total orders, percentage, merchantID
+        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $merchantId, $shown_count, ($order_count - $orders_after_shown), round(($percentage * 100 - 100), 2)]));
     }
     final public function cron_add_monthly( $schedules ) {
         // Adds once monthly to the existing schedules.
