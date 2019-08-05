@@ -8,6 +8,10 @@ A WooCommerce plugin to integrate CO2ok
 
 Some prose detailing installation
 
+NB: Docker: if MySQL isn't working properly, this should fix it:
+
+chmod 400 db-conf/local.cnf
+
 ### Gulp & scss
 
 To power up the development process we decided to use gulp for our task

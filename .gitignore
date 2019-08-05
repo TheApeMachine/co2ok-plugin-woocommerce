@@ -2,3 +2,4 @@
 node_modules/
 woocommerce/
 yarn.lock
+db/

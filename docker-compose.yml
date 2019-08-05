@@ -1,6 +1,7 @@
 webserver:
    container_name: woocommerce
-   image: wordpress:latest
+   # image: wordpress:latest
+   image: tatemz/wp-cli
    environment:
     WORDPRESS_DB_USER: wordpress
     WORDPRESS_DB_PASSWORD: wordpress
@@ -14,7 +15,7 @@ webserver:
 
 dbserver:
    container_name: woo_mariadb
-   image: mariadb
+   image: mysql:5.7
    environment:
     MYSQL_ROOT_PASSWORD: somewordpress
     MYSQL_DATABASE: wordpress
@@ -22,3 +23,6 @@ dbserver:
     MYSQL_PASSWORD: wordpress
    ports:
     - 3307:3306
+   volumes:
+    - ./db:/var/lib/mysql
+    - ./db-conf:/etc/mysql/conf.d
