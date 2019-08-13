@@ -297,7 +297,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     //This function is called when the user activates the plugin.
     final static function co2ok_Deactivated()
     {
-
+        $timestamp = wp_next_scheduled( 'co2ok_participation_cron_hook' );
+        wp_unschedule_event( $timestamp, 'co2ok_participation_cron_hook' );
     }
 
     /**
@@ -388,6 +389,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 if (!$alreadyActivated)
                     Co2ok_Plugin::registerMerchant();
 
+                add_filter( 'cron_schedules', array($this, 'cron_add_weekly' ));
+
+                if ( ! wp_next_scheduled( 'co2ok_participation_cron_hook' ) ) {
+                    wp_schedule_event( time(), 'weekly', 'co2ok_participation_cron_hook' );
+                }
+
+                add_action( 'co2ok_participation_cron_hook', array($this, 'co2ok_calculate_participation' ));
         }
         else
         {
@@ -671,6 +679,43 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, '');
 
     }
+
+    final public function co2ok_calculate_participation()
+    {
+        global $woocommerce;
+        $args = array(
+        // of mss date_paid, maar iig niet _completed
+        // 'date_created' => '>' . ( time() - 604800 ),
+        'date_created' => '>' . ( time() - 6004800 ),
+        );
+        $orders = wc_get_orders( $args );
+
+        $parti = 0; // participated
+        
+        foreach ($orders as $order) {
+            $fees = $order->get_fees();
+            foreach ($fees as $fee) {
+                if ($fee->get_name() == __( 'CO2 compensatie'||'CO2 compensation'||'CO2 Kompensation', 'co2ok-for-woocommerce' )) {
+                    $parti ++;
+                }
+            }
+        }
+
+        $participation = $parti / sizeof($orders);
+        
+        $site_name = $_SERVER['SERVER_NAME'];
+        Co2ok_Plugin::remoteLogging(json_encode(["Participation", $site_name, round(($participation * 100), 2)]));
+    }
+
+    final public function cron_add_weekly( $schedules ) {
+        // Adds once weekly to the existing schedules.
+        $schedules['weekly'] = array(
+            'interval' => 604800,
+            'display' => __( 'Once Weekly' )
+        );
+        return $schedules;
+    }
+
 }
 endif; //! class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' )
 
