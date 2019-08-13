@@ -26,11 +26,7 @@
                         <img src="<?php echo esc_url(plugins_url('../../../images/happy-flower300.gif', __FILE__)); ?>"/>
 
 
-                        <?= '<pre>'; print_r( wp_next_scheduled( 'co2ok_hoer_cron_hook' ) ); echo '</pre>'; ?>
-                        <?= '<pre>'; print_r( _get_cron_array() ); echo '</pre>'; ?>
                         <?php
-
-                        error_log('henk');
 
                         global $woocommerce;
                         $args = array(
@@ -53,15 +49,15 @@
                         */
 
                         foreach ($orders as $order) {
-                            if (defined('WP_DEBUG') && true === WP_DEBUG) {
-                                echo 'd00d';
-                             }
+                            // if (defined('WP_DEBUG') && true === WP_DEBUG) {
+                            //     echo 'd00d';
+                            //  }
                             // $order = wc_get_order( $order_id );
                             $customer_id = $order->get_customer_id();
-                            echo $customer_id;
-                            echo 'ordertje';
+                            // echo $customer_id;
+                            // echo 'ordertje';
                             // echo var_dump(wc_get_order( $order->id ));
-                            echo var_dump(wc_get_order( $order ));
+                            // echo var_dump(wc_get_order( $order ));
                             $shown = $order->get_meta( 'co2ok-shown' );
                             // $shown = $order->get_meta( 'currency' );
                             
