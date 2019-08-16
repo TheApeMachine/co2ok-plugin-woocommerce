@@ -491,6 +491,7 @@ var Co2ok_JS = function ()
                 jQuery('.woocommerce-cart-form, .woocommerce form').find('input.qty').first().bind('change', function()
                 {
                     setTimeout(function()
+                    // This timeout it to prevent multiple ajax calls when a user clicks multiple times (e.g. from 1 to 5 apples)
                     {
                         jQuery("[name='update_cart']").trigger("click");
                     },200);
@@ -499,6 +500,9 @@ var Co2ok_JS = function ()
                 setTimeout(function()
                 {
                     jQuery('body').trigger('update_checkout');
+
+                    // This fixes fee adding for shops with a disabled update cart button
+                    jQuery("[name='update_cart']").removeAttr("disabled").trigger("click");
                     jQuery("[name='update_cart']").trigger("click");
                 },200);
 

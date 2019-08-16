@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.3.3
+ * Version: 1.0.3.4
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.2.2
@@ -131,7 +131,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.3.3';
+    const VERSION = '1.0.3.4';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -443,7 +443,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true);
         wp_enqueue_script('co2ok_js_cdn');
         wp_register_script('co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__).'?plugin_version='.self::VERSION);
-        wp_enqueue_script('co2ok_js_wp', "", array(), null, true);
+        wp_enqueue_script('co2ok_js_wp', "", array('jquery'), null, true);
         wp_localize_script('co2ok_js_wp', 'ajax_object',
             array('ajax_url' => admin_url('admin-ajax.php')));
         wp_localize_script('co2ok_js_wp', 'plugin',
