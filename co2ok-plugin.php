@@ -316,8 +316,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         $timestamp = wp_next_scheduled( 'co2ok_participation_cron_hook' );
         wp_unschedule_event( $timestamp, 'co2ok_participation_cron_hook' );
+<<<<<<< 4e3f301d0485fd5c7d38a9b541b2ff557de53e5d
         $timestamp = wp_next_scheduled( 'co2ok_clv_cron_hook' );
         wp_unschedule_event( $timestamp, 'co2ok_clv_cron_hook' );
+=======
+>>>>>>> Adds something to the footer conditionally
         $timestamp = wp_next_scheduled( 'co2ok_ab_results_cron_hook' );
         wp_unschedule_event( $timestamp, 'co2ok_ab_results_cron_hook' );
     }
@@ -451,6 +454,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
                 
                 add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
+<<<<<<< 4e3f301d0485fd5c7d38a9b541b2ff557de53e5d
+=======
+<<<<<<< b69953549b1c5da7648ff7a929bd06408d2fcee3
+>>>>>>> Adds daily result sending
+=======
+
+                add_action('wp_footer', array($this, 'co2ok_footer_widget'));
+>>>>>>> Adds something to the footer conditionally
+>>>>>>> Adds something to the footer conditionally
         }
         else
         {
@@ -918,6 +930,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $site_name = $_SERVER['SERVER_NAME'];
         Co2ok_Plugin::remoteLogging(json_encode(["CLV increase", $site_name, $co2ok_clv_improvement, $runtime]));
 
+    }
+
+    final public function co2ok_footer_widget() {
+        $co2ok_hide_button = ord(\WC()->session->get_customer_id()) % 2 == 0;
+        echo "woei" . $co2ok_hide_button . "<br>";
+        echo ord(\WC()->session->get_customer_id());
     }
 
 }
