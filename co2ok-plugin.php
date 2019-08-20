@@ -297,13 +297,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     //This function is called when the user activates the plugin.
     final static function co2ok_Deactivated()
     {
-<<<<<<< 8c708b5cfb7e66aea91cbee59ab722728a1fba01
         $timestamp = wp_next_scheduled( 'co2ok_participation_cron_hook' );
         wp_unschedule_event( $timestamp, 'co2ok_participation_cron_hook' );
-=======
         $timestamp = wp_next_scheduled( 'co2ok_ab_results_cron_hook' );
         wp_unschedule_event( $timestamp, 'co2ok_ab_results_cron_hook' );
->>>>>>> Adds daily result sending
     }
 
     /**
@@ -433,7 +430,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 >>>>>>> WIP bugfix #2
 =======
                 add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
+<<<<<<< b69953549b1c5da7648ff7a929bd06408d2fcee3
 >>>>>>> Adds daily result sending
+=======
+
+                add_action('wp_footer', array($this, 'co2ok_footer_widget'));
+>>>>>>> Adds something to the footer conditionally
         }
         else
         {
@@ -810,6 +812,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // remote log: merchantID, shown orders, total orders, percentage
         Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_count, ($order_count - $orders_after_shown), round(($percentage * 100 - 100), 2)]));
 >>>>>>> Adds daily result sending
+    }
+
+    final public function co2ok_footer_widget() {
+        $co2ok_hide_button = ord(\WC()->session->get_customer_id()) % 2 == 0;
+        echo "woei" . $co2ok_hide_button . "<br>";
+        echo ord(\WC()->session->get_customer_id());
     }
 
 }
