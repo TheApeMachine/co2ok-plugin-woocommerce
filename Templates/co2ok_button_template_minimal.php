@@ -18,7 +18,7 @@
               <span class="make_co2ok_minimal co2ok_adaptive_color_default make_co2ok_global"><?php echo __( 'Make ', 'co2ok-for-woocommerce' ); ?></span>
               <?php
                     // Replaced co2ok_logo with co2ok_logo_minimal to keep the same logo, rather than switching between a white and default logo.
-                  echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo_minimal', 'co2ok_logo_minimal');
+                  echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo_minimal', 'co2ok_logo_minimal', 'skip-lazy');
               ?>
               <div class="comp_amount_label_minimal"> <!-- Creates Outer Border for Compensation Amount label -->
                   <div class="inner_comp_amount_label_minimal"> <!-- Creates inner shape for Compensation Amount label -->

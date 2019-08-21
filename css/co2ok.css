@@ -79,6 +79,9 @@
           width: 16px;
           margin-top: 25px;
           display: inline-block; }
+  .co2ok_container .co2ok_adaptive_color_default {
+    font-size: 13px;
+  }
   .co2ok_container .co2ok_checkbox_container {
     border-radius: 10px;
     box-sizing: border-box;
@@ -151,7 +154,7 @@
 
 img#co2ok_logo {
   display: inline-block;
-  width: 62px;
+  width: 55px;
   vertical-align: middle;
   margin: 2px 0px 0px 0px; }
 

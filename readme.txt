@@ -5,7 +5,7 @@ Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carb
 Requires at least: 4.0
 Tested up to: 5.2.2
 WC tested up to: 3.7.0
-Stable tag: 1.0.3.4
+Stable tag: 1.0.3.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,11 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.3.5
+* Fixes CSS bug 
+* Tells Jetpack not to lazy-load our logo 
+* Corrects decimal separator for non-comma-using currencies
 
 = 1.0.3.4
 * Fixes shopping cart page fee adding bug
