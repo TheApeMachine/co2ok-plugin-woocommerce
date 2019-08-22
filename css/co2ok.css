@@ -67,7 +67,7 @@
       vertical-align: middle;
       display: inline-block;
       margin-left: -6px; }
-      .co2ok_info_keyboardarea {
+      .co2ok_container .co2ok_info_keyboardarea {
         background-color: transparent;}
       .co2ok_container .co2ok_payoff #p .co2ok_info_hitarea {
         height: 72px;
