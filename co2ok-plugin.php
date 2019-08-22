@@ -933,9 +933,20 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
     final public function co2ok_footer_widget() {
+        
+        // $widget_code = <<<WID
+        $widget_code = 
+        '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
+        '<script src="http://test-frontend.co2ok.ninja/widget/co2okWidget.js"></script>'.
+        "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6MzExNGMyMjYtMzk0Ni00N2QzLTgxNGMtODE5YTI0ZjgyMjU5')</script>";
+        // WID;
+        
         $co2ok_hide_button = ord(\WC()->session->get_customer_id()) % 2 == 0;
         echo "woei" . $co2ok_hide_button . "<br>";
         echo ord(\WC()->session->get_customer_id());
+        if ( !$co2ok_hide_button) {
+            echo $widget_code;
+        }
     }
 
 }
