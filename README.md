@@ -12,6 +12,23 @@ NB: Docker: if MySQL isn't working properly, this should fix it:
 
 chmod 400 db-conf/local.cnf
 
+Also, to upload themes:
+
+[in the container]: create /usr/local/etc/php/conf.d/uploads.ini file with the following contents:
+
+file_uploads = On
+memory_limit = 64M
+upload_max_filesize = 64M
+post_max_size = 64M
+max_execution_time = 600
+
+(it could be these are also needed:
+
+@ini_set( 'upload_max_size' , '30M' );
+@ini_set( 'post_max_size', '30M');
+
+in wp-config.php)
+
 ### Gulp & scss
 
 To power up the development process we decided to use gulp for our task
