@@ -406,7 +406,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $alreadyActivated = get_option('co2ok_id', false);
                 if (!$alreadyActivated){
                     Co2ok_Plugin::registerMerchant();
-<<<<<<< 8d942e97936e147ee60fff103ae83264ef0c8745
 
                 add_filter( 'cron_schedules', array($this, 'cron_add_weekly' ));
 
@@ -415,7 +414,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
 
                 add_action( 'co2ok_participation_cron_hook', array($this, 'co2ok_calculate_participation' ));
-=======
                 }
                 
                 // ensure weekly participation log is called only once
@@ -423,19 +421,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     wp_schedule_event( time(), 'daily', 'co2ok_ab_results_cron_hook' );
                 }
                 
-<<<<<<< 8c708b5cfb7e66aea91cbee59ab722728a1fba01
                 wp_schedule_event( time(), 'hourly', 'co2ok_h_cron_hook' );
                 // }
                 // }
->>>>>>> WIP bugfix #2
-=======
                 add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
-<<<<<<< b69953549b1c5da7648ff7a929bd06408d2fcee3
->>>>>>> Adds daily result sending
-=======
 
+                
                 add_action('wp_footer', array($this, 'co2ok_footer_widget'));
->>>>>>> Adds something to the footer conditionally
         }
         else
         {
@@ -726,7 +718,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     }
 
-<<<<<<< 8d942e97936e147ee60fff103ae83264ef0c8745
     final public function co2ok_calculate_participation()
     {
         global $woocommerce;
@@ -760,7 +751,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             'display' => __( 'Once Weekly' )
         );
         return $schedules;
-=======
+    }
+
     final public function co2ok_calculate_ab_results()
     {
         global $woocommerce;
@@ -804,14 +796,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // $merchantId = get_option('co2ok_id', false);
         $site_name = $_SERVER['SERVER_NAME'];
 
-<<<<<<< 8c708b5cfb7e66aea91cbee59ab722728a1fba01
-        // remote log: shown orders, total orders, percentage, merchantID
-        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $merchantId, $shown_count, ($order_count - $orders_after_shown), round(($percentage * 100 - 100), 2)]));
->>>>>>> WIP bugfix #2
-=======
         // remote log: merchantID, shown orders, total orders, percentage
         Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_count, ($order_count - $orders_after_shown), round(($percentage * 100 - 100), 2)]));
->>>>>>> Adds daily result sending
     }
 
     final public function co2ok_footer_widget() {
@@ -826,7 +812,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $widget_code = 
         '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
-        '<script src="http://test-frontend.co2ok.ninja/widget/co2okWidget.js"></script>'.        "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6OWEzODA2MzItZTUyYS00MTUzLTk2ZjMtYjZjYzYyYjY2OTMw')</script>";
+        '<script src="http://localhost:8080/widget/co2okWidget-mks.js"></script>'.
+        "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6OWEzODA2MzItZTUyYS00MTUzLTk2ZjMtYjZjYzYyYjY2OTMw')</script>";
         
         $co2ok_hide_button = ord(\WC()->session->get_customer_id()) % 2 == 0;
         // echo "woei" . $co2ok_hide_button . "<br>";
