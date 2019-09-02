@@ -323,7 +323,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 /*
                  * Use either default, shortcode or woocommerce specific area's for co2ok button placement
                  */
-                $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
+                $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'checkout_order_review');
 
                 $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
                 if ( $co2ok_disable_button_on_cart == 'false' )
@@ -344,6 +344,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                         break;
                     case "review_order_before_submit":
                         add_action('woocommerce_review_order_before_submit', array($this, 'co2ok_checkout_checkbox'));
+                        break;
+                    case "checkout_order_review":
+                        add_action('woocommerce_checkout_order_review', array($this, 'co2ok_checkout_checkbox'));
                         break;
                     // The case below is temporarily removed due to a visual bug: The button hovering over the Place Order button
                     // on the checkout page of webshops
@@ -694,7 +697,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         foreach ($orders as $order) {
             $fees = $order->get_fees();
             foreach ($fees as $fee) {
-                if ($fee->get_name() == __( 'CO2 compensatie'||'CO2 compensation'||'CO2 Kompensation', 'co2ok-for-woocommerce' )) {
+                if (strpos ($fee->get_name(), 'CO2' ) !== false) {
                     $parti ++;
                 }
             }

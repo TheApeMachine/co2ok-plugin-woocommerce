@@ -102,11 +102,12 @@
                         <form method="POST">
 
                             <select name="co2ok_checkout_placement" style="display:block;" id="co2ok_checkout_placement">
-                                <option value="after_order_notes" <?php if($co2ok_checkout_placement == 'after_order_notes') echo "selected" ?>>Default</option>
+                                <option value="after_order_notes" <?php if($co2ok_checkout_placement == 'after_order_notes') echo "selected" ?>>After Order Notes</option>
                                 <option value="before_checkout_form" <?php if($co2ok_checkout_placement == 'before_checkout_form') echo "selected" ?>>Before the Checkout Form</option>
                                 <option value="checkout_before_customer_details" <?php if($co2ok_checkout_placement == 'checkout_before_customer_details') echo "selected" ?>>Before Customer Details</option>
                                 <option value="after_checkout_billing_form" <?php if($co2ok_checkout_placement == 'after_checkout_billing_form') echo "selected" ?>>After Billing Details Form</option>
-                                <option value="review_order_before_submit" <?php if($co2ok_checkout_placement == 'review_order_before_submit') echo "selected" ?>>Before "Place Order"</option>
+                                <!-- Disabled since it breaks click functionality <option value="review_order_before_submit" <?php if($co2ok_checkout_placement == 'review_order_before_submit') echo "selected" ?>>Before "Place Order"</option> -->
+                                <option value="checkout_order_review" <?php if($co2ok_checkout_placement == 'checkout_order_review') echo "selected" ?>>Before Order Review (Default)</option>
                             </select>
 
                             <p style="margin-top: 12px">
