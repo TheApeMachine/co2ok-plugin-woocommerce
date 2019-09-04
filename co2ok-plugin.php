@@ -314,6 +314,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         if (in_array('woocommerce/woocommerce.php', apply_filters(
             'active_plugins', get_option('active_plugins'))))
         {
+                // Start session to enable A/B testing 
+                add_action( 'woocommerce_init', function(){
+                    if (is_user_logged_in() || is_admin())
+                        return;
+
+                    if (isset(WC()->session)) {
+                        if ( ! \WC()->session->has_session() ) {
+                            \WC()->session->set_customer_session_cookie( true );
+                        }
+                    }
+                } );
+
                 /**
                  * Load translations
                  */
@@ -325,7 +337,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 /*
                  * Use either default, shortcode or woocommerce specific area's for co2ok button placement
                  */
-                $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'checkout_order_review');
+                $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
 
                 add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
                     $order = wc_get_order( $order_id );
@@ -334,7 +346,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     $customer_id = \WC()->session->get_customer_id();
                     // error_log($order);
                     // error_log($customer_id);
-                    if ( ! (ord($customer_id) % 2 == 0)) {
+                    if ( ! (ord(md5($customer_id)) % 2 == 0)) {
                         $order->update_meta_data( 'co2ok-shown', 'true' );
                         $order->save();
                     }
@@ -404,7 +416,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 // Check if merchant is registered, if for whatever reason this merchant is in fact not a registered merchant,
                 // Maybe the api was down when this user registered the plugin, in that case we want to re-register !
                 $alreadyActivated = get_option('co2ok_id', false);
-                if (!$alreadyActivated){
+                if (!$alreadyActivated)
                     Co2ok_Plugin::registerMerchant();
 
                 add_filter( 'cron_schedules', array($this, 'cron_add_weekly' ));
@@ -414,7 +426,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
 
                 add_action( 'co2ok_participation_cron_hook', array($this, 'co2ok_calculate_participation' ));
-                }
                 
                 // ensure weekly participation log is called only once
                 if ( ! wp_next_scheduled( 'co2ok_ab_results_cron_hook' ) ) {
@@ -673,7 +684,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_cart_checkbox()
     {
-        $co2ok_hide_button = ord(\WC()->session->get_customer_id()) % 2 == 0;
+        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
         if ( !$co2ok_hide_button) {
         $this->renderCheckbox();
         }
@@ -681,7 +692,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_checkout_checkbox()
     {
-        $co2ok_hide_button = ord(\WC()->session->get_customer_id()) % 2 == 0;
+        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
         if ( !$co2ok_hide_button) {
         $this->renderCheckbox();
         }
@@ -758,7 +769,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         global $woocommerce;
         $args = array(
         // of mss date_paid, maar iig niet _completed
-        'date_created' => '2019-06-13...2020-01-01',
+        'date_created' => '2019-09-01...2020-01-01',
         'order' => 'ASC',
         );
         $orders = wc_get_orders( $args );
@@ -804,20 +815,22 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         
         /*
         MKS: TWVyY2hhbnQ6OWEzODA2MzItZTUyYS00MTUzLTk2ZjMtYjZjYzYyYjY2OTMw
+        VKS: TWVyY2hhbnQ6NzVjYjkxMGYtMmYwNi00YmVkLWI5ODgtZTIxNGY5MzQ2NmJm
         ? HT: TWVyY2hhbnQ6MzExNGMyMjYtMzk0Ni00N2QzLTgxNGMtODE5YTI0ZjgyMjU5
 
-        '<script src="http://test-frontend.co2ok.ninja/widget/co2okWidget.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidget-mks.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidget-mks.js"></script>'.
         */
 
         $widget_code = 
         '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
-        '<script src="http://localhost:8080/widget/co2okWidget-mks.js"></script>'.
-        "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6OWEzODA2MzItZTUyYS00MTUzLTk2ZjMtYjZjYzYyYjY2OTMw')</script>";
+        '<script src="https://co2ok.eco/widget/co2okWidget-mks.js"></script>'.
+        "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6NzVjYjkxMGYtMmYwNi00YmVkLWI5ODgtZTIxNGY5MzQ2NmJm')</script>";
         
-        $co2ok_hide_button = ord(\WC()->session->get_customer_id()) % 2 == 0;
+        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
         // echo "woei" . $co2ok_hide_button . "<br>";
-        // echo ord(\WC()->session->get_customer_id());
+        // echo \WC()->session->get_customer_id() . "<br>";
+        // echo ord(md5(\WC()->session->get_customer_id()));
         if ( !$co2ok_hide_button) {
             echo $widget_code;
         }

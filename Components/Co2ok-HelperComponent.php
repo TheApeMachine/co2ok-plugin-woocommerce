@@ -26,9 +26,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
         {
             $rewardVideo[] = array();
             $rewardVideo[0] = 'make-globe-happy';
-            $rewardVideo[1] = 'happy-flower';
-            $rewardVideo[2] = 'globe-sprout';
-            $rewardVideo[3] = 'happy-globe';
+            // $rewardVideo[1] = 'happy-flower';
+            $rewardVideo[1] = 'globe-sprout';
+            $rewardVideo[2] = 'happy-globe';
 
             $pickedVideo = mt_rand(0,count($rewardVideo) - 1);
 
