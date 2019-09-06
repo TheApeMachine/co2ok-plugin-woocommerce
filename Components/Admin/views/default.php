@@ -107,7 +107,7 @@
                                 <option value="checkout_before_customer_details" <?php if($co2ok_checkout_placement == 'checkout_before_customer_details') echo "selected" ?>>Before Customer Details</option>
                                 <option value="after_checkout_billing_form" <?php if($co2ok_checkout_placement == 'after_checkout_billing_form') echo "selected" ?>>After Billing Details Form</option>
                                 <!-- Disabled since it breaks click functionality <option value="review_order_before_submit" <?php if($co2ok_checkout_placement == 'review_order_before_submit') echo "selected" ?>>Before "Place Order"</option> -->
-                                <option value="checkout_order_review" <?php if($co2ok_checkout_placement == 'checkout_order_review') echo "selected" ?>>Before Order Review (Default)</option>
+                                <option value="checkout_order_review" <?php if($co2ok_checkout_placement == 'checkout_order_review') echo "selected" ?>>Before Order Review (Recommended)</option>
                             </select>
 
                             <p style="margin-top: 12px">
