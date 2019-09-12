@@ -334,7 +334,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             'active_plugins', get_option('active_plugins'))))
         {
                 // Start session to enable A/B testing 
-                add_action( 'woocommerce_init', function(){
+                // add_action( 'woocommerce_init', function(){
+                add_action( 'init', function(){
                     if (is_user_logged_in() || is_admin())
                         return;
 
@@ -470,6 +471,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
                 
                 add_action('wp_footer', array($this, 'co2ok_footer_widget'));
+
+                add_action('init', array($this, 'co2ok_register_shortcodes'));
         }
         else
         {
@@ -948,20 +951,57 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         '<script src="https://co2ok.eco/widget/co2okWidget-mks.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidget-mks.js"></script>'.
+        '<script src="http://localhost:8080/widget/co2okWidget-s7.js"></script>'.
         */
 
         $widget_code = 
         '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidget-mks.js"></script>'.
-        "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6NzVjYjkxMGYtMmYwNi00YmVkLWI5ODgtZTIxNGY5MzQ2NmJm')</script>";
+        '<script src="http://localhost:8080/widget/co2okWidget-s7.js"></script>'.
+        "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6M2UwZmFhNmYtYmU1My00ODQ3LThkOTAtZmVmMjMzZDMzN2Jm')</script>";
         
+        // Adhv het customer ID wordt een getal gegenereerd, als die even is wordt de button niet getoond
         $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
+        // echo "woei" . $co2ok_hide_button . "<br>";
+        // echo \WC()->session->get_customer_id() . "<br>";
+        echo ord(md5(\WC()->session->get_customer_id()));
+        if ( !$co2ok_hide_button) {
+            echo $widget_code;
+        }
+    }
+
+    final public function co2ok_widgetmark_shortcode() {
+        
+        /*
+        MKS: TWVyY2hhbnQ6OWEzODA2MzItZTUyYS00MTUzLTk2ZjMtYjZjYzYyYjY2OTMw
+        VKS: TWVyY2hhbnQ6NzVjYjkxMGYtMmYwNi00YmVkLWI5ODgtZTIxNGY5MzQ2NmJm
+        ? HT: TWVyY2hhbnQ6MzExNGMyMjYtMzk0Ni00N2QzLTgxNGMtODE5YTI0ZjgyMjU5
+        S7: TWVyY2hhbnQ6M2UwZmFhNmYtYmU1My00ODQ3LThkOTAtZmVmMjMzZDMzN2Jm
+
+        '<script src="https://co2ok.eco/widget/co2okWidget-mks.js"></script>'.
+        '<script src="http://localhost:8080/widget/co2okWidget-mks.js"></script>'.
+        '<script src="http://localhost:8080/widget/co2okWidget-s7.js"></script>'.
+        */
+
+        $widget_code = 
+        '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
+        '<script src="http://co2ok.eco/widget/co2okWidget-s7.js"></script>'.
+        "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6M2UwZmFhNmYtYmU1My00ODQ3LThkOTAtZmVmMjMzZDMzN2Jm')</script>";
+        
+        // Adhv het customer ID wordt een getal gegenereerd, als die even is wordt de button niet getoond
+        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
+        // $co2ok_hide_button = false;
         // echo "woei" . $co2ok_hide_button . "<br>";
         // echo \WC()->session->get_customer_id() . "<br>";
         // echo ord(md5(\WC()->session->get_customer_id()));
         if ( !$co2ok_hide_button) {
-            echo $widget_code;
-        }
+            return $widget_code;
+        } else {
+            return "";
+        } 
+    }
+
+    final public function co2ok_register_shortcodes() {
+        add_shortcode('co2ok_widgetmark', array($this, 'co2ok_widgetmark_shortcode'));
     }
 
 }
