@@ -18,7 +18,7 @@ CO₂ok empowers companies and their customers in the fight against climate chan
 As awareness about the importance of preserving the environment continues to grow among consumers, companies are increasingly looking for ways to “go green”. Of course, you need to protect your bottom line as well. By enabling your customers to make their purchase climate neutral with CO₂ok, you can do your bit to drive back climate change. CO₂ok lets you increase your conversion with no upfront or recurring costs.
 
 **Account & Pricing**
-During installation an account for our service will be created automatically. Use of this service is free of charge. It only takes 1 minute to install the CO₂ok-plugin. When you have integrated the plugin in your webshop, your customers can make their own choice to contribute. That way they make their purchase climate neutral. The minor extra free is on average 1%. For more information, please visit our [FAQ Page](https://co2ok.eco/en/faq/).
+During installation an account for our service will be created automatically. Use of this service is free of charge. It only takes 1 minute to install the CO₂ok-plugin. When you have integrated the plugin in your webshop, your customers can make their own choice to contribute. That way they make their purchase climate neutral. The minor extra free is on average 2%. For more information, please visit our [FAQ Page](https://co2ok.eco/en/faq/).
 
 
 **Features**
@@ -29,7 +29,7 @@ During installation an account for our service will be created automatically. Us
 
 **How it works**
 
-Using our button, shown on the shopping cart and checkout pages, the customer can add a small extra fee (on average 1%), to make their purchase climate neutral.
+Using our button, shown on the shopping cart and checkout pages, the customer can add a small extra fee (on average 2%), to make their purchase climate neutral.
 1. We calculate the cost to compensate the greenhouse gases that are emitted during production and transport of the products - this amount is shown on the button.
 2. If the customer chooses to make their purchase CO₂ok, the fee will be added to their cart - the ordering and payment process is unchanged.
 3. This amount is used to finance sustainable energy and CO₂-emission reduction projects (via our certified partner, Atmosfair)

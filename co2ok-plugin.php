@@ -135,8 +135,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
-    // Percentage should be returned by the middleware, else: 1%
-    private $percentage = 0.826446280991736;
+    // Percentage should be returned by the middleware, else: 2%
+    private $percentage = 1.652892561983472;
     private $surcharge  = 0;
 
     private $helperComponent;
@@ -419,7 +419,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             die("Something went wrong. Please try again");
         }
 
-        $woocommerce->session->percentage = $this->percentage;
+        // in preparation of stripping out the middleware this is now hardcoded
+        // $woocommerce->session->percentage = $this->percentage * 2;
+        $woocommerce->session->percentage = 1.652892561983472;        ;
 
         $this->surcharge = $this->co2ok_calculateSurcharge($add_tax = true);
 
