@@ -470,7 +470,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
 
                 
-                add_action('wp_footer', array($this, 'co2ok_footer_widget'));
+                // add_action('wp_footer', array($this, 'co2ok_footer_widget'));
 
                 add_action('init', array($this, 'co2ok_register_shortcodes'));
         }
@@ -950,6 +950,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         ? HT: TWVyY2hhbnQ6MzExNGMyMjYtMzk0Ni00N2QzLTgxNGMtODE5YTI0ZjgyMjU5
 
         '<script src="https://co2ok.eco/widget/co2okWidget-mks.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidget-.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidget-mks.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidget-s7.js"></script>'.
         */
@@ -987,8 +988,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<script src="http://co2ok.eco/widget/co2okWidget-s7.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6M2UwZmFhNmYtYmU1My00ODQ3LThkOTAtZmVmMjMzZDMzN2Jm')</script>";
         
-        // Adhv het customer ID wordt een getal gegenereerd, als die even is wordt de button niet getoond
-        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
+        if (is_user_logged_in() || is_admin())
+            $co2ok_hide_button = false;
+        else 
+            // Adhv het customer ID wordt een getal gegenereerd, als die even is wordt de button niet getoond
+            $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
+
         // $co2ok_hide_button = false;
         // echo "woei" . $co2ok_hide_button . "<br>";
         // echo \WC()->session->get_customer_id() . "<br>";
