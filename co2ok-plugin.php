@@ -399,6 +399,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
 
                 add_action( 'co2ok_participation_cron_hook', array($this, 'co2ok_calculate_participation' ));
+
+                add_action('init', array($this, 'co2ok_register_shortcodes'));
         }
         else
         {
@@ -718,6 +720,27 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             'display' => __( 'Once Weekly' )
         );
         return $schedules;
+    }
+
+    final public function co2ok_register_shortcodes() {
+        add_shortcode('co2ok_widgetmark', array($this, 'co2ok_widgetmark_shortcode'));
+    }
+
+    final public function co2ok_widgetmark_shortcode() {
+        $merchantId = get_option('co2ok_id', false);
+        
+        /*
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark.js"></script>'.
+        '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
+        */
+
+        $widget_code = 
+        '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark.js"></script>'.
+        "<script>Co2okWidget.merchantCompensations('widgetContainer','". 
+        $merchantId . "')</script>";
+        
+        return $widget_code;
     }
 
 }
