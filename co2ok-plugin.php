@@ -985,7 +985,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $widget_code = 
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
-        '<script src="http://co2ok.eco/widget/co2okWidget-s7.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidget-s7.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer', 'TWVyY2hhbnQ6M2UwZmFhNmYtYmU1My00ODQ3LThkOTAtZmVmMjMzZDMzN2Jm')</script>";
         
         if (is_user_logged_in() || is_admin())
