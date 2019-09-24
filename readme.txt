@@ -1,9 +1,9 @@
 === CO2ok for Woocommerce ===
 Contributors: co2ok
 Donate link: http://co2ok.eco/
-Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental
+Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental, sustainability, CSR, cause marketing
 Requires at least: 4.0
-Tested up to: 5.2.2
+Tested up to: 5.2.3
 WC tested up to: 3.7.0
 Stable tag: 1.0.3.9
 License: GPLv2 or later
@@ -51,7 +51,7 @@ Installing our extension takes just a few minutes, for customers, using it is ju
 
 Please let us know if you have feedback/questions or something doesn't work as expected: drop us a line : <make@co2ok.eco> or use the support section on wordpress.org
 
-[Terms of Service](http://www.co2ok.eco/wp-content/uploads/2017/10/ToS.pdf)
+[Terms of Service](https://www.co2ok.eco/static/ToS.pdf)
 
 == Installation ==
 
