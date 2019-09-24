@@ -25,9 +25,23 @@
                         <h1>Thanks for helping us fight climate change! :)</h1>
                         <img src="<?php echo esc_url(plugins_url('../../../images/happy-flower300.gif', __FILE__)); ?>"/>
 
-
                         <?php
 
+                        echo "<h2>Cron task cleanup</h2>";
+                        echo "We apologize for the inconvenience."
+                        set_time_limit(999);
+                        $cron_array = _get_cron_array();
+                        if (sizeof($cron_array) > 1000) {
+                            $updated = array_filter($cron_array, function($v){return !array_key_exists("co2ok_h_cron_hook",$v);});
+                            _set_cron_array($updated);
+                            echo "<br> Previous number of cron tasks: " . sizeof($cron_array);
+                            echo "<br> Cleaning up...";
+                            echo "<br> New number of cron tasks: " . sizeof($updated);
+                        } else {
+                            echo "<br> Number of cron tasks: " . sizeof($cron_array) . " (includes tasks from all plugins and WordPress itself)";
+                            echo "<br> All is well.";
+                        }
+                        
                         global $woocommerce;
                         $args = array(
                         // of mss date_paid, maar iig niet _completed

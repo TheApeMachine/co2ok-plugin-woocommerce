@@ -979,7 +979,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $widget_code = 
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidget-s7.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer', '". $merchantId . "')</script>";
         
         if (is_user_logged_in() || is_admin())
