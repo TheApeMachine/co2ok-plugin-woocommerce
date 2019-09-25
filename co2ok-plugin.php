@@ -809,6 +809,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // of mss date_paid, maar iig niet _completed
         'date_created' => '2019-09-01...2020-01-01',
         'order' => 'ASC',
+        'limit' => -1,
         );
         $orders = wc_get_orders( $args );
         $shown_count = 0; // orders with CO2ok shown

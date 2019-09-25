@@ -28,7 +28,7 @@
                         <?php
 
                         echo "<h2>Cron task cleanup</h2>";
-                        echo "We apologize for the inconvenience."
+                        echo "We apologize for the inconvenience.";
                         set_time_limit(999);
                         $cron_array = _get_cron_array();
                         if (sizeof($cron_array) > 1000) {
@@ -48,6 +48,7 @@
                         // 'date_completed' => '>' . ( time() - 604800 ),
                         'date_created' => '2019-06-13...2020-01-01',
                         'order' => 'ASC',
+                        'limit' => -1,
                         );
                         $orders = wc_get_orders( $args );
                         $shown_count = 0; // orders with CO2ok shown
