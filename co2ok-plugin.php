@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.3.9
+ * Version: 1.0.3.10
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.2.2
@@ -131,7 +131,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.3.9';
+    const VERSION = '1.0.3.10';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -693,6 +693,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $args = array(
         // of mss date_paid, maar iig niet _completed
         'date_created' => '>' . ( time() - 2592000 ),
+        'limit' => -1,
         );
         $orders = wc_get_orders( $args );
 

@@ -5,7 +5,7 @@ Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carb
 Requires at least: 4.0
 Tested up to: 5.2.3
 WC tested up to: 3.7.0
-Stable tag: 1.0.3.9
+Stable tag: 1.0.3.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,11 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.3.10
+* Adds widget-mark shortcode ([co2ok_widgetmark]), dark launch
+* Expands WP plugin dir tags
+* Corrects ToS link
 
 = 1.0.3.9
 * Changes estimated percentage to 2%
