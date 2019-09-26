@@ -138,7 +138,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     // Percentage should be returned by the middleware, else: 2%
     private $percentage = 1.652892561983472;
     private $surcharge  = 0;
-
+    
     private $helperComponent;
 
     /*
@@ -319,7 +319,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 require_once(plugin_dir_path(__FILE__) . '/co2ok-autoloader.php');
 
                 $this->helperComponent = new \co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent();
-
                 /*
                  * Use either default, shortcode or woocommerce specific area's for co2ok button placement
                  */
@@ -590,21 +589,22 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $order_total = $woocommerce->cart->cart_contents_total + $woocommerce->cart->shipping_total;
         $tax_rates = \WC_Tax::get_base_tax_rates( );
+        $co2ok_rate = \WC_Tax::get_rates('co2ok');
 
-        $highest_tax_rate = 0;
-        foreach ($tax_rates as $tax_rate)
-        {
-            if($highest_tax_rate < $tax_rate['rate'] )
-                $highest_tax_rate = $tax_rate['rate'];
-        }
-        $highest_tax_rate = ((int)$highest_tax_rate) / 100;
-        $order_total_with_tax = ($order_total * $highest_tax_rate) + $order_total;
+        $order_total_with_tax = $order_total + array_sum(\WC_Tax::calc_tax($order_total, $tax_rates));
 
         $surcharge = ($order_total_with_tax) * ($this->percentage / 100);
         $this->surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
-        if ($add_tax)
-            $this->surcharge = (1 + $highest_tax_rate) * round($surcharge, 2);
+        if ($add_tax){
+            // if (array_sum(\WC_Tax::calc_tax($surcharge, $co2ok_rate)) > 0){
+            if (count($co2ok_rate) > 0){
+                $this->surcharge = $surcharge + array_sum(\WC_Tax::calc_tax($surcharge, $co2ok_rate));
+            } else {
+                $this->surcharge = $surcharge + array_sum(\WC_Tax::calc_tax($surcharge, $tax_rates));
+                // $this->surcharge = (1 + $highest_tax_rate) * round($surcharge, 2);
+            }
+        }
 
         return $this->surcharge;
     }
@@ -683,7 +683,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $woocommerce->session->co2ok = 1;
 
         if ($woocommerce->session->co2ok == 1)
-            $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, '');
+            $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, 'co2ok');
 
     }
 
