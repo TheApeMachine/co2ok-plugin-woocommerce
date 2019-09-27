@@ -425,6 +425,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $woocommerce->session->percentage = 1.652892561983472;        ;
 
         $this->surcharge = $this->co2ok_calculateSurcharge($add_tax = true);
+        $this->surcharge = floor($this->surcharge * 1000) /1000;
 
         $return = array(
             'compensation_amount'	=> get_woocommerce_currency_symbol() . number_format($this->surcharge, 2, wc_get_price_decimal_separator(), ' ')
@@ -597,12 +598,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $this->surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
         if ($add_tax){
-            // if (array_sum(\WC_Tax::calc_tax($surcharge, $co2ok_rate)) > 0){
             if (count($co2ok_rate) > 0){
                 $this->surcharge = $surcharge + array_sum(\WC_Tax::calc_tax($surcharge, $co2ok_rate));
             } else {
                 $this->surcharge = $surcharge + array_sum(\WC_Tax::calc_tax($surcharge, $tax_rates));
-                // $this->surcharge = (1 + $highest_tax_rate) * round($surcharge, 2);
             }
         }
 
@@ -643,6 +642,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         global $woocommerce;
         $this->surcharge = $this->co2ok_calculateSurcharge($add_tax=true);
+        $this->surcharge = floor($this->surcharge * 1000) /1000;
         $this->helperComponent->RenderCheckbox( esc_html(number_format($this->surcharge , 2, wc_get_price_decimal_separator(), ' ') ) , esc_attr(urlencode(json_encode($this->co2ok_CartDataToJson())) ));
     }
 
