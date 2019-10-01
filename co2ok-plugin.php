@@ -294,11 +294,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
     }
 
-    //This function is called when the user activates the plugin.
+    //This function is called when the user deactivates the plugin.
     final static function co2ok_Deactivated()
     {
         $timestamp = wp_next_scheduled( 'co2ok_participation_cron_hook' );
         wp_unschedule_event( $timestamp, 'co2ok_participation_cron_hook' );
+        $timestamp = wp_next_scheduled( 'co2ok_clv_cron_hook' );
+        wp_unschedule_event( $timestamp, 'co2ok_clv_cron_hook' );
     }
 
     /**
@@ -392,12 +394,21 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     Co2ok_Plugin::registerMerchant();
 
                 add_filter( 'cron_schedules', array($this, 'cron_add_weekly' ));
+                add_filter( 'cron_schedules', array($this, 'cron_add_monthly' ));
 
                 if ( ! wp_next_scheduled( 'co2ok_participation_cron_hook' ) ) {
-                    wp_schedule_event( time(), 'weekly', 'co2ok_participation_cron_hook' );
+                    // scheduled for now + 15 hours
+                    wp_schedule_event( time() + 69000, 'weekly', 'co2ok_participation_cron_hook' );
                 }
 
                 add_action( 'co2ok_participation_cron_hook', array($this, 'co2ok_calculate_participation' ));
+
+                if ( ! wp_next_scheduled( 'co2ok_clv_cron_hook' ) ) {
+                    // scheduled for now + 15 hours and 5 min
+                    wp_schedule_event( time() + 69300, 'monthly', 'co2ok_clv_cron_hook' );
+                }
+
+                add_action( 'co2ok_clv_cron_hook', array($this, 'co2ok_calculate_clv' ));
 
                 add_action('init', array($this, 'co2ok_register_shortcodes'));
         }
@@ -722,6 +733,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         );
         return $schedules;
     }
+    final public function cron_add_monthly( $schedules ) {
+        // Adds once monthly to the existing schedules.
+        $schedules['monthly'] = array(
+            'interval' => 2592000,
+            'display' => __( 'Once Monthly' )
+        );
+        return $schedules;
+    }
 
     final public function co2ok_register_shortcodes() {
         add_shortcode('co2ok_widgetmark', array($this, 'co2ok_widgetmark_shortcode'));
@@ -742,6 +761,68 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $merchantId . "')</script>";
         
         return $widget_code;
+    }
+
+    final public function rutime($ru, $rus, $index) {
+        return ($ru["ru_$index.tv_sec"]*1000 + intval($ru["ru_$index.tv_usec"]/1000))
+         -  ($rus["ru_$index.tv_sec"]*1000 + intval($rus["ru_$index.tv_usec"]/1000)) . "ms";
+    }
+
+    final public function co2ok_calculate_clv(){
+        // start timer
+        $rustart = getrusage();
+
+        // get customers
+        global $wpdb;
+        $ids = $wpdb->get_col( "SELECT DISTINCT `order_id` FROM `{$wpdb->prefix}woocommerce_order_items`" );
+        foreach ( $ids as $id ) {
+            $email[] = get_post_meta( $id, '_billing_email' );
+        }
+        $customers = array_unique( wp_list_pluck( $email, 0 ));
+
+        // determine CLV
+        foreach ( $customers as $customer) {
+            $co2ok_ness = false;
+            $query = new \WC_Order_Query();                          
+            $query->set( 'customer', $customer ); 
+            // $query->set( 'date_created', '2019-08-13...2020-01-01' );
+            $orders = $query->get_orders(); 
+            $total = 0;
+            foreach( $orders as $order ) {
+                $total += $order->get_total();
+        
+                // determine CO2ok-ness
+                $fees = $order->get_fees();
+                foreach ($fees as $fee) {
+                    if (strpos ($fee->get_name(), 'CO2' ) !== false)
+                        $co2ok_ness = true;            
+                }
+            }
+            
+            if ($co2ok_ness) {
+                $clv_co2okees[] = $total;
+            } else {
+                $clv_muggles[] = $total;
+            }
+            
+            wp_reset_query();
+        }
+
+        // Bail if only muggles found
+        if (!$clv_co2okees)
+            return;
+
+        // time reporting
+        $ru = getrusage();
+        $runtime = $this->rutime($ru, $rustart, "utime");
+
+        // CLV improvement calc
+        $clv_co2okees_avg = array_sum($clv_co2okees) / count($clv_co2okees);
+        $clv_muggles_avg = array_sum($clv_muggles) / count($clv_muggles);
+        $co2ok_clv_improvement = round(($clv_co2okees_avg / $clv_muggles_avg - 1) * 100, 1) . "%";
+
+        $site_name = $_SERVER['SERVER_NAME'];
+        Co2ok_Plugin::remoteLogging(json_encode(["CLV increase", $site_name, $co2ok_clv_improvement, $runtime]));
     }
 
 }
