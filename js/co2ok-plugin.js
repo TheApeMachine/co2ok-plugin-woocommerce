@@ -7,8 +7,14 @@ function minimumButton()
   var cad_minimal = document.querySelector('.compensation_amount_minimal');
   var make_minimal = document.querySelector('.make_co2ok_global');
   var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
-  var qty = document.querySelector('.qty');
-  var qtyVal = qty.value.length;
+
+  try{
+    var qty = document.querySelector('.qty');
+    var qtyVal = qty.value.length;
+  }
+  catch{
+    var qtyVal = 1;
+  }
 
   if(qtyVal > 1)
   {
@@ -36,8 +42,13 @@ function defaultButton()
   var make = document.querySelector('.make_co2ok_default');
   var co2ok_logo = document.querySelector('.co2ok_logo_default');
 
-    var qty = document.querySelector('.qty');console.log(qty.value.length);
-    var qtyVal = qty.value.length;
+    try{
+      var qty = document.querySelector('.qty');console.log(qty.value.length);
+      var qtyVal = qty.value.length;
+    }
+    catch{
+      var qtyVal = 1;
+    }
 
     if(qtyVal > 1)
     {
@@ -170,9 +181,14 @@ var Co2ok_JS = function ()
 
                     if(document.querySelector('.qty') != null){
 
-                      var qty = document.querySelector('.qty');
-                      var qtyVal = qty.value.length;
-
+                      try{
+                        var qty = document.querySelector('.qty');
+                        var qtyVal = qty.value.length;
+                      }
+                      catch{
+                        var qtyVal = 1;
+                      }
+                  
                       if(co2ok_temp_global.id == 'default_co2ok_temp')
                       {
 
