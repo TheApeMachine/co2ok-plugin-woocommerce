@@ -149,7 +149,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
      */
     const VERSION = '1.0.3.14';
 
-    static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
+    static $co2okApiUrl = "https://api.co2ok.eco/graphql";
 
     // Percentage should be returned by the middleware, else: 2%
     private $percentage = 1.652892561983472;
@@ -336,14 +336,29 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 // Start session to enable A/B testing 
                 // add_action( 'woocommerce_init', function(){
                 add_action( 'init', function(){
-                    if (is_user_logged_in() || is_admin())
+                    
+                    if (is_admin()){
                         return;
+                    }
 
-                    if (isset(WC()->session)) {
+                    if (is_user_logged_in()){
+                        //do nothing :) (since there already is a session)
+                    } elseif (isset(WC()->session)) {
                         if ( ! \WC()->session->has_session() ) {
                             \WC()->session->set_customer_session_cookie( true );
                         }
                     }
+                    
+                    try {
+                        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
+                        if ( $co2ok_hide_button) {   
+                            if(!isset($_COOKIE['co2ok_hide_button'])) {                             
+                                setcookie('co2ok_hide_button', 'true', time()+900);
+                            }
+                        }
+                    } catch (Exception $e) { // fail silently
+                    }
+
                 } );
 
                 /**
@@ -962,7 +977,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // Adhv het customer ID wordt een getal gegenereerd, als die even is wordt de button niet getoond
         $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
         // echo "woei" . $co2ok_hide_button . "<br>";
-        // echo \WC()->session->get_customer_id() . "<br>";
+        echo \WC()->session->get_customer_id() . "<br>";
         echo ord(md5(\WC()->session->get_customer_id()));
         if ( !$co2ok_hide_button) {
             echo $widget_code;
@@ -979,21 +994,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         */
 
         $widget_code = 
-        '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidget-s7.js"></script>'.
+        '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
+        '<script src="https://co2ok.eco/widget/co2okWidget-ht.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer', '". $merchantId . "')</script>";
         
-        if (is_user_logged_in() || is_admin())
-            $co2ok_hide_button = false;
-        else 
-            // Adhv het customer ID wordt een getal gegenereerd, als die even is wordt de button niet getoond
-            $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
-
-        if ( !$co2ok_hide_button) {
-            return $widget_code;
-        } else {
-            return "";
-        } 
+        return $widget_code;
     }
 
     final public function co2ok_register_shortcodes() {
