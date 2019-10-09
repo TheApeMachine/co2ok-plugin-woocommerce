@@ -4,8 +4,8 @@ Donate link: http://co2ok.eco/
 Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental, sustainability, CSR, cause marketing
 Requires at least: 4.0
 Tested up to: 5.2.3
-WC tested up to: 3.7.0
-Stable tag: 1.0.3.13
+WC tested up to: 3.7.1
+Stable tag: 1.0.3.14
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,9 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.3.14
+* Fixes css issue for info-hovercard in some shops
 
 = 1.0.3.13
 * Fixes issue with some checkouts
