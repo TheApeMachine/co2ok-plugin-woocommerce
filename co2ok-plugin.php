@@ -26,6 +26,22 @@
 namespace co2ok_plugin_woocommerce;
 
 /*
+* First line of defense; our plugin should never impact webshop functionality
+*/
+
+register_shutdown_function('\co2ok_plugin_woocommerce\failWithGrace');
+
+function failWithGrace() { 
+    $error = error_get_last();
+    // fatal error, E_ERROR === 1
+    if ($error['type'] === E_ERROR) { 
+        $error_string = implode(", ", $error);
+        Co2ok_Plugin::failGracefully($error_string);
+    } 
+}
+
+
+/*
 * Freemius integration
 */
 
@@ -195,7 +211,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         // Format error notice
         $now = date("Ymd_HisT");
-        $logmsg = function ($info) use ($now, $error) { return sprintf("[%s:FAIL] %s\n%s\n", $now, $error, $info); };
+        $site_name = $_SERVER['SERVER_NAME'];
+        $logmsg = function ($info) use ($now, $site_name, $error) { return sprintf("[%s:FAIL] %s\n%s\n", $now, $site_name, $error, $info); };
 
         // Generate backtrace
         $trace = debug_backtrace();
@@ -769,6 +786,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
     final public function co2ok_calculate_clv(){
+
         // start timer
         $rustart = getrusage();
 
