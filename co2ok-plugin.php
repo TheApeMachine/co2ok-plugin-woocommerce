@@ -344,6 +344,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         if (in_array('woocommerce/woocommerce.php', apply_filters(
             'active_plugins', get_option('active_plugins'))))
         {
+            $ab_research = get_option('co2ok_ab_research');
+                
+            if ($ab_research == 'on') {
                 // Start session to enable A/B testing 
                 // add_action( 'woocommerce_init', function(){
                 add_action( 'init', function(){
@@ -374,7 +377,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     }
 
                 } );
-
+            }
                 /**
                  * Load translations
                  */
@@ -387,18 +390,20 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                  */
                 $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
 
-                add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
-                    $order = wc_get_order( $order_id );
-                    // hier zat de bug:
-                    // $customer_id = $order->get_customer_id();
-                    $customer_id = \WC()->session->get_customer_id();
-                    // error_log($order);
-                    // error_log($customer_id);
-                    if ( ! (ord(md5($customer_id)) % 2 == 0)) {
-                        $order->update_meta_data( 'co2ok-shown', 'true' );
-                        $order->save();
-                    }
-                } , 10, 2);
+                if ($ab_research == 'on') {
+                    add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
+                        $order = wc_get_order( $order_id );
+                        // hier zat de bug:
+                        // $customer_id = $order->get_customer_id();
+                        $customer_id = \WC()->session->get_customer_id();
+                        // error_log($order);
+                        // error_log($customer_id);
+                        if ( ! (ord(md5($customer_id)) % 2 == 0)) {
+                            $order->update_meta_data( 'co2ok-shown', 'true' );
+                            $order->save();
+                        }
+                    } , 10, 2);
+                }
 
                 $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
                 if ( $co2ok_disable_button_on_cart == 'false' )
@@ -490,18 +495,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 add_action( 'co2ok_clv_cron_hook', array($this, 'co2ok_calculate_clv' ));
 
                 add_action('init', array($this, 'co2ok_register_shortcodes'));
-                
-                // ensure weekly participation log is called only once
-                if ( ! wp_next_scheduled( 'co2ok_ab_results_cron_hook' ) ) {
-                    wp_schedule_event( time(), 'daily', 'co2ok_ab_results_cron_hook' );
+
+                if ($ab_research == 'on') {
+                    if ( ! wp_next_scheduled( 'co2ok_ab_results_cron_hook' ) ) {
+                        wp_schedule_event( time(), 'daily', 'co2ok_ab_results_cron_hook' );
+                    }
+                    
+                    add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
                 }
-                
-                add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
 
                 
-                // add_action('wp_footer', array($this, 'co2ok_footer_widget'));
+                add_action('wp_footer', array($this, 'co2ok_footer_widget'));
 
-                add_action('init', array($this, 'co2ok_register_shortcodes'));
         }
         else
         {
@@ -750,17 +755,27 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_cart_checkbox()
     {
-        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
+        if (get_option('co2ok_ab_research') == 'on') {
+            $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
+        } else {
+            $co2ok_hide_button = false;
+        }
+        
         if ( !$co2ok_hide_button) {
-        $this->renderCheckbox();
+            $this->renderCheckbox();
         }
     }
-
+    
     final public function co2ok_checkout_checkbox()
     {
-        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
+        if (get_option('co2ok_ab_research') == 'on') {
+            $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
+        } else {
+            $co2ok_hide_button = false;
+        }
+        
         if ( !$co2ok_hide_button) {
-        $this->renderCheckbox();
+            $this->renderCheckbox();
         }
     }
 
