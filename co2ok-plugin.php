@@ -908,7 +908,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_widgetmark_shortcode() {
         $merchantId = get_option('co2ok_id', false);
-        
+        $code = get_option('co2ok_code');
         /*
         '<script src="https://co2ok.eco/widget/co2okWidgetMark.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
@@ -916,7 +916,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $widget_code = 
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidget-' . $code . '.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer','". $merchantId . "')</script>";
         
         return $widget_code;
@@ -989,27 +989,26 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final public function co2ok_footer_widget()
     {    
         $merchantId = get_option('co2ok_id', false);
+        $code = get_option('co2ok_code');
         /*
 
         '<script src="https://co2ok.eco/widget/co2okWidget-mks.js"></script>'.
         '<script src="https://co2ok.eco/widget/co2okWidget-.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidget-mks.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidget-s7.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidget-' . $code . '.js"></script>'.
+        '<script src="http://localhost:8080/widget/co2okWidget-' . $code . '.js"></script>'.
         */
 
         $widget_code = 
         '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
-        '<script src="http://localhost:8080/widget/co2okWidget-s7.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidget-' . $code . '.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer', '. $merchantId . ')</script>";
         
-        // Adhv het customer ID wordt een getal gegenereerd, als die even is wordt de button niet getoond
-        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
         // echo "woei" . $co2ok_hide_button . "<br>";
-        echo \WC()->session->get_customer_id() . "<br>";
-        echo ord(md5(\WC()->session->get_customer_id()));
-        if ( !$co2ok_hide_button) {
-            echo $widget_code;
-        }
+        // echo \WC()->session->get_customer_id() . "<br>";
+        // echo ord(md5(\WC()->session->get_customer_id()));
+        return $widget_code;
     }
 
 }
