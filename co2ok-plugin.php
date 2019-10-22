@@ -296,6 +296,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             });
     }
 
+    final static function storeMerchantCode()
+    {
+        $id = get_option('co2ok_id');
+        $secret = get_option('co2ok_secret');
+        // Deterministic way to generate a unique, short and secret code (secret in that it can't be used to determine the id or secret)
+        // password_hash creates the secure deterministic hash, using the first 8 chars of the md5 hash gives us a unique code 
+        // that can't be used to determine the id/secret.
+        $co2ok_code = substr(md5(password_hash($id, PASSWORD_BCRYPT, ["salt" => $secret])), 0, 8);
+        add_option('co2ok_code', $co2ok_code);
+    }
+
     //This function is called when the user activates the plugin.
     final static function co2ok_Activated()
     {
@@ -304,7 +315,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         if (!$alreadyActivated)
         {
             Co2ok_Plugin::registerMerchant();
-
+            Co2ok_Plugin::storeMerchantCode();
         }
         else {
             // The admin has updated this plugin ..
@@ -456,6 +467,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 if (!$alreadyActivated)
                     Co2ok_Plugin::registerMerchant();
 
+                // Check if merchant code is stored, otherwise do so
+                $codeAlreadyStored = get_option('co2ok_code', false);
+                if (!$codeAlreadyStored)
+                    Co2ok_Plugin::storeMerchantCode();
+
                 add_filter( 'cron_schedules', array($this, 'cron_add_weekly' ));
                 add_filter( 'cron_schedules', array($this, 'cron_add_monthly' ));
 
@@ -474,17 +490,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 add_action( 'co2ok_clv_cron_hook', array($this, 'co2ok_calculate_clv' ));
 
                 add_action('init', array($this, 'co2ok_register_shortcodes'));
-                }
                 
                 // ensure weekly participation log is called only once
                 if ( ! wp_next_scheduled( 'co2ok_ab_results_cron_hook' ) ) {
                     wp_schedule_event( time(), 'daily', 'co2ok_ab_results_cron_hook' );
                 }
                 
-                add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
-                wp_schedule_event( time(), 'hourly', 'co2ok_h_cron_hook' );
-                // }
-                // }
                 add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
 
                 
