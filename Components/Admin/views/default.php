@@ -39,6 +39,23 @@
                         <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>
                         <p><a href="https://twitter.com/CO2ok_eco" target="_blank" ><span>Twitter</span></a></p> 
 
+                        <h2>A/B research</h2>
+                        <p>Some webshops are not as forward thinking as yours. To convince them to participate in the fight, we need to show them CO2ok doesn't impact conversion (or rather - that it helps!). Help us show them and get them on board!</p>
+
+                        <p>This will show the CO2ok option (and widget when present) to 50% of your customers, and report the difference in conversion.</p>
+                        
+                        <form method="POST">
+                        
+                            <input type="radio" name="co2ok_ab_research" id="on" value="on" <?php if($co2ok_ab_research == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="on">A/B research enabled</label>
+                            <br>
+                            <input type="radio" name="co2ok_ab_research" id="off" value="off" <?php if($co2ok_ab_research == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="off">A/B research disabled</label>
+                            
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+                        </form>
+
                         <h2>GIF feature</h2>
                         <p>We believe in putting smiles on customers faces - a happy customer is a returning one. One of the ways we try to put smiles on peoples faces is our GIF feature - it shows a fun GIF like the one above to customers if they choose CO2 compensation. Of course there are differing opinions on this - use the below setting to disable this feature.</p>
                         
