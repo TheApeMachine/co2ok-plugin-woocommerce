@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: CO2ok for WooCommerce A/B research
+ * Plugin Name: CO2ok for WooCommerce
  *
  * Description: A WooCommerce plugin to integrate CO2ok
  *
@@ -149,7 +149,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
      */
     const VERSION = '1.0.3.14';
 
-    static $co2okApiUrl = "https://api.co2ok.eco/graphql";
+    static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
     // Percentage should be returned by the middleware, else: 2%
     private $percentage = 1.652892561983472;
@@ -889,10 +889,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         */
 
         $widget_code = 
-        '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
+        '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         '<script src="https://co2ok.eco/widget/co2okWidgetMark.js"></script>'.
-        "<script>Co2okWidget.merchantCompensations('widgetContainer','". 
-        $merchantId . "')</script>";
+        "<script>Co2okWidget.merchantCompensations('widgetContainer','". $merchantId . "')</script>";
         
         return $widget_code;
     }
@@ -985,27 +984,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         if ( !$co2ok_hide_button) {
             echo $widget_code;
         }
-    }
-
-    final public function co2ok_widgetmark_shortcode()
-    {    
-        $merchantId = get_option('co2ok_id', false);
-
-        /*
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark.js"></script>'.
-        '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
-        */
-
-        $widget_code = 
-        '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidget-s7.js"></script>'.
-        "<script>Co2okWidget.merchantCompensations('widgetContainer', '". $merchantId . "')</script>";
-        
-        return $widget_code;
-    }
-
-    final public function co2ok_register_shortcodes() {
-        add_shortcode('co2ok_widgetmark', array($this, 'co2ok_widgetmark_shortcode'));
     }
 
 }
