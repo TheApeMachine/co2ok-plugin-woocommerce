@@ -63,6 +63,31 @@
     letter-spacing: -0.0538461em;
     color: #4D5155;
     width: 110%; }
+    .co2ok_container .rw-words{
+      display: inline;
+      text-indent: 10px;
+    }
+    .co2ok_container .rw-words span{
+      position: absolute;
+      opacity: 0;
+      overflow: hidden;
+      width: 100%;
+      color: #6b969d;
+    }
+    .rw-words span{
+      animation: rotateWordsSecond 60s linear infinite 0s;
+    }
+    .rw-words span:nth-child(2) { 
+      animation-delay: 3s; 
+      color: #6b889d;
+    }
+    @keyframes rotateWordsSecond {
+      0% { opacity: 1; animation-timing-function: ease-in; width: 0px; }
+      10% { opacity: 0.3; width: 0px; }
+    20% { opacity: 1; width: 100%; }
+      27% { opacity: 0; width: 100%; }
+      100% { opacity: 0; }
+  }
     .co2ok_container .co2ok_payoff #p {
       vertical-align: middle;
       display: inline-block;
