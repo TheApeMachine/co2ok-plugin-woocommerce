@@ -56,6 +56,23 @@
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>
 
+                        <h2>Widget-mark</h2>
+                        <p>Not all shops contribute to the fight against climate change like you. Wear it like a badge of honor!</p>
+                        <img src="<?php echo esc_url(plugins_url('../../../images/widgetmark.png', __FILE__));?>" 
+                                style="vertical-align: middle; width: 200px;"/>
+                        
+                        <form method="POST">
+                        
+                            <input type="radio" name="co2ok_widgetmark" id="on" value="on" <?php if($co2ok_widgetmark == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="on">Show widget in footer</label>
+                            <br>
+                            <input type="radio" name="co2ok_widgetmark" id="off" value="off" <?php if($co2ok_widgetmark == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="off">I prefer another location using the WP shortcode</label>
+                            
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+                        </form>
+
                         <h2>GIF feature</h2>
                         <p>We believe in putting smiles on customers faces - a happy customer is a returning one. One of the ways we try to put smiles on peoples faces is our GIF feature - it shows a fun GIF like the one above to customers if they choose CO2 compensation. Of course there are differing opinions on this - use the below setting to disable this feature.</p>
                         

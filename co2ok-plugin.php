@@ -504,8 +504,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
                 }
 
-                
-                add_action('wp_footer', array($this, 'co2ok_footer_widget'));
+                $co2ok_widgetmark = get_option('co2ok_widgetmark', 'on');
+                if ($co2ok_widgetmark == 'on') {
+                    add_action('wp_footer', array($this, 'co2ok_footer_widget'));
+                }
 
         }
         else
@@ -985,8 +987,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         Co2ok_Plugin::remoteLogging(json_encode(["CLV increase", $site_name, $co2ok_clv_improvement, $runtime]));
 
     }
-
+    
     final public function co2ok_footer_widget()
+
     {    
         $merchantId = get_option('co2ok_id', false);
         $code = get_option('co2ok_code');
