@@ -987,7 +987,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         Co2ok_Plugin::remoteLogging(json_encode(["CLV increase", $site_name, $co2ok_clv_improvement, $runtime]));
 
     }
-    
+
     final public function co2ok_footer_widget()
 
     {    
@@ -1008,10 +1008,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<script src="https://co2ok.eco/widget/co2okWidget-' . $code . '.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer', '. $merchantId . ')</script>";
         
-        // echo "woei" . $co2ok_hide_button . "<br>";
+        // echo "woei" . $code . "<br>";
         // echo \WC()->session->get_customer_id() . "<br>";
         // echo ord(md5(\WC()->session->get_customer_id()));
-        return $widget_code;
+        echo $widget_code;
     }
 
 }

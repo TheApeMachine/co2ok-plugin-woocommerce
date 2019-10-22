@@ -67,7 +67,7 @@
                             <label style="display: inline" for="on">Show widget in footer</label>
                             <br>
                             <input type="radio" name="co2ok_widgetmark" id="off" value="off" <?php if($co2ok_widgetmark == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">I prefer another location using the WP shortcode</label>
+                            <label style="display: inline" for="off">Use the WP shortcode [co2ok_widgetmark]</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
