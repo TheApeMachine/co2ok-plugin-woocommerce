@@ -59,14 +59,14 @@
                         <h2>Widget-mark</h2>
                         <p>Not all shops contribute to the fight against climate change like you. Wear it like a badge of honor!</p>
                         <img src="<?php echo esc_url(plugins_url('../../../images/widgetmark.png', __FILE__));?>" 
-                                style="vertical-align: middle; width: 200px;"/>
+                                style="vertical-align: middle"/>
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_widgetmark" id="on" value="on" <?php if($co2ok_widgetmark == 'on') echo "checked" ?> >
+                            <input type="radio" name="co2ok_widgetmark_footer" id="on" value="on" <?php if($co2ok_widgetmark_footer == 'on') echo "checked" ?> >
                             <label style="display: inline" for="on">Show widget in footer</label>
                             <br>
-                            <input type="radio" name="co2ok_widgetmark" id="off" value="off" <?php if($co2ok_widgetmark == 'off') echo "checked" ?> >
+                            <input type="radio" name="co2ok_widgetmark_footer" id="off" value="off" <?php if($co2ok_widgetmark_footer == 'off') echo "checked" ?> >
                             <label style="display: inline" for="off">Use the WP shortcode [co2ok_widgetmark]</label>
                             
                             <p style="margin-top: 12px">

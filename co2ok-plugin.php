@@ -393,11 +393,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 if ($ab_research == 'on') {
                     add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
                         $order = wc_get_order( $order_id );
-                        // hier zat de bug:
-                        // $customer_id = $order->get_customer_id();
                         $customer_id = \WC()->session->get_customer_id();
-                        // error_log($order);
-                        // error_log($customer_id);
                         if ( ! (ord(md5($customer_id)) % 2 == 0)) {
                             $order->update_meta_data( 'co2ok-shown', 'true' );
                             $order->save();
@@ -504,8 +500,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
                 }
 
-                $co2ok_widgetmark = get_option('co2ok_widgetmark', 'on');
-                if ($co2ok_widgetmark == 'on') {
+                $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'on');
+                if ($co2ok_widgetmark_footer == 'on') {
                     add_action('wp_footer', array($this, 'co2ok_footer_widget'));
                 }
 
@@ -852,8 +848,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         global $woocommerce;
         $args = array(
-        // of mss date_paid, maar iig niet _completed
-        'date_created' => '2019-09-01...2020-01-01',
+        'date_created' => '2019-10-01...2021-01-01',
         'order' => 'ASC',
         'limit' => -1,
         );
@@ -863,9 +858,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $shown_found = false; 
         $orders_after_shown = 0; // used to keep track of order after A/B test has stopped
 
-        /* idee om de count slimmer te doen:
+        /* Semi-slimme count:
         - counter reset bij eerste shown
-        BB: periode stopt bij laatste shown
+        periode stopt bij laatste shown
         */
 
         foreach ($orders as $order) {
@@ -909,10 +904,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
     final public function co2ok_widgetmark_shortcode() {
-        $merchantId = get_option('co2ok_id', false);
+        $merchantId = get_option('co2ok_id');
         $code = get_option('co2ok_code');
         /*
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
         */
 
@@ -988,19 +983,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     }
 
-    final public function co2ok_footer_widget()
-
-    {    
-        $merchantId = get_option('co2ok_id', false);
+    final public function co2ok_footer_widget() {    
+        $merchantId = get_option('co2ok_id');
         $code = get_option('co2ok_code');
         /*
-
-        '<script src="https://co2ok.eco/widget/co2okWidget-mks.js"></script>'.
-        '<script src="https://co2ok.eco/widget/co2okWidget-.js"></script>'.
-        '<script src="http://localhost:8080/widget/co2okWidget-mks.js"></script>'.
-        '<script src="http://localhost:8080/widget/co2okWidget-s7.js"></script>'.
-        '<script src="https://co2ok.eco/widget/co2okWidget-' . $code . '.js"></script>'.
-        '<script src="http://localhost:8080/widget/co2okWidget-' . $code . '.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
+        '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
         */
 
         $widget_code = 
@@ -1008,9 +996,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer', '. $merchantId . ')</script>";
         
-        // echo "woei" . $code . "<br>";
-        // echo \WC()->session->get_customer_id() . "<br>";
-        // echo ord(md5(\WC()->session->get_customer_id()));
         echo $widget_code;
     }
 
