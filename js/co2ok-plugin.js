@@ -75,7 +75,7 @@ if(document.querySelector('.qty') != null && document.querySelector('.compensati
 
    defaultButton();
 
-}else if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_default') == null){
+}else if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_minimal') != null){
 
    minimumButton();
 

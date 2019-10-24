@@ -5,7 +5,7 @@ Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carb
 Requires at least: 4.0
 Tested up to: 5.2.3
 WC tested up to: 3.7.1
-Stable tag: 1.0.3.14
+Stable tag: 1.0.3.15
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,9 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.3.15
+* Fixes JS issue with some WP optimizing plugins
 
 = 1.0.3.14
 * Fixes css issue for info-hovercard in some shops
