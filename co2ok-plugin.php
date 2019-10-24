@@ -893,7 +893,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $site_name = $_SERVER['SERVER_NAME'];
 
         // remote log: shown orders, total orders, percentage, merchantID
-        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $merchantId, $shown_count, ($order_count - $orders_after_shown), round(($percentage * 100 - 100), 2)]));
+        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_count, ($order_count - $orders_after_shown), round(($percentage * 100 - 100), 2)]));
     }
     final public function cron_add_monthly( $schedules ) {
         // Adds once monthly to the existing schedules.
@@ -918,7 +918,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $widget_code = 
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidget-' . $code . '.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer','". $merchantId . "')</script>";
         
         return $widget_code;
@@ -1005,7 +1005,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $widget_code = 
         '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidget-' . $code . '.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer', '. $merchantId . ')</script>";
         
         // echo "woei" . $code . "<br>";
