@@ -68,6 +68,14 @@ class Co2ok_AdminOverview
         {
             update_option('co2ok_gif_feature', $_POST['co2ok_gif_feature']);
         }
+        if (isset($_POST['co2ok_ab_research']))
+        {
+            update_option('co2ok_ab_research', $_POST['co2ok_ab_research']);
+        }
+        if (isset($_POST['co2ok_widgetmark_footer']))
+        {
+            update_option('co2ok_widgetmark_footer', $_POST['co2ok_widgetmark_footer']);
+        }
 
         if (isset($_POST['co2ok_checkout_placement']))
         {
@@ -94,10 +102,12 @@ class Co2ok_AdminOverview
             $co2ok_statistics = get_option('co2ok_statistics', 'off');
             $co2ok_optout = get_option('co2ok_optout', 'off');
             $co2ok_gif_feature = get_option('co2ok_gif_feature', 'on');
+            $co2ok_ab_research = get_option('co2ok_ab_research', 'off');
+            $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'off');
             $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
             $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
 
-            $graphQLClient->mutation(function ($mutation) use ($merchantId, $co2ok_statistics, $co2ok_optout, $co2ok_gif_feature, $co2ok_disable_button_on_cart, $co2ok_checkout_placement)
+            $graphQLClient->mutation(function ($mutation) use ($merchantId, $co2ok_statistics, $co2ok_optout, $co2ok_gif_feature, $co2ok_widgetmark_footer, $co2ok_ab_research, $co2ok_disable_button_on_cart, $co2ok_checkout_placement)
             {
                 $mutation->setFunctionName('updateMerchant');
 
@@ -107,6 +117,8 @@ class Co2ok_AdminOverview
                         'sendStats' => $co2ok_statistics,
                         'optout' => $co2ok_optout,
                         'gif_feature' => $co2ok_gif_feature,
+                        'ab_research' => $co2ok_ab_research,
+                        'widgetmark_footer' => $co2ok_widgetmark_footer,
                         'co2ok_disable_button_on_cart' => $co2ok_disable_button_on_cart,
                         'co2ok_checkout_placement' => $co2ok_checkout_placement
                     )
@@ -124,6 +136,8 @@ class Co2ok_AdminOverview
         $co2ok_statistics = get_option('co2ok_statistics', 'off');
         $co2ok_optout = get_option('co2ok_optout', 'off');
         $co2ok_gif_feature = get_option('co2ok_gif_feature', 'on');
+        $co2ok_ab_research = get_option('co2ok_ab_research', 'off');
+        $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'off');
         $co2ok_disable_button_on_cart = get_option('co2ok_disable_button_on_cart', 'false');
         $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
       

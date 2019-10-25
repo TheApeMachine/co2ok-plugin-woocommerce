@@ -24,6 +24,7 @@
                     <h3>
                         <h1>Thanks for helping us fight climate change! :)</h1>
                         <img src="<?php echo esc_url(plugins_url('../../../images/happy-flower300.gif', __FILE__)); ?>"/>
+
                         <p>You are our hero. We strongly believe that no fight has been more important, and this needs
                             to be fought in any way possible. And it's not only the climate that benefits;</p>
                             <img src="<?php echo esc_url(plugins_url('../../../images/Lesotho-cookstoves.jpg', __FILE__)); ?>" width=300px/>
@@ -38,16 +39,50 @@
                         <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>
                         <p><a href="https://twitter.com/CO2ok_eco" target="_blank" ><span>Twitter</span></a></p> 
 
+                        <h2>A/B research</h2>
+                        <p>Some webshops are not as forward thinking as yours. To convince them to participate in the fight, we need to show them CO2ok doesn't impact conversion (or rather - that it helps!). Help us show them and get them on board!</p>
+
+                        <p>This will show the CO2ok option (and widget when present) to 50% of your customers, and report the difference in conversion.</p>
+                        
+                        <form method="POST">
+                        
+                            <input type="radio" name="co2ok_ab_research" id="ab_on" value="on" <?php if($co2ok_ab_research == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="ab_on">A/B research enabled</label>
+                            <br>
+                            <input type="radio" name="co2ok_ab_research" id="ab_off" value="off" <?php if($co2ok_ab_research == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="ab_off">A/B research disabled</label>
+                            
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+                        </form>
+
+                        <h2>Widget-mark</h2>
+                        <p>Not all shops contribute to the fight against climate change like you. Wear it like a badge of honor!</p>
+                        <img src="<?php echo esc_url(plugins_url('../../../images/widgetmark.png', __FILE__));?>" 
+                                style="vertical-align: middle"/>
+                        
+                        <form method="POST">
+                        
+                            <input type="radio" name="co2ok_widgetmark_footer" id="mark_on" value="on" <?php if($co2ok_widgetmark_footer == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="mark_on">Show widget in footer</label>
+                            <br>
+                            <input type="radio" name="co2ok_widgetmark_footer" id="mark_off" value="off" <?php if($co2ok_widgetmark_footer == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="mark_off">Use the WP shortcode [co2ok_widgetmark]</label>
+                            
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+                        </form>
+
                         <h2>GIF feature</h2>
                         <p>We believe in putting smiles on customers faces - a happy customer is a returning one. One of the ways we try to put smiles on peoples faces is our GIF feature - it shows a fun GIF like the one above to customers if they choose CO2 compensation. Of course there are differing opinions on this - use the below setting to disable this feature.</p>
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_gif_feature" id="on" value="on" <?php if($co2ok_gif_feature == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="on">GIFs ON. (Preferred)</label>
+                            <input type="radio" name="co2ok_gif_feature" id="gif_on" value="on" <?php if($co2ok_gif_feature == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="gif_on">GIFs ON. (Preferred)</label>
                             <br>
-                            <input type="radio" name="co2ok_gif_feature" id="off" value="off" <?php if($co2ok_gif_feature == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">GIFs OFF.</label>
+                            <input type="radio" name="co2ok_gif_feature" id="gif_off" value="off" <?php if($co2ok_gif_feature == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="gif_off">GIFs OFF.</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
@@ -59,11 +94,11 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_optout" id="on" value="on" <?php if($co2ok_optout == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="on">Compensation default ON. (Preferred)</label>
+                            <input type="radio" name="co2ok_optout" id="comp_on" value="on" <?php if($co2ok_optout == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="comp_on">Compensation default ON. (Preferred)</label>
                             <br>
-                            <input type="radio" name="co2ok_optout" id="off" value="off" <?php if($co2ok_optout == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">Compensation default OFF.</label>
+                            <input type="radio" name="co2ok_optout" id="comp_off" value="off" <?php if($co2ok_optout == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="comp_off">Compensation default OFF.</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
