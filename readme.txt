@@ -3,9 +3,9 @@ Contributors: co2ok
 Donate link: http://co2ok.eco/
 Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental, sustainability, CSR, cause marketing
 Requires at least: 4.0
-Tested up to: 5.2.3
+Tested up to: 5.2.4
 WC tested up to: 3.7.1
-Stable tag: 1.0.3.15
+Stable tag: 1.0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,11 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.4.0
+* Adds A/B test functionality 
+* Adds widgetmark to the footer by default (can be disabled on settings page)
+* Tested in latest WP/WC versions
 
 = 1.0.3.15
 * Fixes JS issue with some WP optimizing plugins
