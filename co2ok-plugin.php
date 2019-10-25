@@ -991,12 +991,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
         */
 
-        $widget_code = 
-        '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>'.
+        $footer_code =
+        '<script>jQuery("footer").find("div").first().append(\'' . 
+        '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>' .
+        '\' );</script>';
+
+        $widget_js = 
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        "<script>Co2okWidget.merchantCompensations('widgetContainer', '. $merchantId . ')</script>";
-        
-        echo $widget_code;
+        '<script>Co2okWidget.merchantCompensations("widgetContainer", "'. $merchantId . '")</script>';
+
+        echo $footer_code;
+        echo $widget_js;
     }
 
 }
