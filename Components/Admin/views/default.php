@@ -46,11 +46,11 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_ab_research" id="on" value="on" <?php if($co2ok_ab_research == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="on">A/B research enabled</label>
+                            <input type="radio" name="co2ok_ab_research" id="ab_on" value="on" <?php if($co2ok_ab_research == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="ab_on">A/B research enabled</label>
                             <br>
-                            <input type="radio" name="co2ok_ab_research" id="off" value="off" <?php if($co2ok_ab_research == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">A/B research disabled</label>
+                            <input type="radio" name="co2ok_ab_research" id="ab_off" value="off" <?php if($co2ok_ab_research == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="ab_off">A/B research disabled</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
@@ -63,11 +63,11 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_widgetmark_footer" id="on" value="on" <?php if($co2ok_widgetmark_footer == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="on">Show widget in footer</label>
+                            <input type="radio" name="co2ok_widgetmark_footer" id="mark_on" value="on" <?php if($co2ok_widgetmark_footer == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="mark_on">Show widget in footer</label>
                             <br>
-                            <input type="radio" name="co2ok_widgetmark_footer" id="off" value="off" <?php if($co2ok_widgetmark_footer == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">Use the WP shortcode [co2ok_widgetmark]</label>
+                            <input type="radio" name="co2ok_widgetmark_footer" id="mark_off" value="off" <?php if($co2ok_widgetmark_footer == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="mark_off">Use the WP shortcode [co2ok_widgetmark]</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
@@ -78,11 +78,11 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_gif_feature" id="on" value="on" <?php if($co2ok_gif_feature == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="on">GIFs ON. (Preferred)</label>
+                            <input type="radio" name="co2ok_gif_feature" id="gif_on" value="on" <?php if($co2ok_gif_feature == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="gif_on">GIFs ON. (Preferred)</label>
                             <br>
-                            <input type="radio" name="co2ok_gif_feature" id="off" value="off" <?php if($co2ok_gif_feature == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">GIFs OFF.</label>
+                            <input type="radio" name="co2ok_gif_feature" id="gif_off" value="off" <?php if($co2ok_gif_feature == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="gif_off">GIFs OFF.</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
@@ -94,11 +94,11 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_optout" id="on" value="on" <?php if($co2ok_optout == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="on">Compensation default ON. (Preferred)</label>
+                            <input type="radio" name="co2ok_optout" id="comp_on" value="on" <?php if($co2ok_optout == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="comp_on">Compensation default ON. (Preferred)</label>
                             <br>
-                            <input type="radio" name="co2ok_optout" id="off" value="off" <?php if($co2ok_optout == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="off">Compensation default OFF.</label>
+                            <input type="radio" name="co2ok_optout" id="comp_off" value="off" <?php if($co2ok_optout == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="comp_off">Compensation default OFF.</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
