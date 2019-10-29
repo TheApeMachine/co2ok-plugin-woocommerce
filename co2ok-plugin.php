@@ -308,6 +308,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
     //This function is called when the user activates the plugin.
+    // NB: this is after constructing the class, so the function calls below should be redundant
     final static function co2ok_Activated()
     {
         $alreadyActivated = get_option('co2ok_id', false);
@@ -316,9 +317,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         {
             Co2ok_Plugin::registerMerchant();
             Co2ok_Plugin::storeMerchantCode();
-            // Set optimal defaults
-            update_option('co2ok_widgetmark_footer', 'on');
-            update_option('co2ok_checkout_placement', 'checkout_order_review');
         }
         else {
             // The admin has updated this plugin ..
@@ -468,8 +466,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 // Check if merchant is registered, if for whatever reason this merchant is in fact not a registered merchant,
                 // Maybe the api was down when this user registered the plugin, in that case we want to re-register !
                 $alreadyActivated = get_option('co2ok_id', false);
-                if (!$alreadyActivated)
+                if (!$alreadyActivated) {
                     Co2ok_Plugin::registerMerchant();
+
+                    // Set optimal defaults
+                    update_option('co2ok_widgetmark_footer', 'on');
+                    update_option('co2ok_checkout_placement', 'checkout_order_review');
+                }
 
                 // Check if merchant code is stored, otherwise do so
                 $codeAlreadyStored = get_option('co2ok_code', false);
