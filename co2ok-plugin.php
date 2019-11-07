@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.4.0
+ * Version: 1.0.4.1
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.2.4
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.4.0';
+    const VERSION = '1.0.4.1';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -349,8 +349,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 
             if ($ab_research == 'on') {
                 // Start session to enable A/B testing 
-                // add_action( 'woocommerce_init', function(){
-                add_action( 'init', function(){
+                add_action( 'woocommerce_init', function(){
+                // add_action( 'init', function(){
                     
                     if (is_admin()){
                         return;
@@ -862,7 +862,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $shown_count = 0; // orders with CO2ok shown
         $order_count = 0; // orders
         $shown_found = false; 
-        $orders_after_shown = 0; // used to keep track of order after A/B test has stopped
+        // $orders_after_shown = 0; // used to keep track of order after A/B test has stopped
 
         /* Semi-slimme count:
         - counter reset bij eerste shown
@@ -873,7 +873,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $customer_id = $order->get_customer_id();
             $shown = $order->get_meta( 'co2ok-shown' );
             $order_count ++;
-            $orders_after_shown ++;
+            // $orders_after_shown ++;
             
             // count the number of orders with CO2ok shown
             if ($shown) {
@@ -882,19 +882,22 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 // reset the order count once the first is found
                 if (! $shown_found) {
                     $shown_found = true;
-                    $order_count = 0;
+                    $order_count = 1;
                 }
-                $orders_after_shown = 0;
+                // $orders_after_shown = 0;
             }
         }
         
-        $percentage = $shown_count / (($order_count - $orders_after_shown) - $shown_count);
+        // Error-prevention:
+        if ($order_count - $shown_count == 0)
+            return;
 
-        // $merchantId = get_option('co2ok_id', false);
+        $percentage = $shown_count / ($order_count - $shown_count);
+
         $site_name = $_SERVER['SERVER_NAME'];
 
-        // remote log: shown orders, total orders, percentage, merchantID
-        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_count, ($order_count - $orders_after_shown), round(($percentage * 100 - 100), 2)]));
+        // remote log: site name, shown orders, total orders, percentage
+        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_count, $order_count, round(($percentage * 100 - 100), 2)]));
     }
     final public function cron_add_monthly( $schedules ) {
         // Adds once monthly to the existing schedules.
