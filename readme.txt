@@ -5,7 +5,7 @@ Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carb
 Requires at least: 4.0
 Tested up to: 5.2.4
 WC tested up to: 3.8.0
-Stable tag: 1.0.4.0
+Stable tag: 1.0.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,7 +83,10 @@ We gather as little data as possible, specifically:
 
 == Changelog ==
 
-= 1.0.4.0
+= 1.0.4.2
+* Adjusts surcharge percentage calculation
+
+= 1.0.4.1
 * Fixes bug with A/B test functionality on some stores
 
 = 1.0.4.0

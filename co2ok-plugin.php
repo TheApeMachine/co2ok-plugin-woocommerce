@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.4.1
+ * Version: 1.0.4.2
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.2.4
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.4.1';
+    const VERSION = '1.0.4.2';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -317,6 +317,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         {
             Co2ok_Plugin::registerMerchant();
             Co2ok_Plugin::storeMerchantCode();
+
+            // Set optimal defaults
+            update_option('co2ok_widgetmark_footer', 'on');
+            update_option('co2ok_checkout_placement', 'checkout_order_review');
         }
         else {
             // The admin has updated this plugin ..
@@ -519,6 +523,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
     }
 
+
     final public function co2ok_ajax_set_percentage()
     {
         if( empty($_POST) )
@@ -705,6 +710,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $order_total_with_tax = $order_total + array_sum(\WC_Tax::calc_tax($order_total, $tax_rates));
 
+        // percentage magic 
+        $joet = $order_total_with_tax / 100;
+        $this->percentage = (2 - ($joet/(1 + $joet))) * 0.75;
+
         $surcharge = ($order_total_with_tax) * ($this->percentage / 100);
         $this->surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
@@ -862,18 +871,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $shown_count = 0; // orders with CO2ok shown
         $order_count = 0; // orders
         $shown_found = false; 
-        // $orders_after_shown = 0; // used to keep track of order after A/B test has stopped
-
-        /* Semi-slimme count:
-        - counter reset bij eerste shown
-        periode stopt bij laatste shown
-        */
 
         foreach ($orders as $order) {
             $customer_id = $order->get_customer_id();
             $shown = $order->get_meta( 'co2ok-shown' );
             $order_count ++;
-            // $orders_after_shown ++;
             
             // count the number of orders with CO2ok shown
             if ($shown) {
@@ -884,7 +886,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     $shown_found = true;
                     $order_count = 1;
                 }
-                // $orders_after_shown = 0;
             }
         }
         
