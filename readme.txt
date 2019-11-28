@@ -3,7 +3,7 @@ Contributors: co2ok
 Donate link: http://co2ok.eco/
 Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental, sustainability, CSR, cause marketing
 Requires at least: 4.0
-Tested up to: 5.2.4
+Tested up to: 5.3
 WC tested up to: 3.8.0
 Stable tag: 1.0.4.2
 License: GPLv2 or later
