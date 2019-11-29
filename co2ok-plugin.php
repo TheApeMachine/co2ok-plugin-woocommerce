@@ -490,15 +490,20 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     // scheduled for now + 15 hours
                     wp_schedule_event( time() + 69000, 'weekly', 'co2ok_participation_cron_hook' );
                 }
-
                 add_action( 'co2ok_participation_cron_hook', array($this, 'co2ok_calculate_participation' ));
 
+                
                 if ( ! wp_next_scheduled( 'co2ok_clv_cron_hook' ) ) {
                     // scheduled for now + 15 hours and 5 min
                     wp_schedule_event( time() + 69300, 'monthly', 'co2ok_clv_cron_hook' );
                 }
-
                 add_action( 'co2ok_clv_cron_hook', array($this, 'co2ok_calculate_clv' ));
+
+                if ( ! wp_next_scheduled( 'co2ok_impact_cron_hook' ) ) {
+                    // scheduled for now + 16 hours
+                    wp_schedule_event( time() + 72600, 'daily', 'co2ok_impact_cron_hook' );
+                }
+                add_action( 'co2ok_impact_cron_hook', array($this, 'co2ok_calculate_impact' ));
 
                 add_action('init', array($this, 'co2ok_register_shortcodes'));
 
@@ -821,6 +826,39 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         if ($woocommerce->session->co2ok == 1)
             $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, 'co2ok');
 
+    }
+
+    final public function co2ok_calculate_impact()
+    {
+        /**
+         * Calculates compensation count and total impact this shop had in the fight against climate change
+         */
+
+        global $woocommerce;
+        $args = array(
+        // orders since the start of the CO2ok epoch
+        'date_created' => '>1530422342',
+        'limit' => -1,
+        );
+        $orders = wc_get_orders( $args );
+
+        $compensationTotal = 0;
+        $compensationCount = 0;
+        
+        foreach ($orders as $order) {
+            $fees = $order->get_fees();
+            foreach ($fees as $fee) {
+                if (strpos ($fee->get_name(), 'CO2' ) !== false) {
+                    $compensationTotal += $fee->get_total();
+                    $compensationCount += 1;
+                }
+            }
+        }
+
+        $impactTotal = $compensationTotal * 67;
+        
+        update_option('co2ok_compensation_count', $compensationCount);
+        update_option('co2ok_impact', $impactTotal);
     }
 
     final public function co2ok_calculate_participation()
