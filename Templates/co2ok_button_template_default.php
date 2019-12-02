@@ -41,7 +41,15 @@
                         echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
                         ?>
                 </span>
-                <span>Al 163x gecompenseerd; 13t CO2 reductie</span>
+                <span>
+                    <?php 
+                     $compensationCount = get_option('co2ok_compensation_count', 42);
+                     $impactTotal = get_option('co2ok_impact', 23);
+                    $variables = array(
+                        '{COMPENSATION_COUNT}' => $compensationCount,
+                        '{IMPACT}' => round($impactTotal / 1000, 0));
+                    echo strtr('{COMPENSATION_COUNT}x gecompenseerd; {IMPACT}t CO2 reductie', $variables); ?>
+                    </span>
         </span>
         <a href="#!" input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea" style="outline: none; -webkit-appearance: none;">
         <span id="p">
