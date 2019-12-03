@@ -55,7 +55,8 @@
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>
-
+                        
+                        
                         <h2>Widget-mark</h2>
                         <p>Not all shops contribute to the fight against climate change like you. Wear it like a badge of honor!</p>
                         <img src="<?php echo esc_url(plugins_url('../../../images/widgetmark.png', __FILE__));?>" 
@@ -72,6 +73,22 @@
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>
+
+                        <h2>Extended widget styling</h2>
+                        <p>We've created an even fancier badge of honor! Choose the style/size you prefer and insert the appropriate wordpress shortcode where you want to place it.</p>
+                        <img src="<?php echo esc_url(plugins_url('../../../images/widgetL.png', __FILE__));?>" 
+                                style="vertical-align: middle; width: 210px;"/>
+                        [co2ok_widget size="L" color="default"]
+                        <img src="<?php echo esc_url(plugins_url('../../../images/widgetLgray.png', __FILE__));?>" 
+                        style="vertical-align: middle; width: 210px;"/>
+                        [co2ok_widget size="L" color="gray"]
+                        <img src="<?php echo esc_url(plugins_url('../../../images/widgetXL.png', __FILE__));?>" 
+                        style="vertical-align: middle; width: 210px;"/>
+                        [co2ok_widget size="XL" color="default"]
+                        <img src="<?php echo esc_url(plugins_url('../../../images/widgetXLgray.png', __FILE__));?>" 
+                        style="vertical-align: middle; width: 210px;"/>
+                        [co2ok_widget size="XL" color="gray"]
+                        
 
                         <h2>GIF feature</h2>
                         <p>We believe in putting smiles on customers faces - a happy customer is a returning one. One of the ways we try to put smiles on peoples faces is our GIF feature - it shows a fun GIF like the one above to customers if they choose CO2 compensation. Of course there are differing opinions on this - use the below setting to disable this feature.</p>

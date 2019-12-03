@@ -51,10 +51,10 @@
     color: white; }
   .co2ok_container .co2ok_payoff {
     width: 100%;
-    margin-top: -27px;
+    margin-top: -1px;
     margin-left: 4px;
     font-size: 13px;
-    text-align: center;
+    /* text-align: center; */
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -63,6 +63,31 @@
     letter-spacing: -0.0538461em;
     color: #4D5155;
     width: 110%; }
+
+    /* Payoff text animation */
+    .co2ok_payoff_text{
+      display: inline;
+    } 
+    .co2ok_payoff_text span{
+      position: absolute;
+      opacity: 0;
+      overflow: hidden;
+      animation: rotateWord 6s linear infinite 0s;
+    }
+    .co2ok_payoff_text span:nth-child(2) { 
+      animation-delay: 3s; 
+      font-size: 12px; 
+    }
+    @keyframes rotateWord {
+      0% { opacity: 0; }
+      2% { opacity: 0; -webkit-transform: translateY(-30px); transform: translateY(-30px); }
+    5% { opacity: 1; -webkit-transform: translateY(0px); transform: translateY(0px);}
+      47% { opacity: 1; -webkit-transform: translateY(0px); transform: translateY(0px); }
+    50% { opacity: 0; -webkit-transform: translateY(30px); transform: translateY(30px); }
+    80% { opacity: 0; }
+      100% { opacity: 0; }
+  }
+    
     .co2ok_container .co2ok_payoff #p {
       vertical-align: middle;
       display: inline-block;
@@ -79,7 +104,7 @@
         position: relative; }
         .co2ok_container .co2ok_payoff #p .co2ok_info_hitarea img {
           width: 16px;
-          margin-top: 25px;
+          margin-left: 218px;
           display: inline-block; }
   .co2ok_container .co2ok_adaptive_color_default {
     font-size: 13px;

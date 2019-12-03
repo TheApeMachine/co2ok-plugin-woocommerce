@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.4.1
+ * Version: 1.0.4.2
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.2.4
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.4.1';
+    const VERSION = '1.0.4.2';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -317,6 +317,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         {
             Co2ok_Plugin::registerMerchant();
             Co2ok_Plugin::storeMerchantCode();
+
+            // Set optimal defaults
+            update_option('co2ok_widgetmark_footer', 'on');
+            update_option('co2ok_checkout_placement', 'checkout_order_review');
         }
         else {
             // The admin has updated this plugin ..
@@ -486,15 +490,20 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     // scheduled for now + 15 hours
                     wp_schedule_event( time() + 69000, 'weekly', 'co2ok_participation_cron_hook' );
                 }
-
                 add_action( 'co2ok_participation_cron_hook', array($this, 'co2ok_calculate_participation' ));
 
+                
                 if ( ! wp_next_scheduled( 'co2ok_clv_cron_hook' ) ) {
                     // scheduled for now + 15 hours and 5 min
                     wp_schedule_event( time() + 69300, 'monthly', 'co2ok_clv_cron_hook' );
                 }
-
                 add_action( 'co2ok_clv_cron_hook', array($this, 'co2ok_calculate_clv' ));
+
+                if ( ! wp_next_scheduled( 'co2ok_impact_cron_hook' ) ) {
+                    // scheduled for now + 16 hours
+                    wp_schedule_event( time() + 72600, 'daily', 'co2ok_impact_cron_hook' );
+                }
+                add_action( 'co2ok_impact_cron_hook', array($this, 'co2ok_calculate_impact' ));
 
                 add_action('init', array($this, 'co2ok_register_shortcodes'));
 
@@ -518,6 +527,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             trigger_error( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ), E_USER_WARNING);
         }
     }
+
 
     final public function co2ok_ajax_set_percentage()
     {
@@ -705,6 +715,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $order_total_with_tax = $order_total + array_sum(\WC_Tax::calc_tax($order_total, $tax_rates));
 
+        // percentage magic 
+        $joet = $order_total_with_tax / 100;
+        $this->percentage = (2 - ($joet/(1 + $joet))) * 0.75;
+
         $surcharge = ($order_total_with_tax) * ($this->percentage / 100);
         $this->surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
@@ -814,6 +828,39 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     }
 
+    final public function co2ok_calculate_impact()
+    {
+        /**
+         * Calculates compensation count and total impact this shop had in the fight against climate change
+         */
+
+        global $woocommerce;
+        $args = array(
+        // orders since the start of the CO2ok epoch
+        'date_created' => '>1530422342',
+        'limit' => -1,
+        );
+        $orders = wc_get_orders( $args );
+
+        $compensationTotal = 0;
+        $compensationCount = 0;
+        
+        foreach ($orders as $order) {
+            $fees = $order->get_fees();
+            foreach ($fees as $fee) {
+                if (strpos ($fee->get_name(), 'CO2' ) !== false) {
+                    $compensationTotal += $fee->get_total();
+                    $compensationCount += 1;
+                }
+            }
+        }
+
+        $impactTotal = $compensationTotal * 67;
+        
+        update_option('co2ok_compensation_count', $compensationCount);
+        update_option('co2ok_impact', $impactTotal);
+    }
+
     final public function co2ok_calculate_participation()
     {
         global $woocommerce;
@@ -862,18 +909,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $shown_count = 0; // orders with CO2ok shown
         $order_count = 0; // orders
         $shown_found = false; 
-        // $orders_after_shown = 0; // used to keep track of order after A/B test has stopped
-
-        /* Semi-slimme count:
-        - counter reset bij eerste shown
-        periode stopt bij laatste shown
-        */
 
         foreach ($orders as $order) {
             $customer_id = $order->get_customer_id();
             $shown = $order->get_meta( 'co2ok-shown' );
             $order_count ++;
-            // $orders_after_shown ++;
             
             // count the number of orders with CO2ok shown
             if ($shown) {
@@ -884,7 +924,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     $shown_found = true;
                     $order_count = 1;
                 }
-                // $orders_after_shown = 0;
             }
         }
         
@@ -910,6 +949,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_register_shortcodes() {
         add_shortcode('co2ok_widgetmark', array($this, 'co2ok_widgetmark_shortcode'));
+        add_shortcode('co2ok_widget', array($this, 'co2ok_widget_shortcode'));
     }
 
     final public function co2ok_widgetmark_shortcode() {
@@ -924,6 +964,31 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer','". $merchantId . "')</script>";
+        
+        return $widget_code;
+    }
+
+    final public function co2ok_widget_shortcode($atts = []){ 
+    
+        // override default attributes with user attributes
+        $co2ok_atts = shortcode_atts([
+            'size' => 'XL',
+            'color' => 'default',
+        ], $atts);
+
+        $merchantId = get_option('co2ok_id');
+        $code = get_option('co2ok_code');
+        $size = $co2ok_atts['size'];
+        $color = $co2ok_atts['color'];
+        /*
+        '<script src="https://co2ok.eco/widget/co2okWidgetXL' . $code . '.js"></script>'.
+        '<script src="http://localhost:8080/widget/co2okWidgetXL.js"></script>'.
+        */
+
+        $widget_code = 
+        '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
+        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js"></script>'.
+        "<script>Co2okWidgetXL.merchantCompensations('widgetContainerXL','" . $merchantId . "','" . $size . "','" . $color .  "')</script>";
         
         return $widget_code;
     }
