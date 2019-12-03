@@ -949,6 +949,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_register_shortcodes() {
         add_shortcode('co2ok_widgetmark', array($this, 'co2ok_widgetmark_shortcode'));
+        add_shortcode('co2ok_widget', array($this, 'co2ok_widget_shortcode'));
     }
 
     final public function co2ok_widgetmark_shortcode() {
@@ -963,6 +964,31 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
         "<script>Co2okWidget.merchantCompensations('widgetContainer','". $merchantId . "')</script>";
+        
+        return $widget_code;
+    }
+
+    final public function co2ok_widget_shortcode($atts = []){ 
+    
+        // override default attributes with user attributes
+        $co2ok_atts = shortcode_atts([
+            'size' => 'XL',
+            'color' => 'default',
+        ], $atts);
+
+        $merchantId = get_option('co2ok_id');
+        $code = get_option('co2ok_code');
+        $size = $co2ok_atts['size'];
+        $color = $co2ok_atts['color'];
+        /*
+        '<script src="https://co2ok.eco/widget/co2okWidgetXL' . $code . '.js"></script>'.
+        '<script src="http://localhost:8080/widget/co2okWidgetXL.js"></script>'.
+        */
+
+        $widget_code = 
+        '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
+        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js"></script>'.
+        "<script>Co2okWidgetXL.merchantCompensations('widgetContainerXL','" . $merchantId . "','" . $size . "','" . $color .  "')</script>";
         
         return $widget_code;
     }
