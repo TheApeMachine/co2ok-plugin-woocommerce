@@ -52,7 +52,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                     'co2ok_session_opted' =>  $woocommerce->session->co2ok,
                     'currency_symbol' =>get_woocommerce_currency_symbol(),
                     'surcharge' => $surcharge,
-                    'co2ok_gif_feature' => get_option('co2ok_gif_feature', 'on')
+                    'co2ok_gif_feature' => get_option('co2ok_gif_feature', 'on'),
+                    'compensation_count' => get_option('co2ok_compensation_count', 42),
+                    'impact_total' => round(get_option('co2ok_impact', 23) / 1000, 0)
                 )
             );
 

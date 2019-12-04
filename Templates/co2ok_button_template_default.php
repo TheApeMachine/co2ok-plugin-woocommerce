@@ -43,13 +43,13 @@
                 </span>
                 <span>
                     <?php 
-                     $compensationCount = get_option('co2ok_compensation_count', 42);
-                     $impactTotal = get_option('co2ok_impact', 23);
+
                     $variables = array(
-                        '{COMPENSATION_COUNT}' => $compensationCount,
-                        '{IMPACT}' => round($impactTotal / 1000, 0));
-                    echo strtr('{COMPENSATION_COUNT}x gecompenseerd; {IMPACT}t CO2 reductie', $variables); ?>
-                    </span>
+                        '{COMPENSATION_COUNT}' => $compensation_count,
+                        '{IMPACT}' => $impact_total);
+                    echo strtr( __('{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction', 'co2ok-for-woocommerce' ), $variables); 
+                    ?>
+                </span>
         </span>
         <a href="#!" input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea" style="outline: none; -webkit-appearance: none;">
         <span id="p">
@@ -71,7 +71,7 @@
         <div class="inner-wrapper">
         <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/even.svg', 'svg-img-large', '  co2ok_info_hover_image', 'a3-notlazy'); ?>
         <a href="#!" input type="text" role="button" tabindex="0" class="selectable-text" style="outline: none; -webkit-appearance: none;">
-        <p class="text-block greyBorder"><?php echo __('We prevent the same amount of emissions',  'co2ok-for-woocommerce' );?></p>
+        <p class="text-block greyBorder"><?php echo __('CO&#8322ok prevents the same amount of emissions',  'co2ok-for-woocommerce' );?></p>
         </a>
         </div>
 
