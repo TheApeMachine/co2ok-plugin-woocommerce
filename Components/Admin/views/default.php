@@ -77,17 +77,17 @@
                         <h2>Extended widget styling</h2>
                         <p>We've created an even fancier badge of honor! Choose the style/size you prefer and insert the appropriate wordpress shortcode where you want to place it.</p>
                         <img src="<?php echo esc_url(plugins_url('../../../images/widgetL.png', __FILE__));?>" 
-                                style="vertical-align: middle; width: 210px;"/>
-                        [co2ok_widget size="L" color="default"]
+                                style="vertical-align: middle;"/>
+                        [co2ok_widget size="L" color="default"]<br>
                         <img src="<?php echo esc_url(plugins_url('../../../images/widgetLgray.png', __FILE__));?>" 
-                        style="vertical-align: middle; width: 210px;"/>
-                        [co2ok_widget size="L" color="gray"]
+                        style="vertical-align: middle;"/>
+                        [co2ok_widget size="L" color="gray"]<br>
                         <img src="<?php echo esc_url(plugins_url('../../../images/widgetXL.png', __FILE__));?>" 
-                        style="vertical-align: middle; width: 210px;"/>
-                        [co2ok_widget size="XL" color="default"]
+                        style="vertical-align: middle;"/>
+                        [co2ok_widget size="XL" color="default"]<br>
                         <img src="<?php echo esc_url(plugins_url('../../../images/widgetXLgray.png', __FILE__));?>" 
-                        style="vertical-align: middle; width: 210px;"/>
-                        [co2ok_widget size="XL" color="gray"]
+                        style="vertical-align: middle;"/>
+                        [co2ok_widget size="XL" color="gray"]<br>
                         
 
                         <h2>GIF feature</h2>
