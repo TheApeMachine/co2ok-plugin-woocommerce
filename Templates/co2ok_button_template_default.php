@@ -50,6 +50,14 @@
                     echo strtr( __('{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction', 'co2ok-for-woocommerce' ), $variables); 
                     ?>
                 </span>
+                <span>
+                    <?php 
+
+                    $variables = array(
+                        '{KM}' => $impact_total * 5000);
+                    echo strtr( __('This is equivalent to {KM} km of flying ✈️', 'co2ok-for-woocommerce' ), $variables); 
+                    ?>
+              </span>
         </span>
         <a href="#!" input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea" style="outline: none; -webkit-appearance: none;">
         <span id="p">

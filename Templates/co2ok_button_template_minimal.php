@@ -40,14 +40,14 @@
           </div>
           </a>
 
-          <!-- <span class="co2ok_payoff_sentence_minimal co2ok_payoff_text"> -->
-            <span class="co2ok_payoff_sentence_minimal co2ok_adaptive_color_default">
+          <span class="co2ok_payoff_sentence_minimal">
+            <span class="co2ok_payoff_text  co2ok_adaptive_color_default">
               <span>
                 <?php
                     echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
                 ?>
               </span>
-              <!-- <span>
+              <span>
                 <?php 
 
                 $variables = array(
@@ -55,9 +55,17 @@
                     '{IMPACT}' => $impact_total);
                 echo strtr( __('{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction', 'co2ok-for-woocommerce' ), $variables); 
                 ?>
-              </span> -->
+              </span>
+              <span>
+                <?php 
+
+                $variables = array(
+                    '{KM}' => $impact_total * 5000);
+                echo strtr( __('This is equivalent to {KM} km of flying ✈️', 'co2ok-for-woocommerce' ), $variables); 
+                ?>
+              </span>
             </span>
-          <!-- </span> -->
+          </span>
 
     </span>
 

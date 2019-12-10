@@ -6,11 +6,11 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.5.0
+ * Version: 1.0.5.1
  *         (Remember to change the VERSION constant, below, as well!)
  *
- * Tested up to: 5.2.4
- * WC tested up to: 3.7.1
+ * Tested up to: 5.3
+ * WC tested up to: 3.8.1
  *
  * Author:
  * Milo de Vries,
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.5.0';
+    const VERSION = '1.0.5.1';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -362,15 +362,22 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     
                     if (is_user_logged_in()){
                         //do nothing :) (since there already is a session)
-                    } elseif (isset(WC()->session)) {
+                    } elseif (isset(\WC()->session)) {
                         if ( ! \WC()->session->has_session() ) {
                             \WC()->session->set_customer_session_cookie( true );
                         }
                     } elseif (get_current_user_id() == 0) {
                         // When the cron task runs, there is no user
                         return;
-                    }
+                    } 
                     
+                    // in some scenario's there is no WC session object; init it
+                    if ( ! isset(\WC()->session)) {
+                        \WC()->session = new \WC_Session_Handler();
+                        \WC()->session->init();
+                        \WC()->session->set_customer_session_cookie( true );
+                    }
+
                     try {
                         $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
                         if ( $co2ok_hide_button) {   
@@ -982,10 +989,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $size = $co2ok_atts['size'];
         $color = $co2ok_atts['color'];
         /*
-        '<script src="https://co2ok.eco/widget/co2okWidgetXL' . $code . '.js"></script>'.
+        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidgetXL.js"></script>'.
         */
-
+        
         $widget_code = 
         '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js"></script>'.

@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.3
 Requires PHP: 5.5
 WC tested up to: 3.8.1
-Stable tag: 1.0.5.0
+Stable tag: 1.0.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,12 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.5.1
+* Fixes bug with A/B test code in some scenarios
+* Adds social&impact proof to minimal design compensate button
+* Adds clarifying sentence to social&impact proof
+* fixes bug with minimal design in some checkouts
 
 = 1.0.5.0
 * Adds XL widgets!
