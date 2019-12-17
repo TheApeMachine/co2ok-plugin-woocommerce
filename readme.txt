@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.3
 Requires PHP: 5.5
 WC tested up to: 3.8.1
-Stable tag: 1.0.5.1
+Stable tag: 1.0.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,9 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.5.2
+* Fixes bug JS code
 
 = 1.0.5.1
 * Fixes bug with A/B test code in some scenarios

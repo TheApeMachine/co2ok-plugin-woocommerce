@@ -231,7 +231,6 @@ var Co2ok_JS = function ()
 
 
                     function minimumButton()
-                    return ""
                     {
 
                       var compensation_amount_minimal = document.querySelector('.compensation_amount_minimal');
