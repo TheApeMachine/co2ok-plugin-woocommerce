@@ -53,8 +53,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                     'currency_symbol' =>get_woocommerce_currency_symbol(),
                     'surcharge' => $surcharge,
                     'co2ok_gif_feature' => get_option('co2ok_gif_feature', 'on'),
-                    'compensation_count' => get_option('co2ok_compensation_count', 42),
-                    'impact_total' => round(get_option('co2ok_impact', 23) / 1000, 0)
+                    // fake it till you make it; 0 => 1
+                    'compensation_count' => get_option('co2ok_compensation_count', 1),
+                    // impact from kg => tonne, 1 decimal point, rounding up
+                    // ceil 4.2 => 5, so /10, ceil, /100, round with 1 decimal
+                    'impact_total' => round(ceil(get_option('co2ok_impact', 100)/10) / 100, 1)
                 )
             );
 
