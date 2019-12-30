@@ -6,10 +6,10 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.5.2
+ * Version: 1.0.5.3
  *         (Remember to change the VERSION constant, below, as well!)
  *
- * Tested up to: 5.3
+ * Tested up to: 5.3.2
  * WC tested up to: 3.8.1
  *
  * Author:
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.5.2';
+    const VERSION = '1.0.5.3';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -405,11 +405,19 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 if ($ab_research == 'on') {
                     add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
                         $order = wc_get_order( $order_id );
+
+                        // _co2ok-shown should be immutable
+                        if ($order->meta_exists('_co2ok-shown')){
+                            return;
+                        }
+
                         $customer_id = \WC()->session->get_customer_id();
                         if ( ! (ord(md5($customer_id)) % 2 == 0)) {
-                            $order->update_meta_data( 'co2ok-shown', 'true' );
-                            $order->save();
+                            $order->update_meta_data( '_co2ok-shown', '1' );
+                        } else {
+                            $order->update_meta_data( '_co2ok-shown', '0' );
                         }
+                        $order->save();
                     } , 10, 2);
                 }
 
@@ -867,7 +875,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $impactTotal = $compensationTotal * 67;
         // fake it till you make it; 0 => 42kg && 0 => 1
         $impactTotal = ($impactTotal == 0 ? 42 : $impactTotal);
-        $compensationCount = ($compensationCount == 0 ? 1 : $compensationCost);
+        $compensationCount = ($compensationCount == 0 ? 1 : $compensationCount);
         
         update_option('co2ok_compensation_count', $compensationCount);
         update_option('co2ok_impact', $impactTotal);
@@ -912,43 +920,71 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final public function co2ok_calculate_ab_results()
     {
         global $woocommerce;
+
+        $site_name = $_SERVER['SERVER_NAME'];
+        Co2ok_Plugin::remoteLogging(json_encode(["A/B result calculation start", $site_name]));
+
         $args = array(
         'date_created' => '2019-10-01...2021-01-01',
         'order' => 'ASC',
         'limit' => -1,
         );
         $orders = wc_get_orders( $args );
+        $shown_old_count = 0; // orders with CO2ok shown OLD
         $shown_count = 0; // orders with CO2ok shown
+        $hidden_count = 0; // orders with CO2ok hidden
         $order_count = 0; // orders
+        $ab_order_count = 0; // orders
         $shown_found = false; 
 
         foreach ($orders as $order) {
             $customer_id = $order->get_customer_id();
-            $shown = $order->get_meta( 'co2ok-shown' );
+            $shown_old = $order->get_meta('co2ok-shown');
+            $shown = $order->get_meta('_co2ok-shown');
+            // since get_meta returns an empty string for non-existing keys, this is a little convoluted:
+            $hidden = ($order->meta_exists('_co2ok-shown') ? ! $order->get_meta('_co2ok-shown') : 0);
             $order_count ++;
             
-            // count the number of orders with CO2ok shown
-            if ($shown) {
-                $shown_count ++;
-
+            // count the number of orders with CO2ok shown OLD
+            if ($shown_old) {
+                $shown_old_count ++;
+                
                 // reset the order count once the first is found
                 if (! $shown_found) {
                     $shown_found = true;
                     $order_count = 1;
                 }
             }
+
+            if ($shown) {
+                $shown_count ++;
+                $ab_order_count ++;
+            }
+            if ($hidden) {
+                $hidden_count ++;
+                $ab_order_count ++;
+            }
         }
         
         // Error-prevention:
-        if ($order_count - $shown_count == 0)
+        if ($order_count - $shown_old_count == 0){
+            Co2ok_Plugin::remoteLogging(json_encode(["A/B test early return", $site_name, $shown_old_count, $order_count, "New", $shown_count, $hidden_count, $ab_order_count]));
             return;
+        }
 
-        $percentage = $shown_count / ($order_count - $shown_count);
+        // Error-prevention:
+        if ($hidden_count == 0){
+            Co2ok_Plugin::remoteLogging(json_encode(["A/B test hello world", $site_name, $shown_old_count, $order_count, "New", $shown_count, $hidden_count, $ab_order_count]));
+            return;
+        }
 
-        $site_name = $_SERVER['SERVER_NAME'];
+        $shown_old_count += $shown_count; // oud & nieuw :)
 
-        // remote log: site name, shown orders, total orders, percentage
-        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_count, $order_count, round(($percentage * 100 - 100), 2)]));
+        $percentage_old = $shown_old_count / ($order_count - $shown_old_count);
+        $percentage = $shown_count / $hidden_count;
+
+        // remote log: site name, shown orders, total orders, percentage_old
+        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_old_count, $order_count, round(($percentage_old * 100 - 100), 2), "New", $shown_count, $hidden_count, $ab_order_count, round(($percentage * 100 - 100), 2)]));
     }
     final public function cron_add_monthly( $schedules ) {
         // Adds once monthly to the existing schedules.
