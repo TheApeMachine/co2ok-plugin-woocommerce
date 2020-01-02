@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.3.2
 Requires PHP: 5.5
 WC tested up to: 3.8.1
-Stable tag: 1.0.5.3
+Stable tag: 1.0.5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,9 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.5.4
+* Fixes bug with wc_get_orders and A/B research
 
 = 1.0.5.3
 * Improves A/B research code

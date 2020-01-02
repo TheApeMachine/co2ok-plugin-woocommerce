@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.5.3
+ * Version: 1.0.5.4
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.3.2
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.5.3';
+    const VERSION = '1.0.5.4';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -936,8 +936,23 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $order_count = 0; // orders
         $ab_order_count = 0; // orders
         $shown_found = false; 
+        $skipped_orders = 0;
 
         foreach ($orders as $order) {
+
+            // wc_get_orders also returns refunds, so skip these to avoid errors.
+	        if ( ! $order || 'shop_order_refund' === $order->get_type() )
+                continue;
+
+            // we prob don't need this anymore since adding above refund skip, but let's see results first
+            // copied from https://github.com/mailchimp/mc-woocommerce/blob/9804e28bb555e5a22a453d699f2365bf5a0e85db/includes/api/class-mailchimp-woocommerce-transform-orders-wc3.php#L76
+            // if the woo object does not have a "get_customer_id" method, then we need to skip this until
+            // we know how to resolve these types of things.
+            if (!method_exists($order, 'get_customer_id')) {
+                $skipped_orders ++;
+                continue;
+            }
+
             $customer_id = $order->get_customer_id();
             $shown_old = $order->get_meta('co2ok-shown');
             $shown = $order->get_meta('_co2ok-shown');
@@ -984,7 +999,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $percentage = $shown_count / $hidden_count;
 
         // remote log: site name, shown orders, total orders, percentage_old
-        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_old_count, $order_count, round(($percentage_old * 100 - 100), 2), "New", $shown_count, $hidden_count, $ab_order_count, round(($percentage * 100 - 100), 2)]));
+        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_old_count, $order_count, round(($percentage_old * 100 - 100), 2), "Skipped:", $skipped_orders, "New", $shown_count, $hidden_count, $ab_order_count, round(($percentage * 100 - 100), 2)]));
     }
     final public function cron_add_monthly( $schedules ) {
         // Adds once monthly to the existing schedules.
