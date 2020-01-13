@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.5.4
+ * Version: 1.0.5.5
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.3.2
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.5.4';
+    const VERSION = '1.0.5.5';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -472,6 +472,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                  * TODO
                  */
 
+
+                /**
+                 * Deal with the obscure way WC handles refunds
+                 */
+
+                add_action( 'woocommerce_order_refunded',
+                    array($this, 'co2ok_woocommerce_order_refunded'), 10, 2 ); 
+                
+
                 /**
                  * Register Front End
                  */
@@ -650,7 +659,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $merchantId = get_option('co2ok_id', false);
 
-        $graphQLClient->mutation(function ($mutation) use ($merchantId, $order_id, $compensationCost, $orderTotal)
+        $graphQLClient->mutation(function ($mutation) use ($merchantId, $order_id)
         {
             $mutation->setFunctionName('deleteTransaction');
 
@@ -704,6 +713,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             case "refunded":
             case "cancelled":
                 $order = wc_get_order($order_id);
+                
+                // if ( 'shop_order_refund' === $order->get_type() )
+                //     $order = wc_get_order($order.get_parent_id());
+
                 $fees = $order->get_fees();
 
                 foreach ($fees as $fee) {
@@ -713,6 +726,33 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
                 break;
         }
+    }
+
+    final public function co2ok_woocommerce_order_refunded( $order_id, $refund_id ) { 
+        global $woocommerce;
+        $order = wc_get_order($order_id);
+        $fees = $order->get_fees();
+
+        if ( co2okfreemius()->allow_tracking() ) {
+            $merchantId = get_option('co2ok_id', false);
+            $orderTotal = $order->get_total();
+            $compensationCost = 0;
+            foreach ($fees as $fee) {
+                if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
+                    $compensationCost = $fee->get_total();
+                    break;
+                }
+            }
+            Co2ok_Plugin::remoteLogging(json_encode(["REFUND", $merchantId, $order_id, $orderTotal, $compensationCost]));
+        }
+
+        foreach ($fees as $fee) {
+            if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
+                // The user did opt for co2 compensation
+                $this->co2ok_deleteTransaction($order_id);
+            }
+        }
+
     }
 
     final private function co2ok_calculateSurcharge($add_tax=false)
