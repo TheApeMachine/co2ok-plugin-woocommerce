@@ -267,6 +267,7 @@ img#co2ok_logo_minimal {
       text-decoration: none;
       font-weight: 300;
       color: black;
+      border: 0px;
       /* unvisited, visited, mouse over and selected link */ }
       .co2ok_infobox_container .inner-wrapper .selectable-text a:link, .co2ok_infobox_container .inner-wrapper .selectable-text a:visited, .co2ok_infobox_container .inner-wrapper .selectable-text a:hover, .co2ok_infobox_container .inner-wrapper .selectable-text a:active {
         color: black; }

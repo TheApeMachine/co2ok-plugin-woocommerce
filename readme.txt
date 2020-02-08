@@ -1,7 +1,7 @@
 === CO2ok for Woocommerce ===
 Contributors: co2ok
 Donate link: http://co2ok.eco/
-Tags: climate neutral, green, sustainable, carbon offsetting, CO2 footprint, carbon footprint, carbon emissions, carbon offset, environmental, sustainability, CSR, cause marketing
+Tags: climate neutral, sustainability, sustainable, carbon offsetting, carbon offset, CO2 footprint, carbon footprint, carbon emissions, environmental, CSR, cause marketing
 Requires at least: 4.0
 Tested up to: 5.3.2
 Requires PHP: 5.5
@@ -27,6 +27,8 @@ During installation an account for our service will be created automatically. Us
 * Clear information 'hoverbox' - customers don't need to visit our site for explanation
 * Flexible placement on the checkout page
 * 2 button designs available
+* give your customers a smile on their face with our gifs (or disable them)
+* show of your impact with our widgets!
 
 **How it works**
 
@@ -82,7 +84,14 @@ We gather as little data as possible, specifically:
 
 2. An overview that includes the checkout screen
 
+3. The minimal button design and info-hover
+
+4. Show off your impact with our widgets!
+
 == Changelog ==
+
+= 1.0.5.7
+* Fixes minor CSS issue
 
 = 1.0.5.6
 * Fixes a rounding issue 
