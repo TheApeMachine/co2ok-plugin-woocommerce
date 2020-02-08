@@ -1,12 +1,12 @@
 === CO2ok for Woocommerce ===
 Contributors: co2ok
 Donate link: http://co2ok.eco/
-Tags: climate neutral, green, sustainable, CO2 footprint, carbon footprint, carbon emissions, carbon offset, carbon offsetting, environmental, sustainability, CSR, cause marketing
+Tags: climate neutral, green, sustainable, carbon offsetting, CO2 footprint, carbon footprint, carbon emissions, carbon offset, environmental, sustainability, CSR, cause marketing
 Requires at least: 4.0
 Tested up to: 5.3.2
 Requires PHP: 5.5
-WC tested up to: 3.8.1
-Stable tag: 1.0.5.4
+WC tested up to: 3.9.1
+Stable tag: 1.0.5.6 
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,12 @@ We gather as little data as possible, specifically:
 2. An overview that includes the checkout screen
 
 == Changelog ==
+
+= 1.0.5.6
+* Fixes a rounding issue 
+
+= 1.0.5.5
+* Improves refund handling
 
 = 1.0.5.4
 * Fixes bug with wc_get_orders and A/B research

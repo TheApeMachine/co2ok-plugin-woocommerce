@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.5.5
+ * Version: 1.0.5.6
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.3.2
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.5.5';
+    const VERSION = '1.0.5.6';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -570,7 +570,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $woocommerce->session->percentage = 1.652892561983472;        ;
 
         $this->surcharge = $this->co2ok_calculateSurcharge($add_tax = true);
-        $this->surcharge = floor($this->surcharge * 1000) /1000;
+        // $this->surcharge = round($this->surcharge, 4);
 
         $return = array(
             'compensation_amount'	=> get_woocommerce_currency_symbol() . number_format($this->surcharge, 2, wc_get_price_decimal_separator(), ' ')
@@ -758,6 +758,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final private function co2ok_calculateSurcharge($add_tax=false)
     /**
 	 * Returns surcharge, optionally with tax
+     * Allways rounded to 2 decimals, otherwise WC makes a mess with rounding
 	 */
     {
         global $woocommerce;
@@ -777,7 +778,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $surcharge = ($order_total_with_tax) * ($this->percentage / 100);
         $this->surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-
+        
+        // one of these could suffice (is not like the other) 
+        $surcharge = round($this->surcharge, 2);
+        $this->surcharge = round($this->surcharge, 2);
+        
         if ($add_tax){
             if (count($co2ok_rate) > 0){
                 $this->surcharge = $surcharge + array_sum(\WC_Tax::calc_tax($surcharge, $co2ok_rate));
@@ -785,6 +790,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $this->surcharge = $surcharge + array_sum(\WC_Tax::calc_tax($surcharge, $tax_rates));
             }
         }
+
 
         return $this->surcharge;
     }
@@ -823,7 +829,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         global $woocommerce;
         $this->surcharge = $this->co2ok_calculateSurcharge($add_tax=true);
-        $this->surcharge = floor($this->surcharge * 1000) /1000;
+        // $this->surcharge = round($this->surcharge, 4);
         $this->helperComponent->RenderCheckbox( esc_html(number_format($this->surcharge , 2, wc_get_price_decimal_separator(), ' ') ) , esc_attr(urlencode(json_encode($this->co2ok_CartDataToJson())) ));
     }
 
@@ -878,7 +884,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         if ($optoutIsTrue == 'on' && ! $woocommerce->session->__isset('co2ok'))
             $woocommerce->session->co2ok = 1;
-
+            
         if ($woocommerce->session->co2ok == 1)
             $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, 'co2ok');
 
