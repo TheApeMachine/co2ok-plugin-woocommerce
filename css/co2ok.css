@@ -366,7 +366,8 @@ img#co2ok_logo_minimal {
 .co2ok_container_minimal {
   width: 320px; }
   .co2ok_container_minimal .co2ok_checkbox_container_minimal {
-    font-weight: 500; }
+    font-weight: 500;
+    margin-bottom: 10px; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal .co2ok_nolink {
       color: inherit;
       margin: 0px;

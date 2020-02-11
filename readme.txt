@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.3.2
 Requires PHP: 5.5
 WC tested up to: 3.9.1
-Stable tag: 1.0.5.6 
+Stable tag: 1.0.5.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,10 @@ We gather as little data as possible, specifically:
 4. Show off your impact with our widgets!
 
 == Changelog ==
+
+= 1.0.5.8
+* Optimizes widget impact data loading
+* Fixes minor CSS issue with minimal design
 
 = 1.0.5.7
 * Fixes minor CSS issue

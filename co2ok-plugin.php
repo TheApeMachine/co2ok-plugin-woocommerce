@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.5.6
+ * Version: 1.0.5.8
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.3.2
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.5.6';
+    const VERSION = '1.0.5.8';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -506,6 +506,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $codeAlreadyStored = get_option('co2ok_code', false);
                 if (!$codeAlreadyStored)
                     Co2ok_Plugin::storeMerchantCode();
+
+                // set CO2ok_impact cookie, TTL 24 hours
+                $co2okImpact = round(get_option('co2ok_impact', 242), 0);
+                if(!isset($_COOKIE['co2ok_impact'])) {                             
+                    setcookie('co2ok_impact', $co2okImpact, time()+86400, '/');
+                }
 
                 add_filter( 'cron_schedules', array($this, 'cron_add_weekly' ));
                 add_filter( 'cron_schedules', array($this, 'cron_add_monthly' ));
@@ -894,6 +900,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         /**
          * Calculates compensation count and total impact this shop had in the fight against climate change
+         * Result is stored in amount of compensations and kg of CO2 compensated
          */
 
         global $woocommerce;
@@ -1173,13 +1180,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
         */
-
+        
         $footer_code =
         '<script>jQuery("footer").find("div").first().append(\'' . 
         '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>' .
         '\' );</script>';
-
+        
         $widget_js = 
+        // '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
         '<script>Co2okWidget.merchantCompensations("widgetContainer", "'. $merchantId . '")</script>';
 
