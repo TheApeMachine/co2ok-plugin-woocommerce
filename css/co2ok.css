@@ -196,6 +196,7 @@ img#co2ok_logo {
   display: inline-block;
   width: 55px;
   vertical-align: middle;
+  padding: 0px;
   margin: 2px 0px 0px 0px; }
 
 img#co2ok_logo_minimal {

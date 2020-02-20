@@ -5,8 +5,8 @@ Tags: climate neutral, sustainability, sustainable, carbon offsetting, carbon of
 Requires at least: 4.0
 Tested up to: 5.3.2
 Requires PHP: 5.5
-WC tested up to: 3.9.1
-Stable tag: 1.0.5.8
+WC tested up to: 3.9.2
+Stable tag: 1.0.5.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,10 @@ We gather as little data as possible, specifically:
 4. Show off your impact with our widgets!
 
 == Changelog ==
+
+= 1.0.5.9
+* Fixes minor JS issue in some custom checkouts
+* Fixes minor CSS issue in some themes
 
 = 1.0.5.8
 * Optimizes widget impact data loading

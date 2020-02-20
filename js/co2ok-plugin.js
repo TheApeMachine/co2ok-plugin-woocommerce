@@ -202,7 +202,9 @@ var Co2ok_JS = function ()
 
                     }else{
 
+                      if(document.querySelector('.productQuantity') != null){
                        checkoutButton();
+                      }
 
                     }
 
