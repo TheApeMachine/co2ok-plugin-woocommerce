@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.5.9
+ * Version: 1.0.6.0
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.3.2
@@ -147,7 +147,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.5.9';
+    const VERSION = '1.0.6.0';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -345,9 +345,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         /**
          * Check if WooCommerce is active
-         **/
-        if (in_array('woocommerce/woocommerce.php', apply_filters(
-            'active_plugins', get_option('active_plugins'))))
+         **/        
+        if (!function_exists('is_plugin_active')){
+            include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        }
+        if ( is_plugin_active( 'woocommerce/woocommerce.php' ))
         {
             $ab_research = get_option('co2ok_ab_research');
                 
@@ -553,11 +555,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
         else
         {
-            // TODO this needs to be a prettier warning, but at least it doesn't break WP.
-            trigger_error( __( "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try again.", 'co2ok-for-woocommerce' ), E_USER_WARNING);
+            add_action('admin_notices', array($this, 'co2ok_admin_message'));
         }
     }
 
+    // Admin notice
+    final public function co2ok_admin_message() {
+        echo '<div class="error"><p>CO2ok for Woocommerce is enabled but not active. It requires WooCommerce in order to work.</p></div>';
+    }
 
     final public function co2ok_ajax_set_percentage()
     {
@@ -599,6 +604,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final public function co2ok_javascript()
     {
         wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true);
+        // wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok-test.js', null, null, true);
+        // wp_register_script('co2ok_js_cdn', 'http://localhost:8080/co2ok.js', null, null, true);
         wp_enqueue_script('co2ok_js_cdn');
         wp_register_script('co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__).'?plugin_version='.self::VERSION);
         wp_enqueue_script('co2ok_js_wp', "", array('jquery'), null, true);
@@ -1069,7 +1076,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
     final public function co2ok_widgetmark_shortcode() {
-        $merchantId = get_option('co2ok_id');
         $code = get_option('co2ok_code');
         /*
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
@@ -1079,7 +1085,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $widget_code = 
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        "<script>Co2okWidget.merchantCompensations('widgetContainer','". $merchantId . "')</script>";
+        "<script>Co2okWidget.merchantCompensations('widgetContainer','". $code . "')</script>";
         
         return $widget_code;
     }
@@ -1092,7 +1098,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             'color' => 'default',
         ], $atts);
 
-        $merchantId = get_option('co2ok_id');
         $code = get_option('co2ok_code');
         $size = $co2ok_atts['size'];
         $color = $co2ok_atts['color'];
@@ -1104,7 +1109,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $widget_code = 
         '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js"></script>'.
-        "<script>Co2okWidgetXL.merchantCompensations('widgetContainerXL','" . $merchantId . "','" . $size . "','" . $color .  "')</script>";
+        "<script>Co2okWidgetXL.merchantCompensations('widgetContainerXL','" . $code . "','" . $size . "','" . $color .  "')</script>";
         
         return $widget_code;
     }
@@ -1174,7 +1179,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
     final public function co2ok_footer_widget() {    
-        $merchantId = get_option('co2ok_id');
         $code = get_option('co2ok_code');
         /*
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
@@ -1189,7 +1193,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $widget_js = 
         // '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        '<script>Co2okWidget.merchantCompensations("widgetContainer", "'. $merchantId . '")</script>';
+        '<script>Co2okWidget.merchantCompensations("widgetContainer", "'. $code . '")</script>';
 
         echo $footer_code;
         echo $widget_js;
