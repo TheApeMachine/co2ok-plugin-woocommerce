@@ -535,7 +535,9 @@ var Co2ok_JS = function ()
                     jQuery("[id='co2ok_cart']").trigger("click");
                 }
                 event.stopPropagation();
-            });
+            }).find('.co2ok_info_hitarea').click(function (event){
+                event.stopPropagation();
+            })
         },
         placeInfoBox : function() {
           var infoButton = jQuery(".co2ok_info");
