@@ -12,7 +12,7 @@ function minimumButton()
     var qty = document.querySelector('.qty');
     var qtyVal = qty.value.length;
   }
-  catch{
+  catch (e) {
     var qtyVal = 1;
   }
 
@@ -46,7 +46,7 @@ function defaultButton()
       var qty = document.querySelector('.qty');console.log(qty.value.length);
       var qtyVal = qty.value.length;
     }
-    catch{
+    catch (e) {
       var qtyVal = 1;
     }
 
@@ -185,7 +185,7 @@ var Co2ok_JS = function ()
                         var qty = document.querySelector('.qty');
                         var qtyVal = qty.value.length;
                       }
-                      catch{
+                      catch (e) {
                         var qtyVal = 1;
                       }
                   
@@ -568,14 +568,16 @@ var Co2ok_JS = function ()
         },
         ShowInfoBox  : function()
         {
-            jQuery(".co2ok_infobox_container").removeClass('infobox-hidden')
-            jQuery(".co2ok_infobox_container").addClass('ShowInfoBox')
-            jQuery(".co2ok_container").css({
-              marginBottom: 200
-            });
-            if (co2ok_global.IsMobile() == true ) {
-                var elmnt = document.getElementById("infobox-view");
-                elmnt.scrollIntoView(false); // false leads to bottom of the infobox
+            if (!jQuery(".co2ok_infobox_container").hasClass('ShowInfoBox')){
+              jQuery(".co2ok_infobox_container").removeClass('infobox-hidden')
+              jQuery(".co2ok_infobox_container").addClass('ShowInfoBox')
+              jQuery(".co2ok_container").css({
+                marginBottom: 200
+              });
+              if (co2ok_global.IsMobile() == true ) {
+                  var elmnt = document.getElementById("infobox-view");
+                  elmnt.scrollIntoView(false); // false leads to bottom of the infobox
+              }
             }
         },
 
