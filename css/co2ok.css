@@ -118,6 +118,7 @@
         .co2ok_container .co2ok_payoff #p .co2ok_info_hitarea img {
           width: 16px;
           margin-left: 218px;
+          padding: 0px;
           display: inline-block; }
   .co2ok_container .co2ok_adaptive_color_default {
     font-size: 13px;
