@@ -22,14 +22,14 @@ function minimumButton()
      cad_minimal.style.fontSize = 15 - qtyVal+'px';
     // cad_minimal.style.marginTop = 9 + qtyVal+'px';
      make_minimal.style.fontSize = 18 - qtyVal+'px';
-     co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
+    //  co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
 
   }else{
 
     cad_minimal.style.fontSize = '18px';
   //  cad_minimal.style.marginTop = '12px';
     make_minimal.style.fontSize = '21px';
-    co2ok_logo_minimal.style.width = '55px';
+    // co2ok_logo_minimal.style.width = '55px';
 
   }
 
@@ -56,14 +56,14 @@ function defaultButton()
        cad.style.fontSize = 16 - qtyVal+'px';
        cad.style.marginTop = 12 + qtyVal+'px';
        make.style.fontSize = 18 - qtyVal+'px';
-       co2ok_logo.style.width = 55 - qtyVal+'px';
+      //  co2ok_logo.style.width = 55 - qtyVal+'px';
 
     }else{
 
       cad.style.fontSize = '16px';
       cad.style.marginTop = '12px';
       make.style.fontSize = '18px';
-      co2ok_logo.style.width = '55px';
+      // co2ok_logo.style.width = '55px';
 
     }
 
@@ -218,14 +218,14 @@ var Co2ok_JS = function ()
                         cad.style.fontSize = 16 - qtyVal+'px';
                         cad.style.marginTop = 10 + qtyVal+'px';
                         make.style.fontSize = 18 - qtyVal+'px';
-                        co2ok_logo.style.width = 55 - qtyVal+'px';
+                        // co2ok_logo.style.width = 55 - qtyVal+'px';
 
                       }else{
 
                         cad.style.fontSize = '16px';
                         cad.style.marginTop = '10px';
                         make.style.fontSize = '18px';
-                        co2ok_logo.style.width = '55px';
+                        // co2ok_logo.style.width = '55px';
 
                       }
 
@@ -311,9 +311,9 @@ var Co2ok_JS = function ()
                     }
                 }
 
-                if(jQuery(".co2ok_container").length ) {
-                    compensationAmountTextSize();
-                }
+                // if(jQuery(".co2ok_container").length ) {
+                //     compensationAmountTextSize();
+                // }
 
                 jQuery( document.body ).on( 'updated_cart_totals', function(){
                     compensationAmountTextSize();
@@ -597,6 +597,7 @@ var Co2ok_JS = function ()
          {
              return jQuery(e.target).hasClass("svg-img") ||
              jQuery(e.target).hasClass("svg-img-large") ||
+             jQuery(e.target).hasClass("img-large") ||
              jQuery(e.target).hasClass("text-block") ||
              jQuery(e.target).hasClass("inner-wrapper") ||
              jQuery(e.target).hasClass("co2ok_info") ||

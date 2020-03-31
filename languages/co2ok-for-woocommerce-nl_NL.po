@@ -41,16 +41,24 @@ msgid "http://www.co2ok.eco/"
 msgstr ""
 
 #: co2ok-plugin.php:206 co2ok-plugin.php:344
-msgid "CO2 compensation"
-msgstr "CO2 compensatie"
+msgid "Corona donation"
+msgstr "Corona donatie"
 
 #: Templates/co2ok_button_template_default.php:21
 msgid "Make "
 msgstr "Maak "
 
+#: Templates/co2ok_button_template_default.php:21
+msgid "Fight Corona "
+msgstr "Fight Corona "
+
 #: Templates/co2ok_button_template_default.php:23
 msgid "Make my purchase climate neutral"
 msgstr "Maak mijn aankoop klimaatneutraal"
+
+#: Templates/co2ok_button_template_default.php:48
+msgid " doubles your donation!"
+msgstr " verdubbelt je donatie!"
 
 #: Templates/co2ok_button_template_default.php:50
 msgid "{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction"
@@ -64,6 +72,10 @@ msgstr "Dit staat gelijk aan {KM} km vliegen ✈️"
 msgid "During manufacturing and shipping of products, greenhouse gases are emitted"
 msgstr "Tijdens productie en vervoer van producten komen broeikasgassen vrij"
 
+#: Templates/co2ok_button_template_default.php:45
+msgid "By clicking this button, you give us a donation which we will match and then pass on to the Red Cross Foundation. We want to help them combat the Corona crisis as well as possible."
+msgstr "Door op deze knop te klikken, geef je ons een donatie die wij zullen matchen en vervolgens doorgeven aan het Rode Kruis. Wij willen hen helpen de Corona-crisis zo goed mogelijk te bestrijden."
+
 #: Templates/co2ok_button_template_default.php:46
 msgid "CO&#8322ok prevents the same amount of emissions"
 msgstr "CO&#8322ok voorkomt evenveel uitstoot"
@@ -71,6 +83,14 @@ msgstr "CO&#8322ok voorkomt evenveel uitstoot"
 #: Templates/co2ok_button_template_default.php:55
 msgid "This way, your purchase is climate neutral!"
 msgstr "Zo is je aankoop klimaatneutraal!"
+
+#: Templates/co2ok_button_template_default.php:55
+msgid "200% of your donation goes to the Red Cross!"
+msgstr "200% van je donatie gaat naar het Rode Kruis!"
+
+#: Templates/co2ok_button_template_default.php:59
+msgid "more information on our site"
+msgstr "meer informatie op onze site"
 
 #: Templates/co2ok_plugin.php:79
 msgid "Hey %1$s"

@@ -1,7 +1,8 @@
 .co2ok_container_default .co2ok_checkbox_container_default .inner_checkbox_label_default:after, .co2ok_container_default .co2ok_checkbox_container_default.selected .inner_checkbox_label_default, .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .comp_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal {
-  background: -webkit-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
-  background: -o-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
-  background: linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%); }
+  background: -webkit-linear-gradient(#a3a3ae -50.09%, #a3afae 51.05%, #a3aaa1 56.81%, #a3aaa5 100%);
+  background: -o-linear-gradient(#a3a3ae -50.09%, #a3afae 51.05%, #a3aaa1 56.81%, #a3aaa5 100%);
+  background: linear-gradient(#a3a3ae -50.09%, #a3afae 51.05%, #a3aaa1 56.81%, #a3aaa5 100%); }
+  /* background: a3aaae;} */
 
 .co2ok_container {
   /* HTML5 display-role reset for older browsers */
@@ -70,9 +71,9 @@
     } 
     .co2ok_payoff_text span{
       position: absolute;
-      opacity: 0;
+      opacity: 100;
       overflow: hidden;
-      animation: rotateWord 9s linear infinite 0s;
+      /* animation: rotateWord 9s linear infinite 0s; */
     }
     .co2ok_payoff_text span:nth-child(2) { 
       animation-delay: 3s; 
@@ -348,7 +349,7 @@ img#co2ok_logo_minimal {
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-    color: #05B139;
+    color: #dc281e;
     padding-left: 4px;
     left: -10px;
     margin-top: 12px;
@@ -380,7 +381,7 @@ img#co2ok_logo_minimal {
     .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected {
       box-shadow: none; }
       .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .comp_amount_label_minimal {
-        color: #05B139; }
+        color: #dc281e; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal {
       background: #E1E6E7;
       position: absolute;

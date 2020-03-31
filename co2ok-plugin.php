@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: CO2ok for WooCommerce
+ * Plugin Name: CO2ok for WooCommerce - Corona edition
  *
  * Description: A WooCommerce plugin to integrate CO2ok
  *
@@ -20,7 +20,7 @@
  * Text Domain: co2ok-for-woocommerce
  * Author URI: http://www.co2ok.eco/
  * License: GPLv2
- * @package co2ok-plugin-woocommerce
+ * @package co2ok-plugin-woocommerce-corona
  *
  */
 namespace co2ok_plugin_woocommerce;
@@ -311,6 +311,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     // NB: this is after constructing the class, so the function calls below should be redundant
     final static function co2ok_Activated()
     {
+
+        $site_name = $_SERVER['SERVER_NAME'];
+
+        Co2ok_Plugin::remoteLogging(json_encode(["Corona activation (doubling)", $site_name]));
+
         $alreadyActivated = get_option('co2ok_id', false);
 
         if (!$alreadyActivated)
@@ -628,7 +633,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $compensationCost = 0;
         foreach ($fees as $fee) {
-            if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
+            if ($fee->get_name() == __( 'Corona donation', 'co2ok-for-woocommerce' )) {
                 $compensationCost = $fee->get_total();
                 break;
             }
@@ -649,7 +654,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     'orderId' => $order_id,
                     'compensationCost' => number_format($compensationCost, 2, '.', ''),
                     'orderTotal' => number_format($orderTotal, 2, '.', ''),
-                    'currency' => get_woocommerce_currency()
+                    'currency' => "DC" . get_woocommerce_currency()
                 )
             );
             $mutation->setFunctionReturnTypes(array('ok'));
@@ -707,7 +712,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     $orderTotal = $order->get_total();
                     $compensationCost = 0;
                     foreach ($fees as $fee) {
-                        if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
+                        if ($fee->get_name() == __( 'Corona donation', 'co2ok-for-woocommerce' )) {
                             $compensationCost = $fee->get_total();
                             break;
                         }
@@ -716,7 +721,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
 
                 foreach ($fees as $fee) {
-                    if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
+                    if ($fee->get_name() == __( 'Corona donation', 'co2ok-for-woocommerce' )) {
                         // The user did opt for co2 compensation
                         $this->co2ok_storeTransaction($order_id);
                     }
@@ -733,7 +738,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $fees = $order->get_fees();
 
                 foreach ($fees as $fee) {
-                    if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
+                    if ($fee->get_name() == __( 'Corona donation', 'co2ok-for-woocommerce' )) {
                         $this->co2ok_deleteTransaction($order_id);
                     }
                 }
@@ -751,7 +756,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $orderTotal = $order->get_total();
             $compensationCost = 0;
             foreach ($fees as $fee) {
-                if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
+                if ($fee->get_name() == __( 'Corona donation', 'co2ok-for-woocommerce' )) {
                     $compensationCost = $fee->get_total();
                     break;
                 }
@@ -760,7 +765,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
 
         foreach ($fees as $fee) {
-            if ($fee->get_name() == __( 'CO2 compensation', 'co2ok-for-woocommerce' )) {
+            if ($fee->get_name() == __( 'Corona donation', 'co2ok-for-woocommerce' )) {
                 // The user did opt for co2 compensation
                 $this->co2ok_deleteTransaction($order_id);
             }
@@ -899,7 +904,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $woocommerce->session->co2ok = 1;
             
         if ($woocommerce->session->co2ok == 1)
-            $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, 'co2ok');
+            $woocommerce->cart->add_fee(__( 'Corona donation', 'co2ok-for-woocommerce' ), $this->surcharge, true, 'co2ok');
 
     }
 
