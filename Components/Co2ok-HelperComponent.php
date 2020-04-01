@@ -52,7 +52,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
                     'co2ok_session_opted' =>  $woocommerce->session->co2ok,
                     'currency_symbol' =>get_woocommerce_currency_symbol(),
                     'surcharge' => $surcharge,
-                    'co2ok_gif_feature' => get_option('co2ok_gif_feature', 'on'),
+                    'co2ok_corona_gif_feature' => get_option('co2ok_corona_gif_feature', 'on'),
                     // fake it till you make it; 0 => 1
                     'compensation_count' => get_option('co2ok_compensation_count', 1),
                     // impact from kg => tonne, 1 decimal point, rounding up

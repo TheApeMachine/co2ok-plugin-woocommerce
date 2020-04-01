@@ -316,6 +316,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         Co2ok_Plugin::remoteLogging(json_encode(["Corona activation (doubling)", $site_name]));
 
+        update_option('co2ok_corona_gif_feature', 'off');
+
         $alreadyActivated = get_option('co2ok_id', false);
 
         if (!$alreadyActivated)

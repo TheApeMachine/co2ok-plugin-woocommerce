@@ -95,10 +95,10 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_gif_feature" id="gif_on" value="on" <?php if($co2ok_gif_feature == 'on') echo "checked" ?> >
+                            <input type="radio" name="co2ok_corona_gif_feature" id="gif_on" value="on" <?php if($co2ok_corona_gif_feature == 'on') echo "checked" ?> >
                             <label style="display: inline" for="gif_on">GIFs ON. (Preferred)</label>
                             <br>
-                            <input type="radio" name="co2ok_gif_feature" id="gif_off" value="off" <?php if($co2ok_gif_feature == 'off') echo "checked" ?> >
+                            <input type="radio" name="co2ok_corona_gif_feature" id="gif_off" value="off" <?php if($co2ok_corona_gif_feature == 'off') echo "checked" ?> >
                             <label style="display: inline" for="gif_off">GIFs OFF.</label>
                             
                             <p style="margin-top: 12px">
