@@ -587,7 +587,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // $woocommerce->session->percentage = $this->percentage * 2;
         $woocommerce->session->percentage = 1.652892561983472;        ;
 
-        $this->surcharge = $this->co2ok_calculateSurcharge($add_tax = true);
+        $this->surcharge = $this->co2ok_calculateSurcharge($add_tax = false);
         // $this->surcharge = round($this->surcharge, 4);
 
         $return = array(
@@ -848,7 +848,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final public function renderCheckbox()
     {
         global $woocommerce;
-        $this->surcharge = $this->co2ok_calculateSurcharge($add_tax=true);
+        $this->surcharge = $this->co2ok_calculateSurcharge($add_tax=false);
         // $this->surcharge = round($this->surcharge, 4);
         $this->helperComponent->RenderCheckbox( esc_html(number_format($this->surcharge , 2, wc_get_price_decimal_separator(), ' ') ) , esc_attr(urlencode(json_encode($this->co2ok_CartDataToJson())) ));
     }
@@ -906,7 +906,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $woocommerce->session->co2ok = 1;
             
         if ($woocommerce->session->co2ok == 1)
-            $woocommerce->cart->add_fee(__( 'Corona donation', 'co2ok-for-woocommerce' ), $this->surcharge, true, 'co2ok');
+            $woocommerce->cart->add_fee(__( 'Corona donation', 'co2ok-for-woocommerce' ), $this->surcharge, false, 'co2ok');
 
     }
 
