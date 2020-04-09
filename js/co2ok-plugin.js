@@ -19,14 +19,14 @@ function minimumButton()
   if(qtyVal > 1)
   {
 
-     cad_minimal.style.fontSize = 15 - qtyVal+'px';
+    //  cad_minimal.style.fontSize = 15 - qtyVal+'px';
     // cad_minimal.style.marginTop = 9 + qtyVal+'px';
      make_minimal.style.fontSize = 18 - qtyVal+'px';
     //  co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
 
   }else{
 
-    cad_minimal.style.fontSize = '18px';
+    // cad_minimal.style.fontSize = '18px';
   //  cad_minimal.style.marginTop = '12px';
     make_minimal.style.fontSize = '21px';
     // co2ok_logo_minimal.style.width = '55px';
@@ -55,14 +55,14 @@ function defaultButton()
 
        cad.style.fontSize = 16 - qtyVal+'px';
        cad.style.marginTop = 12 + qtyVal+'px';
-       make.style.fontSize = 18 - qtyVal+'px';
+      //  make.style.fontSize = 18 - qtyVal+'px';
       //  co2ok_logo.style.width = 55 - qtyVal+'px';
 
     }else{
 
       cad.style.fontSize = '16px';
       cad.style.marginTop = '12px';
-      make.style.fontSize = '18px';
+      // make.style.fontSize = '18px';
       // co2ok_logo.style.width = '55px';
 
     }
@@ -71,15 +71,15 @@ function defaultButton()
 }
 
 
-if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_default') != null){
+// if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_default') != null){
 
-   defaultButton();
+//    defaultButton();
 
-}else if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_minimal') != null){
+// }else if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_minimal') != null){
 
-   minimumButton();
+//    minimumButton();
 
-}
+// }
 
 
 var co2ok_global = {
@@ -179,34 +179,34 @@ var Co2ok_JS = function ()
                     var comp_amount_label_minimal = document.querySelector('.comp_amount_label_minimal');
                   //  var global = document.querySelector('.global');
 
-                    if(document.querySelector('.qty') != null){
+                    // if(document.querySelector('.qty') != null){
 
-                      try{
-                        var qty = document.querySelector('.qty');
-                        var qtyVal = qty.value.length;
-                      }
-                      catch (e) {
-                        var qtyVal = 1;
-                      }
+                    //   try{
+                    //     var qty = document.querySelector('.qty');
+                    //     var qtyVal = qty.value.length;
+                    //   }
+                    //   catch (e) {
+                    //     var qtyVal = 1;
+                    //   }
                   
-                      if(co2ok_temp_global.id == 'default_co2ok_temp')
-                      {
+                    //   if(co2ok_temp_global.id == 'default_co2ok_temp')
+                    //   {
 
-                        defaultButton();
+                    //     defaultButton();
 
-                      }else{
+                    //   }else{
 
-                        minimumButton();
+                    //     minimumButton();
 
-                      }
+                    //   }
 
-                    }else{
+                    // }else{
 
-                      if(document.querySelector('.productQuantity') != null){
-                       checkoutButton();
-                      }
+                    //   if(document.querySelector('.productQuantity') != null){
+                    //    checkoutButton();
+                    //   }
 
-                    }
+                    // }
 
 
                     function defaultButton()
@@ -276,13 +276,13 @@ var Co2ok_JS = function ()
 
                               cad.style.fontSize = 18 - productQuantityLength +'px';
                               cad.style.marginTop = 12 + productQuantityLength +'px';
-                              make.style.fontSize = 21 - productQuantityLength +'px';
+                              // make.style.fontSize = 21 - productQuantityLength +'px';
                               co2ok_logo.style.width = 55 - productQuantityLength +'px';
 
                             }else{
 
                               cad.style.fontSize = '16px';
-                              make.style.fontSize = '18px';
+                              // make.style.fontSize = '18px';
                               co2ok_logo.style.width = '55px';
 
                             }
@@ -316,11 +316,11 @@ var Co2ok_JS = function ()
                 // }
 
                 jQuery( document.body ).on( 'updated_cart_totals', function(){
-                    compensationAmountTextSize();
+                    // compensationAmountTextSize();
 
                 });
-
-                _this.GetPercentageFromMiddleware();
+                if (!Co2ok_JS.percentage)
+                  _this.GetPercentageFromMiddleware();
 
             });
 
@@ -349,6 +349,8 @@ var Co2ok_JS = function ()
         {
             var merchant_id = jQuery('.co2ok_container').attr('data-merchant-id');
             var products = JSON.parse(decodeURIComponent(jQuery('.co2ok_container').attr('data-cart')));
+
+            var _this = this;
 
             var CartData = {
                 products: []
@@ -381,6 +383,8 @@ var Co2ok_JS = function ()
                     'action': 'co2ok_ajax_set_percentage',
                     'percentage': percentage
                 };
+                // console.log("middleware" + percentage)
+                Co2ok_JS.percentage = percentage
                 jQuery.post(ajax_object.ajax_url, data, function(response)
                 {
                     if (typeof response.compensation_amount != 'undefined') {
@@ -393,6 +397,55 @@ var Co2ok_JS = function ()
 
         RegisterBindings: function()
         {
+
+          jQuery('.plus_co2ok_default').click(function (event){
+            var _this = this;
+
+            // console.log('plus size is best')
+            Co2ok_JS.percentage = Co2ok_JS.percentage * 2
+            // console.log("plus: " + Co2ok_JS.percentage)
+            var data = {
+              'action': 'co2ok_ajax_set_percentage',
+              'percentage': Co2ok_JS.percentage
+            };
+            jQuery.post(ajax_object.ajax_url, data, function(response)
+            {
+                if (typeof response.compensation_amount != 'undefined') {
+                    jQuery('[class*="compensation_amount"]').html('+'+response.compensation_amount);
+                }
+            })
+            .done(function() {
+              if(jQuery('#co2ok_cart').is(":checked"))
+                jQuery("[name='update_cart']").removeAttr("disabled").trigger("click");
+            })
+            // if(jQuery('#co2ok_cart').is(":checked"))
+            //   jQuery("[name='update_cart']").removeAttr("disabled").trigger("click");
+
+            event.stopPropagation()
+          })
+          jQuery('.minus_co2ok_default').click(function (event){
+            var _this = this;
+
+            // console.log('minus size is the best')
+            Co2ok_JS.percentage = Co2ok_JS.percentage / 2
+            // console.log(Co2ok_JS.percentage)
+            var data = {
+              'action': 'co2ok_ajax_set_percentage',
+              'percentage': Co2ok_JS.percentage
+            };
+            jQuery.post(ajax_object.ajax_url, data, function(response)
+            {
+                if (typeof response.compensation_amount != 'undefined') {
+                    jQuery('[class*="compensation_amount"]').html('+'+response.compensation_amount);
+                }
+            })
+            .done(function() {
+              if(jQuery('#co2ok_cart').is(":checked"))
+                jQuery("[name='update_cart']").removeAttr("disabled").trigger("click");
+            })
+
+            event.stopPropagation()
+          })
 
             jQuery('#co2ok_cart').click(function (event)
             {

@@ -27,6 +27,9 @@
 
                      ?>
 
+                    <span class="plus_co2ok_default">+</span>
+                    <span class="minus_co2ok_default">-</span>
+
                 </div>
             </a>
         </div>

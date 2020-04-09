@@ -583,9 +583,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             die("Something went wrong. Please try again");
         }
 
-        // in preparation of stripping out the middleware this is now hardcoded
         // $woocommerce->session->percentage = $this->percentage * 2;
-        $woocommerce->session->percentage = 1.652892561983472;        ;
+        $woocommerce->session->percentage = $this->percentage;
+        // in preparation of stripping out the middleware this was hardcoded
+        // $woocommerce->session->percentage = 1.652892561983472;        ;
 
         $this->surcharge = $this->co2ok_calculateSurcharge($add_tax = false);
         // $this->surcharge = round($this->surcharge, 4);
@@ -793,8 +794,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $order_total_with_tax = $order_total + array_sum(\WC_Tax::calc_tax($order_total, $tax_rates));
 
         // percentage magic 
-        $joet = $order_total_with_tax / 100;
-        $this->percentage = (2 - ($joet/(1 + $joet))) * 0.75;
+        // $joet = $order_total_with_tax / 100;
+        // $this->percentage = (2 - ($joet/(1 + $joet))) * 0.75;
 
         $surcharge = ($order_total_with_tax) * ($this->percentage / 100);
         $this->surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
