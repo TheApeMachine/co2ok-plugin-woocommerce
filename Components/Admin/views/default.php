@@ -38,24 +38,6 @@
                         <p><a href="https://www.instagram.com/co2ok.eco/" target="_blank"><span>Instagram</span></a></p>
                         <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>
                         <p><a href="https://twitter.com/CO2ok_eco" target="_blank" ><span>Twitter</span></a></p> 
-
-                        <h2>A/B research</h2>
-                        <p>Some webshops are not as forward thinking as yours. To convince them to participate in the fight, we need to show them CO2ok doesn't impact conversion (or rather - that it helps!). Help us show them and get them on board!</p>
-
-                        <p>This will show the CO2ok option (and widget when present) to 50% of your customers, and report the difference in conversion.</p>
-                        
-                        <form method="POST">
-                        
-                            <input type="radio" name="co2ok_ab_research" id="ab_on" value="on" <?php if($co2ok_ab_research == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="ab_on">A/B research enabled</label>
-                            <br>
-                            <input type="radio" name="co2ok_ab_research" id="ab_off" value="off" <?php if($co2ok_ab_research == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="ab_off">A/B research disabled</label>
-                            
-                            <p style="margin-top: 12px">
-                                <input type="submit" value="Save" class="button button-primary button-large"></p>
-                        </form>
-                        
                         
                         <h2>Widget-mark</h2>
                         <p>Not all shops contribute to the fight against climate change like you. Wear it like a badge of honor!</p>
@@ -166,6 +148,22 @@
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>
 
+                        <h2>A/B research</h2>
+                        <p>Some webshops are not as forward thinking as yours. To convince them to participate in the fight, we need to show them CO2ok doesn't impact conversion (or rather - that it helps!). Help us show them and get them on board!</p>
+
+                        <p>This will show the CO2ok option (and widget when present) to 50% of your customers, and report the difference in conversion.</p>
+                        
+                        <form method="POST">
+                        
+                            <input type="radio" name="co2ok_ab_research" id="ab_on" value="on" <?php if($co2ok_ab_research == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="ab_on">A/B research enabled</label>
+                            <br>
+                            <input type="radio" name="co2ok_ab_research" id="ab_off" value="off" <?php if($co2ok_ab_research == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="ab_off">A/B research disabled</label>
+                            
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+                        </form>
 
                         <h2>Something not working for you? Have a great idea or any other feedback? </h2>
                         <p>Call/text/WhatsApp us: <a href="tel:+31639765259">+31639765259</a></p>
