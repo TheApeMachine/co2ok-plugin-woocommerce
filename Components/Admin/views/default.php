@@ -7,6 +7,9 @@
             print_r($_POST);
         }
 
+    if (get_option('co2ok_ab_research') == 'on')
+        \co2ok_plugin_woocommerce\Co2ok_Plugin::co2ok_calculate_ab_results();
+
 ?>
 
 <div style="margin-top: 20px;">

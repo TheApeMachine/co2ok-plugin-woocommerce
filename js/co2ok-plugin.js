@@ -518,10 +518,13 @@ var Co2ok_JS = function ()
                 setTimeout(function()
                 {
                     jQuery('body').trigger('update_checkout');
-
-                    // This fixes fee adding for shops with a disabled update cart button
-                    jQuery("[name='update_cart']").removeAttr("disabled").trigger("click");
-                    jQuery("[name='update_cart']").trigger("click");
+                    
+                    // prevent update cart firing on cart+checkout pages
+                    if (! jQuery( 'form.checkout' ).length) {
+                      // This fixes fee adding for shops with a disabled update cart button
+                      jQuery("[name='update_cart']").removeAttr("disabled").trigger("click");
+                      jQuery("[name='update_cart']").trigger("click");
+                    }
                 },200);
 
 
