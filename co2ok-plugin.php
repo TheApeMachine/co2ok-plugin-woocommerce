@@ -512,7 +512,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     Co2ok_Plugin::storeMerchantCode();
 
                 // set CO2ok_impact cookie, TTL 24 hours
-                $co2okImpact = round(get_option('co2ok_impact', 242), 0);
+                $co2okImpact = round(get_option('co2ok_impact', 100), 0);
                 if(!isset($_COOKIE['co2ok_impact'])) {                             
                     setcookie('co2ok_impact', $co2okImpact, time()+86400, '/');
                 }
