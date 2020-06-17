@@ -7,8 +7,10 @@
             print_r($_POST);
         }
 
-    if (get_option('co2ok_ab_research') == 'on')
-        \co2ok_plugin_woocommerce\Co2ok_Plugin::co2ok_calculate_ab_results();
+    if (isset($_GET['co2ok_ab_results'])){
+        if (get_option('co2ok_ab_research') == 'on')
+            \co2ok_plugin_woocommerce\Co2ok_Plugin::co2ok_calculate_ab_results();
+    }
 
 ?>
 
@@ -176,6 +178,8 @@
                         <p><a href="http://www.co2ok.eco" target="_blank">www.co2ok.eco</a></p>
                         <br>
                         <hr>
+
+                        <? echo("The next A/B results scheduled task is: " . date('l jS \of F Y h:i:s A', wp_next_scheduled( 'co2ok_ab_results_cron_hook' ))); ?>
 
                     </h3>
                 </div>

@@ -6,10 +6,10 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.6.5
+ * Version: 1.0.6.6
  *         (Remember to change the VERSION constant, below, as well!)
  *
- * Tested up to: 5.4.1
+ * Tested up to: 5.4.2
  * WC tested up to: 4.2.0
  *
  * Author:
@@ -149,7 +149,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.6.5';
+    const VERSION = '1.0.6.6';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -986,10 +986,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $site_name = $_SERVER['SERVER_NAME'];
         Co2ok_Plugin::remoteLogging(json_encode(["A/B result calculation start", $site_name]));
 
+        // gets the last 2000 orders
         $args = array(
-        'date_created' => '2019-10-01...2021-01-01',
-        'order' => 'ASC',
-        'limit' => -1,
+        'limit' => 2000,
+        // 'date_created' => '2019-10-01...2021-01-01',
+        'orderby' => 'date',
+        'order' => 'DESC',
         );
         $orders = wc_get_orders( $args );
         $shown_old_count = 0; // orders with CO2ok shown OLD
@@ -1001,7 +1003,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $skipped_orders = 0;
 
         foreach ($orders as $order) {
-
             // wc_get_orders also returns refunds, so skip these to avoid errors.
 	        if ( ! $order || 'shop_order_refund' === $order->get_type() )
                 continue;
@@ -1059,6 +1060,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $percentage_old = $shown_old_count / ($order_count - $shown_old_count);
         $percentage = $shown_count / $hidden_count;
+
+        echo("A/B results (shown/hidden/total): " . $shown_count .", ".  $hidden_count .", ". $ab_order_count . "<br>");
 
         // remote log: site name, shown orders, total orders, percentage_old
         Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_old_count, $order_count, round(($percentage_old * 100 - 100), 2), "Skipped:", $skipped_orders, "New", $shown_count, $hidden_count, $ab_order_count, round(($percentage * 100 - 100), 2)]));
