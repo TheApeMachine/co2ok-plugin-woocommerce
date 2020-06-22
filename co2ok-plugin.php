@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.6.6
+ * Version: 1.0.6.7
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.4.2
@@ -24,24 +24,6 @@
  *
  */
 namespace co2ok_plugin_woocommerce;
-
-/*
-* First line of defense; our plugin should never impact webshop functionality
-*/
-
-register_shutdown_function('\co2ok_plugin_woocommerce\failWithGrace');
-
-function failWithGrace() { 
-    $error = error_get_last();
-    // fatal error, E_ERROR === 1
-    if (isset($error['type'])) {
-        if ($error['type'] === E_ERROR) { 
-            $error_string = implode(", ", $error);
-            Co2ok_Plugin::failGracefully($error_string);
-        } 
-    }
-}
-
 
 /*
 * Freemius integration
@@ -149,7 +131,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.6.6';
+    const VERSION = '1.0.6.7';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -986,14 +968,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $site_name = $_SERVER['SERVER_NAME'];
         Co2ok_Plugin::remoteLogging(json_encode(["A/B result calculation start", $site_name]));
 
-        // gets the last 2000 orders
+        // gets the last 2000 A/B orders
         $args = array(
         'limit' => 2000,
         // 'date_created' => '2019-10-01...2021-01-01',
         'orderby' => 'date',
         'order' => 'DESC',
+        'meta_key' => '_co2ok-shown',
+        'meta_compare' => 'EXISTS',
         );
         $orders = wc_get_orders( $args );
+
         $shown_old_count = 0; // orders with CO2ok shown OLD
         $shown_count = 0; // orders with CO2ok shown
         $hidden_count = 0; // orders with CO2ok hidden

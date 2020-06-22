@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.4.2
 Requires PHP: 5.5
 WC tested up to: 4.2.0
-Stable tag: 1.0.6.6
+Stable tag: 1.0.6.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,12 @@ We gather as little data as possible, specifically:
 4. Show off your impact with our widgets!
 
 == Changelog ==
+
+= 1.0.6.7
+* Improves A/B result calculation, fixes timeout
+
+= 1.0.6.6
+* Makes  A/B reporting on settings page conditional
 
 = 1.0.6.5
 * Adds A/B reporting to settings page

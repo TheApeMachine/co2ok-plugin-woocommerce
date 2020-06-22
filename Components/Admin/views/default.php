@@ -179,8 +179,6 @@
                         <br>
                         <hr>
 
-                        <? echo("The next A/B results scheduled task is: " . date('l jS \of F Y h:i:s A', wp_next_scheduled( 'co2ok_ab_results_cron_hook' ))); ?>
-
                     </h3>
                 </div>
             </div>

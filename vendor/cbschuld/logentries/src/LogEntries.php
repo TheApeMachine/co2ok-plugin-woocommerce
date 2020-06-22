@@ -11,11 +11,11 @@ class LogEntries extends AbstractLogger
     /** LogEntries server address for receiving logs */
     const LE_ADDRESS = 'tcp://api.logentries.com';
     /** LogEntries server address for receiving logs via TLS */
-    const LE_TLS_ADDRESS = 'tls://api.logentries.com';
+    const LE_TLS_ADDRESS = 'ssl://data.logentries.com';
     /** LogEntries server port for receiving logs by token */
     const LE_PORT = 10000;
     /** LogEntries server port for receiving logs with TLS by token */
-    const LE_TLS_PORT = 20000;
+    const LE_TLS_PORT = 443;
 
     /** @var LogEntries */
     private static $_instance;
@@ -121,7 +121,9 @@ class LogEntries extends AbstractLogger
         $this->_hostname = $hostname;
         $this->_persistent = $persistent;
         $this->_ssl = $ssl;
-        $this->_connectionTimeout = (double)ini_get('default_socket_timeout');
+        // $this->_connectionTimeout = (double)ini_get('default_socket_timeout');
+        // prevent logging from causing issues due to blocked connections
+        $this->_connectionTimeout = 5;
     }
 
     /**
