@@ -18,7 +18,7 @@ msgstr ""
 msgid ""
 "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try "
 "again."
-msgstr ""
+msgstr "de CO2ok plugin heeft WooCommerce nodig, aub installeren."
 
 #: Templates/co2ok_button_template_default.php:42
 msgid "How CO&#8322; compensation works"
@@ -26,19 +26,19 @@ msgstr "Hoe CO&#8322; compensatie werkt"
 
 #. Name of the plugin
 msgid "CO2ok for WooCommerce"
-msgstr ""
+msgstr "CO2ok voor WooCommerce"
 
 #. Description of the plugin
 msgid "A WooCommerce plugin to integrate CO2ok"
-msgstr ""
+msgstr "Een WooCommerce plugin om CO2ok te integreren"
 
 #. URI of the plugin
 msgid "https://github.com/Mil0dV/co2ok-plugin-woocommerce"
-msgstr ""
+msgstr "https://github.com/Mil0dV/co2ok-plugin-woocommerce"
 
 #. Author URI of the plugin
 msgid "http://www.co2ok.eco/"
-msgstr ""
+msgstr "http://www.co2ok.eco/"
 
 #: co2ok-plugin.php:206 co2ok-plugin.php:344
 msgid "CO2 compensation"
@@ -49,8 +49,8 @@ msgid "Make "
 msgstr "Maak "
 
 #: Templates/co2ok_button_template_default.php:23
-msgid "Make my purchase climate neutral"
-msgstr "Maak mijn aankoop klimaatneutraal"
+msgid "Make my purchase climate friendly"
+msgstr "Maak mijn aankoop klimaatvriendelijk"
 
 #: Templates/co2ok_button_template_default.php:50
 msgid "{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction"
@@ -69,8 +69,8 @@ msgid "CO&#8322ok prevents the same amount of emissions"
 msgstr "CO&#8322ok voorkomt evenveel uitstoot"
 
 #: Templates/co2ok_button_template_default.php:55
-msgid "This way, your purchase is climate neutral!"
-msgstr "Zo is je aankoop klimaatneutraal!"
+msgid "This way, your purchase is climate friendly!"
+msgstr "Zo is je aankoop klimaatvriendelijk!"
 
 #: Templates/co2ok_plugin.php:79
 msgid "Hey %1$s"

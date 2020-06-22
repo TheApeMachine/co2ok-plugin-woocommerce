@@ -949,7 +949,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $participation = $parti / sizeof($orders);
         
         $site_name = $_SERVER['SERVER_NAME'];
-        Co2ok_Plugin::remoteLogging(json_encode(["Participation last month", $site_name, round(($participation * 100), 2)]));
+        Co2ok_Plugin::remoteLogging(json_encode(["Participation last month", self::VERSION, $site_name, round(($participation * 100), 2)]));
     }
 
     final public function cron_add_weekly( $schedules ) {
@@ -1049,7 +1049,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         echo("A/B results (shown/hidden/total): " . $shown_count .", ".  $hidden_count .", ". $ab_order_count . "<br>");
 
         // remote log: site name, shown orders, total orders, percentage_old
-        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", $site_name, $shown_old_count, $order_count, round(($percentage_old * 100 - 100), 2), "Skipped:", $skipped_orders, "New", $shown_count, $hidden_count, $ab_order_count, round(($percentage * 100 - 100), 2)]));
+        Co2ok_Plugin::remoteLogging(json_encode(["A/B test results", self::VERSION, $site_name, $shown_old_count, $order_count, round(($percentage_old * 100 - 100), 2), "Skipped:", $skipped_orders, "New", $shown_count, $hidden_count, $ab_order_count, round(($percentage * 100 - 100), 2)]));
     }
     final public function cron_add_monthly( $schedules ) {
         // Adds once monthly to the existing schedules.

@@ -38,7 +38,7 @@
         <span class="co2ok_payoff_text co2ok_adaptive_color_default">
                 <span>
                     <?php
-                        echo  __( 'Make my purchase climate neutral', 'co2ok-for-woocommerce' );
+                        echo  __( 'Make my purchase climate friendly', 'co2ok-for-woocommerce' );
                         ?>
                 </span>
                 <span>
@@ -85,7 +85,7 @@
 
         <div class="inner-wrapper">
         <a href="#!" input type="text" role="button" tabindex="0" class="selectable-text" style="outline: none; -webkit-appearance: none;">
-        <p class="text-block"><?php echo __('This way, your purchase is climate neutral!',  'co2ok-for-woocommerce' );?></p>
+        <p class="text-block"><?php echo __('This way, your purchase is climate friendly!',  'co2ok-for-woocommerce' );?></p>
         </a>
         </div>
 

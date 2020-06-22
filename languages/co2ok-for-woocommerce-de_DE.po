@@ -41,8 +41,8 @@ msgstr "CO2 Kompensation"
 msgid "Make "
 msgstr "Machs "
 #: Templates/co2ok_button_template_default.php:23
-msgid "Make my purchase climate neutral"
-msgstr "Mach meinen Einkauf Klima-Neutral"
+msgid "Make my purchase climate friendly"
+msgstr "Mach meinen Einkauf Klimafreundlich"
 #: Templates/co2ok_button_template_default.php:50
 msgid "{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction"
 msgstr "{COMPENSATION_COUNT}x kompensiert; {IMPACT}t CO&#8322 Reduktion"
@@ -56,8 +56,8 @@ msgstr "Während der Produktion und dem Transport von Produkten werden Treibhaus
 msgid "CO&#8322ok prevents the same amount of emissions"
 msgstr "CO&#8322ok verhindert die gleiche Menge an Ausstoß"
 #: Templates/co2ok_button_template_default.php:55
-msgid "This way, your purchase is climate neutral!"
-msgstr "Und so wird dein Einkauf Klima-Neutral!"
+msgid "This way, your purchase is climate friendly!"
+msgstr "Und so wird dein Einkauf Klimafreundlich!"
 #: Templates/co2ok_plugin.php:79
 msgid "Hey %1$s"
 msgstr "Hey %1$s"
