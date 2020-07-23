@@ -156,6 +156,7 @@ var Co2ok_JS = function ()
 
             this.RegisterBindings();
             this.RegisterInfoBox();
+            this.RegisterRefreshHandling();
 
             var _this = this;
 
@@ -657,6 +658,19 @@ var Co2ok_JS = function ()
                   }
                 });
             }
+        },
+
+        RegisterRefreshHandling : function()
+        {
+          // Some shops actually rerender elements such as our button upon cart update
+          // this ofc breaks our bindings.
+          jQuery( document.body ).on( 'updated_cart_totals', function(){
+            // detect if elements are bound:
+            if (! jQuery(".co2ok_checkbox_container").data('events')){
+              console.log('Rebinding CO2ok')
+              Co2ok_JS().RegisterBindings()
+            }
+          });
         }
     }
 }
