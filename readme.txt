@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.4.2
 Requires PHP: 5.5
 WC tested up to: 4.3.1
-Stable tag: 1.0.6.9
+Stable tag: 1.0.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,15 @@ We gather as little data as possible, specifically:
 4. Show off your impact with our widgets!
 
 == Changelog ==
+
+= 1.0.7.0
+* Fixes widgetmark bug
+
+= 1.0.6.9
+* Adds way to deal with shops rerendering on cart update
+
+= 1.0.6.8
+* Changes wording from climate neutral to climate friendly
 
 = 1.0.6.7
 * Improves A/B result calculation, fixes timeout
