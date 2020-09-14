@@ -11,8 +11,8 @@
     dl, dt, dd, ol, ul, li,
     fieldset, form, label, legend,
     table, caption, tbody, tfoot, thead, tr, th, td,
-    article, aside, canvas, details, embed, 
-    figure, figcaption, footer, header, hgroup, 
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
     menu, nav, output, ruby, section, summary,
     time, mark, audio, video {
         margin: 0;
@@ -23,7 +23,7 @@
         vertical-align: baseline;
     }
     /* HTML5 display-role reset for older browsers */
-    article, aside, details, figcaption, figure, 
+    article, aside, details, figcaption, figure,
     footer, header, hgroup, menu, nav, section {
         display: block;
     }
@@ -93,7 +93,7 @@
         }
     }
 
-   
+
 
      .co2ok_checkbox_container {
 
@@ -153,8 +153,8 @@
              height: 26px;
              background: #E1E6E7;
              box-shadow: inset 0px 2px 1px rgba(96, 100, 104, 0.3);
-             border-radius: 3px;
-            margin: 12px 0px 14px 8px;
+             border-radius: 3px !important;
+             margin: 12px 0px 14px 8px;
         }
 
          #co2ok_cart_field {
@@ -189,8 +189,8 @@
              .co2ok_payoff{
                margin-bottom: 400px;
              }
-             
-             
+
+
 
              #checkbox {
                  padding: 2px;
@@ -210,6 +210,7 @@
      width: 62px;
      vertical-align: middle;
      margin: 5px 0px 0px 0px;
+     border-radius: 0px !important;
 }
 img#co2ok_logo_minimal {
     display: inline-block;
@@ -357,6 +358,7 @@ img#co2ok_logo_minimal {
 
 .co2ok_container_default {
     width: 244px;
+    border-radius: 12px !important;
     .co2ok_checkbox_container_default{
         .inner_checkbox_label_default {
             &:after {
@@ -376,10 +378,9 @@ img#co2ok_logo_minimal {
                 overflow: hidden;
                 white-space: nowrap;
                 color: white;
-                padding-left: 4px;
+                padding-left: 19px;
                 left: -10px;
                 margin-top: 12px;
-                margin-right: 10px;
                 float: right;
                 font-size: 18px;
                 font-weight: 500;
