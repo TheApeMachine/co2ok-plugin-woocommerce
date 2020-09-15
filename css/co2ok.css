@@ -135,7 +135,10 @@
       background-position: center; }
     .co2ok_container .co2ok_checkbox_container #checkbox_label {
       background: #fff;
-      border-radius: 10px; }
+      border-radius: 12px; }
+    .co2ok_container .co2ok_checkbox_container #checkbox_label a {
+       border-radius: 12px;
+    }
     .co2ok_container .co2ok_checkbox_container .inner_checkbox_label {
       position: relative;
       display: inline-block;
