@@ -31,7 +31,7 @@ in wp-config.php)
 
 ### Gulp & scss
 
-Currently, this is out out of date. To alter styling, alter .css file directly.
+## Currently, this is out out of date. To alter styling, alter .css file directly.
 
 To power up the development process we decided to use gulp for our task
 which is currently just converting SCSS to css and minify it.
@@ -76,6 +76,15 @@ Jetpack/WooCommerce menu and add an product. The product can say or be anything,
 
 Next, activate co2ok plugin. To test, add the product you made to your cart and go to checkout. The co2ok plubin should be visible on this page.
 
+
+### Testing changes to plugin
+To test changes made using a .zip file, first deactivate and delete plugin from Plugins in WordPress.
+Create a zip of repo with the following command in the repo directory on the branch you want to test:
+```
+zip -x db/\* node_modules/\* .git/\* @ -r co2ok-plugin-woocommerce.zip *
+```
+In Wordpress, select Add New in plugin menu and select Upload Plugin at top of page. Upload .zip file just created and activate. Now plugin will be active for
+testing.
 
 ### .po & .mo files for languages
 
