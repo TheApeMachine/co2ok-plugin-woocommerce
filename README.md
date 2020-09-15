@@ -69,12 +69,10 @@ Next, WooCommerce must be added. Follow this link, and use to Docker command lin
 https://hub.docker.com/r/julianxhokaxhiu/docker-woocommerce
 If that is unsuccessful, search, download, and activate WooCommerce in Plugin by selecting add new from the plugin menu.
 
-Once activated, follow the steps to setup an online store. The most important information during set up is setting the country of the
-shop to Netherlands. On the follow page, select any industry and product. On Tell us about your business: select you are selling 1-10 products.
-At Enhace your store with Jetpack and WooCommerce Services, select Yes Please. Once initial setup is complete, continue the
-Jetpack/WooCommerce menu and add an product. The product can say or be anything, but it must have a price in order to add it to basket.
+Once activated, follow the steps to setup an online store. The most important information during set up is setting the country of the shop to Netherlands. On the follow page, select any industry and product. On Tell us about your business: select you are selling 1-10 products.
+At Enhace your store with Jetpack and WooCommerce Services, select Yes Please. Once initial setup is complete, continue the Jetpack/WooCommerce menu and add an product. The product can say or be anything, but it must have a price in order to add it to basket.
 
-Next, activate co2ok plugin. To test, add the product you made to your cart and go to checkout. The co2ok plubin should be visible on this page.
+Next, activate co2ok plugin. To test, add the product you made to your cart and go to checkout. The co2ok plugin should be visible on these pages.
 
 
 ### Testing changes to plugin
