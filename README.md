@@ -31,7 +31,7 @@ in wp-config.php)
 
 ### Gulp & scss
 
-## Currently, this is out out of date. To alter styling, alter .css file directly.
+#### Currently, this is out out of date. To alter styling, alter .css file directly.
 
 To power up the development process we decided to use gulp for our task
 which is currently just converting SCSS to css and minify it.
