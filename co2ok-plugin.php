@@ -131,7 +131,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.7.0';
+    const VERSION = '1.0.7.0'; //change 6 back to seven
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
