@@ -671,12 +671,34 @@ var Co2ok_JS = function ()
               Co2ok_JS().RegisterBindings()
             }
           });
-        }
+        },
+
+        getCookieValue: function (a) {
+          var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+          return b ? b.pop() : '';
+        },
     }
 }
 
 jQuery(document).ready(function() {
-    if(jQuery("#co2ok_cart").length){
-        Co2ok_JS().Init()
+  if (document.cookie.match(/^(.*;)?\s*co2ok_hide_test\s*=\s*[^;]+(.*)?$/)){
+    if (Co2ok_JS().getCookieValue('co2ok_hide_test') % 2 == 0)
+    {
+      jQuery('.co2ok_container').remove();
+      console.log('co2ok off!');
+      return ;
     }
+    console.log('co2ok on!');
+  }
+  else
+  {
+    var now = new Date();
+    now.setTime(now.getTime() + 6 * 3600 * 1000);
+    var ID = Math.round(Math.random());
+    document.cookie = "co2ok_hide_test=" + ID + "; expires=" + now.toUTCString() + "; path=/";
+  }
+
+  if(jQuery("#co2ok_cart").length){
+      Co2ok_JS().Init()
+  }
 })
