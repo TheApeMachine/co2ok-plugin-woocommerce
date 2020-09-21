@@ -681,7 +681,7 @@ var Co2ok_JS = function ()
 }
 
 jQuery(document).ready(function() {
-  if (document.cookie.match(/^(.*;)?\s*co2ok_hide_test\s*=\s*[^;]+(.*)?$/)){
+  if (Co2ok_JS().getCookieValue('co2ok_ab_init') == 1 && document.cookie.match(/^(.*;)?\s*co2ok_hide_test\s*=\s*[^;]+(.*)?$/)){
     if (Co2ok_JS().getCookieValue('co2ok_hide_test') % 2 == 0)
     {
       jQuery('.co2ok_container').remove();
@@ -690,7 +690,7 @@ jQuery(document).ready(function() {
     }
     console.log('co2ok on!');
   }
-  else
+  else if (Co2ok_JS().getCookieValue('co2ok_ab_init') == 1)
   {
     var now = new Date();
     now.setTime(now.getTime() + 6 * 3600 * 1000);
