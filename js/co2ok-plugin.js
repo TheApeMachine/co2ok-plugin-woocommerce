@@ -685,10 +685,8 @@ jQuery(document).ready(function() {
     if (Co2ok_JS().getCookieValue('co2ok_hide_test') % 2 == 0)
     {
       jQuery('.co2ok_container').remove();
-      console.log('co2ok off!');
       return ;
     }
-    console.log('co2ok on!');
   }
   else if (Co2ok_JS().getCookieValue('co2ok_ab_init') == 1)
   {
