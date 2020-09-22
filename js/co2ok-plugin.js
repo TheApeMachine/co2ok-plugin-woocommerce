@@ -681,8 +681,8 @@ var Co2ok_JS = function ()
 }
 
 jQuery(document).ready(function() {
-  if (Co2ok_JS().getCookieValue('co2ok_ab_init') == 1 && document.cookie.match(/^(.*;)?\s*co2ok_hide_test\s*=\s*[^;]+(.*)?$/)){
-    if (Co2ok_JS().getCookieValue('co2ok_hide_test') % 2 == 0)
+  if (Co2ok_JS().getCookieValue('co2ok_ab_init') == 1 && document.cookie.match(/^(.*;)?\s*co2ok_ab_hide\s*=\s*[^;]+(.*)?$/)){
+    if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
     {
       jQuery('.co2ok_container').remove();
       return ;
@@ -693,7 +693,7 @@ jQuery(document).ready(function() {
     var now = new Date();
     now.setTime(now.getTime() + 6 * 3600 * 1000);
     var ID = Math.round(Math.random());
-    document.cookie = "co2ok_hide_test=" + ID + "; expires=" + now.toUTCString() + "; path=/";
+    document.cookie = "co2ok_ab_hide=" + ID + "; expires=" + now.toUTCString() + "; path=/";
   }
 
   if(jQuery("#co2ok_cart").length){
