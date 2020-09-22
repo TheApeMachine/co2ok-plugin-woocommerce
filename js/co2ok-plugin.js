@@ -680,7 +680,7 @@ var Co2ok_JS = function ()
 }
 
 jQuery(document).ready(function() {
-  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && document.cookie.match(/^(.*;)?\s*co2ok_ab_hide\s*=\s*[^;]+(.*)?$/)){
+  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && Co2ok_JS().getCookieValue('co2ok_ab_hide')){
     if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
     {
       jQuery('.co2ok_container').remove();
