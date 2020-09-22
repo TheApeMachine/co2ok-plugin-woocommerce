@@ -376,7 +376,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                         }
 
                         // $customer_id = \WC()->session->get_customer_id();
-                        if (Co2ok_JS().getCookieValue('co2ok_hide_test')) {
+                        if (!isset($_COOKIE['co2ok_ab_hide'])) {
                             $order->update_meta_data( '_co2ok-shown', '1' );
                         } else {
                             $order->update_meta_data( '_co2ok-shown', '0' );

@@ -153,7 +153,6 @@ var Co2ok_JS = function ()
 
         Init: function ()
         {
-
             this.RegisterBindings();
             this.RegisterInfoBox();
             this.RegisterRefreshHandling();
@@ -685,14 +684,16 @@ jQuery(document).ready(function() {
     if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
     {
       jQuery('.co2ok_container').remove();
+      console.log('co2ok off!');
       return ;
     }
+    console.log('co2ok on!');
   }
   else if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1)
   {
     var now = new Date();
     now.setTime(now.getTime() + 24 * 3600 * 1000);
-    var boolean = Math.round(Math.random());
+    var boolean = Math.round(Math.random());+
     document.cookie = "co2ok_ab_hide=" + boolean + "; expires=" + now.toUTCString() + "; path=/";
   }
 
