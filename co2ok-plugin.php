@@ -349,6 +349,20 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                         if(!isset($_COOKIE['co2ok_ab_enabled'])) {                             
                             setcookie('co2ok_ab_enabled', 1, time()+900);
                         }
+                        if (isset($_COOKIE['co2ok_ab_enabled']) && isset($_GET["co2ok_ab"]))
+                        {
+                            $co2ok_ab = $_GET["co2ok_ab"];
+                            if ($co2ok_ab == 'show')
+                            {
+                                setcookie('co2ok_ab_hide', 1, time()+900);
+                                echo '<script>console.log("ab_hide to 1 from php"); </script>';
+                            }
+                            else if ($co2ok_ab == 'hide')
+                            {
+                                setcookie('co2ok_ab_hide', 0, time()+900);
+                                echo '<script>console.log("ab_hide to 0 from php"); </script>';
+                            }
+                        }
                     } catch (Exception $e) { // fail silently
                     }
 
@@ -810,28 +824,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_cart_checkbox()
     {
-        if (get_option('co2ok_ab_research') == 'on') {
-            $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
-        } else {
-            $co2ok_hide_button = false;
-        }
-        
-        if ( !$co2ok_hide_button) {
-            $this->renderCheckbox();
-        }
+        $this->renderCheckbox();
     }
     
     final public function co2ok_checkout_checkbox()
     {
-        if (get_option('co2ok_ab_research') == 'on') {
-            $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
-        } else {
-            $co2ok_hide_button = false;
-        }
-        
-        if ( !$co2ok_hide_button) {
-            $this->renderCheckbox();
-        }
+        $this->renderCheckbox();
     }
 
     final public function co2ok_woocommerce_custom_surcharge($cart)

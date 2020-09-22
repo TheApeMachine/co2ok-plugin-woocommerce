@@ -693,7 +693,7 @@ jQuery(document).ready(function() {
   {
     var now = new Date();
     now.setTime(now.getTime() + 24 * 3600 * 1000);
-    var boolean = Math.round(Math.random());+
+    var boolean = Math.round(Math.random());
     document.cookie = "co2ok_ab_hide=" + boolean + "; expires=" + now.toUTCString() + "; path=/";
   }
 
