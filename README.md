@@ -31,6 +31,8 @@ in wp-config.php)
 
 ### Gulp & scss
 
+#### Currently, this is out out of date. To alter styling, alter .css file directly.
+
 To power up the development process we decided to use gulp for our task
 which is currently just converting SCSS to css and minify it.
 
@@ -51,9 +53,37 @@ To get Gulp working you follow the following steps:
 
 - if you run into problems/errors with step 4. or 5. on Windows, these might be possible solutions (still in the root directory):
 1. run `npm install --global --production windows-build-tools`
-2. run `npm install -g which` 
+2. run `npm install -g which`
 3. run `which node`
-4. run `npm install node-gyp@latest` 
+4. run `npm install node-gyp@latest`
+
+
+### Docker, WordPress and WooCommerce
+Upon installing Docker Desktop, clone the repo and, from repo directory, run:
+```
+docker-compose up
+```
+
+Open repo in browser from Docker Dashboard and follow the instructions to setup a WordPress page.
+
+Next, WooCommerce must be added. Follow this link, and use the Docker command line to add WooCommerce to your Docker:
+https://hub.docker.com/r/julianxhokaxhiu/docker-woocommerce
+If that is unsuccessful, search, download, and activate WooCommerce in Plugin by selecting add new from the plugin menu and searching for WooCommerce.
+
+Once WooCommerce is activated, follow the steps to setup a store. The most important information during set up is setting the country of the shop to Netherlands. On the follow page, select any industry and product. On Tell us about your business: select you are selling 1-10 products.
+At Enhace your store with Jetpack and WooCommerce Services, select Yes Please. Once initial setup is complete, continue the Jetpack/WooCommerce menu and add a product. The product can say or be anything, but it must have a price in order to add it to basket.
+
+Next, add and activate co2ok plugin. To test, add the product you made to your cart and go to checkout. The co2ok plugin should be visible on these pages.
+
+
+### Testing changes to plugin
+To test changes made using a .zip file, first deactivate and delete plugin from Plugins in WordPress.
+Create a zip of repo with the following command in the repo directory on the branch you want to test:
+```
+zip -x db/\* node_modules/\* .git/\* @ -r co2ok-plugin-woocommerce.zip *
+```
+In Wordpress, select Add New in plugin menu and select Upload Plugin at top of page. Upload .zip file just created and activate. Now plugin will be active for
+testing.
 
 ### .po & .mo files for languages
 
@@ -77,7 +107,7 @@ https://po2mo.net/
 
   Commit messages will need be written in present tense like this:
 
-  ❌ "Fix error messages" 
+  ❌ "Fix error messages"
 
   And not like this:
 
