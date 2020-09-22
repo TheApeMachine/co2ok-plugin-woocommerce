@@ -345,42 +345,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     if (is_admin()){
                         return;
                     }
-                    
-                    // if (is_user_logged_in()){
-                    //     //do nothing :) (since there already is a session)
-                    // } elseif (isset(\WC()->session)) {
-                    //     if ( ! \WC()->session->has_session() ) {
-                    //         \WC()->session->set_customer_session_cookie( true );
-                    //     }
-                    // } elseif (get_current_user_id() == 0) {
-                    //     // When the cron task runs, there is no user
-                    //     return;
-                    // } 
-                    
-                    // // in some scenario's there is no WC session object; init it
-                    // if ( ! isset(\WC()->session)) {
-                    //     \WC()->session = new \WC_Session_Handler();
-                    //     \WC()->session->init();
-                    //     \WC()->session->set_customer_session_cookie( true );
-                    // }
-
                     try {
-                        // $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
-                        // if ( $co2ok_hide_button) {   
-                        if(!isset($_COOKIE['co2ok_ab_init'])) {                             
-                            setcookie('co2ok_ab_init', 1, time()+900);
-                            // }
+                        if(!isset($_COOKIE['co2ok_ab_enabled'])) {                             
+                            setcookie('co2ok_ab_enabled', 1, time()+900);
                         }
                     } catch (Exception $e) { // fail silently
                     }
 
                 } );
-            }
-            else
-            {
-                if(!isset($_COOKIE['co2ok_ab_init'])) {                        
-                    setcookie('co2ok_ab_init', 0, time()+900);
-                }
             }
                 /**
                  * Load translations
@@ -404,7 +376,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                         }
 
                         // $customer_id = \WC()->session->get_customer_id();
-                        if (Co2ok_JS().getCookieValue('co2ok_hide_test') % 2 == 0) {
+                        if (Co2ok_JS().getCookieValue('co2ok_hide_test')) {
                             $order->update_meta_data( '_co2ok-shown', '1' );
                         } else {
                             $order->update_meta_data( '_co2ok-shown', '0' );

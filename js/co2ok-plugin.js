@@ -681,19 +681,19 @@ var Co2ok_JS = function ()
 }
 
 jQuery(document).ready(function() {
-  if (Co2ok_JS().getCookieValue('co2ok_ab_init') == 1 && document.cookie.match(/^(.*;)?\s*co2ok_ab_hide\s*=\s*[^;]+(.*)?$/)){
+  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && document.cookie.match(/^(.*;)?\s*co2ok_ab_hide\s*=\s*[^;]+(.*)?$/)){
     if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
     {
       jQuery('.co2ok_container').remove();
       return ;
     }
   }
-  else if (Co2ok_JS().getCookieValue('co2ok_ab_init') == 1)
+  else if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1)
   {
     var now = new Date();
-    now.setTime(now.getTime() + 6 * 3600 * 1000);
-    var ID = Math.round(Math.random());
-    document.cookie = "co2ok_ab_hide=" + ID + "; expires=" + now.toUTCString() + "; path=/";
+    now.setTime(now.getTime() + 24 * 3600 * 1000);
+    var boolean = Math.round(Math.random());
+    document.cookie = "co2ok_ab_hide=" + boolean + "; expires=" + now.toUTCString() + "; path=/";
   }
 
   if(jQuery("#co2ok_cart").length){
