@@ -1046,15 +1046,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final public function co2ok_widgetmark_shortcode() {
         $code = get_option('co2ok_code');
         $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
-        /*
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
-        */
 
         $widget_code = 
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        "<script>Co2okWidget.merchantCompensations('widgetContainer','". $code . "','default','" . $lang . "')</script>";
+        // '<script src="http://localhost:8080/widget/co2okWidgetMark.js" ' .
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
+        'async div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
         
         return $widget_code;
     }
@@ -1071,15 +1068,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $size = $co2ok_atts['size'];
         $color = $co2ok_atts['color'];
         $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
-        /*
-        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js"></script>'.
-        '<script src="http://localhost:8080/widget/co2okWidgetXL.js"></script>'.
-        */
         
         $widget_code = 
         '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js"></script>'.
-        "<script>Co2okWidgetXL.merchantCompensations('widgetContainerXL','" . $code . "','" . $size . "','" . $color . "','". $lang . "')</script>";
+        // '<script src="http://localhost:8080/widget/co2okWidgetXL.js" ' .
+        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js" ' .
+        'async div="widgetContainerXL" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
         
         return $widget_code;
     }
@@ -1163,9 +1157,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '\' );</script>';
         
         $widget_js = 
-        // '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        '<script>Co2okWidget.merchantCompensations("widgetContainer", "'. $code . '","default","'. $lang .'")</script>';
+        // '<script src="http://localhost:8080/widget/co2okWidgetMark.js" ' .
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
+        'async div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
 
         echo $footer_code;
         echo $widget_js;
