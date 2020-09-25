@@ -43,7 +43,7 @@ function defaultButton()
   var co2ok_logo = document.querySelector('.co2ok_logo_default');
 
     try{
-      var qty = document.querySelector('.qty');console.log(qty.value.length);
+      var qty = document.querySelector('.qty');
       var qtyVal = qty.value.length;
     }
     catch (e) {
@@ -680,21 +680,19 @@ var Co2ok_JS = function ()
 }
 
 jQuery(document).ready(function() {
-  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && Co2ok_JS().getCookieValue('co2ok_ab_hide')){
-    if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
-    {
-      jQuery('.co2ok_container').remove();
-      console.log('co2ok off!');
-      return ;
-    }
-    console.log('co2ok on!');
-  }
-  else if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1)
+  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && !Co2ok_JS().getCookieValue('co2ok_ab_hide'))
   {
     var now = new Date();
     now.setTime(now.getTime() + 24 * 3600 * 1000);
     var boolean = Math.round(Math.random());
     document.cookie = "co2ok_ab_hide=" + boolean + "; expires=" + now.toUTCString() + "; path=/";
+  }
+  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && Co2ok_JS().getCookieValue('co2ok_ab_hide')){
+    if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
+    {
+      jQuery('.co2ok_container').remove();
+      return ;
+    }
   }
 
   if(jQuery("#co2ok_cart").length){
