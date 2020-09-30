@@ -682,10 +682,10 @@ var Co2ok_JS = function ()
 jQuery(document).ready(function() {
   if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && !Co2ok_JS().getCookieValue('co2ok_ab_hide'))
   {
-    var now = new Date();
-    now.setTime(now.getTime() + 24 * 3600 * 1000);
-    var boolean = Math.round(Math.random());
-    document.cookie = "co2ok_ab_hide=" + boolean + "; expires=" + now.toUTCString() + "; path=/";
+    var tomorrow = new Date();
+    tomorrow.setTime(now.getTime() + 24 * 3600 * 1000);
+    var random_A_or_B = Math.round(Math.random());
+    document.cookie = "co2ok_ab_hide=" + random_A_or_B + "; expires=" + tomorrow.toUTCString() + "; path=/";
   }
   if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && Co2ok_JS().getCookieValue('co2ok_ab_hide')){
     if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
