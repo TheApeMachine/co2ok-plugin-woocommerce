@@ -3,10 +3,10 @@ Contributors: co2ok
 Donate link: http://co2ok.eco/
 Tags: climate neutral, sustainability, sustainable, carbon offsetting, carbon offset, CO2 footprint, carbon footprint, carbon emissions, environmental, CSR, cause marketing
 Requires at least: 4.0
-Tested up to: 5.4.2
+Tested up to: 5.5.1
 Requires PHP: 5.5
-WC tested up to: 4.3.1
-Stable tag: 1.0.7.0
+WC tested up to: 4.5.2
+Stable tag: 1.0.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,11 @@ We gather as little data as possible, specifically:
 4. Show off your impact with our widgets!
 
 == Changelog ==
+
+= 1.0.8.0
+* Improves A/B code to have even lower perf/caching impact
+* Fixes some styling issues
+* loads widgets asynchronously for better performance 
 
 = 1.0.7.0
 * Fixes widgetmark bug
