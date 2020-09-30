@@ -683,7 +683,7 @@ jQuery(document).ready(function() {
   if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && !Co2ok_JS().getCookieValue('co2ok_ab_hide'))
   {
     var tomorrow = new Date();
-    tomorrow.setTime(now.getTime() + 24 * 3600 * 1000);
+    tomorrow.setTime(tomorrow.getTime() + 24 * 3600 * 1000);
     var random_A_or_B = Math.round(Math.random());
     document.cookie = "co2ok_ab_hide=" + random_A_or_B + "; expires=" + tomorrow.toUTCString() + "; path=/";
   }
