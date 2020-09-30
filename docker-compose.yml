@@ -12,6 +12,7 @@ webserver:
     - 8080:80
    volumes:
     - ./:/var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/
+    - ./upload.ini:/usr/local/etc/php/conf.d/uploads.ini
 
 dbserver:
    container_name: woo_mariadb

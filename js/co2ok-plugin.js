@@ -43,7 +43,7 @@ function defaultButton()
   var co2ok_logo = document.querySelector('.co2ok_logo_default');
 
     try{
-      var qty = document.querySelector('.qty');console.log(qty.value.length);
+      var qty = document.querySelector('.qty');
       var qtyVal = qty.value.length;
     }
     catch (e) {
@@ -153,7 +153,6 @@ var Co2ok_JS = function ()
 
         Init: function ()
         {
-
             this.RegisterBindings();
             this.RegisterInfoBox();
             this.RegisterRefreshHandling();
@@ -671,12 +670,33 @@ var Co2ok_JS = function ()
               Co2ok_JS().RegisterBindings()
             }
           });
-        }
+        },
+
+        getCookieValue: function (a) {
+          var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+          return b ? b.pop() : '';
+        },
     }
 }
 
 jQuery(document).ready(function() {
-    if(jQuery("#co2ok_cart").length){
-        Co2ok_JS().Init()
+  // Checks wether A/B testing is enabled and dis/en-ables JS accordingly and removes the co2ok button
+  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && !Co2ok_JS().getCookieValue('co2ok_ab_hide'))
+  {
+    var tomorrow = new Date();
+    tomorrow.setTime(tomorrow.getTime() + 24 * 3600 * 1000);
+    var random_A_or_B = Math.round(Math.random());
+    document.cookie = "co2ok_ab_hide=" + random_A_or_B + "; expires=" + tomorrow.toUTCString() + "; path=/";
+  }
+  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && Co2ok_JS().getCookieValue('co2ok_ab_hide')){
+    if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
+    {
+      jQuery('.co2ok_container').remove();
+      return ;
     }
+  }
+
+  if(jQuery("#co2ok_cart").length){
+      Co2ok_JS().Init()
+  }
 })

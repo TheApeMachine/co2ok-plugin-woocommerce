@@ -345,30 +345,22 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     if (is_admin()){
                         return;
                     }
-                    
-                    if (is_user_logged_in()){
-                        //do nothing :) (since there already is a session)
-                    } elseif (isset(\WC()->session)) {
-                        if ( ! \WC()->session->has_session() ) {
-                            \WC()->session->set_customer_session_cookie( true );
-                        }
-                    } elseif (get_current_user_id() == 0) {
-                        // When the cron task runs, there is no user
-                        return;
-                    } 
-                    
-                    // in some scenario's there is no WC session object; init it
-                    if ( ! isset(\WC()->session)) {
-                        \WC()->session = new \WC_Session_Handler();
-                        \WC()->session->init();
-                        \WC()->session->set_customer_session_cookie( true );
-                    }
-
                     try {
-                        $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
-                        if ( $co2ok_hide_button) {   
-                            if(!isset($_COOKIE['co2ok_hide_button'])) {                             
-                                setcookie('co2ok_hide_button', 'true', time()+900);
+                        if(!isset($_COOKIE['co2ok_ab_enabled'])) {                             
+                            setcookie('co2ok_ab_enabled', 1, time()+900);
+                        }
+                        if (isset($_COOKIE['co2ok_ab_enabled']) && isset($_GET["co2ok_ab"]))
+                        {
+                            $co2ok_ab = $_GET["co2ok_ab"];
+                            if ($co2ok_ab == 'show')
+                            {
+                                setcookie('co2ok_ab_hide', 1, time()+900);
+                                echo '<script>console.log("ab_hide to 1 from php"); </script>';
+                            }
+                            else if ($co2ok_ab == 'hide')
+                            {
+                                setcookie('co2ok_ab_hide', 0, time()+900);
+                                echo '<script>console.log("ab_hide to 0 from php"); </script>';
                             }
                         }
                     } catch (Exception $e) { // fail silently
@@ -397,8 +389,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                             return;
                         }
 
-                        $customer_id = \WC()->session->get_customer_id();
-                        if ( ! (ord(md5($customer_id)) % 2 == 0)) {
+                        // $customer_id = \WC()->session->get_customer_id();
+                        if (!isset($_COOKIE['co2ok_ab_hide'])) {
                             $order->update_meta_data( '_co2ok-shown', '1' );
                         } else {
                             $order->update_meta_data( '_co2ok-shown', '0' );
@@ -832,28 +824,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_cart_checkbox()
     {
-        if (get_option('co2ok_ab_research') == 'on') {
-            $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
-        } else {
-            $co2ok_hide_button = false;
-        }
-        
-        if ( !$co2ok_hide_button) {
-            $this->renderCheckbox();
-        }
+        $this->renderCheckbox();
     }
     
     final public function co2ok_checkout_checkbox()
     {
-        if (get_option('co2ok_ab_research') == 'on') {
-            $co2ok_hide_button = ord(md5(\WC()->session->get_customer_id())) % 2 == 0;
-        } else {
-            $co2ok_hide_button = false;
-        }
-        
-        if ( !$co2ok_hide_button) {
-            $this->renderCheckbox();
-        }
+        $this->renderCheckbox();
     }
 
     final public function co2ok_woocommerce_custom_surcharge($cart)
@@ -1070,15 +1046,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final public function co2ok_widgetmark_shortcode() {
         $code = get_option('co2ok_code');
         $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
-        /*
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
-        */
 
         $widget_code = 
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        "<script>Co2okWidget.merchantCompensations('widgetContainer','". $code . "','default','" . $lang . "')</script>";
+        // '<script src="http://localhost:8080/widget/co2okWidgetMark.js" ' .
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
+        'async div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
         
         return $widget_code;
     }
@@ -1095,15 +1068,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $size = $co2ok_atts['size'];
         $color = $co2ok_atts['color'];
         $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
-        /*
-        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js"></script>'.
-        '<script src="http://localhost:8080/widget/co2okWidgetXL.js"></script>'.
-        */
         
         $widget_code = 
         '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
-        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js"></script>'.
-        "<script>Co2okWidgetXL.merchantCompensations('widgetContainerXL','" . $code . "','" . $size . "','" . $color . "','". $lang . "')</script>";
+        // '<script src="http://localhost:8080/widget/co2okWidgetXL.js" ' .
+        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js" ' .
+        'async div="widgetContainerXL" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
         
         return $widget_code;
     }
@@ -1187,9 +1157,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '\' );</script>';
         
         $widget_js = 
-        // '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        '<script>Co2okWidget.merchantCompensations("widgetContainer", "'. $code . '","default","'. $lang .'")</script>';
+        // '<script src="http://localhost:8080/widget/co2okWidgetMark.js" ' .
+        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
+        'async div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
 
         echo $footer_code;
         echo $widget_js;
