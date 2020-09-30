@@ -1073,7 +1073,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         // '<script src="http://localhost:8080/widget/co2okWidgetXL.js" ' .
         '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js" ' .
-        'async div="widgetContainerXL" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
+        'async div="widgetContainerXL" merchantId=' . $code . ' widgetSize="' . $size . '" widgetColor="' . $color . '" lang="' . $lang . '"></script>';
         
         return $widget_code;
     }
