@@ -680,6 +680,7 @@ var Co2ok_JS = function ()
 }
 
 jQuery(document).ready(function() {
+  // Checks wether A/B testing is enabled and dis/en-ables JS accordingly
   if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && !Co2ok_JS().getCookieValue('co2ok_ab_hide'))
   {
     var tomorrow = new Date();
