@@ -355,12 +355,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                             if ($co2ok_ab == 'show')
                             {
                                 setcookie('co2ok_ab_hide', 1, time()+900);
-                                echo '<script>console.log("ab_hide to 1 from php"); </script>';
                             }
                             else if ($co2ok_ab == 'hide')
                             {
                                 setcookie('co2ok_ab_hide', 0, time()+900);
-                                echo '<script>console.log("ab_hide to 0 from php"); </script>';
                             }
                         }
                     } catch (Exception $e) { // fail silently
