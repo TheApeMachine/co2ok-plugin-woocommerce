@@ -388,10 +388,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                         }
 
                         // $customer_id = \WC()->session->get_customer_id();
-                        if (!isset($_COOKIE['co2ok_ab_hide'])) {
-                            $order->update_meta_data( '_co2ok-shown', '1' );
-                        } else {
-                            $order->update_meta_data( '_co2ok-shown', '0' );
+                        if (isset($_COOKIE['co2ok_ab_hide'])) {
+                            if ($_COOKIE['co2ok_ab_hide'] == 1) {
+                                $order->update_meta_data( '_co2ok-shown', '1' );
+                            } else {
+                                $order->update_meta_data( '_co2ok-shown', '0' );
+                            }
                         }
                         $order->save();
                     } , 10, 2);

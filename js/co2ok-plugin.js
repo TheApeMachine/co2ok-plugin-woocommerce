@@ -683,10 +683,10 @@ jQuery(document).ready(function() {
   // Checks wether A/B testing is enabled and dis/en-ables JS accordingly and removes the co2ok button
   if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && !Co2ok_JS().getCookieValue('co2ok_ab_hide'))
   {
-    var tomorrow = new Date();
-    tomorrow.setTime(tomorrow.getTime() + 24 * 3600 * 1000);
+    var future = new Date();
+    future.setTime(future.getTime() + 30 * 24 * 3600 * 1000);
     var random_A_or_B = Math.round(Math.random());
-    document.cookie = "co2ok_ab_hide=" + random_A_or_B + "; expires=" + tomorrow.toUTCString() + "; path=/";
+    document.cookie = "co2ok_ab_hide=" + random_A_or_B + "; expires=" + future.toUTCString() + "; path=/";
   }
   if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && Co2ok_JS().getCookieValue('co2ok_ab_hide')){
     if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
