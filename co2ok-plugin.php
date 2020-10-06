@@ -338,9 +338,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             $ab_research = get_option('co2ok_ab_research');
                 
             if ($ab_research == 'on') {
-                // Start session to enable A/B testing 
                 add_action( 'woocommerce_init', function(){
-                // add_action( 'init', function(){
                     
                     if (is_admin()){
                         return;
