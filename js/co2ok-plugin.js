@@ -9,11 +9,18 @@ function minimumButton()
   var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
 
   try{
-    var qty = document.querySelector('.qty');
-    var qtyVal = qty.value.length;
+    var holdValue = 0;
+    //check for all .qtholdQ and finds longest qty to prevent currency size issue
+    var allQtys = document.querySelectorAll('.qty');
+    for (var i = 0; i < allQtys.length; i++) {
+      if (allQtys[i].value > holdValue) {
+        holdValue = allQtys[i].value;
+      }
+    }
+    var productQuantityLength = holdValue.length;
   }
   catch (e) {
-    var qtyVal = 1;
+    var productQuantityLength = 1;
   }
 
   if(qtyVal > 1)
@@ -24,6 +31,9 @@ function minimumButton()
      make_minimal.style.fontSize = 18 - qtyVal+'px';
      co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
 
+     //idk if this need to go here
+     comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - qtyVal +'px';
+
   }else{
 
     cad_minimal.style.fontSize = '18px';
@@ -31,8 +41,19 @@ function minimumButton()
     make_minimal.style.fontSize = '21px';
     co2ok_logo_minimal.style.width = '55px';
 
-  }
+    //idk if this needs to go her
+    comp_amount_label_minimal.style.marginLeft = '-3px';
 
+
+  }
+  if (cad.innerHTML.length > 7) {
+    //check 1
+    console.log("minimal 1")
+    cad_minimal.style.fontSize = '15px';
+    cad_minimal.style.marginTop = '10px';
+    make_minimal.style.fontSize = '15px';
+    co2ok_logo_minimal.style.width = '50px';
+  }
 }
 
 function defaultButton()
@@ -42,32 +63,29 @@ function defaultButton()
   var make = document.querySelector('.make_co2ok_default');
   var co2ok_logo = document.querySelector('.co2ok_logo_default');
 
-    try{
-      var qty = document.querySelector('.qty');
-      var qtyVal = qty.value.length;
+    console.log("in default button", cad.innerHTML, cad.innerHTML.length);
+    if (cad.innerHTML.length > 10) {
+      var relativeSize = Math.floor(14 - cad.innerHTML.length / 14);
+      var diff = 14 - relativeSize;
+      cad.style.marginTop = relativeSize + 'px';
+    } else {
+      var relativeSize = Math.floor(16 - cad.innerHTML.length / 16);
+      var diff = 16 - relativeSize;
+      cad.style.marginTop = relativeSize - 4 + 'px';
     }
-    catch (e) {
-      var qtyVal = 1;
-    }
+    if (cad.innerHTML.length > 7) {
+      //check 2
+      console.log("2");
 
-    if(qtyVal > 1)
-    {
-
-       cad.style.fontSize = 16 - qtyVal+'px';
-       cad.style.marginTop = 12 + qtyVal+'px';
-       make.style.fontSize = 18 - qtyVal+'px';
-       co2ok_logo.style.width = 55 - qtyVal+'px';
-
+      cad.style.fontSize = relativeSize - diff + 'px';
+      make.style.fontSize = relativeSize - diff + 'px';
+      co2ok_logo.style.width = 45 - diff + 'px';
     }else{
-
       cad.style.fontSize = '16px';
-      cad.style.marginTop = '12px';
+      cad.style.marginTop = '9px';
       make.style.fontSize = '18px';
       co2ok_logo.style.width = '55px';
-
     }
-
-
 }
 
 
@@ -188,10 +206,10 @@ var Co2ok_JS = function ()
                       catch (e) {
                         var qtyVal = 1;
                       }
-                  
+
                       if(co2ok_temp_global.id == 'default_co2ok_temp')
                       {
-
+                        console.log("going in default here");
                         defaultButton();
 
                       }else{
@@ -201,113 +219,49 @@ var Co2ok_JS = function ()
                       }
 
                     }else{
-
-                      if(document.querySelector('.productQuantity') != null){
+                      if(document.querySelector('.product-quantity') != null){
                        checkoutButton();
                       }
 
                     }
 
-
-                    function defaultButton()
-                    {
-
-                      if(qtyVal > 1)
-                      {
-
-                        cad.style.fontSize = 16 - qtyVal+'px';
-                        cad.style.marginTop = 10 + qtyVal+'px';
-                        make.style.fontSize = 18 - qtyVal+'px';
-                        co2ok_logo.style.width = 55 - qtyVal+'px';
-
-                      }else{
-
-                        cad.style.fontSize = '16px';
-                        cad.style.marginTop = '10px';
-                        make.style.fontSize = '18px';
-                        co2ok_logo.style.width = '55px';
-
-                      }
-
-                    }
-
-
-                    function minimumButton()
-                    {
-
-                      var compensation_amount_minimal = document.querySelector('.compensation_amount_minimal');
-
-                      if(qtyVal > 1)
-                      {
-
-                         cad_minimal.style.fontSize = 15 - qtyVal+'px';
-                        // cad_minimal.style.marginTop = 9 + qtyVal+'px';
-                         make_minimal.style.fontSize = 18 - qtyVal+'px';
-                         co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
-                         comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - qtyVal +'px';
-
-                      }else{
-
-                        cad_minimal.style.fontSize = '18px';
-                      //  cad_minimal.style.marginTop = '12px';
-                        make_minimal.style.fontSize = '21px';
-                        co2ok_logo_minimal.style.width = '55px';
-                        comp_amount_label_minimal.style.marginLeft = '-3px';
-
-                      }
-
-                    }
-
-
                     function checkoutButton()
                     {
-
-                      var productQuantity = document.querySelector('.product-quantity');
+                      console.log("checkoutButton");
                       var comp_amount_label_minimal = document.querySelector('.comp_amount_label_minimal');
-                      var productQuantityLength = productQuantity.textContent.length - 2;
+                      // var productQuantityLength = productQuantity.textContent.length - 2;
                       var compensation_amount_minimal = document.querySelector('.compensation_amount_minimal');
 
                         var compensationAmountLength = compensation_amount_global.textContent.length;
+                        console.log(compensation_amount_global.textContent, compensationAmountLength);
                         if(co2ok_temp_global.id == 'default_co2ok_temp')
                         {
 
-                            if(productQuantityLength > 1)
-                            {
-
-                              cad.style.fontSize = 18 - productQuantityLength +'px';
-                              cad.style.marginTop = 12 + productQuantityLength +'px';
-                              make.style.fontSize = 21 - productQuantityLength +'px';
-                              co2ok_logo.style.width = 55 - productQuantityLength +'px';
-
-                            }else{
-
-                              cad.style.fontSize = '16px';
-                              make.style.fontSize = '18px';
-                              co2ok_logo.style.width = '55px';
-
-                            }
-
+                          if(compensationAmountLength > 7){
+                            cad.style.fontSize = 16 - compensationAmountLength / 2.5 +'px';
+                            cad.style.marginTop = 10 + compensationAmountLength / 2.5 +'px';
+                            make.style.fontSize = 18 - compensationAmountLength / 2.5 +'px';
+                            co2ok_logo.style.width = 55 - compensationAmountLength / 2.5 +'px';
+                          }else{
+                            cad.style.fontSize = '16px';
+                            cad.style.marginTop= '9px';
+                            make.style.fontSize = '18px';
+                            co2ok_logo.style.width = '55px';
+                          }
                         }else{
+                          if(compensationAmountLength > 7){
+                            cad_minimal.style.fontSize = 18 - (compensationAmountLength - 3)+'px';
+                            make_minimal.style.fontSize = 21 - (compensationAmountLength - 3)+'px';
+                            co2ok_logo_minimal.style.width = 55 - (compensationAmountLength - 3)+'px';
+                            comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - compensationAmountLength +'px';
+                          }else{
 
-                            if(compensationAmountLength > 8)
-                            {
-
-                              cad_minimal.style.fontSize = 18 - (compensationAmountLength - 3)+'px';
-                              make_minimal.style.fontSize = 21 - (compensationAmountLength - 3)+'px';
-                              co2ok_logo_minimal.style.width = 55 - (compensationAmountLength - 3)+'px';
-                              comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - compensationAmountLength +'px';
-
-                            }else{
-
-                              cad_minimal.style.fontSize = '18px';
-                              make_minimal.style.fontSize = '21px';
-                              co2ok_logo_minimal.style.width = '55px';
-                              comp_amount_label_minimal.style.marginLeft = '-3px';
-
-                            }
-
+                            cad_minimal.style.fontSize = '18px';
+                            make_minimal.style.fontSize = '21px';
+                            co2ok_logo_minimal.style.width = '55px';
+                            comp_amount_label_minimal.style.marginLeft = '-3px';
+                          }
                         }
-
                     }
                 }
 
