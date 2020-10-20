@@ -32,7 +32,7 @@ function minimumButton() {
   if (cad_length_minimal > 7) {
 
     cad_minimal.style.fontSize = relative_font_size - relative_size_diff + 'px';
-    make_minimal.style.fontSize = relative_font_size - relative_size_diff + 'px';
+    make_minimal.style.fontSize = relative_font_size - relative_size_diff + 3 + 'px';
     cad_minimal.style.marginTop = '0px';
     co2ok_logo_minimal.style.width = 45 - relative_size_diff + 'px';
     comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - cad_length_minimal +'px';
@@ -83,7 +83,7 @@ function defaultButton() {
 
     cad.style.fontSize = relative_font_size - relative_size_diff + 'px';
     cad.style.left = '-20px';
-    make.style.fontSize = relative_font_size - relative_size_diff + 'px';
+    make.style.fontSize = relative_font_size - relative_size_diff + 1 + 'px';
     co2ok_logo.style.width = 45 - relative_size_diff + 'px';
 
   } else {
