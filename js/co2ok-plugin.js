@@ -82,6 +82,7 @@ function defaultButton() {
   if (cad_length > 7) {
 
     cad.style.fontSize = relative_font_size - relative_size_diff + 'px';
+    cad.style.left = '-20px';
     make.style.fontSize = relative_font_size - relative_size_diff + 'px';
     co2ok_logo.style.width = 45 - relative_size_diff + 'px';
 
