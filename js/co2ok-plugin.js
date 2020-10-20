@@ -10,18 +10,23 @@ function minimumButton() {
   var compensation_amount_minimal = document.querySelector('.compensation_amount_minimal');
   var co2ok_info_hitare_minimal = document.querySelector('.co2ok_payoff_minimal');
   var inner_border_minimal = document.querySelector('.inner_comp_amount_label_minimal');
+  var comp_amount_minimal = document.querySelector('.comp_amount_label_minimal');
+
   var cad_length_minimal = cad_minimal.innerHTML.length;
   var relative_font_size;
   var relative_size_diff;
 
   //changes style relative to length of compensation
   if (cad_length_minimal > 10) {
+
     relative_font_size = Math.floor(14 - cad_length_minimal / 12);
     relative_size_diff = 12 - relative_font_size;
+
   } else if (cad_length_minimal > 7) {
+
     relative_font_size = Math.floor(14 - cad_length_minimal / 14);
     relative_size_diff = 14 - relative_font_size;
-    cad_minimal.style.marginTop = relative_font_size - 4 + 'px';
+
   }
 
   if (cad_length_minimal > 7) {
@@ -33,7 +38,10 @@ function minimumButton() {
     comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - cad_length_minimal +'px';
     comp_amount_label_minimal.style.width = 70 + cad_length_minimal + 'px';
     inner_border_minimal.style.width = 65 + cad_length_minimal + 'px';
+    comp_amount_minimal.style.marginTop = '-4px';
     co2ok_info_hitare_minimal.style.paddingLeft = cad_length_minimal * 2 + 'px';
+    co2ok_info_hitare_minimal.style.marginTop = '-3px';
+
 
   } else {
 
@@ -41,6 +49,7 @@ function minimumButton() {
     make_minimal.style.fontSize = '20px';
     cad_minimal.style.marginTop = '0px';
     co2ok_logo_minimal.style.width = '55px';
+    comp_amount_minimal.style.marginTop = '-2px';
     comp_amount_label_minimal.style.marginLeft = '-3px';
 
   }
@@ -48,6 +57,7 @@ function minimumButton() {
 
 function defaultButton() {
 
+  var make = document.querySelector('.make_co2ok_default');
   var cad = document.querySelector('.compensation_amount_default');
   var co2ok_logo = document.querySelector('.co2ok_logo_default');
   var cad_length = cad.innerHTML.length;
