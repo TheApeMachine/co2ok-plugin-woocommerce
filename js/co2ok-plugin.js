@@ -7,7 +7,6 @@ function minimumButton() {
   var make_minimal = document.querySelector('.make_co2ok_global');
   var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
   var comp_amount_label_minimal = document.querySelector('.comp_amount_label_minimal');
-  var compensation_amount_minimal = document.querySelector('.compensation_amount_minimal');
   var co2ok_info_hitare_minimal = document.querySelector('.co2ok_payoff_minimal');
   var inner_border_minimal = document.querySelector('.inner_comp_amount_label_minimal');
 
@@ -31,13 +30,12 @@ function minimumButton() {
     cad_minimal.style.fontSize = relative_font_size - relative_size_diff + 'px';
     make_minimal.style.fontSize = relative_font_size - relative_size_diff + 3 + 'px';
     co2ok_logo_minimal.style.width = 45 - relative_size_diff + 'px';
-    comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - cad_length_minimal +'px';
+    comp_amount_label_minimal.style.marginLeft = -(10 + (cad_length_minimal * 2)) + 'px';
+    comp_amount_label_minimal.style.marginTop = '-4px';
     comp_amount_label_minimal.style.width = 70 + cad_length_minimal + 'px';
     inner_border_minimal.style.width = 65 + cad_length_minimal + 'px';
-    comp_amount_label_minimal.style.marginTop = '-4px';
     co2ok_info_hitare_minimal.style.paddingLeft = cad_length_minimal * 2 + 'px';
     co2ok_info_hitare_minimal.style.marginTop = '-3px';
-
 
   }
 }
