@@ -10,22 +10,19 @@ function minimumButton() {
   var compensation_amount_minimal = document.querySelector('.compensation_amount_minimal');
   var co2ok_info_hitare_minimal = document.querySelector('.co2ok_payoff_minimal');
   var inner_border_minimal = document.querySelector('.inner_comp_amount_label_minimal');
-  var comp_amount_minimal = document.querySelector('.comp_amount_label_minimal');
 
   var cad_length_minimal = cad_minimal.innerHTML.length;
-  var relative_font_size;
-  var relative_size_diff;
 
   //changes style relative to length of compensation
   if (cad_length_minimal > 10) {
 
-    relative_font_size = Math.floor(14 - cad_length_minimal / 12);
-    relative_size_diff = 12 - relative_font_size;
+    var relative_font_size = Math.floor(14 - cad_length_minimal / 12);
+    var relative_size_diff = 12 - relative_font_size;
 
   } else if (cad_length_minimal > 7) {
 
-    relative_font_size = Math.floor(14 - cad_length_minimal / 14);
-    relative_size_diff = 14 - relative_font_size;
+    var relative_font_size = Math.floor(14 - cad_length_minimal / 14);
+    var relative_size_diff = 14 - relative_font_size;
 
   }
 
@@ -33,24 +30,14 @@ function minimumButton() {
 
     cad_minimal.style.fontSize = relative_font_size - relative_size_diff + 'px';
     make_minimal.style.fontSize = relative_font_size - relative_size_diff + 3 + 'px';
-    cad_minimal.style.marginTop = '0px';
     co2ok_logo_minimal.style.width = 45 - relative_size_diff + 'px';
     comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - cad_length_minimal +'px';
     comp_amount_label_minimal.style.width = 70 + cad_length_minimal + 'px';
     inner_border_minimal.style.width = 65 + cad_length_minimal + 'px';
-    comp_amount_minimal.style.marginTop = '-4px';
+    comp_amount_label_minimal.style.marginTop = '-4px';
     co2ok_info_hitare_minimal.style.paddingLeft = cad_length_minimal * 2 + 'px';
     co2ok_info_hitare_minimal.style.marginTop = '-3px';
 
-
-  } else {
-
-    cad_minimal.style.fontSize = '16px';
-    make_minimal.style.fontSize = '20px';
-    cad_minimal.style.marginTop = '0px';
-    co2ok_logo_minimal.style.width = '55px';
-    comp_amount_minimal.style.marginTop = '-2px';
-    comp_amount_label_minimal.style.marginLeft = '-3px';
 
   }
 }
@@ -61,20 +48,18 @@ function defaultButton() {
   var cad = document.querySelector('.compensation_amount_default');
   var co2ok_logo = document.querySelector('.co2ok_logo_default');
   var cad_length = cad.innerHTML.length;
-  var relative_font_size;
-  var relative_size_diff;
 
   //changes style relative to length of compensation
   if (cad_length > 10) {
 
-    relative_font_size = Math.floor(14 - cad_length / 14);
-    relative_size_diff = 14 - relative_font_size;
+    var relative_font_size = Math.floor(14 - cad_length / 14);
+    var relative_size_diff = 14 - relative_font_size;
     cad.style.marginTop = relative_font_size + 'px';
 
   } else if (cad_length > 7) {
 
-    relative_font_size = Math.floor(16 - cad_length / 16);
-    relative_size_diff = 16 - relative_font_size;
+    var relative_font_size = Math.floor(16 - cad_length / 16);
+    var relative_size_diff = 16 - relative_font_size;
     cad.style.marginTop = relative_font_size - 4 + 'px';
 
   }
@@ -86,15 +71,7 @@ function defaultButton() {
     make.style.fontSize = relative_font_size - relative_size_diff + 1 + 'px';
     co2ok_logo.style.width = 45 - relative_size_diff + 'px';
 
-  } else {
-
-    cad.style.fontSize = '16px';
-    cad.style.marginTop = '9px';
-    make.style.fontSize = '18px';
-    co2ok_logo.style.width = '55px';
-
   }
-
 }
 
 
@@ -191,15 +168,6 @@ var Co2ok_JS = function () {
                     // var pathName = window.location.pathname;
                     // var make_minimal = document.querySelector('.make_co2ok_minimal');
 
-                    if(document.querySelector('.qty') != null) {
-
-                      try{
-                        var qty = document.querySelector('.qty');
-                        var qtyVal = qty.value.length;
-                      } catch (e) {
-                        var qtyVal = 1;
-                      }
-
                       if(co2ok_temp_global.id == 'default_co2ok_temp') {
 
                         defaultButton();
@@ -209,24 +177,6 @@ var Co2ok_JS = function () {
                         minimumButton();
 
                       }
-
-                    } else {
-
-                      if(document.querySelector('.product-quantity') != null) {
-                        //checkout button
-                        if(co2ok_temp_global.id == 'default_co2ok_temp') {
-
-                          defaultButton();
-
-                        } else {
-
-                          minimumButton();
-
-                        }
-
-                      }
-                    }
-
                   }
 
                 if(jQuery(".co2ok_container").length ) {

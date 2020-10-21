@@ -395,6 +395,7 @@ img#co2ok_logo_minimal {
       border-radius: 30px;
       transition: all 0.4s ease;
       margin-left: -3px;
+      margin-top: -2px;
       padding: 5px;
       border: 10px #06d367;
       font: inherit;
@@ -444,7 +445,8 @@ img#co2ok_logo_minimal {
         .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal .compensation_amount_minimal {
           position: absolute;
           margin: 0;
-          font-size: 11pt;
+          font-size: 16px;
+          margin-top: 0px;
           top: 50%;
           left: 50%;
           margin-right: -50%;
@@ -498,5 +500,5 @@ img#co2ok_logo_minimal {
       display: block;
       font-family: Roboto, sans-serif; }
     .co2ok_container .make_co2ok_minimal {
-      font-size: 21px;
+      font-size: 20px;
     }
