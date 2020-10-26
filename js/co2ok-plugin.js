@@ -1,81 +1,83 @@
 var co2ok_temp_global = document.querySelector('.co2ok_global_temp');
 
 
-function minimumButton()
-{
+function minimumButton() {
 
   var cad_minimal = document.querySelector('.compensation_amount_minimal');
   var make_minimal = document.querySelector('.make_co2ok_global');
   var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
+  var comp_amount_label_minimal = document.querySelector('.comp_amount_label_minimal');
+  var co2ok_info_hitare_minimal = document.querySelector('.co2ok_payoff_minimal');
+  var inner_border_minimal = document.querySelector('.inner_comp_amount_label_minimal');
 
-  try{
-    var qty = document.querySelector('.qty');
-    var qtyVal = qty.value.length;
-  }
-  catch (e) {
-    var qtyVal = 1;
-  }
+  var cad_length_minimal = cad_minimal.innerHTML.length;
 
-  if(qtyVal > 1)
-  {
+  //changes style relative to length of compensation
+  if (cad_length_minimal > 10) {
 
-     cad_minimal.style.fontSize = 15 - qtyVal+'px';
-    // cad_minimal.style.marginTop = 9 + qtyVal+'px';
-     make_minimal.style.fontSize = 18 - qtyVal+'px';
-     co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
+    var relative_font_size = Math.floor(14 - cad_length_minimal / 12);
+    var relative_size_diff = 12 - relative_font_size;
 
-  }else{
+  } else if (cad_length_minimal > 7) {
 
-    cad_minimal.style.fontSize = '18px';
-  //  cad_minimal.style.marginTop = '12px';
-    make_minimal.style.fontSize = '21px';
-    co2ok_logo_minimal.style.width = '55px';
+    var relative_font_size = Math.floor(14 - cad_length_minimal / 14);
+    var relative_size_diff = 14 - relative_font_size;
 
   }
 
+  if (cad_length_minimal > 7) {
+
+    cad_minimal.style.fontSize = relative_font_size - relative_size_diff + 'px';
+    make_minimal.style.fontSize = relative_font_size - relative_size_diff + 3 + 'px';
+    co2ok_logo_minimal.style.width = 45 - relative_size_diff + 'px';
+    comp_amount_label_minimal.style.marginLeft = -(10 + (cad_length_minimal * 2)) + 'px';
+    comp_amount_label_minimal.style.marginTop = '-4px';
+    comp_amount_label_minimal.style.width = 70 + cad_length_minimal + 'px';
+    inner_border_minimal.style.width = 65 + cad_length_minimal + 'px';
+    co2ok_info_hitare_minimal.style.paddingLeft = cad_length_minimal * 2 + 'px';
+    co2ok_info_hitare_minimal.style.marginTop = '-3px';
+
+  }
 }
 
-function defaultButton()
-{
+function defaultButton() {
 
-  var cad = document.querySelector('.compensation_amount_default');
   var make = document.querySelector('.make_co2ok_default');
+  var cad = document.querySelector('.compensation_amount_default');
   var co2ok_logo = document.querySelector('.co2ok_logo_default');
+  var cad_length = cad.innerHTML.length;
 
-    try{
-      var qty = document.querySelector('.qty');
-      var qtyVal = qty.value.length;
-    }
-    catch (e) {
-      var qtyVal = 1;
-    }
+  //changes style relative to length of compensation
+  if (cad_length > 10) {
 
-    if(qtyVal > 1)
-    {
+    var relative_font_size = Math.floor(14 - cad_length / 14);
+    var relative_size_diff = 14 - relative_font_size;
+    cad.style.marginTop = relative_font_size + 'px';
 
-       cad.style.fontSize = 16 - qtyVal+'px';
-       cad.style.marginTop = 12 + qtyVal+'px';
-       make.style.fontSize = 18 - qtyVal+'px';
-       co2ok_logo.style.width = 55 - qtyVal+'px';
+  } else if (cad_length > 7) {
 
-    }else{
+    var relative_font_size = Math.floor(16 - cad_length / 16);
+    var relative_size_diff = 16 - relative_font_size;
+    cad.style.marginTop = relative_font_size - 4 + 'px';
 
-      cad.style.fontSize = '16px';
-      cad.style.marginTop = '12px';
-      make.style.fontSize = '18px';
-      co2ok_logo.style.width = '55px';
+  }
 
-    }
+  if (cad_length > 7) {
 
+    cad.style.fontSize = relative_font_size - relative_size_diff + 'px';
+    cad.style.left = '-20px';
+    make.style.fontSize = relative_font_size - relative_size_diff + 1 + 'px';
+    co2ok_logo.style.width = 45 - relative_size_diff + 'px';
 
+  }
 }
 
 
-if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_default') != null){
+if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_default') != null) {
 
    defaultButton();
 
-}else if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_minimal') != null){
+} else if(document.querySelector('.qty') != null && document.querySelector('.compensation_amount_minimal') != null) {
 
    minimumButton();
 
@@ -84,8 +86,7 @@ if(document.querySelector('.qty') != null && document.querySelector('.compensati
 
 var co2ok_global = {
 
-    IsMobile: function()
-    {
+    IsMobile: function() {
         // if one of the Mobile models, IsMobile is true.
         var IsMobile = false;
         if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
@@ -98,8 +99,7 @@ var co2ok_global = {
 
 }
 
-var Co2ok_JS = function ()
-{
+var Co2ok_JS = function () {
 
     var image_url = plugin.url;
 
@@ -151,171 +151,37 @@ var Co2ok_JS = function ()
 
     return {
 
-        Init: function ()
-        {
+        Init: function () {
             this.RegisterBindings();
             this.RegisterInfoBox();
             this.RegisterRefreshHandling();
 
             var _this = this;
 
-
             jQuery(document).ready(function () {
                 function compensationAmountTextSize() {
 
                     //cad = compensation_amount_default
                     _this.GetPercentageFromMiddleware();
-                    var pathName = window.location.pathname;
-                    var make_minimal = document.querySelector('.make_co2ok_minimal');
+                    // var pathName = window.location.pathname;
+                    // var make_minimal = document.querySelector('.make_co2ok_minimal');
 
-                    var cad = document.querySelector('.compensation_amount_default');
-                    var make = document.querySelector('.make');
-                    var co2ok_logo = document.querySelector('.co2ok_logo_default');
-
-                    //cad = compensation_amount_minimun
-                    var cad_minimal = document.querySelector('.compensation_amount_minimal');
-                    var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
-                    var compensation_amount_global = document.querySelector('.compensation_amount_global');
-                    var comp_amount_label_minimal = document.querySelector('.comp_amount_label_minimal');
-                  //  var global = document.querySelector('.global');
-
-                    if(document.querySelector('.qty') != null){
-
-                      try{
-                        var qty = document.querySelector('.qty');
-                        var qtyVal = qty.value.length;
-                      }
-                      catch (e) {
-                        var qtyVal = 1;
-                      }
-                  
-                      if(co2ok_temp_global.id == 'default_co2ok_temp')
-                      {
+                      if(co2ok_temp_global.id == 'default_co2ok_temp') {
 
                         defaultButton();
 
-                      }else{
+                      } else {
 
                         minimumButton();
 
                       }
-
-                    }else{
-
-                      if(document.querySelector('.productQuantity') != null){
-                       checkoutButton();
-                      }
-
-                    }
-
-
-                    function defaultButton()
-                    {
-
-                      if(qtyVal > 1)
-                      {
-
-                        cad.style.fontSize = 16 - qtyVal+'px';
-                        cad.style.marginTop = 10 + qtyVal+'px';
-                        make.style.fontSize = 18 - qtyVal+'px';
-                        co2ok_logo.style.width = 55 - qtyVal+'px';
-
-                      }else{
-
-                        cad.style.fontSize = '16px';
-                        cad.style.marginTop = '10px';
-                        make.style.fontSize = '18px';
-                        co2ok_logo.style.width = '55px';
-
-                      }
-
-                    }
-
-
-                    function minimumButton()
-                    {
-
-                      var compensation_amount_minimal = document.querySelector('.compensation_amount_minimal');
-
-                      if(qtyVal > 1)
-                      {
-
-                         cad_minimal.style.fontSize = 15 - qtyVal+'px';
-                        // cad_minimal.style.marginTop = 9 + qtyVal+'px';
-                         make_minimal.style.fontSize = 18 - qtyVal+'px';
-                         co2ok_logo_minimal.style.width = 52 - qtyVal+'px';
-                         comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - qtyVal +'px';
-
-                      }else{
-
-                        cad_minimal.style.fontSize = '18px';
-                      //  cad_minimal.style.marginTop = '12px';
-                        make_minimal.style.fontSize = '21px';
-                        co2ok_logo_minimal.style.width = '55px';
-                        comp_amount_label_minimal.style.marginLeft = '-3px';
-
-                      }
-
-                    }
-
-
-                    function checkoutButton()
-                    {
-
-                      var productQuantity = document.querySelector('.product-quantity');
-                      var comp_amount_label_minimal = document.querySelector('.comp_amount_label_minimal');
-                      var productQuantityLength = productQuantity.textContent.length - 2;
-                      var compensation_amount_minimal = document.querySelector('.compensation_amount_minimal');
-
-                        var compensationAmountLength = compensation_amount_global.textContent.length;
-                        if(co2ok_temp_global.id == 'default_co2ok_temp')
-                        {
-
-                            if(productQuantityLength > 1)
-                            {
-
-                              cad.style.fontSize = 18 - productQuantityLength +'px';
-                              cad.style.marginTop = 12 + productQuantityLength +'px';
-                              make.style.fontSize = 21 - productQuantityLength +'px';
-                              co2ok_logo.style.width = 55 - productQuantityLength +'px';
-
-                            }else{
-
-                              cad.style.fontSize = '16px';
-                              make.style.fontSize = '18px';
-                              co2ok_logo.style.width = '55px';
-
-                            }
-
-                        }else{
-
-                            if(compensationAmountLength > 8)
-                            {
-
-                              cad_minimal.style.fontSize = 18 - (compensationAmountLength - 3)+'px';
-                              make_minimal.style.fontSize = 21 - (compensationAmountLength - 3)+'px';
-                              co2ok_logo_minimal.style.width = 55 - (compensationAmountLength - 3)+'px';
-                              comp_amount_label_minimal.style.marginLeft = -(10 + compensation_amount_minimal.textContent.length) - compensationAmountLength +'px';
-
-                            }else{
-
-                              cad_minimal.style.fontSize = '18px';
-                              make_minimal.style.fontSize = '21px';
-                              co2ok_logo_minimal.style.width = '55px';
-                              comp_amount_label_minimal.style.marginLeft = '-3px';
-
-                            }
-
-                        }
-
-                    }
-                }
+                  }
 
                 if(jQuery(".co2ok_container").length ) {
                     compensationAmountTextSize();
                 }
 
-                jQuery( document.body ).on( 'updated_cart_totals', function(){
+                jQuery( document.body ).on( 'updated_cart_totals', function() {
                     compensationAmountTextSize();
 
                 });
@@ -328,12 +194,11 @@ var Co2ok_JS = function ()
                 jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
             }
 
-            if(jQuery('#co2ok_cart').is(":checked"))
-            {
+            if(jQuery('#co2ok_cart').is(":checked")) {
                 jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
             }
 
-            if(jQuery("#co2ok_cart").length){ // if the co2ok cart is present, set text and logo based on background brightness
+            if(jQuery("#co2ok_cart").length) { // if the co2ok cart is present, set text and logo based on background brightness
                 // adaptiveTextColor();
 
                 // if(calcBackgroundBrightness() > 185){ // picks logo based on background brightness for minimal button design
@@ -345,8 +210,7 @@ var Co2ok_JS = function ()
             }
 
         },
-        GetPercentageFromMiddleware: function()
-        {
+        GetPercentageFromMiddleware: function() {
             var merchant_id = jQuery('.co2ok_container').attr('data-merchant-id');
             var products = JSON.parse(decodeURIComponent(jQuery('.co2ok_container').attr('data-cart')));
 
@@ -354,8 +218,7 @@ var Co2ok_JS = function ()
                 products: []
             }
 
-            jQuery(products).each(function(i)
-            {
+            jQuery(products).each(function(i) {
                 var ProductData ={
                     name: products[i].name,
                     brand: products[i].brand,
@@ -375,14 +238,12 @@ var Co2ok_JS = function ()
 
             var promise = CO2ok.getFootprint(merchant_id,CartData);
 
-            promise.then(function(percentage)
-            {
+            promise.then(function(percentage) {
                 var data = {
                     'action': 'co2ok_ajax_set_percentage',
                     'percentage': percentage
                 };
-                jQuery.post(ajax_object.ajax_url, data, function(response)
-                {
+                jQuery.post(ajax_object.ajax_url, data, function(response) {
                     if (typeof response.compensation_amount != 'undefined') {
                         jQuery('[class*="compensation_amount"]').html('+'+response.compensation_amount);
                     }
@@ -391,11 +252,9 @@ var Co2ok_JS = function ()
 
         },
 
-        RegisterBindings: function()
-        {
+        RegisterBindings: function() {
 
-            jQuery('#co2ok_cart').click(function (event)
-            {
+            jQuery('#co2ok_cart').click(function (event) {
 
                  function placeVideoRewardBox() {
 
@@ -425,8 +284,7 @@ var Co2ok_JS = function ()
                       });
                     }
                   }
-                  function ShowVideoRewardBox()
-                  {
+                  function ShowVideoRewardBox() {
                     jQuery(".co2ok_videoRewardBox_container").removeClass('VideoRewardBox-hidden')
                     jQuery(".co2ok_videoRewardBox_container").addClass('ShowVideoRewardBox')
                     jQuery(".co2ok_videoRewardBox_container").css({
@@ -450,8 +308,7 @@ var Co2ok_JS = function ()
                         );
                     }
                   }
-                  function hideVideoRewardBox()
-                  {
+                  function hideVideoRewardBox() {
                     jQuery(".co2ok_videoRewardBox_container").removeClass('ShowVideoRewardBox')
                     jQuery(".co2ok_videoRewardBox_container").addClass('VideoRewardBox-hidden')
                     jQuery(".co2ok_videoRewardBox_container").css({
@@ -464,8 +321,7 @@ var Co2ok_JS = function ()
                     hideVideoRewardBox();
                 }
 
-                if(jQuery(this).is(":checked"))
-                {
+                if(jQuery(this).is(":checked")) {
                     jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
 
                     if (jQuery(".co2ok_videoRewardBox_container").length) {
@@ -483,21 +339,19 @@ var Co2ok_JS = function ()
 
                     if (jQuery('#co2ok_checkout_hidden').length === 0) {
                         jQuery('form.woocommerce-checkout, .woocommerce form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="1" style="display:none">');
-                    }
-                    else {
+                    } else {
                         jQuery('#co2ok_checkout_hidden').remove();
                         jQuery('form.woocommerce-checkout, .woocommerce form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="1" style="display:none">');
                     }
 
-                }else {
+                } else {
                     jQuery('.co2ok_checkbox_container').removeClass('selected');
                     jQuery('.co2ok_checkbox_container').addClass('unselected');
                     jQuery('.woocommerce-cart-form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_cart_hidden"  checked value="0" style="display:none">');
 
                     if (jQuery('#co2ok_checkout_hidden').length === 0) {
                         jQuery('form.woocommerce-checkout, .woocommerce form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="0" style="display:none">');
-                    }
-                    else {
+                    } else {
                         jQuery('#co2ok_checkout_hidden').remove();
                         jQuery('form.woocommerce-checkout, .woocommerce form').append('<input type="checkbox" class="input-checkbox " name="co2ok_cart" id="co2ok_checkout_hidden" checked value="0" style="display:none">');
                     }
@@ -506,19 +360,16 @@ var Co2ok_JS = function ()
 
 
                 jQuery('.woocommerce-cart-form, .woocommerce form').find('input.qty').first().unbind();
-                jQuery('.woocommerce-cart-form, .woocommerce form').find('input.qty').first().bind('change', function()
-                {
-                    setTimeout(function()
-                    // This timeout it to prevent multiple ajax calls when a user clicks multiple times (e.g. from 1 to 5 apples)
-                    {
+                jQuery('.woocommerce-cart-form, .woocommerce form').find('input.qty').first().bind('change', function() {
+                  // This timeout it to prevent multiple ajax calls when a user clicks multiple times (e.g. from 1 to 5 apples)
+                    setTimeout(function() {
                         jQuery("[name='update_cart']").trigger("click");
                     },200);
                 });
 
-                setTimeout(function()
-                {
+                setTimeout(function() {
                     jQuery('body').trigger('update_checkout');
-                    
+
                     // prevent update cart firing on cart+checkout pages
                     if (! jQuery( 'form.checkout' ).length) {
                       // This fixes fee adding for shops with a disabled update cart button
@@ -531,14 +382,12 @@ var Co2ok_JS = function ()
                 jQuery('.woocommerce-cart-form').find('input.qty').first().trigger("change");
             });
 
-            jQuery('#co2ok_cart, #checkbox_label, .co2ok_checkbox_container').click(function(event)
-            {
-                if(!jQuery(this).is("#co2ok_cart"))
-                {
+            jQuery('#co2ok_cart, #checkbox_label, .co2ok_checkbox_container').click(function(event) {
+                if(!jQuery(this).is("#co2ok_cart")) {
                     jQuery("[id='co2ok_cart']").trigger("click");
                 }
                 event.stopPropagation();
-            }).find('.co2ok_info_hitarea').click(function (event){
+            }).find('.co2ok_info_hitarea').click(function (event) {
                 event.stopPropagation();
             })
         },
@@ -569,8 +418,7 @@ var Co2ok_JS = function ()
             });
           }
         },
-        ShowInfoBox  : function()
-        {
+        ShowInfoBox  : function() {
             if (!jQuery(".co2ok_infobox_container").hasClass('ShowInfoBox')){
               jQuery(".co2ok_infobox_container").removeClass('infobox-hidden')
               jQuery(".co2ok_infobox_container").addClass('ShowInfoBox')
@@ -584,8 +432,7 @@ var Co2ok_JS = function ()
             }
         },
 
-        hideInfoBox : function()
-        {
+        hideInfoBox : function() {
             jQuery(".co2ok_infobox_container").removeClass('ShowInfoBox')
             jQuery(".co2ok_infobox_container").addClass('infobox-hidden')
             jQuery(".co2ok_container").css({
@@ -594,10 +441,7 @@ var Co2ok_JS = function ()
         },
 
 
-
-
-        modalRegex: function(e)
-         {
+        modalRegex: function(e) {
              return jQuery(e.target).hasClass("svg-img") ||
              jQuery(e.target).hasClass("svg-img-large") ||
              jQuery(e.target).hasClass("text-block") ||
@@ -609,18 +453,16 @@ var Co2ok_JS = function ()
          },
 
 
-        RegisterInfoBox : function()
-        {
+        RegisterInfoBox : function() {
 
             var _this = this;
 
-            jQuery(".co2ok_info_keyboardarea").focus(function(){
+            jQuery(".co2ok_info_keyboardarea").focus(function() {
                 _this.ShowInfoBox();
                 jQuery(".first-text-to-select").focus();
             });
 
-            jQuery('body').click(function(e)
-            {
+            jQuery('body').click(function(e) {
               if(!_this.modalRegex(e))
               {
                 _this.hideInfoBox();
@@ -631,7 +473,7 @@ var Co2ok_JS = function ()
 
             });
 
-            jQuery('body').on("touchstart",function(e){
+            jQuery('body').on("touchstart",function(e) {
 
               if(!_this.modalRegex(e)){
                 _this.hideInfoBox();
@@ -659,8 +501,7 @@ var Co2ok_JS = function ()
             }
         },
 
-        RegisterRefreshHandling : function()
-        {
+        RegisterRefreshHandling : function() {
           // Some shops actually rerender elements such as our button upon cart update
           // this ofc breaks our bindings.
           jQuery( document.body ).on( 'updated_cart_totals', function(){
@@ -681,14 +522,13 @@ var Co2ok_JS = function ()
 
 jQuery(document).ready(function() {
   // Checks wether A/B testing is enabled and dis/en-ables JS accordingly and removes the co2ok button
-  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && !Co2ok_JS().getCookieValue('co2ok_ab_hide'))
-  {
+  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && !Co2ok_JS().getCookieValue('co2ok_ab_hide')) {
     var future = new Date();
     future.setTime(future.getTime() + 30 * 24 * 3600 * 1000);
     var random_A_or_B = Math.round(Math.random());
     document.cookie = "co2ok_ab_hide=" + random_A_or_B + "; expires=" + future.toUTCString() + "; path=/";
   }
-  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && Co2ok_JS().getCookieValue('co2ok_ab_hide')){
+  if (Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && Co2ok_JS().getCookieValue('co2ok_ab_hide')) {
     if (Co2ok_JS().getCookieValue('co2ok_ab_hide') % 2 == 0)
     {
       jQuery('.co2ok_container').remove();
@@ -696,7 +536,7 @@ jQuery(document).ready(function() {
     }
   }
 
-  if(jQuery("#co2ok_cart").length){
+  if(jQuery("#co2ok_cart").length) {
       Co2ok_JS().Init()
   }
 })

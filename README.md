@@ -51,12 +51,12 @@ To get Gulp working you follow the following steps:
 
 
 ### Docker, WordPress and WooCommerce
-Upon installing Docker Desktop, clone the repo and, from repo directory, run:
+If desired, install Docker Desktop. Else/then clone the repo and, from repo directory, run:
 ```
 docker-compose up
 ```
 
-Open repo in browser from Docker Dashboard and follow the instructions to setup a WordPress page.
+Open repo in browser from Docker Dashboard and follow the instructions to setup a WordPress page. Or, if you are not using Docker Dashboard, open browser and go to localhost:8080
 
 Next, WooCommerce must be added. Follow this link, and use the Docker command line to add WooCommerce to your Docker:
 https://hub.docker.com/r/julianxhokaxhiu/docker-woocommerce
