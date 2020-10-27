@@ -12,6 +12,9 @@ function minimumButton() {
 
   var cad_length_minimal = cad_minimal.innerHTML.length;
 
+  //removes any white spaces in compensataion amount
+  cad_minimal = cad_minimal.innerHTML.replace(/\s+/g, '');
+
   //changes style relative to length of compensation
   if (cad_length_minimal > 10) {
 
@@ -46,6 +49,9 @@ function defaultButton() {
   var cad = document.querySelector('.compensation_amount_default');
   var co2ok_logo = document.querySelector('.co2ok_logo_default');
   var cad_length = cad.innerHTML.length;
+
+  //removes white spaces from compensataion amount
+  cad = cad.innerHTML.replace(/\s+/g, '');
 
   //changes style relative to length of compensation
   if (cad_length > 10) {
