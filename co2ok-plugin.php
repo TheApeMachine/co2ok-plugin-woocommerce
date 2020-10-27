@@ -945,12 +945,25 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // gets the last 2000 A/B orders
         $args = array(
         'limit' => 2000,
-        // 'date_created' => '2019-10-01...2021-01-01',
         'orderby' => 'date',
         'order' => 'DESC',
         'meta_key' => '_co2ok-shown',
         'meta_compare' => 'EXISTS',
         );
+
+        // Since Douchezaak has > 2000 orders with some AB and some not, set the correct start date for them 
+        if (strpos($site_name, 'douchezaak') !== false) {
+            Co2ok_Plugin::remoteLogging(json_encode(["Douchezaak A/B result calculation start"]));
+            $args = array(
+                'limit' => 2000,
+                'date_created' => '2020-10-16...2021-10-01',
+                'orderby' => 'date',
+                'order' => 'DESC',
+                'meta_key' => '_co2ok-shown',
+                'meta_compare' => 'EXISTS',
+                );
+        }
+
         $orders = wc_get_orders( $args );
 
         $shown_old_count = 0; // orders with CO2ok shown OLD
