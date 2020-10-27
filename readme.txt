@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.5.1
 Requires PHP: 5.5
 WC tested up to: 4.5.2
-Stable tag: 1.0.8.1
+Stable tag: 1.0.8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,10 @@ We gather as little data as possible, specifically:
 4. Show off your impact with our widgets!
 
 == Changelog ==
+
+= 1.0.8.2
+* Increases CSS compatiblity of button
+* Adds support for large numbers or currency symbols
 
 = 1.0.8.1
 * Fixes A/B bug
