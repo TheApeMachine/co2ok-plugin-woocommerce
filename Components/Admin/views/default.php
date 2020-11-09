@@ -77,29 +77,28 @@
                         [co2ok_widget size="XL" color="gray"]<br>
                         
 
-                        <h2>GIF feature</h2>
-                        <p>We believe in putting smiles on customers faces - a happy customer is a returning one. One of the ways we try to put smiles on peoples faces is our GIF feature - it shows a fun GIF like the one above to customers if they choose CO2 compensation. Of course there are differing opinions on this - use the below setting to disable this feature.</p>
+                        <h2>Compensation preferences:</h2>
+                        <p>If you want te temporarily or permanently compensate the products you sell yourself, you can choose to do so here. This will cost you about 2% on each product, which we will bill you once every few months.</p>
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_gif_feature" id="gif_on" value="on" <?php if($co2ok_gif_feature == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="gif_on">GIFs ON. (Preferred)</label>
+                            <input type="radio" name="co2ok_cfp" id="comp_on" value="on" <?php if($co2ok_cfp == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="comp_on">Shop pays to compensate all purchases.</label>
                             <br>
-                            <input type="radio" name="co2ok_gif_feature" id="gif_off" value="off" <?php if($co2ok_gif_feature == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="gif_off">GIFs OFF.</label>
+                            <input type="radio" name="co2ok_cfp" id="comp_off" value="off" <?php if($co2ok_cfp == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="comp_off">Customer can choose to compensate purchases.</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>
 
-                        <h2>Compensation preferences:</h2>
                         <p>By default we have set the button to OFF. But you can decide to set the CO2 OK button to default ON. This way you are in control,
                         helping the environment even more!</p>
                         
                         <form method="POST">
                         
                             <input type="radio" name="co2ok_optout" id="comp_on" value="on" <?php if($co2ok_optout == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="comp_on">Compensation default ON. (Preferred)</label>
+                            <label style="display: inline" for="comp_on">Compensation default ON.</label>
                             <br>
                             <input type="radio" name="co2ok_optout" id="comp_off" value="off" <?php if($co2ok_optout == 'off') echo "checked" ?> >
                             <label style="display: inline" for="comp_off">Compensation default OFF.</label>
@@ -149,6 +148,21 @@
                                 <option value="checkout_order_review" <?php if($co2ok_checkout_placement == 'checkout_order_review') echo "selected" ?>>Before Order Review (Recommended)</option>
                             </select>
 
+                            <p style="margin-top: 12px">
+                                <input type="submit" value="Save" class="button button-primary button-large"></p>
+                        </form>
+
+                        <h2>GIF feature</h2>
+                        <p>We believe in putting smiles on customers faces - a happy customer is a returning one. One of the ways we try to put smiles on peoples faces is our GIF feature - it shows a fun GIF like the one above to customers if they choose CO2 compensation. Of course there are differing opinions on this - use the below setting to disable this feature.</p>
+                        
+                        <form method="POST">
+                        
+                            <input type="radio" name="co2ok_gif_feature" id="gif_on" value="on" <?php if($co2ok_gif_feature == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="gif_on">GIFs ON. (Preferred)</label>
+                            <br>
+                            <input type="radio" name="co2ok_gif_feature" id="gif_off" value="off" <?php if($co2ok_gif_feature == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="gif_off">GIFs OFF.</label>
+                            
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>

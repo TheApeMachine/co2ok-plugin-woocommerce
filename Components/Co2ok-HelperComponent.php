@@ -50,6 +50,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
             echo $templateRenderer->render(get_option('co2ok_button_template', 'co2ok_button_template_default'),
             array('cart' => $cart,
                     'co2ok_session_opted' =>  $woocommerce->session->co2ok,
+                    'co2ok_cfp' =>  get_option('co2ok_cfp', 'off'),
                     'currency_symbol' =>get_woocommerce_currency_symbol(),
                     'surcharge' => $surcharge,
                     'co2ok_gif_feature' => get_option('co2ok_gif_feature', 'on'),

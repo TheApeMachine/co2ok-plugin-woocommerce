@@ -18,14 +18,14 @@
 
                     <span class="make make_co2ok_default"><?php echo __( 'Make ', 'co2ok-for-woocommerce' ); ?> </span>
                     <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo', 'co2ok_logo_default', 'co2ok_logo', 'skip-lazy'); ?>
-                    <span class="compensation_amount_default compensation_amount_global">+<?php echo $currency_symbol.''. $surcharge ?> </span>
 
-                    <?php
-
+                    <?php if($co2ok_cfp != "on") {
+                        echo '<span class="compensation_amount_default compensation_amount_global">+' .
+                        $currency_symbol.''. $surcharge ."</span>";
+                        
                         $priceArr = str_split($surcharge);
                         $price_length = count($priceArr);
-
-                     ?>
+                    }?>
 
                 </div>
             </a>
