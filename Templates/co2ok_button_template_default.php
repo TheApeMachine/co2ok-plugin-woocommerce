@@ -67,33 +67,73 @@
         </span>
         </a>
 
-        <div class="co2ok_infobox_container co2ok-popper" id="infobox-view">
+        <div class="co2ok_infobox_container co2ok-popper checkout-hovercard infobox-hidden" id="infobox-view">
 
-        <div class="inner-wrapper">
-        <a href="#!" input type="text" role="button" tabindex="0" class="selectable-text first-text-to-select" style="outline: none; -webkit-appearance: none;">
-        <p class="text-block greyBorder"><?php echo __('During manufacturing and shipping of products, greenhouse gases are emitted',  'co2ok-for-woocommerce' );?></p>
-        </a>
-        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/fout.svg', 'svg-img', '  co2ok_info_hover_image', 'a3-notlazy'); ?>
-        </div>
+            <div class="co2ok-hovercard-exit checkout-hovercard">
+                <!-- <img alt="exit" title="exit_hovercard" src="${_this.image_url}/exit.png" class="co2ok-exit-button checkout-hovercard"> -->
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/exit.png', 'co2ok-exit-button', 'co2ok-exit-button checkout-hovercard', 'a3-notlazy'); ?>
+            </div>
 
-        <div class="inner-wrapper">
-        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/even.svg', 'svg-img-large', '  co2ok_info_hover_image', 'a3-notlazy'); ?>
-        <a href="#!" input type="text" role="button" tabindex="0" class="selectable-text" style="outline: none; -webkit-appearance: none;">
-        <p class="text-block greyBorder"><?php echo __('CO&#8322ok prevents the same amount of emissions',  'co2ok-for-woocommerce' );?></p>
-        </a>
-        </div>
+            <div class="hovercard-wrapper checkout-hovercard">
+                <!-- <img alt="Production emissions" title="Production emissions" src="${_this.image_url}/factory.png" class="info-hover-png png-right checkout-hovercard"> -->
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/factory.png', 'info-hover-png', 'info-hover-png png-right checkout-hovercard', 'a3-notlazy'); ?>
+                <p class="steps step-one left checkout-hovercard" style="padding-top: 19px">
+                    <?php echo __('Every product has a climate impact through transport and production',  'co2ok-for-woocommerce' );?>>
 
-        <div class="inner-wrapper">
-        <a href="#!" input type="text" role="button" tabindex="0" class="selectable-text" style="outline: none; -webkit-appearance: none;">
-        <p class="text-block"><?php echo __('This way, your purchase is climate friendly!',  'co2ok-for-woocommerce' );?></p>
-        </a>
-        </div>
+                </p>
+            </div>
 
-        <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo_default_info hover-link', 'co2ok_logo_default_info', 'a3-notlazy'); ?></a>
-        <span class="hover-link">
-          <a  class="hover-link" target="_blank" href="http://www.co2ok.eco/co2-compensatie"><?php
-            echo  __( 'How CO&#8322; compensation works', 'co2ok-for-woocommerce' );
-            ?></a> </span>
+            <div class="hovercard-road checkout-hovercard">
+                <!-- <img alt="road" title="Production emissions" src="${_this.image_url}/gray_road.png" class="info-hover-road-png top checkout-hovercard"> -->
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/gray_road.png', 'info-hover-road-png', 'info-hover-road-png top-road checkout-hovercard', 'a3-notlazy'); ?>
+            </div>
+
+            <div class="hovercard-wrapper checkout-hovercard">
+                <!-- <img alt="Shipping emissions" title="Shipping emissions" src="${_this.image_url}/green_truck.png" class="info-hover-png png-left png-truck checkout-hovercard"> -->
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck.png', 'info-hover-png', 'png-left info-hover-png png-truck checkout-hovercard', 'a3-notlazy'); ?>
+                <p class="steps step-two right checkout-hovercard" style="padding-top: 40px;">
+                    <?php echo __('By financing projects that prevent the same amount of emissions, this webshop neutralises these effects',  'co2ok-for-woocommerce' );?>
+                </p>
+            </div>
+
+            <div class="hovercard-road checkout-hovercard">
+                <!-- <img alt="road" title="Production emissions" src="${_this.image_url}/green_road_left.png" class="info-hover-road-png middle checkout-hovercard"> -->
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_road_left.png', 'info-hover-road-png', 'info-hover-road-png middle-road checkout-hovercard', 'a3-notlazy'); ?>
+
+            </div>
+
+            <div class="hovercard-wrapper checkout-hovercard">
+                <!-- <img alt="checkmark" title="checkmark" src="${_this.image_url}/checkmark11.png" class="info-hover-png png-button checkout-hovercard"> -->
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/checkmark11.png', 'info-hover-png', 'png-button info-hover-png checkout-hovercard', 'a3-notlazy'); ?>
+                <p class="steps step-three left checkout-hovercard" style="padding-bottom: 53px; padding-top: 32px;">
+                    <?php echo __('By financing projects that prevent the same amount of emissions, this webshop neutralises these effects',  'co2ok-for-woocommerce' );?>
+                </p>
+            </div>
+
+            <div class="hovercard-road checkout-hovercard">
+                <!-- <img alt="road" title="Production emissions" src="${_this.image_url}/green_road_right.png" class="info-hover-road-png bottom checkout-hovercard"> -->
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_road_right.png', 'info-hover-road-png', 'bottom-road info-hover-road-png checkout-hovercard', 'a3-notlazy'); ?>
+            </div>
+
+            <div class="hovercard-wrapper checkout-hovercard">
+                <!-- <img alt="Compensate production" title="Compensate production" src="${_this.image_url}/renewable_energy.png" class="info-hover-png png-left png-renewable checkout-hovercard"> -->
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/renewable_energy.png', 'info-hover-png', 'info-hover-png png-left png-renewable checkout-hovercard', 'a3-notlazy'); ?>
+                <p class="steps step-four right checkout-hovercard" style="padding-bottom: 22px; margin-top: -5px;">
+                    <?php echo __('That means you can shop guilt-free and together we help the climate 💚',  'co2ok-for-woocommerce' );?>
+                </p>
+            </div>
+
+            <!-- <img class="logo-hovercard checkout-hovercard" href="http://www.co2ok.eco/co2-compensatie" src="${_this.image_url}/logo.svg"> -->
+            <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'logo-hovercard', 'logo-hovercard checkout-hovercard', 'a3-notlazy'); ?></a>
+
+            <span class="button-hovercard-links checkout-hovercard">
+                <a class="co2ok-button checkout-hovercard" href="http://www.co2ok.eco/co2-compensatie"><?php
+                    echo  __( 'How CO&#8322; compensation works', 'co2ok-for-woocommerce' );
+                ?></a>
+            </span>
+            <!-- <img class="branch-png checkout-hovercard" src="${_this.image_url}/branch.png"> -->
+            <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/branch.png', 'branch-png', 'branch-png checkout-hovercard', 'a3-notlazy'); ?>
+
         </div>
 
         <?php if ( $co2ok_gif_feature == 'on' ): ?>
@@ -105,7 +145,7 @@
             </video>
 
         </div>
-        <?php endif; ?>
+    <?php endif; ?>
 
 
     </span>
