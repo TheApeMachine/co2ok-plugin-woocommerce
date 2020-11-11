@@ -608,6 +608,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             }
         }
 
+        if (get_option('co2ok_cfp') == 'on'){
+            $compensationCost = $this->co2ok_calculateSurcharge();
+        }
+
         $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
         $merchantId = get_option('co2ok_id', false);
@@ -695,7 +699,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                         $this->co2ok_storeTransaction($order_id);
                     }
                 }
-                break;
+
+                if (get_option('co2ok_cfp') == 'on')
+                    $this->co2ok_storeTransaction($order_id);
+
+            break;
 
             case "refunded":
             case "cancelled":
