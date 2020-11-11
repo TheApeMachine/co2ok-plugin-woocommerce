@@ -21,7 +21,7 @@
 
                         echo '<span class="compensation_amount_default compensation_amount_global">+' .
                         $currency_symbol.''. $surcharge ."</span>";
-                        
+
                         $priceArr = str_split($surcharge);
                         $price_length = count($priceArr);
                     ?>
@@ -41,7 +41,7 @@
                         ?>
                 </span>
                 <span>
-                    <?php 
+                    <?php
 
                     $variables = array(
                         '{COMPENSATION_COUNT}' => $compensation_count,
@@ -50,7 +50,7 @@
                     ?>
                 </span>
                 <span>
-                    <?php 
+                    <?php
 
                     $variables = array(
                         '{KM}' => $impact_total * 5000);
@@ -68,31 +68,49 @@
 
         <div class="co2ok_infobox_container co2ok-popper" id="infobox-view">
 
-        <div class="inner-wrapper">
-        <a href="#!" input type="text" role="button" tabindex="0" class="selectable-text first-text-to-select" style="outline: none; -webkit-appearance: none;">
-        <p class="text-block greyBorder"><?php echo __('During manufacturing and shipping of products, greenhouse gases are emitted',  'co2ok-for-woocommerce' );?></p>
-        </a>
-        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/fout.svg', 'svg-img', '  co2ok_info_hover_image', 'a3-notlazy'); ?>
-        </div>
+            <div class="default-co2ok-hovercard-exit checkout-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/exit.png', 'co2ok-exit-button', 'default-co2ok-exit-button checkout-hovercard', 'a3-notlazy'); ?>
+            </div>
 
-        <div class="inner-wrapper">
-        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/even.svg', 'svg-img-large', '  co2ok_info_hover_image', 'a3-notlazy'); ?>
-        <a href="#!" input type="text" role="button" tabindex="0" class="selectable-text" style="outline: none; -webkit-appearance: none;">
-        <p class="text-block greyBorder"><?php echo __('CO&#8322ok prevents the same amount of emissions',  'co2ok-for-woocommerce' );?></p>
-        </a>
-        </div>
+            <div class="hovercard-wrapper checkout-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/factory.png', 'info-hover-png', 'default--png default-png-right checkout-hovercard', 'a3-notlazy'); ?>
+                <p class="default-steps default-step-one default-left checkout-hovercard" style="padding-top: 19px">
+                    <?php echo __('Every product has a climate impact through transport and production',  'co2ok-for-woocommerce' );?>>
 
-        <div class="inner-wrapper">
-        <a href="#!" input type="text" role="button" tabindex="0" class="selectable-text" style="outline: none; -webkit-appearance: none;">
-        <p class="text-block"><?php echo __('This way, your purchase is climate friendly!',  'co2ok-for-woocommerce' );?></p>
-        </a>
-        </div>
+                </p>
+            </div>
 
-        <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'co2ok_logo_default_info hover-link', 'co2ok_logo_default_info', 'a3-notlazy'); ?></a>
-        <span class="hover-link">
-          <a  class="hover-link" target="_blank" href="http://www.co2ok.eco/co2-compensatie"><?php
-            echo  __( 'How CO&#8322; compensation works', 'co2ok-for-woocommerce' );
-            ?></a> </span>
+            <div class="hovercard-road checkout-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/gray_road.png', 'info-hover-road-png', 'default-road-png default-top-road checkout-hovercard', 'a3-notlazy'); ?>
+            </div>
+
+            <div class="default-wrapper checkout-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck.png', 'info-hover-png', 'default-png-left default-png default-png-truck checkout-hovercard', 'a3-notlazy'); ?>
+                <p class="default-steps default-step-two default-right checkout-hovercard" style="padding-top: 40px;">
+                    <?php echo __('By financing projects that prevent the same amount of emissions, this webshop neutralises these effects',  'co2ok-for-woocommerce' );?>
+                </p>
+            </div>
+
+            <div class="hovercard-road checkout-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_road_right.png', 'info-hover-road-png', 'default-bottom-road default-road-png checkout-hovercard', 'a3-notlazy'); ?>
+            </div>
+
+            <div class="default-wrapper checkout-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/renewable_energy.png', 'info-hover-png', 'default-png default-png-left default-png-renewable checkout-hovercard', 'a3-notlazy'); ?>
+                <p class="default-steps default-step-three default-left checkout-hovercard" style="padding-bottom: 22px; margin-top: -5px;">
+                    <?php echo __('That means you can shop guilt-free and together we help the climate 💚',  'co2ok-for-woocommerce' );?>
+                </p>
+            </div>
+
+            <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'logo-hovercard', 'default-logo-hovercard checkout-hovercard', 'a3-notlazy'); ?></a>
+
+            <span class="default-button-hovercard-links checkout-hovercard">
+                <a class="default-co2ok-button checkout-hovercard" href="http://www.co2ok.eco/co2-compensatie"><?php
+                    echo  __( 'How CO&#8322; compensation works', 'co2ok-for-woocommerce' );
+                ?></a>
+            </span>
+            <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/branch.png', 'branch-png', 'default-branch-png checkout-hovercard', 'a3-notlazy'); ?>
+
         </div>
 
         <?php if ( $co2ok_gif_feature == 'on' ): ?>
