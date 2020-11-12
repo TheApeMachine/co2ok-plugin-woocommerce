@@ -70,8 +70,8 @@
 
             <div class="default-wrapper default-info-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/factory.png', 'default-png', 'default-png default-png-right default-info-hovercard', 'a3-notlazy'); ?>
-                <p class="default-steps step-one default-left default-info-hovercard" style="padding-top: 19px">
-                    <?php echo __('Every product has a climate impact through transport and production',  'co2ok-for-woocommerce' );?>>
+                <p class="default-steps step-one default-left default-info-hovercard" style="padding-top: 10px">
+                    <?php echo __('Every product has a climate impact through transport and production',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>
 
@@ -81,8 +81,8 @@
 
             <div class="default-wrapper default-info-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck_right.png', 'default-png', 'default-png-left default-png default-png-truck default-info-hovercard', 'a3-notlazy'); ?>
-                <p class="default-steps step-two default-right default-info-hovercard" style="padding-top: 24px;">
-                    <?php echo __('By financing projects that prevent the same amount of emissions, this webshop neutralises these effects',  'co2ok-for-woocommerce' );?>
+                <p class="default-steps step-two default-right default-info-hovercard" style="padding-top: 20px; padding-bottom: 5px;">
+                    <?php echo __('This webshop neutralizes emissions from transport',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>
 
@@ -94,7 +94,7 @@
             <div class="default-wrapper default-info-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/checkmark11.png', 'default-png', 'default-png-button default-png default-info-hovercard', 'a3-notlazy'); ?>
                 <p class="default-steps step-three default-left default-info-hovercard" style="padding-bottom: 38px; padding-top: 16px;">
-                    <?php echo __('By financing projects that prevent the same amount of emissions, this webshop neutralises these effects',  'co2ok-for-woocommerce' );?>
+                    <?php echo __('You can neutralize the impact of production with your contribution',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>
 
@@ -106,7 +106,7 @@
             <div class="default-wrapper default-info-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/renewable_energy.png', 'default-png', 'default-png default-png-left default-png-renewable default-info-hovercard', 'a3-notlazy'); ?>
                 <p class="default-steps step-four default-right default-info-hovercard" style="margin-top: -16px;">
-                    <?php echo __('That means you can shop guilt-free and together we help the climate 💚',  'co2ok-for-woocommerce' );?>
+                    <?php echo __('We finance projects that directly prevent emissions and together we help the climate 💚',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>
 

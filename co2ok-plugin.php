@@ -860,10 +860,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
 
         $optoutIsTrue = get_option('co2ok_optout', 'off');
+        $cfpOpt = get_option('co2ok_cfp', 'off');
 
         if ($optoutIsTrue == 'on' && ! $woocommerce->session->__isset('co2ok'))
             $woocommerce->session->co2ok = 1;
-            
+
+        if ($cfpOpt == 'off')
+            $woocommerce->session->co2ok = 0;
+
         if ($woocommerce->session->co2ok == 1)
             $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, 'co2ok');
 

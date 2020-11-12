@@ -44,33 +44,42 @@ msgstr "http://www.co2ok.eco/"
 msgid "CO2 compensation"
 msgstr "CO2 compensatie"
 
-#: Templates/co2ok_button_template_default.php:21
+#: Templates/co2ok_button_template_default.php:19
 msgid "Make "
 msgstr "Maak "
 
-#: Templates/co2ok_button_template_default.php:23
+#: Templates/co2ok_button_template_default.php:40
 msgid "Make my purchase climate friendly"
 msgstr "Maak mijn aankoop klimaatvriendelijk"
 
-#: Templates/co2ok_button_template_default.php:50
+#: Templates/co2ok_button_template_default.php:49
 msgid "{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction"
 msgstr "{COMPENSATION_COUNT}x gecompenseerd; {IMPACT}t CO&#8322 reductie"
 
-#: Templates/co2ok_button_template_default.php:50
+#: Templates/co2ok_button_template_default.php:57
 msgid "This is equivalent to {KM} km of flying ✈️"
 msgstr "Dit staat gelijk aan {KM} km vliegen ✈️"
 
-#: Templates/co2ok_button_template_default.php:45
-msgid "During manufacturing and shipping of products, greenhouse gases are emitted"
-msgstr "Tijdens productie en vervoer van producten komen broeikasgassen vrij"
+#: Templates/co2ok_button_template_default.php:74
+msgid "Every product has a climate impact through transport and production"
+msgstr "Elk product heeft een klimaatimpact. Vervoer, maar ook productie"
 
-#: Templates/co2ok_button_template_default.php:46
-msgid "CO&#8322ok prevents the same amount of emissions"
-msgstr "CO&#8322ok voorkomt evenveel uitstoot"
+#: Templates/co2ok_button_template_default.php:85
+msgid "This webshop neutralizes emissions from transport"
+msgstr "Deze webshop neutraliseert de uitstoot van het vervoer"
 
-#: Templates/co2ok_button_template_default.php:55
-msgid "This way, your purchase is climate friendly!"
-msgstr "Zo is je aankoop klimaatvriendelijk!"
+#: Templates/co2ok_button_template_default.php:97
+msgid "You can neutralize the impact of production with your contribution"
+msgstr "Jij kan met jouw bijdrage de impact van productie neutraliseren"
+
+#: Templates/co2ok_button_template_default.php:109
+msgid "We finance projects that directly prevent emissions and together we help the climate 💚"
+msgstr "Zo financieren we projecten die direct uitstoot voorkomen en helpen we samen het klimaat 💚"
+
+#: Templates/co2ok_button_template_default.php:117
+msgid "How do we do this"
+msgstr "Hoe we dit doen"
+
 
 #: Templates/co2ok_plugin.php:79
 msgid "Hey %1$s"
@@ -79,3 +88,15 @@ msgstr "Hey %1$s"
 #: Templates/co2ok_plugin.php:80
 msgid "Great that you want to help fight climate change! Press the blue button to help us improve CO2ok with some anonymous data."
 msgstr "Gaaf dat jullie meedoen met klimaatverandering bestrijden! Druk op de blauwe knop om ons te helpen met CO2ok te verbeteren met wat anonieme data."
+
+#: Templates/co2ok_button_template_default_cfp.php:16
+msgid "This shop is"
+msgstr "Deze shop maakt"
+
+#: Templates/co2ok_button_template_default_cfp.php:77
+msgid "By financing projects that prevent the same amount of emissions, this webshop neutralises these effects"
+msgstr "Deze webshop neutraliseert die door projecten te financieren die evenveel impact voorkomen"
+
+#: Templates/co2ok_button_template_default_cfp.php:88
+msgid "That means you can shop guilt-free and together we help the climate 💚"
+msgstr "Zo shop jij 'guilt-free' en helpen we samen het klimaat 💚"

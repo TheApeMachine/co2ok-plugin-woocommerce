@@ -93,7 +93,7 @@
 
             <span class="cfp-button-hovercard-links cfp-hovercard">
                 <a class="cfp-co2ok-button cfp-hovercard" href="http://www.co2ok.eco/co2-compensatie"><?php
-                    echo  __( 'How we do this', 'co2ok-for-woocommerce' );
+                    echo  __( 'How do we do this', 'co2ok-for-woocommerce' );
                 ?></a>
             </span>
             <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/branch.png', 'branch-png', 'cfp-branch-png cfp-hovercard', 'a3-notlazy'); ?>
