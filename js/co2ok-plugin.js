@@ -160,7 +160,6 @@ var Co2ok_JS = function () {
         Init: function () {
           // check .co2ok_checkbox_container div has cfp-selected, if it does, button only need to RegisterInfoBox()
             if (jQuery('.co2ok_container').hasClass('cfp-selected')) {
-              console.log("here we go")
               jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
               this.RegisterInfoBox();
               return ;

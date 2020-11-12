@@ -606,108 +606,108 @@ img#co2ok_logo_minimal {
 
 
 /*cfp hovercard*/
-    .co2ok_cfp_infobox_container.ShowInfoBox {
-      display: block;
-      opacity: 1; }
+  .co2ok_cfp_infobox_container.ShowInfoBox {
+    display: block;
+    opacity: 1; }
 
-    .cfp-wrapper {
-      display: flex;
-      flex-direction: row; }
+  .cfp-wrapper {
+    display: flex;
+    flex-direction: row; }
 
-    .cfp-steps {
-      color: black;
-      font-size: 12px;
-      text-decoration: none; }
+  .cfp-steps {
+    color: black;
+    font-size: 12px;
+    text-decoration: none; }
 
 
-    .cfp-road-png {
-      position: absolute;
-      width: 73%;
-      left: 34px; }
+  .cfp-road-png {
+    position: absolute;
+    width: 73%;
+    left: 34px; }
 
-    .cfp-top-road {
-      top: 48px; }
+  .cfp-top-road {
+    top: 48px; }
 
-    .cfp-bottom-road {
-      margin-top: -50px !important; }
+  .cfp-bottom-road {
+    margin-top: -50px !important; }
 
-    .cfp-left {
-      width: 65%;
-      padding-top: 25px !important;
-      margin-left: 4px !important; }
+  .cfp-left {
+    width: 65%;
+    margin-top: 27px !important;
+    margin-left: 4px !important;
+    margin-bottom: 27px !important;}
 
-    .cfp-right {
-      width: 65%;
-      margin-left: 90px !important;
-      margin-top: 47px !important; }
+  .cfp-right {
+    width: 64%;
+    margin-left: 90px !important;
+    margin-top: 47px !important; }
 
-      .cfp-png-right {
-      position: absolute;
-      width: 39%;
-      right: -4px;
-      top: 114px;
-      z-index: 1; }
+  .cfp-png-right {
+    position: absolute;
+    width: 39%;
+    right: -4px;
+    top: 114px;
+    z-index: 1; }
 
-    .cfp-png-left {
-      display: flex;
-      width: 22%;
-      position: absolute;
-      /* margin-left: 22px; */
-      z-index: 1; }
+  .cfp-png-left {
+    display: flex;
+    width: 22%;
+    position: absolute;
+    /* margin-left: 22px; */
+    z-index: 1; }
 
-    .cfp-png-button {
-      position: absolute;
-      width: 19%;
-      right: 29px;
-      margin-top: 30px !important; }
+  .cfp-png-button {
+    position: absolute;
+    width: 19%;
+    right: 29px;
+    margin-top: 30px !important; }
 
-    .cfp-png-renewable {
-      width: 24%;
-      bottom: 42px; }
-      /* margin-top: 18px !important; } */
+  .cfp-png-renewable {
+    width: 24%; }
+    /* bottom: 34px; } */
 
-    .cfp-co2ok-hovercard-exit {
-      width: 9%;
-      margin-right: -13px;
-      margin-top: -18px;
-      float: right;
-      opacity: 0.5; }
+  .cfp-co2ok-hovercard-exit {
+    width: 9%;
+    margin-right: -13px;
+    margin-top: -18px;
+    float: right;
+    opacity: 0.5; }
 
-    .cfp-co2ok-exit-button {
-      margin-right: -6px;
-      margin-top: 11px;
-      height: 24px; }
+  .cfp-co2ok-exit-button {
+    margin-right: -6px;
+    margin-top: 11px;
+    height: 24px; }
 
-    .cfp-button-hovercard-links {
-      text-align: center;
-      display: flex !important; }
+  .cfp-button-hovercard-links {
+    text-align: center;
+    display: flex !important; }
 
-    .cfp-logo-hovercard {
-      position: absolute;
-      width: 15%;
-      left: 23px;
-      padding-top: 6px !important; }
+  .cfp-logo-hovercard {
+    position: absolute;
+    width: 15%;
+    left: 23px;
+    padding-top: 6px !important; }
 
-    .cfp-co2ok-button {
-      margin: auto !important;
-      text-decoration: none !important;
-      color: black;
-      border: 2px solid #d9d7d7 !important;
-      background: white;
-      border-radius: 5px;
-      text-align: center;
-      width: 45% !important;
-      padding: 3px !important;
-      font-style: italic !important;
-      font-size: 13px !important; }
+  .cfp-co2ok-button {
+    margin: auto !important;
+    text-decoration: none !important;
+    color: black;
+    border: 2px solid #d9d7d7 !important;
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    width: 45% !important;
+    padding: 3px !important;
+    font-style: italic !important;
+    font-size: 13px !important; }
 
-    .hover-card {
-      padding: 16px 0px; }
+  .hover-card {
+    padding: 16px 0px; }
 
-    .cfp-branch-png {
-      width: 33%;
-      position: absolute;
-      right: 30px;
-      bottom: -11px;
-      transform: rotate(-56deg);
-      z-index: -1; }
+  .cfp-branch-png {
+    width: 33%;
+    position: absolute;
+    right: 30px;
+    bottom: -11px;
+    transform: rotate(-56deg);
+    z-index: -1; }

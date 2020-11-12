@@ -80,7 +80,6 @@ msgstr "Zo financieren we projecten die direct uitstoot voorkomen en helpen we s
 msgid "How do we do this"
 msgstr "Hoe we dit doen"
 
-
 #: Templates/co2ok_plugin.php:79
 msgid "Hey %1$s"
 msgstr "Hey %1$s"
@@ -94,7 +93,7 @@ msgid "This shop is"
 msgstr "Deze shop maakt"
 
 #: Templates/co2ok_button_template_default_cfp.php:77
-msgid "By financing projects that prevent the same amount of emissions, this webshop neutralises these effects"
+msgid "This webshop neutralizes these by financing projects that prevent the same amount of impact"
 msgstr "Deze webshop neutraliseert die door projecten te financieren die evenveel impact voorkomen"
 
 #: Templates/co2ok_button_template_default_cfp.php:88

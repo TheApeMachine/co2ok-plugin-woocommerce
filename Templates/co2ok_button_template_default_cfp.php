@@ -13,7 +13,7 @@
         <div id="checkbox_label">
             <a href="#!" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;">
 				<div class="inner_checkbox_label inner_checkbox_label_default co2ok_global_temp" style="text-align: center; background: linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%)" id="default_co2ok_temp">
-					<span class="make make_co2ok_default" style="color: white; text-align:center; margin-bottom: -2px;"><?php echo __( 'This shop is ', 'co2ok-for-woocommerce' ); ?> </span>
+                    <span class="make make_co2ok_default" style="color: white; text-align:center; margin-bottom: -2px; font-size: 18px;"><?php echo __( 'This shop is', 'co2ok-for-woocommerce' ); ?></span>
 					<div style="margin-bottom: -2px;">
 						<?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo_wit.svg', 'co2ok_logo', 'co2ok_logo_default', 'co2ok_logo', 'skip-lazy'); ?>
 					</div>
@@ -74,7 +74,7 @@
             <div class="cfp-wrapper cfp-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck.png', 'info-hover-png', 'cfp-png-right cfp-hovercard', 'a3-notlazy'); ?>
                 <p class="cfp-steps cfp-step-two cfp-left cfp-hovercard">
-                    <?php echo __('By financing projects that prevent the same amount of emissions, this webshop neutralises these effects',  'co2ok-for-woocommerce' );?>
+                    <?php echo __('This webshop neutralizes these by financing projects that prevent the same amount of impact',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>
 
@@ -84,7 +84,7 @@
 
             <div class="cfp-wrapper cfp-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/renewable_energy.png', 'info-hover-png', 'cfp-png-left cfp-png-renewable cfp-hovercard', 'a3-notlazy'); ?>
-                <p class="cfp-steps cfp-step-three cfp-right cfp-hovercard" style="margin-top: 16px !important;">
+                <p class="cfp-steps cfp-step-three cfp-right cfp-hovercard" style="margin-top: 22px !important;">
                     <?php echo __('That means you can shop guilt-free and together we help the climate 💚',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>
