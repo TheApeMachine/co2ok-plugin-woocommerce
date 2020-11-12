@@ -865,7 +865,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         if ($optoutIsTrue == 'on' && ! $woocommerce->session->__isset('co2ok'))
             $woocommerce->session->co2ok = 1;
 
-        if ($cfpOpt == 'off')
+        //if cfp is on, then compensation amount isn't added to cart
+        if ($cfpOpt == 'on')
             $woocommerce->session->co2ok = 0;
 
         if ($woocommerce->session->co2ok == 1)
