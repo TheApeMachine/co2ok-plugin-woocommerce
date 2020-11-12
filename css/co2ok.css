@@ -519,12 +519,15 @@ img#co2ok_logo_minimal {
 
   .default-road-png {
     position: absolute;
-    width: 74%;
-    left: 48px;
+    width: 67%;
+    left: 52px;
     margin-top: 30px; }
 
   .default-top-road {
-    top: -12px; }
+    top: 18px; }
+
+  .default-middle-road {
+    margin-top: -46px !important; }
 
   .default-bottom-road {
     margin-top: -75px !important; }
@@ -534,7 +537,7 @@ img#co2ok_logo_minimal {
     margin-left: 10px !important; }
 
   .default-right {
-    margin-left: 115px !important; }
+    margin-left: 108px !important; }
 
   .default-png-right {
     position: absolute;
@@ -546,7 +549,7 @@ img#co2ok_logo_minimal {
     position: absolute; }
 
   .default-png-truck {
-    margin-top: 47px !important;
+    margin-top: 30px !important;
     margin-left: -10px !important;
     width: 38%; }
 
@@ -554,12 +557,12 @@ img#co2ok_logo_minimal {
     position: absolute;
     width: 19%;
     right: 29px;
-    margin-top: 30px !important; }
+    margin-top: 16px !important; }
 
   .default-png-renewable {
     width: 24%;
-    margin-top: -24px !important;
-    left: 22px; }
+    margin-top: -32px !important;
+    left: 26px; }
 
   .default-co2ok-hovercard-exit {
     width: 9%;

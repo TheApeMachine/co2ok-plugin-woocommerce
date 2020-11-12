@@ -58,49 +58,47 @@
 
 		<div class="co2ok_infobox_container co2ok-popper" id="infobox-view">
 
-                <div class="hovercard-wrapper cfp-hovercard">
-                    <div style="margin-top: -45px;">
-                        <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/factory.png', 'info-hover-png', 'cfp-png-left cfp-hovercard', 'a3-notlazy', 'style="top: 10px;"'); ?>
-                    </div>
-                    <p class="cfp-steps cfp-step-one cfp-right cfp-hovercard" style="padding-top: 8px">
-                        <?php echo __('Every product has a climate impact through transport and production',  'co2ok-for-woocommerce' );?>
-                    </p>
+            <div class="hovercard-wrapper cfp-hovercard">
+                <div style="margin-top: -45px;">
+                    <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/factory.png', 'info-hover-png', 'cfp-png-left cfp-hovercard', 'a3-notlazy', 'style="top: 10px;"'); ?>
                 </div>
-
-                <div class="hovercard-road cfp-hovercard">
-                    <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/gray_road.png', 'info-hover-road-png', 'cfp-road-png cfp-top-road cfp-hovercard', 'a3-notlazy'); ?>
-                </div>
-
-                <div class="cfp-wrapper cfp-hovercard">
-                    <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck.png', 'info-hover-png', 'cfp-png-right cfp-hovercard', 'a3-notlazy'); ?>
-                    <p class="cfp-steps cfp-step-two cfp-left cfp-hovercard">
-                        <?php echo __('By financing projects that prevent the same amount of emissions, this webshop neutralises these effects',  'co2ok-for-woocommerce' );?>
-                    </p>
-                </div>
-
-                <div class="hovercard-road cfp-hovercard">
-                    <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_road_right.png', 'info-hover-road-png', 'cfp-bottom-road cfp-road-png cfp-hovercard', 'a3-notlazy'); ?>
-                </div>
-
-                <div class="cfp-wrapper cfp-hovercard">
-                    <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/renewable_energy.png', 'info-hover-png', 'cfp-png-left cfp-png-renewable cfp-hovercard', 'a3-notlazy'); ?>
-                    <p class="cfp-steps cfp-step-three cfp-right cfp-hovercard" style="margin-top: 16px !important;">
-                        <?php echo __('That means you can shop guilt-free and together we help the climate 💚',  'co2ok-for-woocommerce' );?>
-                    </p>
-                </div>
-
-                <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'logo-hovercard', 'cfp-logo-hovercard cfp-hovercard', 'a3-notlazy'); ?></a>
-
-                <span class="cfp-button-hovercard-links cfp-hovercard">
-                    <a class="cfp-co2ok-button cfp-hovercard" href="http://www.co2ok.eco/co2-compensatie"><?php
-                        echo  __( 'How we do this', 'co2ok-for-woocommerce' );
-                    ?></a>
-                </span>
-                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/branch.png', 'branch-png', 'cfp-branch-png cfp-hovercard', 'a3-notlazy'); ?>
-
+                <p class="cfp-steps cfp-step-one cfp-right cfp-hovercard" style="padding-top: 8px">
+                    <?php echo __('Every product has a climate impact through transport and production',  'co2ok-for-woocommerce' );?>
+                </p>
             </div>
 
+            <div class="hovercard-road cfp-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/gray_road.png', 'info-hover-road-png', 'cfp-road-png cfp-top-road cfp-hovercard', 'a3-notlazy'); ?>
+            </div>
+
+            <div class="cfp-wrapper cfp-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck.png', 'info-hover-png', 'cfp-png-right cfp-hovercard', 'a3-notlazy'); ?>
+                <p class="cfp-steps cfp-step-two cfp-left cfp-hovercard">
+                    <?php echo __('By financing projects that prevent the same amount of emissions, this webshop neutralises these effects',  'co2ok-for-woocommerce' );?>
+                </p>
+            </div>
+
+            <div class="hovercard-road cfp-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_road_right.png', 'info-hover-road-png', 'cfp-bottom-road cfp-road-png cfp-hovercard', 'a3-notlazy'); ?>
+            </div>
+
+            <div class="cfp-wrapper cfp-hovercard">
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/renewable_energy.png', 'info-hover-png', 'cfp-png-left cfp-png-renewable cfp-hovercard', 'a3-notlazy'); ?>
+                <p class="cfp-steps cfp-step-three cfp-right cfp-hovercard" style="margin-top: 16px !important;">
+                    <?php echo __('That means you can shop guilt-free and together we help the climate 💚',  'co2ok-for-woocommerce' );?>
+                </p>
+            </div>
+
+            <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'logo-hovercard', 'cfp-logo-hovercard cfp-hovercard', 'a3-notlazy'); ?></a>
+
+            <span class="cfp-button-hovercard-links cfp-hovercard">
+                <a class="cfp-co2ok-button cfp-hovercard" href="http://www.co2ok.eco/co2-compensatie"><?php
+                    echo  __( 'How we do this', 'co2ok-for-woocommerce' );
+                ?></a>
+            </span>
+            <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/branch.png', 'branch-png', 'cfp-branch-png cfp-hovercard', 'a3-notlazy'); ?>
+
+        </div>
+
     </span>
-
-
 </div>
