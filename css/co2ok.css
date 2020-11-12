@@ -513,8 +513,8 @@ img#co2ok_logo_minimal {
 
   .default-road-png {
     position: absolute;
-    width: 67%;
-    left: 52px;
+    width: 70%;
+    left: 48px;
     margin-top: 30px; }
 
   .default-top-road {
@@ -536,7 +536,7 @@ img#co2ok_logo_minimal {
   .default-png-right {
     position: absolute;
     width: 20%;
-    right: 36px; }
+    right: 27px; }
 
   .default-png-left {
     display: flex;
@@ -551,7 +551,7 @@ img#co2ok_logo_minimal {
     position: absolute;
     width: 19%;
     right: 29px;
-    margin-top: 7px !important; }
+    margin-top: 8px !important; }
 
   .default-png-renewable {
     width: 24%;
@@ -572,13 +572,14 @@ img#co2ok_logo_minimal {
 
   .default-button-hovercard-links {
     text-align: center;
-    display: flex !important; }
+    display: flex !important;
+    padding-top: 4px; }
 
   .default-logo-hovercard {
     position: absolute;
     width: 13%;
     left: 20px;
-    padding-top: 5px !important; }
+    padding-top: 9px !important; }
 
   .default-co2ok-button {
     margin: auto !important;
