@@ -431,6 +431,68 @@ img#co2ok_logo_minimal {
     }
 
 
+  /*minimal button hovercard*/
+.co2ok_infobox_container.ShowInfoBox {
+	  display: block;
+	  opacity: 1; }
+	.co2ok_infobox_container .inner-wrapper {
+	  display: flex;
+	  justify-content: space-between;
+	  flex-direction: row;
+	  align-items: center;
+	  justify-content: center;
+	  margin-top: 10px; }
+	  .co2ok_infobox_container .inner-wrapper .svg-img {
+		display: flex;
+		justify-content: center;
+		/* align horizontal */
+		align-items: center;
+		/* align vertical */
+		height: 50%;
+		width: 58%;
+		align-items: center;
+		justify-content: center; }
+	  .co2ok_infobox_container .inner-wrapper .svg-img-large {
+		display: flex;
+		justify-content: center;
+		/* align horizontal */
+		align-items: center;
+		/* align vertical */
+		height: 60%;
+		width: 65%;
+		align-items: center;
+		justify-content: center; }
+	  .co2ok_infobox_container .inner-wrapper .selectable-text {
+		text-decoration: none;
+		font-weight: 300;
+		color: black;
+		border: 0px;
+		/* unvisited, visited, mouse over and selected link */ }
+		.co2ok_infobox_container .inner-wrapper .selectable-text a:link, .co2ok_infobox_container .inner-wrapper .selectable-text a:visited, .co2ok_infobox_container .inner-wrapper .selectable-text a:hover, .co2ok_infobox_container .inner-wrapper .selectable-text a:active {
+		  color: black; }
+	  .co2ok_infobox_container .inner-wrapper .text-block {
+		margin: 0px;
+		font-size: 13px;
+		line-height: normal;
+		box-sizing: border-box;
+		text-align: left;
+		padding: 5px;
+		border-radius: 5px;
+		border: 2px solid #28db83;
+		text-decoration: none; }
+		.co2ok_infobox_container .inner-wrapper .text-block.greyBorder {
+		  border-color: #b8b8b8; }
+	.co2ok_infobox_container a {
+	  text-decoration: underline; }
+	.co2ok_infobox_container img, .co2ok_infobox_container span {
+	  display: inline-block;
+	  vertical-align: middle;
+	  color: #979797;
+	  padding: 0px; }
+	.co2ok_infobox_container .minimal {
+	  background-color: black; }
+
+
   /*until table, the below reset style of browsers to avoid differences between browsers and their preset css*/
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -456,9 +518,7 @@ img#co2ok_logo_minimal {
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
-  body {
-    line-height: 1;
-  }
+
   ol, ul {
     list-style: none;
   }
@@ -474,7 +534,7 @@ img#co2ok_logo_minimal {
     border-collapse: collapse;
     border-spacing: 0;
   }
-
+  
   .co2ok_infobox_container {
     position: absolute;
     width: 310px;
