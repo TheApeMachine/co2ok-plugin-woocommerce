@@ -6,7 +6,7 @@
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.8.1
+ * Version: 1.0.8.2
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.5.1
@@ -131,7 +131,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.8.1'; //change 6 back to seven
+    const VERSION = '1.0.8.2'; //change 6 back to seven
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -608,6 +608,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             }
         }
 
+        if (get_option('co2ok_cfp') == 'on'){
+            $compensationCost = $this->co2ok_calculateSurcharge();
+        }
+
         $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
         $merchantId = get_option('co2ok_id', false);
@@ -695,7 +699,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                         $this->co2ok_storeTransaction($order_id);
                     }
                 }
-                break;
+
+                if (get_option('co2ok_cfp') == 'on')
+                    $this->co2ok_storeTransaction($order_id);
+
+            break;
 
             case "refunded":
             case "cancelled":
@@ -852,10 +860,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
 
         $optoutIsTrue = get_option('co2ok_optout', 'off');
+        $cfpOpt = get_option('co2ok_cfp', 'off');
 
         if ($optoutIsTrue == 'on' && ! $woocommerce->session->__isset('co2ok'))
             $woocommerce->session->co2ok = 1;
-            
+
         if ($woocommerce->session->co2ok == 1)
             $woocommerce->cart->add_fee(__( 'CO2 compensation', 'co2ok-for-woocommerce' ), $this->surcharge, true, 'co2ok');
 

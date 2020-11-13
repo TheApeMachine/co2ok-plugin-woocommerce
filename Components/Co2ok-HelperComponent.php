@@ -46,8 +46,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent' 
 
             $templateRenderer = new Co2ok_TemplateRenderer(plugin_dir_path(__FILE__).'../Templates/');
 
+            $template = get_option('co2ok_button_template', 'co2ok_button_template_default');
+            if (get_option('co2ok_cfp') == 'on')
+                $template = 'co2ok_button_template_default_cfp';
+
             // Render checkbox / button according to admin settings
-            echo $templateRenderer->render(get_option('co2ok_button_template', 'co2ok_button_template_default'),
+            echo $templateRenderer->render($template,
             array('cart' => $cart,
                     'co2ok_session_opted' =>  $woocommerce->session->co2ok,
                     'currency_symbol' =>get_woocommerce_currency_symbol(),

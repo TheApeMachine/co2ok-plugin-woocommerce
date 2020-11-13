@@ -68,9 +68,9 @@ At Enhace your store with Jetpack and WooCommerce Services, select Yes Please. O
 Next, add and activate co2ok plugin. To test, add the product you made to your cart and go to checkout. The co2ok plugin should be visible on these pages.
 
 
-### Testing changes to plugin
-To test changes made using a .zip file, first deactivate and delete plugin from Plugins in WordPress.
-Create a zip of repo with the following command in the repo directory on the branch you want to test:
+### Testing changes to plugin on co2ok test server
+To test plugin in test server ask Milo for credentials for access to wc-test.co2ok.eco. Once you have access, first deactivate and delete plugin from Plugins in WordPress.
+Create a zip of the plugin by running the following command in the repo directory on the branch you want to test:
 ```
 zip -x db/\* node_modules/\* .git/\* @ -r co2ok-plugin-woocommerce.zip *
 ```

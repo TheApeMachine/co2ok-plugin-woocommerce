@@ -224,82 +224,7 @@ img#co2ok_logo_minimal {
   vertical-align: middle;
   margin: 9px 0px 0px 0px; }
 
-.co2ok_infobox_container {
-  position: absolute;
-  width: 350px;
-  background: white;
-  border-radius: 15px;
-  box-sizing: border-box;
-  font-family: Roboto, sans-serif;
-  font-size: 0.9em;
-  z-index: 999999;
-  display: none;
-  padding: 10px;
-  border: 3px solid #eee;
-  border-image-slice: 1; }
-  @media (max-width: 768px) {
-    .co2ok_infobox_container {
-      margin-left: -150px;
-      width: 300px; } }
-  .co2ok_infobox_container.ShowInfoBox {
-    display: block;
-    opacity: 1; }
-  .co2ok_infobox_container .inner-wrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px; }
-    .co2ok_infobox_container .inner-wrapper .svg-img {
-      display: flex;
-      justify-content: center;
-      /* align horizontal */
-      align-items: center;
-      /* align vertical */
-      height: 50%;
-      width: 58%;
-      align-items: center;
-      justify-content: center; }
-    .co2ok_infobox_container .inner-wrapper .svg-img-large {
-      display: flex;
-      justify-content: center;
-      /* align horizontal */
-      align-items: center;
-      /* align vertical */
-      height: 60%;
-      width: 65%;
-      align-items: center;
-      justify-content: center; }
-    .co2ok_infobox_container .inner-wrapper .selectable-text {
-      text-decoration: none;
-      font-weight: 300;
-      color: black;
-      border: 0px;
-      /* unvisited, visited, mouse over and selected link */ }
-      .co2ok_infobox_container .inner-wrapper .selectable-text a:link, .co2ok_infobox_container .inner-wrapper .selectable-text a:visited, .co2ok_infobox_container .inner-wrapper .selectable-text a:hover, .co2ok_infobox_container .inner-wrapper .selectable-text a:active {
-        color: black; }
-    .co2ok_infobox_container .inner-wrapper .text-block {
-      margin: 0px;
-      font-size: 13px;
-      line-height: normal;
-      box-sizing: border-box;
-      text-align: left;
-      padding: 5px;
-      border-radius: 5px;
-      border: 2px solid #28db83;
-      text-decoration: none; }
-      .co2ok_infobox_container .inner-wrapper .text-block.greyBorder {
-        border-color: #b8b8b8; }
-  .co2ok_infobox_container a {
-    text-decoration: underline; }
-  .co2ok_infobox_container img, .co2ok_infobox_container span {
-    display: inline-block;
-    vertical-align: middle;
-    color: #979797;
-    padding: 0px; }
-  .co2ok_infobox_container .minimal {
-    background-color: black; }
+
 
 .co2ok_videoRewardBox_container {
   position: absolute;
@@ -504,3 +429,346 @@ img#co2ok_logo_minimal {
     .co2ok_container .make_co2ok_minimal {
       font-size: 20px;
     }
+
+
+  /*minimal button hovercard*/
+.co2ok_infobox_container.ShowInfoBox {
+	  display: block;
+	  opacity: 1; }
+	.co2ok_infobox_container .inner-wrapper {
+	  display: flex;
+	  justify-content: space-between;
+	  flex-direction: row;
+	  align-items: center;
+	  justify-content: center;
+	  margin-top: 10px; }
+	  .co2ok_infobox_container .inner-wrapper .svg-img {
+		display: flex;
+		justify-content: center;
+		/* align horizontal */
+		align-items: center;
+		/* align vertical */
+		height: 50%;
+		width: 58%;
+		align-items: center;
+		justify-content: center; }
+	  .co2ok_infobox_container .inner-wrapper .svg-img-large {
+		display: flex;
+		justify-content: center;
+		/* align horizontal */
+		align-items: center;
+		/* align vertical */
+		height: 60%;
+		width: 65%;
+		align-items: center;
+		justify-content: center; }
+	  .co2ok_infobox_container .inner-wrapper .selectable-text {
+		text-decoration: none;
+		font-weight: 300;
+		color: black;
+		border: 0px;
+		/* unvisited, visited, mouse over and selected link */ }
+		.co2ok_infobox_container .inner-wrapper .selectable-text a:link, .co2ok_infobox_container .inner-wrapper .selectable-text a:visited, .co2ok_infobox_container .inner-wrapper .selectable-text a:hover, .co2ok_infobox_container .inner-wrapper .selectable-text a:active {
+		  color: black; }
+	  .co2ok_infobox_container .inner-wrapper .text-block {
+		margin: 0px;
+		font-size: 13px;
+		line-height: normal;
+		box-sizing: border-box;
+		text-align: left;
+		padding: 5px;
+		border-radius: 5px;
+		border: 2px solid #28db83;
+		text-decoration: none; }
+		.co2ok_infobox_container .inner-wrapper .text-block.greyBorder {
+		  border-color: #b8b8b8; }
+	.co2ok_infobox_container a {
+	  text-decoration: underline; }
+	.co2ok_infobox_container img, .co2ok_infobox_container span {
+	  display: inline-block;
+	  vertical-align: middle;
+	  color: #979797;
+	  padding: 0px; }
+	.co2ok_infobox_container .minimal {
+	  background-color: black; }
+
+
+  /*until table, the below reset style of browsers to avoid differences between browsers and their preset css*/
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed, 
+  figure, figcaption, footer, header, hgroup, 
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+
+  ol, ul {
+    list-style: none;
+  }
+  blockquote, q {
+    quotes: none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  .co2ok_infobox_container {
+    position: absolute;
+    width: 310px;
+    background: white;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    font-size: 0.9em;
+    z-index: 999999;
+    display: none;
+    padding: 10px;
+    border: 3px solid #eee;
+    border-image-slice: 1;
+    line-height: 1rem;}
+    @media (max-width: 768px) {
+      .co2ok_infobox_container {
+      margin-left: -150px;
+      width: 300px; } }
+    .co2ok_infobox_container.ShowInfoBox {
+      display: block;
+      opacity: 1; }
+
+/* default hovercard */
+  .default-wrapper {
+    display: flex;
+    flex-direction: row; }
+
+  .default-steps {
+    color: black;
+    font-size: 12px;
+    text-decoration: none;
+    width: 65% !important; }
+
+  .default-png {
+    z-index: 1; }
+
+  .default-road-png {
+    position: absolute;
+    width: 70%;
+    left: 48px;
+    margin-top: 30px; }
+
+  .default-top-road {
+    top: 18px; }
+
+  .default-middle-road {
+    margin-top: -46px !important; }
+
+  .default-bottom-road {
+    margin-top: -75px !important; }
+
+  .default-left {
+    width: 70%;
+    margin-left: 10px !important; }
+
+  .default-right {
+    margin-left: 108px !important; }
+
+  .default-png-right {
+    position: absolute;
+    width: 20%;
+    right: 27px; }
+
+  .default-png-left {
+    display: flex;
+    position: absolute; }
+
+  .default-png-truck {
+    margin-top: 12px !important;
+    margin-left: -10px !important;
+    width: 38%; }
+
+  .default-png-button {
+    position: absolute;
+    width: 19%;
+    right: 29px;
+    margin-top: 8px !important; }
+
+  .default-png-renewable {
+    width: 24%;
+    margin-top: -32px !important;
+    left: 26px; }
+
+  .default-co2ok-hovercard-exit {
+    width: 9%;
+    margin-right: -13px;
+    margin-top: -18px;
+    float: right;
+    opacity: 0.5; }
+
+  .default-co2ok-exit-button {
+    margin-right: -6px;
+    margin-top: 11px;
+    height: 24px; }
+
+  .default-button-hovercard-links {
+    text-align: center;
+    display: flex !important;
+    padding-top: 4px; }
+
+  .default-logo-hovercard {
+    position: absolute;
+    width: 13%;
+    left: 20px;
+    padding-top: 9px !important; }
+
+  .default-co2ok-button {
+    margin: auto !important;
+    text-decoration: none !important;
+    color: black;
+    border: 2px solid #d9d7d7 !important;
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    width: 58% !important;
+    padding: 3px !important;
+    font-style: italic !important;
+    font-size: 13px !important; }
+
+  .hover-card {
+    padding: 16px 0px; }
+
+  .default-branch-png {
+    width: 33%;
+    position: absolute;
+    right: 5px;
+    bottom: -12px;
+    transform: rotate(-56deg);
+    z-index: -1; }
+
+
+/*cfp hovercard*/
+  .co2ok_cfp_infobox_container.ShowInfoBox {
+    display: block;
+    opacity: 1; }
+
+  .cfp-wrapper {
+    display: flex;
+    flex-direction: row; }
+
+  .cfp-steps {
+    color: black;
+    font-size: 12px;
+    text-decoration: none; }
+
+
+  .cfp-road-png {
+    position: absolute;
+    width: 73%;
+    left: 34px; }
+
+  .cfp-top-road {
+    top: 48px; }
+
+  .cfp-bottom-road {
+    margin-top: -50px !important; }
+
+  .cfp-left {
+    width: 65%;
+    margin-top: 27px !important;
+    margin-left: 4px !important;
+    margin-bottom: 27px !important;}
+
+  .cfp-right {
+    width: 64%;
+    margin-left: 90px !important;
+    margin-top: 47px !important; }
+
+  .cfp-png-right {
+    position: absolute;
+    width: 39%;
+    right: -4px;
+    top: 114px;
+    z-index: 1; }
+
+  .cfp-png-left {
+    display: flex;
+    width: 22%;
+    position: absolute;
+    /* margin-left: 22px; */
+    z-index: 1; }
+
+  .cfp-png-button {
+    position: absolute;
+    width: 19%;
+    right: 29px;
+    margin-top: 30px !important; }
+
+  .cfp-png-renewable {
+    width: 24%; }
+    /* bottom: 34px; } */
+
+  .cfp-co2ok-hovercard-exit {
+    width: 9%;
+    margin-right: -13px;
+    margin-top: -18px;
+    float: right;
+    opacity: 0.5; }
+
+  .cfp-co2ok-exit-button {
+    margin-right: -6px;
+    margin-top: 11px;
+    height: 24px; }
+
+  .cfp-button-hovercard-links {
+    text-align: center;
+    display: flex !important; }
+
+  .cfp-logo-hovercard {
+    position: absolute;
+    width: 15%;
+    left: 23px;
+    padding-top: 6px !important; }
+
+  .cfp-co2ok-button {
+    margin: auto !important;
+    text-decoration: none !important;
+    color: black;
+    border: 2px solid #d9d7d7 !important;
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    width: 45% !important;
+    padding: 3px !important;
+    font-style: italic !important;
+    font-size: 13px !important; }
+
+  .hover-card {
+    padding: 16px 0px; }
+
+  .cfp-branch-png {
+    width: 33%;
+    position: absolute;
+    right: 30px;
+    bottom: -11px;
+    transform: rotate(-56deg);
+    z-index: -1; }

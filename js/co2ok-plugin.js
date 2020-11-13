@@ -158,6 +158,13 @@ var Co2ok_JS = function () {
     return {
 
         Init: function () {
+          // check .co2ok_checkbox_container div has cfp-selected, if it does, button only need to RegisterInfoBox()
+            if (jQuery('.co2ok_container').hasClass('cfp-selected')) {
+              jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
+              this.RegisterInfoBox();
+              return ;
+            }
+            console.log("done")
             this.RegisterBindings();
             this.RegisterInfoBox();
             this.RegisterRefreshHandling();
@@ -455,6 +462,8 @@ var Co2ok_JS = function () {
              jQuery(e.target).hasClass("co2ok_info") ||
              jQuery(e.target).hasClass("co2ok_info_hitarea") ||
              jQuery(e.target).hasClass("co2ok_infobox_container") ||
+             jQuery(e.target).hasClass("cfp-hovercard") ||
+             jQuery(e.target).hasClass("default-info-hovercard") ||
              jQuery(e.target).hasClass("hover-link");
          },
 
