@@ -25,7 +25,7 @@
   .co2ok_container figure, .co2ok_container figcaption, .co2ok_container footer, .co2ok_container header, .co2ok_container hgroup,
   .co2ok_container menu, .co2ok_container nav, .co2ok_container output, .co2ok_container ruby, .co2ok_container section, .co2ok_container summary,
   .co2ok_container time, .co2ok_container mark, .co2ok_container audio, .co2ok_container video {
-    margin: 0;
+    /* margin: 0; */
     padding: 0;
     border: 0;
     font-size: 100%;
@@ -431,68 +431,6 @@ img#co2ok_logo_minimal {
     }
 
 
-  /*minimal button hovercard*/
-.co2ok_infobox_container.ShowInfoBox {
-	  display: block;
-	  opacity: 1; }
-	.co2ok_infobox_container .inner-wrapper {
-	  display: flex;
-	  justify-content: space-between;
-	  flex-direction: row;
-	  align-items: center;
-	  justify-content: center;
-	  margin-top: 10px; }
-	  .co2ok_infobox_container .inner-wrapper .svg-img {
-		display: flex;
-		justify-content: center;
-		/* align horizontal */
-		align-items: center;
-		/* align vertical */
-		height: 50%;
-		width: 58%;
-		align-items: center;
-		justify-content: center; }
-	  .co2ok_infobox_container .inner-wrapper .svg-img-large {
-		display: flex;
-		justify-content: center;
-		/* align horizontal */
-		align-items: center;
-		/* align vertical */
-		height: 60%;
-		width: 65%;
-		align-items: center;
-		justify-content: center; }
-	  .co2ok_infobox_container .inner-wrapper .selectable-text {
-		text-decoration: none;
-		font-weight: 300;
-		color: black;
-		border: 0px;
-		/* unvisited, visited, mouse over and selected link */ }
-		.co2ok_infobox_container .inner-wrapper .selectable-text a:link, .co2ok_infobox_container .inner-wrapper .selectable-text a:visited, .co2ok_infobox_container .inner-wrapper .selectable-text a:hover, .co2ok_infobox_container .inner-wrapper .selectable-text a:active {
-		  color: black; }
-	  .co2ok_infobox_container .inner-wrapper .text-block {
-		margin: 0px;
-		font-size: 13px;
-		line-height: normal;
-		box-sizing: border-box;
-		text-align: left;
-		padding: 5px;
-		border-radius: 5px;
-		border: 2px solid #28db83;
-		text-decoration: none; }
-		.co2ok_infobox_container .inner-wrapper .text-block.greyBorder {
-		  border-color: #b8b8b8; }
-	.co2ok_infobox_container a {
-	  text-decoration: underline; }
-	.co2ok_infobox_container img, .co2ok_infobox_container span {
-	  display: inline-block;
-	  vertical-align: middle;
-	  color: #979797;
-	  padding: 0px; }
-	.co2ok_infobox_container .minimal {
-	  background-color: black; }
-
-
   /*until table, the below reset style of browsers to avoid differences between browsers and their preset css*/
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -545,19 +483,16 @@ img#co2ok_logo_minimal {
     font-size: 0.9em;
     z-index: 999999;
     display: none;
-    padding: 10px;
-    border: 3px solid #eee;
+    padding: 10px !important;
+    border: 3px solid #eee !important;
+    letter-spacing: normal !important;
     border-image-slice: 1;
-    line-height: 1rem;}
-    @media (max-width: 768px) {
-      .co2ok_infobox_container {
-      margin-left: -150px;
-      width: 300px; } }
+    line-height: 1rem !important; }
     .co2ok_infobox_container.ShowInfoBox {
       display: block;
       opacity: 1; }
 
-/* default hovercard */
+/* default and minimal button hovercard */
   .default-wrapper {
     display: flex;
     flex-direction: row; }
@@ -611,7 +546,7 @@ img#co2ok_logo_minimal {
     position: absolute;
     width: 19%;
     right: 29px;
-    margin-top: 8px !important; }
+    margin-top: 6px !important; }
 
   .default-png-renewable {
     width: 24%;

@@ -93,7 +93,7 @@
 
             <div class="default-wrapper default-info-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/checkmark11.png', 'default-png', 'default-png-button default-png default-info-hovercard', 'a3-notlazy'); ?>
-                <p class="default-steps step-three default-left default-info-hovercard" style="padding-bottom: 38px; padding-top: 16px;">
+                <p class="default-steps step-three default-left default-info-hovercard" style="padding-bottom: 30px; padding-top: 16px;">
                     <?php echo __('You can neutralize the impact of production with your contribution',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>

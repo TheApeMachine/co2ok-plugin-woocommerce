@@ -432,6 +432,7 @@ var Co2ok_JS = function () {
           }
         },
         ShowInfoBox  : function() {
+            this.placeInfoBox()
             if (!jQuery(".co2ok_infobox_container").hasClass('ShowInfoBox')){
               jQuery(".co2ok_infobox_container").removeClass('infobox-hidden')
               jQuery(".co2ok_infobox_container").addClass('ShowInfoBox')
