@@ -7,7 +7,7 @@
   /* HTML5 display-role reset for older browsers */
   display: inline-block;
   position: relative;
-  font-family: Roboto, sans-serif;
+  /* font-family: Roboto, sans-serif; */
   color: #606468;
   z-index: 10;
   margin-left: 3px;
@@ -265,28 +265,32 @@ img#co2ok_logo_minimal {
     text-shadow: 1px 1px 4px #929292; }
     .co2ok_container_default .co2ok_checkbox_container_default.selected .compensation_amount_default {
       position: relative;
+      white-space: nowrap;
       overflow: hidden;
       white-space: nowrap;
       color: white;
       padding-left: 19px;
       left: -10px;
-      margin-top: 9px;
+      margin-top: 10px;
       float: right;
       font-size: 16px;
       font-weight: 500;
       letter-spacing: 0px;
+      white-space: pre-wrap;
       font-family: Roboto, sans-serif; }
   .co2ok_container_default .co2ok_checkbox_container_default.unselected .compensation_amount_default {
     position: relative;
+    white-space: nowrap;
     overflow: hidden;
     white-space: nowrap;
     color: #05B139;
     padding-left: 19px;
     left: -10px;
-    margin-top: 9px;
+    margin-top: 10px;
     float: right;
     font-size: 16px;
     font-weight: 500;
+    white-space: pre-wrap;
     letter-spacing: 0px;
     font-family: Roboto, sans-serif; }
   .co2ok_container_default .co2ok_checkbox_container_default.unselected .make_minimal {
@@ -371,6 +375,7 @@ img#co2ok_logo_minimal {
           vertical-align: middle; }
         .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal .compensation_amount_minimal {
           position: absolute;
+          white-space: nowrap;
           margin: 0;
           font-size: 16px;
           margin-top: 0px;
@@ -472,7 +477,7 @@ img#co2ok_logo_minimal {
     border-collapse: collapse;
     border-spacing: 0;
   }
-  
+
   .co2ok_infobox_container {
     position: absolute;
     width: 310px;
@@ -546,7 +551,7 @@ img#co2ok_logo_minimal {
     position: absolute;
     width: 19%;
     right: 29px;
-    margin-top: 6px !important; }
+    margin-top: 7px !important; }
 
   .default-png-renewable {
     width: 24%;

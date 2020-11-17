@@ -10,10 +10,9 @@ function minimumButton() {
   var co2ok_info_hitare_minimal = document.querySelector('.co2ok_payoff_minimal');
   var inner_border_minimal = document.querySelector('.inner_comp_amount_label_minimal');
 
-  var cad_length_minimal = cad_minimal.innerHTML.length;
-
   //removes spaces in compensataion amount
-  cad_minimal = cad_minimal.innerHTML.replace(/\s+/g, '');
+  cad_minimal.innerText = cad_minimal.innerText.replace(/\\t|\\n|\\(?=")/g, '');
+  var cad_length_minimal = cad_minimal.innerText.length;
 
   //changes style relative to length of compensation
   if (cad_length_minimal > 10) {
@@ -48,13 +47,13 @@ function defaultButton() {
   var make = document.querySelector('.make_co2ok_default');
   var cad = document.querySelector('.compensation_amount_default');
   var co2ok_logo = document.querySelector('.co2ok_logo_default');
-  var cad_length = cad.innerHTML.length;
 
   //removes spaces from compensataion amount
-  cad = cad.innerHTML.replace(/\s+/g, '');
+  cad.innerText = cad.innerText.replace(/\s+/g, '');
+  var cad_length = cad.innerText.length;
 
   //changes style relative to length of compensation
-  if (cad_length > 10) {
+  if (cad_length > 9) {
 
     var relative_font_size = Math.floor(14 - cad_length / 14);
     var relative_size_diff = 14 - relative_font_size;
@@ -64,14 +63,14 @@ function defaultButton() {
 
     var relative_font_size = Math.floor(16 - cad_length / 16);
     var relative_size_diff = 16 - relative_font_size;
-    cad.style.marginTop = relative_font_size - 4 + 'px';
+    cad.style.marginTop = relative_font_size - 5 + 'px';
 
   }
 
   if (cad_length > 7) {
 
     cad.style.fontSize = relative_font_size - relative_size_diff + 'px';
-    cad.style.left = '-20px';
+    cad.style.left = '-14px';
     make.style.fontSize = relative_font_size - relative_size_diff + 1 + 'px';
     co2ok_logo.style.width = 45 - relative_size_diff + 'px';
 
