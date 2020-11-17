@@ -32,8 +32,8 @@ function minimumButton() {
     cad_minimal.style.fontSize = relative_font_size - relative_size_diff + 'px';
     make_minimal.style.fontSize = relative_font_size - relative_size_diff + 3 + 'px';
     co2ok_logo_minimal.style.width = 45 - relative_size_diff + 'px';
-    comp_amount_label_minimal.style.marginLeft = -(10 + (cad_length_minimal * 2)) + 'px';
-    comp_amount_label_minimal.style.marginTop = '-4px';
+    comp_amount_label_minimal.style.left = '140px';
+    comp_amount_label_minimal.style.marginTop = '-3px';
     comp_amount_label_minimal.style.width = 70 + cad_length_minimal + 'px';
     inner_border_minimal.style.width = 65 + cad_length_minimal + 'px';
     co2ok_info_hitare_minimal.style.paddingLeft = cad_length_minimal * 2 + 'px';
@@ -474,7 +474,7 @@ var Co2ok_JS = function () {
 
             jQuery(".co2ok_info_keyboardarea").focus(function() {
                 _this.ShowInfoBox();
-                jQuery(".first-text-to-select").focus();
+                jQuery(".default-step-one").focus();
             });
 
             jQuery('body').click(function(e) {
