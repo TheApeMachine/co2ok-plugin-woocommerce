@@ -234,7 +234,7 @@ img#co2ok_logo_minimal {
   background: white;
   border-radius: 15px;
   box-sizing: border-box;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif !important;
   font-size: 0.9em;
   z-index: 999999;
   display: none;
@@ -436,78 +436,38 @@ img#co2ok_logo_minimal {
 
 
   /*until table, the below reset style of browsers to avoid differences between browsers and their preset css*/
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed, 
-  figure, figcaption, footer, header, hgroup, 
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-  }
-  /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure, 
-  footer, header, hgroup, menu, nav, section {
-    display: block;
-  }
-
-  ol, ul {
-    list-style: none;
-  }
-  blockquote, q {
-    quotes: none;
-  }
-  blockquote:before, blockquote:after,
-  q:before, q:after {
-    content: '';
-    content: none;
-  }
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
 
   .co2ok_infobox_container {
     position: absolute;
     width: 310px;
     background: white;
-    border-radius: 15px;
-    box-sizing: border-box;
-    font-family: Roboto, sans-serif;
-    font-size: 0.9em;
+    border-radius: 15px !important;
+    box-sizing: border-box !important;
+    font-family: Roboto, sans-serif !important;
+    font-size: 12px !important;
     z-index: 999999;
     display: none;
     padding: 10px !important;
     border: 3px solid #eee !important;
     letter-spacing: normal !important;
-    border-image-slice: 1;
-    overflow: hidden;
+    font-weight: normal;
     line-height: 1rem !important; }
     .co2ok_infobox_container.ShowInfoBox {
       display: block;
-      overflow: hidden;
       opacity: 1; }
 
 /* default and minimal button hovercard */
   .default-wrapper {
     display: flex;
+    height: 70px;
     flex-direction: row; }
 
   .default-steps {
-    color: black;
-    font-size: 12px;
-    text-decoration: none;
-    width: 65% !important; }
+    color: black !important;
+    text-decoration: none !important;
+    line-height: 1.4 !important;
+    padding: 18px 0px !important;
+    width: 65%; }
 
   .default-png {
     z-index: 1; }
@@ -515,24 +475,22 @@ img#co2ok_logo_minimal {
   .default-road-png {
     position: absolute;
     width: 70%;
-    left: 48px;
-    margin-top: 30px; }
+    left: 48px; }
 
   .default-top-road {
-    top: 18px; }
+    top: 46px; }
 
   .default-middle-road {
-    margin-top: -46px !important; }
+    margin-top: -46px; }
 
   .default-bottom-road {
-    margin-top: -75px !important; }
+    margin-top: -44px; }
 
   .default-left {
-    width: 70%;
-    margin-left: 10px !important; }
+    margin-left: 10px; }
 
   .default-right {
-    margin-left: 108px !important; }
+    margin-left: 108px; }
 
   .default-png-right {
     position: absolute;
@@ -544,20 +502,20 @@ img#co2ok_logo_minimal {
     position: absolute; }
 
   .default-png-truck {
-    margin-top: 12px !important;
-    margin-left: -10px !important;
+    margin-top: 12px;
+    margin-left: -10px ;
     width: 38%; }
 
   .default-png-button {
     position: absolute;
     width: 19%;
     right: 29px;
-    margin-top: 7px !important; }
+    margin-top: 8px; }
 
   .default-png-renewable {
-    width: 24%;
-    margin-top: -32px !important;
-    left: 26px; }
+    width: 24% ;
+    margin-top: 4px;
+    left: 22px; }
 
   .default-co2ok-hovercard-exit {
     width: 9%;
@@ -573,36 +531,35 @@ img#co2ok_logo_minimal {
 
   .default-button-hovercard-links {
     text-align: center;
-    display: flex !important;
-    padding-top: 4px; }
+    display: flex;
+    padding-top: 16px !important; }
 
   .default-logo-hovercard {
     position: absolute;
     width: 13%;
     left: 20px;
-    padding-top: 9px !important; }
+    padding-top: 20px !important; }
 
   .default-co2ok-button {
-    margin: auto !important;
+    margin: auto;
     text-decoration: none !important;
     color: black !important;
     border: 2px solid #d9d7d7 !important;
     background: white;
-    border-radius: 5px;
+    border-radius: 5px !important;
     text-align: center;
-    width: 58% !important;
+    width: 58%;
     padding: 3px !important;
     font-style: italic !important;
-    font-size: 13px !important; }
+    font-size: 13px !important;
+    font-weight: normal !important; }
 
   .default-co2ok-button:hover {
     color: black !important;
     opacity: 1 !important;
     font-weight: normal !important;
+    text-decoration: none !important;
   }
-
-  .hover-card {
-    padding: 16px 0px; }
 
   .default-branch-png {
     width: 33%;
@@ -714,6 +671,7 @@ img#co2ok_logo_minimal {
     color: black !important;
     opacity: 1 !important;
     font-weight: normal !important;
+    text-decoration: none !important;
   }
 
   .hover-card {
