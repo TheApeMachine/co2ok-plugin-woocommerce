@@ -474,7 +474,7 @@ var Co2ok_JS = function () {
 
             jQuery(".co2ok_info_keyboardarea").focus(function() {
                 _this.ShowInfoBox();
-                jQuery(".default-step-one").focus();
+                jQuery(".step-one").focus();
             });
 
             jQuery('body').click(function(e) {

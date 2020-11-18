@@ -435,8 +435,7 @@ img#co2ok_logo_minimal {
     }
 
 
-  /*until table, the below reset style of browsers to avoid differences between browsers and their preset css*/
-
+/*start of checkout button hovercard css*/
   .co2ok_infobox_container {
     position: absolute;
     width: 310px;
@@ -582,8 +581,10 @@ img#co2ok_logo_minimal {
 
   .cfp-steps {
     color: black;
-    font-size: 12px;
-    text-decoration: none; }
+    font-size: 12px !important;
+    margin: 0 0 1.41575em !important;
+    text-decoration: none;
+    padding: 15px 0px !important; }
 
 
   .cfp-road-png {
@@ -598,15 +599,12 @@ img#co2ok_logo_minimal {
     margin-top: -50px !important; }
 
   .cfp-left {
-    width: 65%;
-    margin-top: 27px !important;
-    margin-left: 4px !important;
-    margin-bottom: 27px !important;}
+    width: 63%;
+    margin-left: 4px !important; }
 
   .cfp-right {
     width: 64%;
-    margin-left: 90px !important;
-    margin-top: 47px !important; }
+    margin-left: 90px !important; }
 
   .cfp-png-right {
     position: absolute;
@@ -629,8 +627,8 @@ img#co2ok_logo_minimal {
     margin-top: 30px !important; }
 
   .cfp-png-renewable {
+    margin-top: -5px;
     width: 24%; }
-    /* bottom: 34px; } */
 
   .cfp-co2ok-hovercard-exit {
     width: 9%;
