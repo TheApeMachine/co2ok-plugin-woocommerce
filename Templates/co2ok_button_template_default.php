@@ -112,7 +112,7 @@
             <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'default-logo-hovercard', 'default-logo-hovercard default-info-hovercard', 'a3-notlazy'); ?></a>
 
             <span class="default-button-hovercard-links default-info-hovercard">
-                <a class="default-co2ok-button default-info-hovercard" href="http://www.co2ok.eco/co2-compensatie"><?php
+                <a class="default-co2ok-button default-info-hovercard" target="_blank" href="http://www.co2ok.eco/co2-compensatie"><?php
                     echo  __( 'How do we do this', 'co2ok-for-woocommerce' );
                 ?></a>
             </span>
