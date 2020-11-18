@@ -62,7 +62,7 @@ msgstr "Dit staat gelijk aan {KM} km vliegen ✈️"
 
 #: Templates/co2ok_button_template_default.php:74
 msgid "Every product has a climate impact through transport and production"
-msgstr "Elk product heeft een klimaatimpact. Vervoer, maar ook productie"
+msgstr "Elk product heeft een klimaatimpact door vervoer en productie"
 
 #: Templates/co2ok_button_template_default.php:85
 msgid "This webshop neutralizes emissions from transport"

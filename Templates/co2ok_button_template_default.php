@@ -70,7 +70,7 @@
 
             <div class="default-wrapper default-info-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/factory.png', 'default-png', 'default-png default-png-right default-info-hovercard', 'a3-notlazy'); ?>
-                <p class="default-steps step-one default-left default-info-hovercard" style="padding-top: 12px !important;">
+                <p class="default-steps step-one default-left default-info-hovercard" style="padding-top: 18px !important;">
                     <?php echo __('Every product has a climate impact through transport and production',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>

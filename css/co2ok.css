@@ -466,7 +466,7 @@ img#co2ok_logo_minimal {
     text-decoration: none !important;
     line-height: 1.4 !important;
     padding: 18px 0px !important;
-    width: 65%; }
+    width: 68%; }
 
   .default-png {
     z-index: 1; }
@@ -474,19 +474,19 @@ img#co2ok_logo_minimal {
   .default-road-png {
     position: absolute;
     width: 70%;
-    left: 48px; }
+    left: 51px; }
 
   .default-top-road {
-    top: 46px; }
+    top: 43px; }
 
   .default-middle-road {
     margin-top: -46px; }
 
   .default-bottom-road {
-    margin-top: -44px; }
+    margin-top: -42px; }
 
   .default-left {
-    margin-left: 10px; }
+    margin-left: 8px; }
 
   .default-right {
     margin-left: 108px; }
@@ -494,7 +494,7 @@ img#co2ok_logo_minimal {
   .default-png-right {
     position: absolute;
     width: 20%;
-    right: 27px; }
+    right: 24px; }
 
   .default-png-left {
     display: flex;
@@ -508,8 +508,8 @@ img#co2ok_logo_minimal {
   .default-png-button {
     position: absolute;
     width: 19%;
-    right: 29px;
-    margin-top: 8px; }
+    right: 26px;
+    margin-top: 7px; }
 
   .default-png-renewable {
     width: 24% ;
@@ -535,9 +535,9 @@ img#co2ok_logo_minimal {
 
   .default-logo-hovercard {
     position: absolute;
-    width: 13%;
-    left: 20px;
-    padding-top: 20px !important; }
+    width: 15%;
+    left: 32px;
+    padding-top: 23px !important; }
 
   .default-co2ok-button {
     margin: auto;
@@ -547,7 +547,7 @@ img#co2ok_logo_minimal {
     background: white;
     border-radius: 5px !important;
     text-align: center;
-    width: 58%;
+    width: 43%;
     padding: 3px !important;
     font-style: italic !important;
     font-size: 13px !important;
@@ -563,8 +563,8 @@ img#co2ok_logo_minimal {
   .default-branch-png {
     width: 33%;
     position: absolute;
-    right: 5px;
-    bottom: -12px;
+    right: 30px;
+    bottom: -11px;
     transform: rotate(-56deg);
     z-index: -1; }
 
