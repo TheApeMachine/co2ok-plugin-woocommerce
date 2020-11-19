@@ -449,8 +449,7 @@ img#co2ok_logo_minimal {
     padding: 10px !important;
     border: 3px solid #eee !important;
     letter-spacing: normal !important;
-    font-weight: normal;
-    line-height: 1rem !important; }
+    font-weight: normal; }
     .co2ok_infobox_container.ShowInfoBox {
       display: block;
       opacity: 1; }
@@ -464,8 +463,12 @@ img#co2ok_logo_minimal {
   .default-steps {
     color: black !important;
     text-decoration: none !important;
-    line-height: 1.4 !important;
+    line-height: 1.1rem !important;
     padding: 18px 0px !important;
+    font-family: Roboto, sans-serif !important;
+    letter-spacing: normal !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
     width: 68%; }
 
   .default-png {
@@ -480,10 +483,10 @@ img#co2ok_logo_minimal {
     top: 43px; }
 
   .default-middle-road {
-    margin-top: -46px; }
+    margin-top: -43px; }
 
   .default-bottom-road {
-    margin-top: -42px; }
+    margin-top: -40px; }
 
   .default-left {
     margin-left: 8px; }
@@ -509,12 +512,12 @@ img#co2ok_logo_minimal {
     position: absolute;
     width: 19%;
     right: 26px;
-    margin-top: 7px; }
+    margin-top: 10px; }
 
   .default-png-renewable {
     width: 24% ;
     margin-top: 4px;
-    left: 22px; }
+    left: 24px; }
 
   .default-co2ok-hovercard-exit {
     width: 9%;
