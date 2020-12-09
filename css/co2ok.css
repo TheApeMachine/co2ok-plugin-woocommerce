@@ -144,6 +144,7 @@
     }
     .co2ok_container .co2ok_checkbox_container .inner_checkbox_label {
       position: relative;
+      text-align: initial !important;
       display: inline-block;
       font-size: 22px;
       width: 100%;
@@ -166,6 +167,7 @@
         border-radius: 12px; }
       .co2ok_container .co2ok_checkbox_container .inner_checkbox_label > * {
         display: inline-block;
+        text-align: initial !important;
         vertical-align: middle; }
     .co2ok_container .co2ok_checkbox_container #checkbox {
       width: 22px;
@@ -409,7 +411,7 @@ img#co2ok_logo_minimal {
         vertical-align: middle;
         display: inline-block;
         padding: none;
-        margin-left: 7px; }
+        margin-left: 10px; }
         .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .co2ok_payoff_minimal #p_minimal .co2ok_info_hitarea {
           height: 72px;
           width: 72px;
@@ -418,6 +420,7 @@ img#co2ok_logo_minimal {
           display: inline-block;
           margin-left: -20px;
           position: relative;
+          margin: auto !important;
           bottom: 30px; }
           .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .co2ok_payoff_minimal #p_minimal .co2ok_info_hitarea img {
             width: 18px;
@@ -430,9 +433,10 @@ img#co2ok_logo_minimal {
       top: -5px;
       letter-spacing: -0.0538461em;
       display: block;
-      font-family: Roboto, sans-serif; }
+      font-family: Roboto, sans-serif !important; }
     .co2ok_container .make_co2ok_minimal {
       font-size: 20px;
+      font-family: Roboto, sans-serif !important;
       color: #606468 !important;
     }
 
