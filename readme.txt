@@ -24,6 +24,9 @@ Get a grip on sustainability of your products, show the impact of production and
 **Higher conversion & retention**
 Increase shop indexability, brand perception, customer loyalty and value and overall sales, while reducing shopping cart abandonment.
 
+**Greenify your shipping**
+Make your delivery climate friendly - compensation of the emissions is included in our service! 
+
 **Easy integration and use**
 Our plugin is setup in a matter of minutes. Execute your social responsibility strategy, helping to fight climate change.
 
@@ -32,13 +35,13 @@ CO2ok offers a service that lets your customers compensate the CO2 footprint of 
 We help online retailers engage with their customers on climate change, offering valuable insight in emissions and the choice to offset it. In turn affiliated retailers build a positive brand image and increase awareness through demonstrated environmental responsibility. As a plus, CO₂ok’s easy to use technology lets you increase your sales conversion.
 
 **Features**
-* Multi-language (currently English, Dutch and German - let us know which language you need!)
+* Multi-language (currently English, Dutch, German and French - let us know which language you need!)
 * Clear information 'hoverbox' with instant explanation
 * Flexible placement on the checkout page
-* 2 button designs available
+* 2 button designs available (custom on request)
 * Receive marketing support with our free kit and frequent content updates
 * Give your customers a smile on their face with our gifs (or disable them)
-* Show the impact your shop makes with our Impact Trustmark and/or Impact Calculator
+* Show the impact your shop makes with our widgets: Impact Trustmark and/or Impact Calculator
 
 **How it works**
 
@@ -54,7 +57,7 @@ Upon clicking the CO2ok-button:
 
 **Help us fight climate change!**
 
-[more information on our site](http://www.co2ok.eco/en/retailers/)
+[more information on our site](http://www.co2ok.eco/)
 
 Please let us know if you have feedback/questions or something doesn't work as expected: drop us a line : <make@co2ok.eco> or use the support section on wordpress.org
 
@@ -84,11 +87,11 @@ We gather as little data as possible, specifically:
 
 == Screenshots ==
 
-1. The CO2ok button as it is presented to users
+1. The CO2ok button and info-hover as it is presented to users
 
 2. An overview that includes the checkout screen
 
-3. The minimal button design and info-hover
+3. The minimal button design
 
 4. Show off your impact with our widgets!
 
