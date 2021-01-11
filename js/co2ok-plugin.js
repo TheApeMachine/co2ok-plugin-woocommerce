@@ -62,7 +62,7 @@ function defaultButton() {
 
     var relative_font_size = Math.floor(16 - cad_length / 16);
     var relative_size_diff = 16 - relative_font_size;
-    cad.style.marginTop = relative_font_size - 5 + 'px';
+    cad.style.marginTop = '-2px';
 
   }
 
