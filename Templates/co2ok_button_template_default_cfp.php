@@ -66,11 +66,11 @@
             </div>
 
             <div class="cfp-road cfp-hovercard">
-                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/gray_road.png', 'info-hover-road-png', 'cfp-road-png cfp-top-road cfp-hovercard', 'a3-notlazy'); ?>
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/gray_road_right.png', 'info-hover-road-png', 'cfp-road-png cfp-top-road cfp-hovercard', 'a3-notlazy'); ?>
             </div>
 
             <div class="cfp-wrapper cfp-hovercard">
-                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck.png', 'info-hover-png', 'cfp-png-right cfp-hovercard', 'a3-notlazy'); ?>
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck_right.png', 'info-hover-png', 'cfp-png-right cfp-hovercard', 'a3-notlazy'); ?>
                 <p class="cfp-steps cfp-step-two cfp-left cfp-hovercard">
                     <?php echo __('This webshop neutralizes these by financing projects that prevent the same amount of impact',  'co2ok-for-woocommerce' );?>
                 </p>

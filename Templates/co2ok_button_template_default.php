@@ -76,11 +76,11 @@
             </div>
 
             <div class="hovercard-road default-info-hovercard">
-                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/gray_road_right.png', 'default-road-png', 'default-road-png default-top-road default-info-hovercard', 'a3-notlazy'); ?>
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/gray_road.png', 'default-road-png', 'default-road-png default-top-road default-info-hovercard', 'a3-notlazy'); ?>
             </div>
 
             <div class="default-wrapper default-info-hovercard">
-                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck_right.png', 'default-png', 'default-png-left default-png default-png-truck default-info-hovercard', 'a3-notlazy'); ?>
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/green_truck.png', 'default-png', 'default-png-left default-png default-png-truck default-info-hovercard', 'a3-notlazy'); ?>
                 <p class="default-steps step-two default-right default-info-hovercard">
                     <?php echo __('This webshop neutralizes emissions from transport',  'co2ok-for-woocommerce' );?>
                 </p>
@@ -92,7 +92,7 @@
             </div>
 
             <div class="default-wrapper default-info-hovercard">
-                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/checkmark11.png', 'default-png', 'default-png-button default-png default-info-hovercard', 'a3-notlazy'); ?>
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/checkmark.png', 'default-png', 'default-png-button default-png default-info-hovercard', 'a3-notlazy'); ?>
                 <p class="default-steps step-three default-left default-info-hovercard">
                     <?php echo __('You can neutralize the impact of production with your contribution',  'co2ok-for-woocommerce' );?>
                 </p>
