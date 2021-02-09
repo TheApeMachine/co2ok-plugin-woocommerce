@@ -107,11 +107,11 @@
       margin-left: -6px; }
       .co2ok_container .co2ok_info_keyboardarea {
         float: right;
-        background-color: transparent;}
+        background-color: transparent !important;}
       .co2ok_container .co2ok_payoff #p .co2ok_info_hitarea {
         height: 72px;
         width: 72px;
-        background-color: transparent;
+        background-color: transparent !important;
         border-radius: 50%;
         display: inline-block;
         margin-left: -17px;
@@ -309,6 +309,7 @@ img#co2ok_logo_minimal {
     margin-bottom: 10px; }
     .co2ok_container_minimal .co2ok_checkbox_container_minimal .co2ok_nolink {
       color: inherit;
+      background-color: transparent !important;
       margin: 0px;
       padding: 0px;
       display: inherit; }

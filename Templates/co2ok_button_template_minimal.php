@@ -11,7 +11,7 @@
         ?>
 
         <a href="#!" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;" class="co2ok_nolink">
-          <div class="inner_checkbox_label inner_checkbox_label_minimal co2ok_global_temp" id="minimal_co2ok_temp" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none; background-color: transparent !important;">
+          <div class="inner_checkbox_label inner_checkbox_label_minimal co2ok_global_temp" id="minimal_co2ok_temp" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;">
             <div id="checkbox">
             </div>
 
@@ -27,7 +27,7 @@
               </div>
 
               <span class="co2ok_payoff_minimal">
-                <span input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea co2ok_nolink" style="outline: none; -webkit-appearance: none; background-color: transparent !important;">
+                <span input type="button" role="button" tabindex="0" class="co2ok_info_keyboardarea co2ok_nolink" style="outline: none; -webkit-appearance: none; ">
                     <span id="p_minimal">
 
                       <span class="co2ok_info_hitarea">

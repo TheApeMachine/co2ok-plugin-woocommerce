@@ -34,7 +34,7 @@
 
 
     <span class="co2ok_payoff">
-        <span class="co2ok_payoff_text co2ok_adaptive_color_default" stype="background-color: transparent !important;">
+        <span class="co2ok_payoff_text co2ok_adaptive_color_default">
                 <span>
                     <?php
                         echo  __( 'Make my purchase climate friendly', 'co2ok-for-woocommerce' );
