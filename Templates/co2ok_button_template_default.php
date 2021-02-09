@@ -11,7 +11,7 @@
         ?>
 
         <div id="checkbox_label">
-            <a href="#!" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;">
+            <a href="#!" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none; background-color: transparent !important;">
                 <div class="inner_checkbox_label inner_checkbox_label_default co2ok_global_temp" id="default_co2ok_temp">
                     <div id="checkbox">
                     </div>
@@ -34,7 +34,7 @@
 
 
     <span class="co2ok_payoff">
-        <span class="co2ok_payoff_text co2ok_adaptive_color_default">
+        <span class="co2ok_payoff_text co2ok_adaptive_color_default" stype="background-color: transparent !important;">
                 <span>
                     <?php
                         echo  __( 'Make my purchase climate friendly', 'co2ok-for-woocommerce' );
