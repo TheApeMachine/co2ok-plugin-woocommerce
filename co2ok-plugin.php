@@ -138,7 +138,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     // Percentage should be returned by the middleware, else: 2%
     private $percentage = 1.652892561983472;
     private $surcharge  = 0;
-    
+
     private $helperComponent;
 
     /*
@@ -285,7 +285,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $id = get_option('co2ok_id');
         $secret = get_option('co2ok_secret');
         // Deterministic way to generate a unique, short and secret code (secret in that it can't be used to determine the id or secret)
-        // password_hash creates the secure deterministic hash, using the first 8 chars of the md5 hash gives us a unique code 
+        // password_hash creates the secure deterministic hash, using the first 8 chars of the md5 hash gives us a unique code
         // that can't be used to determine the id/secret.
         $co2ok_code = substr(md5(password_hash($id, PASSWORD_BCRYPT, ["salt" => $secret])), 0, 8);
         add_option('co2ok_code', $co2ok_code);
@@ -329,22 +329,22 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         /**
          * Check if WooCommerce is active
-         **/        
+         **/
         if (!function_exists('is_plugin_active')){
             include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
         }
         if ( is_plugin_active( 'woocommerce/woocommerce.php' ))
         {
             $ab_research = get_option('co2ok_ab_research');
-                
+
             if ($ab_research == 'on') {
                 add_action( 'woocommerce_init', function(){
-                    
+
                     if (is_admin()){
                         return;
                     }
                     try {
-                        if(!isset($_COOKIE['co2ok_ab_enabled'])) {                             
+                        if(!isset($_COOKIE['co2ok_ab_enabled'])) {
                             setcookie('co2ok_ab_enabled', 1, time()+900);
                         }
                         if (isset($_COOKIE['co2ok_ab_enabled']) && isset($_GET["co2ok_ab"]))
@@ -454,8 +454,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                  */
 
                 add_action( 'woocommerce_order_refunded',
-                    array($this, 'co2ok_woocommerce_order_refunded'), 10, 2 ); 
-                
+                    array($this, 'co2ok_woocommerce_order_refunded'), 10, 2 );
+
 
                 /**
                  * Register Front End
@@ -485,7 +485,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
                 // set CO2ok_impact cookie, TTL 24 hours
                 $co2okImpact = round(get_option('co2ok_impact', 100), 0);
-                if(!isset($_COOKIE['co2ok_impact'])) {                             
+                if(!isset($_COOKIE['co2ok_impact'])) {
                     setcookie('co2ok_impact', $co2okImpact, time()+86400, '/');
                 }
 
@@ -498,7 +498,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
                 add_action( 'co2ok_participation_cron_hook', array($this, 'co2ok_calculate_participation' ));
 
-                
+
                 if ( ! wp_next_scheduled( 'co2ok_clv_cron_hook' ) ) {
                     // scheduled for now + 15 hours and 5 min
                     wp_schedule_event( time() + 69300, 'monthly', 'co2ok_clv_cron_hook' );
@@ -517,7 +517,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     if ( ! wp_next_scheduled( 'co2ok_ab_results_cron_hook' ) ) {
                         wp_schedule_event( time(), 'daily', 'co2ok_ab_results_cron_hook' );
                     }
-                    
+
                     add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
                 }
 
@@ -595,6 +595,49 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         load_plugin_textdomain( 'co2ok-for-woocommerce', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
     }
 
+    final private function co2ok_bewustBezorgd($order, $merchantId) {
+        //TODO: make this try/catch actually catch e.g. property not found errors
+        try {
+            $shop = array(
+                'bbApiId' => get_option('co2ok_bbApi_id', false),
+                'bbApiPass' => get_option('co2ok_bbApi_pass', false)
+            );
+            $shopCountry = WC()->countries->get_base_country();
+            $shopPostCode = WC()->countries->get_base_postcode();
+            $weight = WC()->cart->cart_contents_weight; //not checked
+            $destCountry = $order->shipping_country; //not checked
+            $destPostCode = $order->shipping_postcode; //not checked
+
+            foreach( $order->get_items( 'shipping' ) as $item_id => $item ){
+                $shippingMethod = $item->get_method_title();
+            }
+            $shippingMethod = !empty($shippingMethod) ? $shippingMethod : "404"; //not checked
+            if ($shopCountry == 'NL' && $orderCountry == 'NL') {
+                $bbAPI = new \co2ok_plugin_woocommerce\Components\Co2ok_BewustBezorgd_API($shop, $shopPostCode, $destPostCode, $shippingMethod, $weight);
+                //BB API call function to store order
+                // $bbAPI->storeOrderToBbApi($order->get_id(););
+            } else {
+                $orderDetails = array (
+                    'storePostCode' => $shopPostCode,
+                    'storeCountry' => $shopCountry,
+                    'destPostCode' => $destPostCode,
+                    'destCountry' => $destCountry,
+                    'weight' => $weight,
+                    'shippingMethod' => $shippingMethod,
+                    'merchantId' => $merchantId);
+                    // Co2ok_Plugin::remoteLogging(json_encode("Order delivery or store outside of NL. Delivery country " . $orderDetails));
+                // Log::warning("Order delivery or store outside of NL. Delivery country " . print_r($orderDetails, true));
+            }
+        } catch (\Exception $e) {
+            //does this work?
+            // Co2ok_Plugin::remoteLogging(json_encode("BB api storing fail " . $e->getMessage()));
+            // Co2ok_Plugin::remoteLogging(json_encode($e->getTraceAsString()));
+            // Co2ok_Plugin::remoteLogging(json_encode("BB api storing this " . $order));
+        }
+
+    }
+
+
     final private function co2ok_storeTransaction($order_id)
     {
         $order = wc_get_order($order_id);
@@ -639,6 +682,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 Co2ok_Plugin::failGracefully($formattedError);
             }
         });
+
+        //if the shop is a BewustBezordg shop, store data
+        if (get_option('co2ok_bbApi_id', false)) {
+            $this->co2ok_bewustBezorgd($order, $merchantId);
+        }
+
     }
 
 
@@ -703,12 +752,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 if (get_option('co2ok_cfp') == 'on')
                     $this->co2ok_storeTransaction($order_id);
 
-            break;
+
+
+                break;
 
             case "refunded":
             case "cancelled":
                 $order = wc_get_order($order_id);
-                
+
                 // if ( 'shop_order_refund' === $order->get_type() )
                 //     $order = wc_get_order($order.get_parent_id());
 
@@ -723,7 +774,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
     }
 
-    final public function co2ok_woocommerce_order_refunded( $order_id, $refund_id ) { 
+    final public function co2ok_woocommerce_order_refunded( $order_id, $refund_id ) {
         global $woocommerce;
         $order = wc_get_order($order_id);
         $fees = $order->get_fees();
@@ -767,17 +818,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $order_total_with_tax = $order_total + array_sum(\WC_Tax::calc_tax($order_total, $tax_rates));
 
-        // percentage magic 
+        // percentage magic
         $joet = $order_total_with_tax / 100;
         $this->percentage = (2 - ($joet/(1 + $joet))) * 0.75;
 
         $surcharge = ($order_total_with_tax) * ($this->percentage / 100);
         $this->surcharge = filter_var ( $surcharge, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        
-        // one of these could suffice (is not like the other) 
+
+        // one of these could suffice (is not like the other)
         $surcharge = round($this->surcharge, 2);
         $this->surcharge = round($this->surcharge, 2);
-        
+
         if ($add_tax){
             if (count($co2ok_rate) > 0){
                 $this->surcharge = $surcharge + array_sum(\WC_Tax::calc_tax($surcharge, $co2ok_rate));
@@ -832,7 +883,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         $this->renderCheckbox();
     }
-    
+
     final public function co2ok_checkout_checkbox()
     {
         $this->renderCheckbox();
@@ -887,7 +938,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         $compensationTotal = 0;
         $compensationCount = 0;
-        
+
         foreach ($orders as $order) {
             $fees = $order->get_fees();
             foreach ($fees as $fee) {
@@ -903,7 +954,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // fake it till you make it; 0 => 42kg && 0 => 1
         $impactTotal = ($impactTotal == 0 ? 42 : $impactTotal);
         $compensationCount = ($compensationCount == 0 ? 1 : $compensationCount);
-        
+
         update_option('co2ok_compensation_count', $compensationCount);
         update_option('co2ok_impact', $impactTotal);
     }
@@ -919,7 +970,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $orders = wc_get_orders( $args );
 
         $parti = 0; // participated
-        
+
         foreach ($orders as $order) {
             $fees = $order->get_fees();
             foreach ($fees as $fee) {
@@ -930,7 +981,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
 
         $participation = $parti / sizeof($orders);
-        
+
         $site_name = $_SERVER['SERVER_NAME'];
         Co2ok_Plugin::remoteLogging(json_encode(["Participation last month", self::VERSION, $site_name, round(($participation * 100), 2)]));
     }
@@ -980,7 +1031,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $hidden_count = 0; // orders with CO2ok hidden
         $order_count = 0; // orders
         $ab_order_count = 0; // orders
-        $shown_found = false; 
+        $shown_found = false;
         $skipped_orders = 0;
 
         foreach ($orders as $order) {
@@ -1003,11 +1054,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             // since get_meta returns an empty string for non-existing keys, this is a little convoluted:
             $hidden = ($order->meta_exists('_co2ok-shown') ? ! $order->get_meta('_co2ok-shown') : 0);
             $order_count ++;
-            
+
             // count the number of orders with CO2ok shown OLD
             if ($shown_old) {
                 $shown_old_count ++;
-                
+
                 // reset the order count once the first is found
                 if (! $shown_found) {
                     $shown_found = true;
@@ -1024,7 +1075,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 $ab_order_count ++;
             }
         }
-        
+
         // Error-prevention:
         if ($order_count - $shown_old_count == 0){
             Co2ok_Plugin::remoteLogging(json_encode(["A/B test early return", $site_name, $shown_old_count, $order_count, "New", $shown_count, $hidden_count, $ab_order_count]));
@@ -1067,17 +1118,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $code = get_option('co2ok_code');
         $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
 
-        $widget_code = 
+        $widget_code =
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         // '<script src="http://localhost:8080/widget/co2okWidgetMark.js" ' .
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
         'async div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
-        
+
         return $widget_code;
     }
 
-    final public function co2ok_widget_shortcode($atts = []){ 
-    
+    final public function co2ok_widget_shortcode($atts = []){
+
         // override default attributes with user attributes
         $co2ok_atts = shortcode_atts([
             'size' => 'XL',
@@ -1088,13 +1139,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $size = $co2ok_atts['size'];
         $color = $co2ok_atts['color'];
         $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
-        
-        $widget_code = 
+
+        $widget_code =
         '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         // '<script src="http://localhost:8080/widget/co2okWidgetXL.js" ' .
         '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js" ' .
         'async div="widgetContainerXL" merchantId=' . $code . ' widgetSize="' . $size . '" widgetColor="' . $color . '" lang="' . $lang . '"></script>';
-        
+
         return $widget_code;
     }
 
@@ -1119,28 +1170,28 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         // determine CLV
         foreach ( $customers as $customer) {
             $co2ok_ness = false;
-            $query = new \WC_Order_Query();                          
-            $query->set( 'customer', $customer ); 
+            $query = new \WC_Order_Query();
+            $query->set( 'customer', $customer );
             // $query->set( 'date_created', '2019-08-13...2020-01-01' );
-            $orders = $query->get_orders(); 
+            $orders = $query->get_orders();
             $total = 0;
             foreach( $orders as $order ) {
                 $total += $order->get_total();
-        
+
                 // determine CO2ok-ness
                 $fees = $order->get_fees();
                 foreach ($fees as $fee) {
                     if (strpos ($fee->get_name(), 'CO2' ) !== false)
-                        $co2ok_ness = true;            
+                        $co2ok_ness = true;
                 }
             }
-            
+
             if ($co2ok_ness) {
                 $clv_co2okees[] = $total;
             } else {
                 $clv_muggles[] = $total;
             }
-            
+
             wp_reset_query();
         }
 
