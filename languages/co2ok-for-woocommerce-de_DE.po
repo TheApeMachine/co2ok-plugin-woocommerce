@@ -44,8 +44,8 @@ msgstr "Machs "
 msgid "Make my purchase climate friendly"
 msgstr "Mach meinen Einkauf Klimafreundlich"
 #: Templates/co2ok_button_template_default.php:50
-msgid "{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction"
-msgstr "{COMPENSATION_COUNT}x kompensiert; {IMPACT}t CO&#8322 Reduktion"
+msgid "{COMPENSATION_COUNT}x compensated; {IMPACT}t CO₂ reduction"
+msgstr "{COMPENSATION_COUNT}x kompensiert; {IMPACT}t CO₂ reduktion"
 #: Templates/co2ok_button_template_default.php:50
 msgid "This is equivalent to {KM} km of flying ✈️"
 msgstr "Das entspricht {KM} km Fliegen."

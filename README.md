@@ -80,7 +80,12 @@ testing.
 ### .po & .mo files for languages
 
 To get a .mo file you can use for languages, you need to convert a .po file to .mo,
-go to the following website, upload your .po file and press convert:
+either using 'msgfmt' if provided by your OS, like so: 
+```
+msgfmt languages/co2ok-for-woocommerce-nl_NL.po  -o languages/co2ok-for-woocommerce-nl_NL.mo
+msgfmt languages/co2ok-for-woocommerce-de_DE.po -o languages/co2ok-for-woocommerce-de_DE.mo
+```
+Or go to the following website, upload your .po file and press convert:
 https://po2mo.net/
 
 ## Contributing

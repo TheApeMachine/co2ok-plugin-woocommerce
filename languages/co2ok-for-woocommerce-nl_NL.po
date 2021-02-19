@@ -53,8 +53,8 @@ msgid "Make my purchase climate friendly"
 msgstr "Maak mijn aankoop klimaatvriendelijk"
 
 #: Templates/co2ok_button_template_default.php:49
-msgid "{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction"
-msgstr "{COMPENSATION_COUNT}x gecompenseerd; {IMPACT}t CO&#8322 reductie"
+msgid "{COMPENSATION_COUNT}x compensated; {IMPACT}t CO₂ reduction"
+msgstr "{COMPENSATION_COUNT}x gecompenseerd; {IMPACT}t CO₂ reductie"
 
 #: Templates/co2ok_button_template_default.php:57
 msgid "This is equivalent to {KM} km of flying ✈️"

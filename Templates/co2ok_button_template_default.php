@@ -46,7 +46,7 @@
                     $variables = array(
                         '{COMPENSATION_COUNT}' => $compensation_count,
                         '{IMPACT}' => $impact_total);
-                    echo strtr( __('{COMPENSATION_COUNT}x compensated; {IMPACT}t CO&#8322 reduction', 'co2ok-for-woocommerce' ), $variables);
+                    echo strtr( __('{COMPENSATION_COUNT}x compensated; {IMPACT}t CO₂ reduction', 'co2ok-for-woocommerce' ), $variables);
                     ?>
                 </span>
                 <span>
