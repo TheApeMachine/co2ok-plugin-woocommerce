@@ -595,6 +595,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         load_plugin_textdomain( 'co2ok-for-woocommerce', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
     }
 
+
     final private function co2ok_bewustBezorgd($order, $merchantId) {
         //TODO: make this try/catch actually catch e.g. property not found errors
         try {
@@ -604,18 +605,18 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             );
             $shopCountry = WC()->countries->get_base_country();
             $shopPostCode = WC()->countries->get_base_postcode();
-            $weight = WC()->cart->cart_contents_weight; //not checked
-            $destCountry = $order->shipping_country; //not checked
-            $destPostCode = $order->shipping_postcode; //not checked
+            $weight = WC()->cart->cart_contents_weight;
+            $destCountry = WC()->customer->get_shipping_country();
+            $destPostCode = WC()->customer->get_shipping_postcode();
 
             foreach( $order->get_items( 'shipping' ) as $item_id => $item ){
                 $shippingMethod = $item->get_method_title();
             }
-            $shippingMethod = !empty($shippingMethod) ? $shippingMethod : "404"; //not checked
-            if ($shopCountry == 'NL' && $orderCountry == 'NL') {
+            $shippingMethod = !empty($shippingMethod) ? $shippingMethod : "404";
+            if ($shopCountry == 'NL' && $destCountry == 'NL') {
                 $bbAPI = new \co2ok_plugin_woocommerce\Components\Co2ok_BewustBezorgd_API($shop, $shopPostCode, $destPostCode, $shippingMethod, $weight);
                 //BB API call function to store order
-                // $bbAPI->storeOrderToBbApi($order->get_id(););
+                $bbAPI->storeOrderToBbApi($order->get_id());
             } else {
                 $orderDetails = array (
                     'storePostCode' => $shopPostCode,
@@ -625,18 +626,15 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     'weight' => $weight,
                     'shippingMethod' => $shippingMethod,
                     'merchantId' => $merchantId);
-                    // Co2ok_Plugin::remoteLogging(json_encode("Order delivery or store outside of NL. Delivery country " . $orderDetails));
-                // Log::warning("Order delivery or store outside of NL. Delivery country " . print_r($orderDetails, true));
+                    Co2ok_Plugin::remoteLogging(json_encode(["Order delivery or store outside of NL. Delivery country ", $orderDetails]));
             }
         } catch (\Exception $e) {
-            //does this work?
-            // Co2ok_Plugin::remoteLogging(json_encode("BB api storing fail " . $e->getMessage()));
-            // Co2ok_Plugin::remoteLogging(json_encode($e->getTraceAsString()));
-            // Co2ok_Plugin::remoteLogging(json_encode("BB api storing this " . $order));
+            Co2ok_Plugin::remoteLogging(json_encode(["BB api storing fail ", $e->getMessage()]));
+            Co2ok_Plugin::remoteLogging(json_encode([$e->getTraceAsString()]));
+            Co2ok_Plugin::remoteLogging(json_encode(["BB api storing this ", $order]));
         }
 
     }
-
 
     final private function co2ok_storeTransaction($order_id)
     {

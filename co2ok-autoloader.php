@@ -56,4 +56,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_TemplateRenderer'
 
     if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_GraphQLMutation' ) )
         require_once( plugin_dir_path( __FILE__ )."/Components/Co2ok-GraphQLMutation.php");
+
+    if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Co2ok_BewustBezorgd_API' ) )
+        require_once( plugin_dir_path( __FILE__ )."/Components/Co2ok-BewustBezorgd.php");
 //}
