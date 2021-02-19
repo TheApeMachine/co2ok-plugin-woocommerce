@@ -12,7 +12,7 @@
  * Tested up to: 5.6
  * WC tested up to: 5.0.0
  *
- * Author:
+ * Authors:
  * Milo de Vries,
  * Chris Fuller,
  * Ryan George,
