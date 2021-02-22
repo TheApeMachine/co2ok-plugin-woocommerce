@@ -243,6 +243,48 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
     }
 
+    /** Updates merchant with BB Api access
+     *
+     * schedule ran daily to update merchants
+     */
+
+    final static function updateMerchant()
+    {
+        $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
+
+        $merchantName = $_SERVER['SERVER_NAME'];
+        $merchantEmail = get_option('admin_email');
+
+        $graphQLClient->mutation(function ($mutation) use ($merchantName, $merchantEmail)
+        {
+            $mutation->setFunctionName('updateMerchant');
+            $mutation->setFunctionParams(array('merchantId' => $merchantId));
+            $mutation->setFunctionReturnTypes(array('merchant' => array("bb_shop_id", "bb_shop_pass"), 'ok'));
+        }
+            , function ($response)// Callback after request
+            {
+                if (is_wp_error($response)) { // ignore valid responses
+                    $formattedError = json_encode($response->errors) . ':' . json_encode($response->error_data);
+                    // Co2ok_Plugin::failGracefully($formattedError);
+                    return;
+                }
+                if(!is_array($response['body']))
+                    $response = json_decode($response['body'], 1);
+
+                if ($response['data']['updateMerchant']['ok'] == true)
+                {
+                    add_option('co2ok_bbApi_id', sanitize_text_field($response['data']['updateMerchant']['merchant']['bb_shop_id']));
+                    add_option('co2ok_bbApi_pass', sanitize_text_field($response['data']['updateMerchant']['merchant']['bb_shop_pass']));
+                }
+                else // TO DO error handling...
+                {
+                    $formattedError = json_encode($response['data']);
+                    // Co2ok_Plugin::failGracefully($formattedError);
+                }
+            });
+        Co2ok_Plugin::remoteLogging(json_encode(["Updated merchants"]));
+    }
+
 
     final static function registerMerchant()
     {
@@ -320,6 +362,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         wp_unschedule_event( $timestamp, 'co2ok_clv_cron_hook' );
         $timestamp = wp_next_scheduled( 'co2ok_ab_results_cron_hook' );
         wp_unschedule_event( $timestamp, 'co2ok_ab_results_cron_hook' );
+        $timestamp = wp_next_scheduled( 'updateMerchant_cron_hook' );
+        wp_unschedule_event( $timestamp, 'updateMerchant_cron_hook' );
     }
 
     /**
@@ -521,6 +565,12 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
                 }
 
+                if ( ! wp_next_scheduled( 'updateMerchant_cron_hook' ) ) {
+                    wp_schedule_event( time(), 'daily', 'updateMerchant_cron_hook' );
+                }
+
+                add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
+
                 $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'off');
                 if ($co2ok_widgetmark_footer == 'on') {
                     add_action('wp_footer', array($this, 'co2ok_footer_widget'));
@@ -596,8 +646,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
 
-    final private function co2ok_bewustBezorgd($order, $merchantId) {
-        //TODO: make this try/catch actually catch e.g. property not found errors
+    final private function co2ok_bewust_bezorgd($order, $merchantId) {
         try {
             $shop = array(
                 'bbApiId' => get_option('co2ok_bbApi_id', false),
@@ -683,7 +732,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         //if the shop is a BewustBezordg shop, store data
         if (get_option('co2ok_bbApi_id', false)) {
-            $this->co2ok_bewustBezorgd($order, $merchantId);
+            $this->co2ok_bewust_bezorgd($order, $merchantId);
         }
 
     }

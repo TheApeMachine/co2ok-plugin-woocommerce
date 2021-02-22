@@ -22,7 +22,7 @@
 </br>
 
     <div id="col-container">
-        
+
         <div id="col-left">
             <div class="col-wrap">
                 <div class="form-wrap">
@@ -35,7 +35,7 @@
                             <img src="<?php echo esc_url(plugins_url('../../../images/Lesotho-cookstoves.jpg', __FILE__)); ?>" width=300px/>
                             <p><small>Additional benefits are less deforestation and health benefits, due to decreasing 
                                 smoke and poisonous carbon monoxide.</small>
-                                
+
                         <h2>Want to help us some more?</h2>
                         <p>If you do, please leave us a <a href=https://wordpress.org/support/view/plugin-reviews/co2ok-for-woocommerce?rate=5#new-post>5★ rating on WordPress.org</a>. It would be a great help to us.</p>
                         <p>We need everybody on our team. So follow us on social media, share our posts, spread the love!</p>
@@ -43,14 +43,14 @@
                         <p><a href="https://www.instagram.com/co2ok.eco/" target="_blank"><span>Instagram</span></a></p>
                         <p><a href="https://www.facebook.com/CO2ok/" target="_blank"><span>Facebook</span></a></p>
                         <p><a href="https://twitter.com/CO2ok_eco" target="_blank" ><span>Twitter</span></a></p> 
-                        
+
                         <h2>Widget-mark</h2>
                         <p>Not all shops contribute to the fight against climate change like you. Wear it like a badge of honor!</p>
                         <img src="<?php echo esc_url(plugins_url('../../../images/widgetmark.png', __FILE__));?>" 
                                 style="vertical-align: middle"/>
-                        
+
                         <form method="POST">
-                        
+
                             <input type="radio" name="co2ok_widgetmark_footer" id="mark_on" value="on" <?php if($co2ok_widgetmark_footer == 'on') echo "checked" ?> >
                             <label style="display: inline" for="mark_on">Show widget in footer</label>
                             <br>

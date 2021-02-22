@@ -4,6 +4,7 @@ namespace co2ok_plugin_woocommerce\Components;
 use cbschuld\LogEntries;
 
 class Co2ok_BewustBezorgd_API {
+
 	private $token;
 	private $client;
 
@@ -16,23 +17,23 @@ class Co2ok_BewustBezorgd_API {
 
 		// array that holds id and password to access BB api
 		$token = array(
-			'id' => $shop->bbApiId,
-			'password' => $shop->bbApiPass
+			'id' => $shop['bbApiId'],
+			'password' => $shop['bbApiPass']
 		);
 		$this->token = wp_json_encode( $token );
 
-    //setup http requests
-    $this->http = _wp_http_get_object();
 		//base url for BB requests
-    $this->baseUrl = 'https://emission.azurewebsites.net/';
+		$this->baseUrl = 'https://emission.azurewebsites.net/';
 	}
 
 	public function storeOrderToBbApi($orderId) {
 
-    //get tokens of store for BB
-    $shopBbApiToken = get_option('bbApi_token', false);
-		$shopBbApiTokenRefresh = get_option('bbApi_tokenRefresh', false);
-		$shopBbApiTokenExpire = get_option('bbApi_tokenExpire', false);
+		//setup http requests
+		$http = _wp_http_get_object();
+		//get tokens of store for BB
+		$shopBbApiToken = get_option('co2ok_bbApi_token', false);
+		$shopBbApiTokenRefresh = get_option('co2ok_bbApi_token_refresh', false);
+		$shopBbApiTokenExpire = get_option('co2ok_bbApi_token_expire', false);
 
 		// if shop has token, refresh (if refresh needed) and store new token, else create new token for shop and store
 		if ($shopBbApiToken) {
@@ -43,7 +44,7 @@ class Co2ok_BewustBezorgd_API {
 			}
 		} else {
 			try {
-				$result = $this->http->post($baseUrl . "api/Account/Token", array(
+				$result = $http->post($this->baseUrl . "api/Account/Token", array(
 					'headers'     => [
 							'Accept' => 'application/json',
 							'Content-Type' => 'application/json'
@@ -55,12 +56,12 @@ class Co2ok_BewustBezorgd_API {
 				//if no errors, tokens are retrieved and saved into shop
 				$responseToken = json_decode($result['body'], true);
 				if (!count($responseToken['errors'])) {
-          add_option('bbApi_token', (string)$responseToken['accessToken']);
-					add_option('bbApi_tokenRefresh', (string)$responseToken['refreshToken']);
-					add_option('bbApi_tokenExpire', (string)$responseToken['expireDateTimeAccesToken']);
-					$shopBbApiToken = get_option('bbApi_token', false);
+         			add_option('co2ok_bbApi_token', (string)$responseToken['accessToken']);
+					add_option('co2ok_bbApi_token_refresh', (string)$responseToken['refreshToken']);
+					add_option('co2ok_bbApi_token_expire', (string)$responseToken['expireDateTimeAccesToken']);
+					$shopBbApiToken = get_option('co2ok_bbApi_token', false);
 				} else {
-					Co2ok_BewustBezorgd_API::remoteLogging(json_encode(["Logging BB Api error response: ", $response['errors']]));
+					Co2ok_BewustBezorgd_API::remoteLogging(json_encode(["Logging BB Api error response token: ", $responseToken['errors']]));
 					return ;
 				}
 			} catch (RequestException $e) {
@@ -89,23 +90,21 @@ class Co2ok_BewustBezorgd_API {
 
 		//calculate emissions, diesel and gas
 		try {
-      $result = $this->http->get($this->baseUrl . 'api/emission-calculation/two-legs' . $query, array(
-        'headers'     => [
+			$result = $http->get($this->baseUrl . 'api/emission-calculation/two-legs' . $query, array(
+				'headers'     => [
 					'Authorization' => 'Bearer ' . $shopBbApiToken
 				],
-        'body'        => $this->token,
-        'data_format' => 'body',
-      ));
+				'body'        => $this->token,
+				'data_format' => 'body',
+			));
 
-			$responseTwoLegs = json_decode($response['body'], true);
+			$responseTwoLegs = json_decode($result['body'], true);
 			if (count($responseTwoLegs['errors'])) {
-				Co2ok_BewustBezorgd_API::remoteLogging(json_encode(["Logging BB Api error response: ", $responseTwoLegs['errors']]));
+				$emissionsGrams = $responseTwoLegs['emission'];
+				$diesel = $responseTwoLegs['metersDiesel'];
+				$gasoline = $responseTwoLegs['metersGasoline'];
+				Co2ok_BewustBezorgd_API::remoteLogging(json_encode(["Logging BB Api two-legs error response: ", $responseTwoLegs['errors'], "Emissions(g): ", $emissionsGrams, "Diesel: ", $diesel, "Gasoline: ", $gasoline]));
 				return ;
-      // } else {
-				//log info somewhere?
-				//$emissionsGrams = $responseTwoLegs['emission'];
-				//$diesel = $responseTwoLegs['metersDiesel'];
-				//$gasoline = $responseTwoLegs['metersGasoline'];
 			}
 		} catch (RequestException $e) {
 			$this->catchException($e);
@@ -114,13 +113,13 @@ class Co2ok_BewustBezorgd_API {
 
 		//store the shipment details in the BB api
 		try {
-      $result = $this->http->get($this->baseUrl . 'api/emission-calculation/two-legs-checkout' . $query, array(
-        'headers'     => [
+			$result = $http->get($this->baseUrl . 'api/emission-calculation/two-legs-checkout' . $query, array(
+				'headers'     => [
 					'Authorization' => 'Bearer ' . $shopBbApiToken
 				],
-        'body'        => $this->token,
-        'data_format' => 'body',
-      ));
+				'body'        => $this->token,
+				'data_format' => 'body',
+			));
 			if ( ! wp_remote_retrieve_response_code($result) == 204 ) {
 				Co2ok_BewustBezorgd_API::remoteLogging(json_encode(["Logging emissions predictions error stored"]));
 				return ;
@@ -147,20 +146,20 @@ class Co2ok_BewustBezorgd_API {
 	//refreshes and returns new token to access BB API
 	public function refreshToken($refreshAccessToken) {
 		try {
-      $refreshArray = array(
+			$refreshArray = array(
 				'refreshToken' => $refreshAccessToken
-      );
+			);
 
-      $result = $this->http->post($this->baseUrl . 'api/Account/Refresh', array(
-        'headers'     => [
-          'Accept' => 'application/json',
-          'Content-Type' => 'application/json'
-        ],
-        'body'        => json_encode($refreshArray),
-        'data_format' => 'body',
-      ));
-			$response = json_decode($result['body'], true);
-			if (count($response['errors'])) {
+			$result = $http->post($this->baseUrl . 'api/Account/Refresh', array(
+				'headers'     => [
+				'Accept' => 'application/json',
+				'Content-Type' => 'application/json'
+				],
+				'body'        => json_encode($refreshArray),
+				'data_format' => 'body',
+			));
+			$responseRefresh = json_decode($result['body'], true);
+			if (count($responseRefresh['errors'])) {
 				return false;
 			}
 		} catch (RequestException $e) {
@@ -168,9 +167,9 @@ class Co2ok_BewustBezorgd_API {
 			return false;
 		}
 
-    update_option('bbApi_token', $response['accessToken']);
-    update_option('bbApi_tokenRefresh', $response['refreshToken']);
-    update_option('bbApi_tokenExpire', $response['expireDateTimeAccesToken']);
+		update_option('co2ok_bbApi_token', $responseRefresh['accessToken']);
+		update_option('co2ok_bbApi_token_refresh', $responseRefresh['refreshToken']);
+		update_option('co2ok_bbApi_token_expire', $responseRefresh['expireDateTimeAccesToken']);
 
 		return true;
 	}
