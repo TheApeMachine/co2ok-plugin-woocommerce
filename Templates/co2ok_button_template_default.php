@@ -11,7 +11,7 @@
         ?>
 
         <div id="checkbox_label">
-            <a href="#!" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none; background-color: transparent !important;">
+            <a href="#!" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none; background-color: transparent !important; z-index: 9999;">
                 <div class="inner_checkbox_label inner_checkbox_label_default co2ok_global_temp" id="default_co2ok_temp">
                     <div id="checkbox">
                     </div>
