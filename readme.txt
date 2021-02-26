@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.6.1
 Requires PHP: 5.5
 WC tested up to: 5.0.0
-Stable tag: 1.0.8.8
+Stable tag: 1.0.8.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,6 +96,9 @@ We gather as little data as possible, specifically:
 4. Show off your impact with our widgets!
 
 == Changelog ==
+
+= 1.0.8.9
+* Improves button design compatiblity
 
 = 1.0.8.8
 * Improves button design compatiblity
