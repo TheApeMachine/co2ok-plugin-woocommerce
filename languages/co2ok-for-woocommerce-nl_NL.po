@@ -89,13 +89,21 @@ msgid "Great that you want to help fight climate change! Press the blue button t
 msgstr "Gaaf dat jullie meedoen met klimaatverandering bestrijden! Druk op de blauwe knop om ons te helpen met CO2ok te verbeteren met wat anonieme data."
 
 #: Templates/co2ok_button_template_default_cfp.php:16
-msgid "This shop is"
-msgstr "Deze shop maakt"
+msgid "This purchase is"
+msgstr "Deze aankoop is"
+
+#: Templates/co2ok_button_template_default_cfp.php:66
+msgid "This store is committed to minimising the climate impact of the production of its goods"
+msgstr "Deze winkel zet zich in om de gevolgen van de productie van zijn goederen voor het klimaat tot een minimum te beperken"
 
 #: Templates/co2ok_button_template_default_cfp.php:77
-msgid "This webshop neutralizes these by financing projects that prevent the same amount of impact"
-msgstr "Deze webshop neutraliseert die door projecten te financieren die evenveel impact voorkomen"
+msgid "The inevitable emissions are neutralised by funding projects that prevent the same amount of emissions"
+msgstr "De onvermijdelijke emissies worden geneutraliseerd door projecten te financieren die dezelfde hoeveelheid emissies voorkomen"
 
 #: Templates/co2ok_button_template_default_cfp.php:88
-msgid "That means you can shop guilt-free and together we help the climate 💚"
-msgstr "Zo shop jij 'guilt-free' en helpen we samen het klimaat 💚"
+msgid "This means this store has a net-zero climate impact 💚"
+msgstr "Dit betekent dat deze winkel een netto-nul effect op het klimaat heeft 💚"
+
+#: Templates/co2ok_button_template_default_cfp.php:95
+msgid "Not only the climate benefits: we also realize less deforestation and increased health benefits through less smoke and toxic carbon monoxide"
+msgstr "Niet alleen het klimaat profiteert; we realiseren zo ook minder ontbossing, sprokkeltijd en kans op rook- en koolmonoxidevergiftiging"

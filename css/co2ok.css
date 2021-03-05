@@ -585,26 +585,63 @@ img#co2ok_logo_minimal {
 
 
 /*cfp hovercard*/
+  .co2ok_cfp_infobox_container {
+    position: absolute;
+    width: 310px;
+    background: white;
+    border-radius: 15px !important;
+    box-sizing: border-box !important;
+    font-family: Roboto, sans-serif !important;
+    font-size: 12px !important;
+    z-index: 999999;
+    display: none;
+    padding: 10px !important;
+    border: 3px solid #eee !important;
+    letter-spacing: normal !important;
+    font-weight: normal !important; }
   .co2ok_cfp_infobox_container.ShowInfoBox {
     display: block;
     opacity: 1; }
-
+    .cfp-exit {
+      display: none;
+      font-size: 18px;
+      font-weight: bold;
+      height: 32px;
+      width: 32px;
+      margin: auto;
+      color: #aeaeae;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+    .exit-area {
+      margin: auto;
+      float: right;
+      margin-right: 8px;
+    }
   .cfp-wrapper {
     display: flex;
     flex-direction: row; }
 
   .cfp-steps {
     color: black !important;
-    font-size: 12px !important;
+    font-size: 11.5px !important;
     margin: 0 0 1.41575em !important;
     text-decoration: none;
-    padding: 15px 0px !important;
+    /* padding: 15px 0px !important; */
     font-family: Roboto, sans-serif !important;
     letter-spacing: normal !important;
     line-height: 1.1rem !important;
     font-weight: normal !important; }
-
-
+  .cfp-step-one {
+    padding-top: 0px;
+    display: block;
+    min-height: 70px; }
+  .cfp-step-two {
+    padding-top: 4px;
+    display: block;
+    margin: 0px 0px auto 2px !important; }
+  .cfp-step-three {
+    padding: 8px 0px; }
   .cfp-road-png {
     position: absolute;
     width: 73%;
@@ -617,7 +654,7 @@ img#co2ok_logo_minimal {
     margin-top: -50px !important; }
 
   .cfp-left {
-    width: 63%;
+    width: 70%;
     margin-left: 4px !important; }
 
   .cfp-right {
@@ -626,9 +663,9 @@ img#co2ok_logo_minimal {
 
   .cfp-png-right {
     position: absolute;
-    width: 44%;
-    right: 1px;
-    top: 92px;
+    width: 42%;
+    right: 0px;
+    margin-top: -10px;
     z-index: 1; }
 
   .cfp-png-left {
@@ -699,3 +736,78 @@ img#co2ok_logo_minimal {
     bottom: -11px;
     transform: rotate(-56deg);
     z-index: -1; }
+
+  .cfp-project-img {
+    width: 100%;
+    /* padding-top: 8px; */
+    margin: auto;
+  }
+  .cfp-project-img-text {
+    font-size: 9px;
+    text-align: center;
+    color: black;
+    padding-bottom: 16px;
+  }
+
+  @media (max-width: 500px) {
+    .co2ok_cfp_container {
+      left: 0 !important;
+      top: 0 !important;
+      position: fixed !important;
+      width: 100% !important;
+      height: 100% !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      transform: none !important;
+      overflow-x: hidden; }
+    .cfp-exit {
+      display: contents;
+    }
+    .cfp-right {
+      padding-top: 10%;
+      margin-left: 30% !important; }
+    .cfp-left {
+      width: 62%;
+      padding-top: 9%; }
+    .cfp-png-right {
+      width: 39%;
+      right: 3%;
+      margin-top: -1%; }
+    .cfp-step-three {
+      padding-top: 12% !important;
+      margin-left: 30% !important; }
+    .cfp-road-png {
+      left: 11%;
+    }
+    .cfp-top-road {
+      top: 8%; }
+    .cfp-bottom-road {
+      margin-top: -12%; }
+    .cfp-png-renewable {
+      margin-top: 3%; }
+    .cfp-button-hovercard-links {
+      text-align: center;
+      display: flex !important; }
+    .cfp-logo-hovercard {
+      position: absolute;
+      bottom: 1%; }
+    .cfp-co2ok-button {
+      position: absolute;
+      bottom: 1%;
+      left: 30%; }
+    .cfp-branch-png {
+      right: 4%;
+      bottom: -2.5%;
+    }
+    .cfp-project-img {
+      padding-top: 2%;
+    }
+    .cfp-project-img-text {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .cfp-left {
+      padding-top: 4%; }
+  }

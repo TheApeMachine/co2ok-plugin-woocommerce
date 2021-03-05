@@ -469,15 +469,17 @@ var Co2ok_JS = function () {
 
         RegisterInfoBox : function() {
 
-            var _this = this;
-
-            jQuery(".co2ok_info_keyboardarea").focus(function() {
-                _this.ShowInfoBox();
-                jQuery(".step-one").focus();
-            });
-
-            jQuery('body').click(function(e) {
-              if(!_this.modalRegex(e))
+          
+          var _this = this;
+          
+          jQuery(".co2ok_info_keyboardarea").focus(function() {
+            _this.ShowInfoBox();
+            jQuery(".step-one").focus();
+          });
+          
+          jQuery('body').click(function(e) {
+              console.log("hello there", e.target)
+              if((!_this.modalRegex(e)) || (jQuery(e.target).hasClass("exit-area")))
               {
                 _this.hideInfoBox();
               }
@@ -489,7 +491,7 @@ var Co2ok_JS = function () {
 
             jQuery('body').on("touchstart",function(e) {
 
-              if(!_this.modalRegex(e)){
+              if((!_this.modalRegex(e)) || (jQuery(e.target).hasClass("exit-area"))){
                 _this.hideInfoBox();
               }
               else {
@@ -504,7 +506,7 @@ var Co2ok_JS = function () {
               });
 
               jQuery(document).mouseover(function(e) {
-                  if (!(_this.modalRegex(e)))
+                  if (!_this.modalRegex(e))
                   {
                     _this.hideInfoBox();
                   }
