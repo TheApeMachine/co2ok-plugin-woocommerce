@@ -162,7 +162,6 @@ var Co2ok_JS = function () {
               this.RegisterInfoBox();
               return ;
             }
-            console.log("done")
             this.RegisterBindings();
             this.RegisterInfoBox();
             this.RegisterRefreshHandling();

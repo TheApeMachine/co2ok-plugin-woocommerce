@@ -252,14 +252,14 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     {
         $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
-        $merchantName = $_SERVER['SERVER_NAME'];
-        $merchantEmail = get_option('admin_email');
+        $merchantId = get_option('co2ok_id');
+        $merchantSecret = get_option('co2ok_secret');
 
-        $graphQLClient->mutation(function ($mutation) use ($merchantName, $merchantEmail)
+        $graphQLClient->query(function ($query) use ($merchantId, $merchantSecret)
         {
-            $mutation->setFunctionName('updateMerchant');
-            $mutation->setFunctionParams(array('merchantId' => $merchantId));
-            $mutation->setFunctionReturnTypes(array('merchant' => array("bb_shop_id", "bb_shop_pass"), 'ok'));
+            $query->setFunctionName('merchant');
+            $query->setFunctionParams(array('id' => $merchantId, 'secret' => $merchantSecret));
+            $query->setFunctionReturnTypes(array("bbShopid", "bbPassword"));
         }
             , function ($response)// Callback after request
             {
@@ -268,21 +268,24 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     // Co2ok_Plugin::failGracefully($formattedError);
                     return;
                 }
-                if(!is_array($response['body']))
+                if(!is_array($response['body'])) {
                     $response = json_decode($response['body'], 1);
+                }
 
-                if ($response['data']['updateMerchant']['ok'] == true)
+                Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant Error", $response]));
+                if ($response['data'])
                 {
-                    add_option('co2ok_bbApi_id', sanitize_text_field($response['data']['updateMerchant']['merchant']['bb_shop_id']));
-                    add_option('co2ok_bbApi_pass', sanitize_text_field($response['data']['updateMerchant']['merchant']['bb_shop_pass']));
+                    Co2ok_Plugin::remoteLogging(json_encode(["updated merchant"], $response['data']));
+                    add_option('co2ok_bbApi_id', sanitize_text_field($response['data']['merchant']['bbShopid']));
+                    add_option('co2ok_bbApi_pass', sanitize_text_field($response['data']['merchant']['bbPassword']));
                 }
                 else // TO DO error handling...
                 {
                     $formattedError = json_encode($response['data']);
+                    Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant Error", $response['data']]));
                     // Co2ok_Plugin::failGracefully($formattedError);
                 }
             });
-        Co2ok_Plugin::remoteLogging(json_encode(["Updated merchants"]));
     }
 
 
@@ -461,6 +464,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     case "review_order_before_submit":
                         add_action('woocommerce_review_order_before_submit', array($this, 'co2ok_checkout_checkbox'));
                         break;
+                    case "co2ok_disabled_button_on_cart":
+                        break;
                     case "checkout_order_review":
                         add_action('woocommerce_checkout_order_review', array($this, 'co2ok_checkout_checkbox'));
                         break;
@@ -565,11 +570,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
                 }
 
-                if ( ! wp_next_scheduled( 'updateMerchant_cron_hook' ) ) {
+                // if ( ! wp_next_scheduled( 'updateMerchant_cron_hook' ) ) {
                     wp_schedule_event( time(), 'daily', 'updateMerchant_cron_hook' );
-                }
-
-                add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
+                // }
+                add_action( 'updateMerchant_cron_hook', array($this, 'updateMerchant' ));
 
                 $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'off');
                 if ($co2ok_widgetmark_footer == 'on') {
@@ -630,7 +634,11 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true);
         // wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok-test.js', null, null, true);
         // wp_register_script('co2ok_js_cdn', 'http://localhost:8080/co2ok.js', null, null, true);
-        wp_enqueue_script('co2ok_js_cdn');
+
+        //only loads middleware JS if on cart, checkout or a woocommerce page
+        if ( is_cart() || is_checkout() || is_woocommerce() ) {
+            wp_enqueue_script('co2ok_js_cdn');
+        }
         wp_register_script('co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__).'?plugin_version='.self::VERSION);
         wp_enqueue_script('co2ok_js_wp', "", array('jquery'), null, true);
         wp_localize_script('co2ok_js_wp', 'ajax_object',
@@ -663,9 +671,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             }
             $shippingMethod = !empty($shippingMethod) ? $shippingMethod : "404";
             if ($shopCountry == 'NL' && $destCountry == 'NL') {
-                $bbAPI = new \co2ok_plugin_woocommerce\Components\Co2ok_BewustBezorgd_API($shop, $shopPostCode, $destPostCode, $shippingMethod, $weight);
+                $bbAPI = new \co2ok_plugin_woocommerce\Components\Co2ok_BewustBezorgd($shop, $shopPostCode, $destPostCode, $shippingMethod, $weight);
                 //BB API call function to store order
-                $bbAPI->storeOrderToBbApi($order->get_id());
+                $bbAPI->store_order_to_bb_api($order->get_id());
             } else {
                 $orderDetails = array (
                     'storePostCode' => $shopPostCode,
@@ -733,6 +741,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         //if the shop is a BewustBezordg shop, store data
         if (get_option('co2ok_bbApi_id', false)) {
             $this->co2ok_bewust_bezorgd($order, $merchantId);
+            $this->updateMerchant();
         }
 
     }
@@ -1191,7 +1200,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         // '<script src="http://localhost:8080/widget/co2okWidgetXL.js" ' .
         '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js" ' .
-        'async div="widgetContainerXL" merchantId=' . $code . ' widgetSize="' . $size . '" widgetColor="' . $color . '" lang="' . $lang . '"></script>';
+        'defer div="widgetContainerXL" merchantId=' . $code . ' widgetSize="' . $size . '" widgetColor="' . $color . '" lang="' . $lang . '"></script>';
 
         return $widget_code;
     }

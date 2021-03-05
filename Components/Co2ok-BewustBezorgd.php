@@ -3,7 +3,7 @@ namespace co2ok_plugin_woocommerce\Components;
 
 use cbschuld\LogEntries;
 
-class Co2ok_BewustBezorgd_API {
+class Co2ok_BewustBezorgd {
 
 	private $token;
 	private $client;
@@ -26,7 +26,7 @@ class Co2ok_BewustBezorgd_API {
 		$this->baseUrl = 'https://emission.azurewebsites.net/';
 	}
 
-	public function storeOrderToBbApi($orderId) {
+	public function store_order_to_bb_api($orderId) {
 
 		//setup http requests
 		$http = _wp_http_get_object();
@@ -61,7 +61,7 @@ class Co2ok_BewustBezorgd_API {
 					add_option('co2ok_bbApi_token_expire', (string)$responseToken['expireDateTimeAccesToken']);
 					$shopBbApiToken = get_option('co2ok_bbApi_token', false);
 				} else {
-					Co2ok_BewustBezorgd_API::remoteLogging(json_encode(["Logging BB Api error response token: ", $responseToken['errors']]));
+					Co2ok_BewustBezorgd::remoteLogging(json_encode(["Logging BB Api error response token: ", $responseToken['errors']]));
 					return ;
 				}
 			} catch (RequestException $e) {
@@ -103,7 +103,7 @@ class Co2ok_BewustBezorgd_API {
 				$emissionsGrams = $responseTwoLegs['emission'];
 				$diesel = $responseTwoLegs['metersDiesel'];
 				$gasoline = $responseTwoLegs['metersGasoline'];
-				Co2ok_BewustBezorgd_API::remoteLogging(json_encode(["Logging BB Api two-legs error response: ", $responseTwoLegs['errors'], "Emissions(g): ", $emissionsGrams, "Diesel: ", $diesel, "Gasoline: ", $gasoline]));
+				Co2ok_BewustBezorgd::remoteLogging(json_encode(["Logging BB Api two-legs error response: ", $responseTwoLegs['errors'], "Emissions(g): ", $emissionsGrams, "Diesel: ", $diesel, "Gasoline: ", $gasoline]));
 				return ;
 			}
 		} catch (RequestException $e) {
@@ -121,7 +121,7 @@ class Co2ok_BewustBezorgd_API {
 				'data_format' => 'body',
 			));
 			if ( ! wp_remote_retrieve_response_code($result) == 204 ) {
-				Co2ok_BewustBezorgd_API::remoteLogging(json_encode(["Logging emissions predictions error stored"]));
+				Co2ok_BewustBezorgd::remoteLogging(json_encode(["Logging emissions predictions error stored"]));
 				return ;
 			}
 		} catch (RequestException $e) {
@@ -149,7 +149,6 @@ class Co2ok_BewustBezorgd_API {
 			$refreshArray = array(
 				'refreshToken' => $refreshAccessToken
 			);
-
 			$result = $http->post($this->baseUrl . 'api/Account/Refresh', array(
 				'headers'     => [
 				'Accept' => 'application/json',
@@ -191,14 +190,14 @@ class Co2ok_BewustBezorgd_API {
 		return 'NextDay';
 	}
 
-	//catch exception for Guzzle client
+	//catch exception for http requests
 	public function catchException($e) {
 		$error['error'] = $e->getMessage();
 		$error['request'] = $e->getRequest();
 		if($e->hasResponse()){
 		  $error['response'] = $e->getResponse();
 		}
-		Co2ok_BewustBezorgd_API::remoteLogging(json_encode(["Error occurred in BB API request ",  $error]));
+		Co2ok_BewustBezorgd::remoteLogging(json_encode(["Error occurred in BB API request ",  $error]));
 	}
 
 	final public static function remoteLogging($message = "Unspecified message.")
