@@ -29,7 +29,7 @@ Class Co2ok_GraphQLRequest
         $this->mutationFunctionReturnTypes = $functionReturnTypes;
     }
 
-    public function ProcessQuery($requestType)
+    public function ProcessRequest($requestType)
     {
         $this->requestQuery = $requestType . " { ";
         $this->requestQuery .= $this->mutationFunctionName.'(';

@@ -13,7 +13,7 @@ class Co2ok_GraphQLClient extends Co2ok_HttpsRequest
         $requestType = "query";
         $query = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLRequest($requestType);
         $callback($query);
-        $query->ProcessQuery($requestType);
+        $query->ProcessRequest($requestType);
 
         $response = $this->executeRequest($query->requestQuery);
         $responseCallback($response);
@@ -24,7 +24,7 @@ class Co2ok_GraphQLClient extends Co2ok_HttpsRequest
         $requestType = "mutation";
         $mutation = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLRequest($requestType);
         $callback($mutation);
-        $mutation->ProcessQuery($requestType);
+        $mutation->ProcessRequest($requestType);
 
         $response = $this->executeRequest($mutation->requestQuery);
         $responseCallback($response);
