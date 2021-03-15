@@ -38,7 +38,7 @@ class Co2ok_BewustBezorgd {
 		// if shop has token, refresh (if refresh needed) and store new token, else create new token for shop and store
 		if ($shopBbApiToken) {
 			if($this->checkExpireToken($shopBbApiTokenRefresh, $shopBbApiTokenExpire)) {
-				if (!$this->refreshToken($shopBbApiTokenRefresh)) {
+				if (!$this->refreshToken($shopBbApiTokenRefresh, $http)) {
 					return ;
 				}
 			}
@@ -144,7 +144,7 @@ class Co2ok_BewustBezorgd {
 
 
 	//refreshes and returns new token to access BB API
-	public function refreshToken($refreshAccessToken) {
+	public function refreshToken($refreshAccessToken, $http) {
 		try {
 			$refreshArray = array(
 				'refreshToken' => $refreshAccessToken

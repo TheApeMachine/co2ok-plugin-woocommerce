@@ -255,8 +255,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $merchantId = get_option('co2ok_id');
         $merchantSecret = get_option('co2ok_secret');
 
-        $graphQLClient->query(function ($query) use ($merchantId, $merchantSecret)
-        {
+        $graphQLClient->query(function ($query) use ($merchantId, $merchantSecret) {
             $query->setFunctionName('merchant');
             $query->setFunctionParams(array('id' => $merchantId, 'secret' => $merchantSecret));
             $query->setFunctionReturnTypes(array("bbShopid", "bbPassword"));
@@ -272,7 +271,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     $response = json_decode($response['body'], 1);
                 }
 
-                Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant Error", $response]));
+                Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant Error stop ", $response]));
                 if ($response['data'])
                 {
                     Co2ok_Plugin::remoteLogging(json_encode(["updated merchant"], $response['data']));

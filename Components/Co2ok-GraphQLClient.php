@@ -15,7 +15,7 @@ class Co2ok_GraphQLClient extends Co2ok_HttpsRequest
         $callback($query);
         $query->ProcessQuery($requestType);
 
-        $response = $this->executeRequest($query->queryRequest);
+        $response = $this->executeRequest($query->requestQuery);
         $responseCallback($response);
     }
 
@@ -26,7 +26,7 @@ class Co2ok_GraphQLClient extends Co2ok_HttpsRequest
         $callback($mutation);
         $mutation->ProcessQuery($requestType);
 
-        $response = $this->executeRequest($mutation->queryRequest);
+        $response = $this->executeRequest($mutation->requestQuery);
         $responseCallback($response);
     }
 }
