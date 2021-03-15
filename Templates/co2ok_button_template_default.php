@@ -109,6 +109,16 @@
                 </p>
             </div>
 
+            <div class="projects-wrapper default-info-hovercard">
+                <p class="default-projects projects-text default-info-hovercard">
+                    <?php echo __('CO2OK support several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects.',  'co2ok-for-woocommerce' );?>
+                </p>
+                <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/co2-projects.png', 'default-projects-image default-info-hovercard', 'a3-notlazy'); ?>
+                <p class="co2-image-description default-info-hovercard">
+                    <?php echo __('Not only does the climate benefit; we also realize less deforestation, gleaning time and risk of smoke and carbon monoxide poisoning this way.',  'co2ok-for-woocommerce' );?>
+                </p>
+            </div>
+
             <a class="hover-link" target="_blank" href="http://co2ok.eco"><?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo.svg', 'default-logo-hovercard', 'default-logo-hovercard default-info-hovercard', 'a3-notlazy'); ?></a>
 
             <span class="default-button-hovercard-links default-info-hovercard">

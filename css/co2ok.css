@@ -543,16 +543,32 @@ img#co2ok_logo_minimal {
     margin-top: 11px;
     height: 24px; }
 
+  .default-projects {
+    padding: 16px 0px 8px 0px;
+    color: black;
+    margin-left: 6px;
+    margin-bottom: 0px;
+  }
+  .default-projects-image {
+    width: 100%;
+  }
+  .co2-image-description {
+    color: black;
+    text-align: center;
+    font-size: 10px;
+    margin-bottom: 0px;
+  }
+
   .default-button-hovercard-links {
     text-align: center;
     display: flex;
-    padding-top: 16px !important; }
+    padding-top: 8px !important; }
 
   .default-logo-hovercard {
     position: absolute;
     width: 15%;
     left: 32px;
-    padding-top: 23px !important; }
+    padding-top: 16px !important; }
 
   .default-co2ok-button {
     margin: auto !important;
