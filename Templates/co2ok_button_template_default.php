@@ -68,9 +68,15 @@
 
         <div class="co2ok_infobox_container co2ok-popper default-info-hovercard" id="infobox-view">
 
+            <div class="default-exit-area desktop-hidden">
+                <p class="default-exit-hovercard">
+                    <?php echo __('X',  'co2ok-for-woocommerce' );?>
+                </p>
+            </div>
+
             <div class="default-wrapper default-info-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/factory.png', 'default-png', 'default-png default-png-right default-info-hovercard', 'a3-notlazy'); ?>
-                <p class="default-steps step-one default-left default-info-hovercard" style="padding-top: 18px !important;">
+                <p class="default-steps step-one default-left default-info-hovercard">
                     <?php echo __('Every product has a climate impact through transport and production',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>
@@ -104,7 +110,7 @@
 
             <div class="default-wrapper default-info-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/renewable_energy.png', 'default-png', 'default-png default-png-left default-png-renewable default-info-hovercard', 'a3-notlazy'); ?>
-                <p class="default-steps step-four default-right default-info-hovercard" style=" margin-left: 96px !important;">
+                <p class="default-steps step-four default-right default-info-hovercard">
                     <?php echo __('We finance projects that directly prevent emissions and together we help the climate 💚',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>

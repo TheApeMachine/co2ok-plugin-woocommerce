@@ -444,6 +444,12 @@ img#co2ok_logo_minimal {
 
 
 /*start of checkout button hovercard css*/
+
+    .desktop-hidden {
+      display: none;
+    }
+
+
   html {
     font-size: initial; }
 
@@ -464,12 +470,23 @@ img#co2ok_logo_minimal {
     .co2ok_infobox_container.ShowInfoBox {
       display: block;
       opacity: 1; }
-
-      /* default and minimal button hovercard */
-      .default-wrapper {
-        display: flex;
-        height: 70px;
-        flex-direction: row; }
+  .default-exit-area {
+    width: 32px;
+    height: 32px;
+    float: right;
+  }
+  .default-exit-hovercard {
+    font-size: 18px;
+    opacity: 0.5;
+    font-weight: bold;
+    margin: auto;
+    text-align: center;
+  }
+    /* default and minimal button hovercard */
+    .default-wrapper {
+      display: flex;
+      height: 70px;
+      flex-direction: row; }
 
   .default-steps {
     margin: auto;
@@ -482,7 +499,12 @@ img#co2ok_logo_minimal {
     font-size: 12px !important;
     font-weight: normal !important;
     width: 68%; }
-
+  .step-one {
+    padding-top: 18px;
+  }
+  .step-four {
+    margin-left: 96px;
+  }
   .default-png {
     z-index: 1; }
 
@@ -598,6 +620,143 @@ img#co2ok_logo_minimal {
     bottom: -11px;
     transform: rotate(-56deg);
     z-index: -1; }
+
+/* mobile hovercard */
+  @media (max-width: 500px) {
+    .co2ok_infobox_container {
+      left: 0 !important;
+      top: 0 !important;
+      position: fixed;
+      width: 100% !important;
+      height: 100vh !important;
+      overflow-y: auto !important;
+      overflow-x: hidden;
+      transform: none !important; }
+    .desktop-hidden {
+      display: block;
+    }
+    .default-road-png {
+      left: 18%;
+      width: 63%;
+    }
+    .step-one {
+      padding-top: 6% !important;
+      width: 59%;
+      margin-left: 12%;
+    }
+    .step-two {
+      margin-left: 34%;
+      margin-top: 2.5%;
+      width: 56%;
+    }
+    .step-three {
+      margin-top: 2%;
+      margin-left: 12%;
+      width: 59%;
+    }
+    .step-four {
+      width: 54%;
+      margin-top: 3%;
+      margin-left: 34%;
+    }
+    .projects-wrapper {
+      margin-top: 24px;
+    }
+    .default-png-right {
+      width: 17%;
+      right: 15%;
+    }
+    .default-png-truck {
+      width: 33%;
+      margin-top: -2%;
+      margin-left: 3%;
+    }
+    .default-png-button {
+      position: absolute;
+      width: 17%;
+      right: 15%;
+      margin-top: 4%;
+    }
+    .default-png-renewable {
+      width: 21%;
+      left: 11%;
+      margin-top: 1%;
+    }
+    .default-button-hovercard-links {
+      margin-top: 8px; }
+
+    .default-logo-hovercard {
+      left: 16px;
+      position: absolute;
+      bottom: 4px; }
+
+    .default-co2ok-button {
+      position: absolute;
+      bottom: 3px;
+      left: 30%; }
+    .default-branch-png {
+      width: 28%;
+      right: 7%;
+      bottom: -20px; }
+  }
+
+  @media (max-width: 375px) {
+    .step-two {
+      margin-top: 1.5%; }
+    .step-three {
+      margin-top: 1%; }
+    .step-four {
+      margin-top: 2%; }
+    /* .default-co2ok-button {
+      margin-bottom: 4px !important;
+    }
+    .default-branch-png {
+      bottom: -2%;
+    }
+    .default-logo-hovercard {
+      bottom: 7px;
+    } */
+    /* .default-co2ok-button {
+      bottom: auto !important; } */
+    /* .default-branch-png {
+      bottom: -4.5%;
+      margin-right: 1%; } */
+    /* .default-logo-hovercard {
+      bottom: auto; } */
+  }
+
+  @media(max-height: 670px) {
+    .default-co2ok-button {
+      bottom: auto !important; }
+    .default-logo-hovercard {
+      bottom: auto; }
+    .default-branch-png {
+      bottom: -4.5%; }
+  }
+
+  @media (max-width: 320px) {
+    .default-road-png {
+      left: 19%; }
+    .step-one {
+      padding-top: 3% !important; }
+    .step-two {
+      margin-top: 0.5%; }
+    .step-three {
+      margin-top: -4%;
+      width: 54%; }
+    .step-four {
+      margin-top: -2%;
+      width: 55%; }
+    .default-logo-hovercard {
+      bottom: auto; }
+    .default-co2ok-button {
+      bottom: auto !important; }
+    .default-branch-png {
+      bottom: -23%;
+      margin-right: 1%; }
+  }
+
+
 
 
 /*cfp hovercard*/
