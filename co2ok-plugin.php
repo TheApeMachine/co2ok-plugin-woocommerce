@@ -250,6 +250,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final static function updateMerchant()
     {
+        Co2ok_Plugin::remoteLogging(json_encode(["Logging inside updateMerchant to test scheduler"]));
         $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
         $merchantId = get_option('co2ok_id');
@@ -271,17 +272,17 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     $response = json_decode($response['body'], 1);
                 }
 
-                Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant Error stop ", $response]));
+                Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant response", $response]));
                 if ($response['data'])
                 {
-                    Co2ok_Plugin::remoteLogging(json_encode(["updated merchant"], $response['data']));
+                    Co2ok_Plugin::remoteLogging(json_encode(["Updated new BB API merchant "], $response['data']));
                     add_option('co2ok_bbApi_id', sanitize_text_field($response['data']['merchant']['bbShopid']));
                     add_option('co2ok_bbApi_pass', sanitize_text_field($response['data']['merchant']['bbPassword']));
                 }
                 else // TO DO error handling...
                 {
                     $formattedError = json_encode($response['data']);
-                    Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant Error", $response['data']]));
+                    // Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant Error", $response['data']]));
                     // Co2ok_Plugin::failGracefully($formattedError);
                 }
             });
@@ -364,8 +365,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         wp_unschedule_event( $timestamp, 'co2ok_clv_cron_hook' );
         $timestamp = wp_next_scheduled( 'co2ok_ab_results_cron_hook' );
         wp_unschedule_event( $timestamp, 'co2ok_ab_results_cron_hook' );
-        $timestamp = wp_next_scheduled( 'updateMerchant_cron_hook' );
-        wp_unschedule_event( $timestamp, 'updateMerchant_cron_hook' );
+        $timestamp = wp_next_scheduled( 'update_merchant_cron_hook' );
+        wp_unschedule_event( $timestamp, 'update_merchant_cron_hook' );
     }
 
     /**
@@ -569,10 +570,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     add_action( 'co2ok_ab_results_cron_hook', array($this, 'co2ok_calculate_ab_results' ));
                 }
 
-                // if ( ! wp_next_scheduled( 'updateMerchant_cron_hook' ) ) {
-                    wp_schedule_event( time(), 'daily', 'updateMerchant_cron_hook' );
-                // }
-                add_action( 'updateMerchant_cron_hook', array($this, 'updateMerchant' ));
+                if ( ! wp_next_scheduled( 'update_merchant_cron_hook' ) ) {
+                    wp_schedule_event( time(), 'daily', 'update_merchant_cron_hook' );
+                }
+                add_action( 'update_merchant_cron_hook', array($this, 'updateMerchant' ));
 
                 $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'off');
                 if ($co2ok_widgetmark_footer == 'on') {
@@ -740,7 +741,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         //if the shop is a BewustBezordg shop, store data
         if (get_option('co2ok_bbApi_id', false)) {
             $this->co2ok_bewust_bezorgd($order, $merchantId);
-            $this->updateMerchant();
         }
 
     }

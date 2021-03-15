@@ -56,7 +56,7 @@
                             <br>
                             <input type="radio" name="co2ok_widgetmark_footer" id="mark_off" value="off" <?php if($co2ok_widgetmark_footer == 'off') echo "checked" ?> >
                             <label style="display: inline" for="mark_off">Use the WP shortcode [co2ok_widgetmark]</label>
-                            
+
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
                         </form>
