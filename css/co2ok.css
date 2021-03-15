@@ -707,22 +707,6 @@ img#co2ok_logo_minimal {
       margin-top: 1%; }
     .step-four {
       margin-top: 2%; }
-    /* .default-co2ok-button {
-      margin-bottom: 4px !important;
-    }
-    .default-branch-png {
-      bottom: -2%;
-    }
-    .default-logo-hovercard {
-      bottom: 7px;
-    } */
-    /* .default-co2ok-button {
-      bottom: auto !important; } */
-    /* .default-branch-png {
-      bottom: -4.5%;
-      margin-right: 1%; } */
-    /* .default-logo-hovercard {
-      bottom: auto; } */
   }
 
   @media(max-height: 670px) {
