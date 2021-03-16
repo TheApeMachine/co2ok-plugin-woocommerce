@@ -27,7 +27,7 @@
         <span class="co2ok_payoff_text co2ok_adaptive_color_default">
                 <span>
                     <?php
-                        echo  __( 'Make my purchase climate friendly', 'co2ok-for-woocommerce' );
+                        echo  __( 'This purchase is climate friendly', 'co2ok-for-woocommerce' );
                         ?>
                 </span>
                 <span>

@@ -92,6 +92,10 @@ msgstr "Gaaf dat jullie meedoen met klimaatverandering bestrijden! Druk op de bl
 msgid "This purchase is"
 msgstr "Deze aankoop is"
 
+#: Templates/co2ok_button_template_default_cfp.php:16
+msgid "This purchase is climate friendly"
+msgstr "Deze aankoop is klimaatvriendelijk"
+
 #: Templates/co2ok_button_template_default_cfp.php:66
 msgid "This store is committed to minimising the climate impact of the production of its goods"
 msgstr "Deze winkel zet zich in om de gevolgen van de productie van zijn goederen voor het klimaat tot een minimum te beperken"
