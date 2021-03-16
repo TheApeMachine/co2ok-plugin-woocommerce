@@ -89,7 +89,7 @@
             <div class="cfp-wrapper cfp-hovercard">
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/renewable_energy.png', 'info-hover-png', 'cfp-png-left cfp-png-renewable cfp-hovercard', 'a3-notlazy'); ?>
                 <p class="cfp-steps cfp-step-three cfp-right cfp-hovercard">
-                    <?php echo __('This means this store has a net-zero climate impact 💚',  'co2ok-for-woocommerce' );?>
+                    <?php echo __('This means that both your purchase and this store have a net-zero climate impact 💚',  'co2ok-for-woocommerce' );?>
                 </p>
             </div>
 

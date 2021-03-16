@@ -101,8 +101,8 @@ msgid "The inevitable emissions are neutralised by funding projects that prevent
 msgstr "De onvermijdelijke emissies worden geneutraliseerd door projecten te financieren die dezelfde hoeveelheid emissies voorkomen"
 
 #: Templates/co2ok_button_template_default_cfp.php:88
-msgid "This means this store has a net-zero climate impact 💚"
-msgstr "Dit betekent dat deze winkel een netto-nul effect op het klimaat heeft 💚"
+msgid "This means that both your purchase and this store have a net-zero climate impact 💚"
+msgstr "Dit betekent dat zowel je aankoop als deze shop per saldo geen impact op het klimaat hebben 💚"
 
 #: Templates/co2ok_button_template_default_cfp.php:95
 msgid "Not only the climate benefits: we also realize less deforestation and increased health benefits through less smoke and toxic carbon monoxide"
