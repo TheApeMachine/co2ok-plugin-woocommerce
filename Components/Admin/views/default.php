@@ -82,11 +82,11 @@
                         
                         <form method="POST">
                         
-                            <input type="radio" name="co2ok_cfp" id="comp_on" value="on" <?php if($co2ok_cfp == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="comp_on">Shop pays to compensate all purchases.</label>
+                            <input type="radio" name="co2ok_cfp" id="cfp_on" value="on" <?php if($co2ok_cfp == 'on') echo "checked" ?> >
+                            <label style="display: inline" for="cfp_on">Shop pays to compensate all purchases.</label>
                             <br>
-                            <input type="radio" name="co2ok_cfp" id="comp_off" value="off" <?php if($co2ok_cfp == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="comp_off">Customer can choose to compensate purchases.</label>
+                            <input type="radio" name="co2ok_cfp" id="cfp_off" value="off" <?php if($co2ok_cfp == 'off') echo "checked" ?> >
+                            <label style="display: inline" for="cfp_off">Customer can choose to compensate purchases.</label>
                             
                             <p style="margin-top: 12px">
                                 <input type="submit" value="Save" class="button button-primary button-large"></p>
