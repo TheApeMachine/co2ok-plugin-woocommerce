@@ -58,14 +58,21 @@ docker-compose up
 
 Open repo in browser from Docker Dashboard and follow the instructions to setup a WordPress page. Or, if you are not using Docker Dashboard, open browser and go to localhost:8080
 
-Next, WooCommerce must be added. Follow this link, and use the Docker command line to add WooCommerce to your Docker:
-https://hub.docker.com/r/julianxhokaxhiu/docker-woocommerce
-If that is unsuccessful, search, download, and activate WooCommerce in Plugin by selecting add new from the plugin menu and searching for WooCommerce.
+Next, WooCommerce must be added: search, download, and activate WooCommerce in Plugin by selecting add new from the plugin menu and searching for WooCommerce.
 
 Once WooCommerce is activated, follow the steps to setup a store. The most important information during set up is setting the country of the shop to Netherlands. On the follow page, select any industry and product. On Tell us about your business: select you are selling 1-10 products.
 At Enhace your store with Jetpack and WooCommerce Services, select Yes Please. Once initial setup is complete, continue the Jetpack/WooCommerce menu and add a product. The product can say or be anything, but it must have a price in order to add it to basket.
 
 Next, add and activate co2ok plugin. To test, add the product you made to your cart and go to checkout. The co2ok plugin should be visible on these pages.
+
+If you see this: 
+```
+ mysqld: [Warning] World-writable config file '/etc/mysql/conf.d/local.cnf' is ignored.
+```
+run (not in the docker container)
+```
+chmod 644 db-conf/local.cnf
+```
 
 
 ### Testing changes to plugin on co2ok test server
