@@ -250,7 +250,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final static function updateMerchant()
     {
-        Co2ok_Plugin::remoteLogging(json_encode(["Logging inside updateMerchant to test scheduler"]));
         $graphQLClient = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLClient(Co2ok_Plugin::$co2okApiUrl);
 
         $merchantId = get_option('co2ok_id');
@@ -272,7 +271,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     $response = json_decode($response['body'], 1);
                 }
 
-                Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant response", $response]));
+                // Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant response", $response]));
                 if ($response['data'])
                 {
                     Co2ok_Plugin::remoteLogging(json_encode(["Updated new BB API merchant "], $response['data']));
@@ -282,7 +281,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 else // TO DO error handling...
                 {
                     $formattedError = json_encode($response['data']);
-                    // Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant Error", $response['data']]));
+                    Co2ok_Plugin::remoteLogging(json_encode(["updateMerchant Error", $response['data']]));
                     // Co2ok_Plugin::failGracefully($formattedError);
                 }
             });
