@@ -1,7 +1,7 @@
 .co2ok_container_default .co2ok_checkbox_container_default .inner_checkbox_label_default:after, .co2ok_container_default .co2ok_checkbox_container_default.selected .inner_checkbox_label_default, .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .comp_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal {
-  background: -webkit-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
-  background: -o-linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%);
-  background: linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%); }
+	background: -webkit-linear-gradient(#34D32D -25.09%, #1DBC16 50%, #009B0F 75%, #1F7837 100%);
+	background: -o-linear-gradient(#34D32D -25.09%, #1DBC16 50%, #009B0F 75%, #1F7837 100%);
+	background: linear-gradient(#34D32D -25.09%, #1DBC16 50%, #009B0F 75%, #1F7837 100%); }
 
 .co2ok_container {
   /* HTML5 display-role reset for older browsers */
