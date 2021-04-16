@@ -183,8 +183,7 @@ class Co2ok_BewustBezorgd {
 			'SameDay',
 			'SundayDelivery'
 		);
-		if (in_array($method, $shippingCategory)) {
-			if ($method == $shipping)
+		if (in_array($shipping, $shippingCategory)) {
 				return $shipping;
 		}
 			\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Logging BB API shipping method updated to NextDay from " . $shipping);
