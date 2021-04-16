@@ -653,6 +653,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
 
+    /** For BB shops, thco2ok_bewust_bezorgd() is takes data from the order and posts it BB API
+     * for emissions calcation and stores data to BB API Dashboard */
     final private function co2ok_bewust_bezorgd($order, $merchantId) {
         try {
             $shop = array(
@@ -682,7 +684,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     'weight' => $weight,
                     'shippingMethod' => $shippingMethod,
                     'merchantId' => $merchantId);
-                    Co2ok_Plugin::remoteLogging(json_encode(["Order delivery or store outside of NL. Delivery country ", $orderDetails]));
+                    // Co2ok_Plugin::remoteLogging(json_encode(["Order delivery or store outside of NL. Delivery country ", $orderDetails]));
             }
         } catch (\Exception $e) {
             Co2ok_Plugin::remoteLogging(json_encode(["BB api storing fail ", $e->getMessage()]));
@@ -1176,7 +1178,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
         // '<script src="http://localhost:8080/widget/co2okWidgetMark.js" ' .
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
-        'async div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
+        'defer div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
 
         return $widget_code;
     }

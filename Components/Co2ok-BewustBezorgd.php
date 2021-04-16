@@ -61,7 +61,7 @@ class Co2ok_BewustBezorgd {
 					add_option('co2ok_bbApi_token_expire', (string)$responseToken['expireDateTimeAccesToken']);
 					$shopBbApiToken = get_option('co2ok_bbApi_token', false);
 				} else {
-					Co2ok_BewustBezorgd::remoteLogging(json_encode(["Logging BB Api error response token: ", $responseToken['errors']]));
+					\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Logging BB Api error response token: " . $responseToken['errors']);
 					return ;
 				}
 			} catch (RequestException $e) {
@@ -70,10 +70,10 @@ class Co2ok_BewustBezorgd {
 			}
 		}
 
-		//check shipping method selected is accepted by BB api
+		//check shipping method selected is accepted by BB api, corrects if needed
 		$shippingChoice = $this->correctShipping($this->shippingMethod);
 
-		// Q&D PC cleanup
+		// Q&D PC cleanup -> sometimes postcode does not have letter, this attaches JS if that is the case for shop and destination postcodes
 		if (!preg_match("/[a-zA-Z]+$/", substr($this->shopPostCode, -2)))
 			$this->shopPostCode .= 'JS';
 
@@ -103,7 +103,7 @@ class Co2ok_BewustBezorgd {
 				$emissionsGrams = $responseTwoLegs['emission'];
 				$diesel = $responseTwoLegs['metersDiesel'];
 				$gasoline = $responseTwoLegs['metersGasoline'];
-				Co2ok_BewustBezorgd::remoteLogging(json_encode(["Logging BB Api two-legs error response: ", $responseTwoLegs['errors'], "Emissions(g): ", $emissionsGrams, "Diesel: ", $diesel, "Gasoline: ", $gasoline]));
+				\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Logging BB Api two-legs error response: " . $responseTwoLegs['errors'], " Emissions(g): " . $emissionsGrams, "Diesel: " . $diesel . " Gasoline: ".  $gasoline);
 				return ;
 			}
 		} catch (RequestException $e) {
@@ -121,7 +121,7 @@ class Co2ok_BewustBezorgd {
 				'data_format' => 'body',
 			));
 			if ( ! wp_remote_retrieve_response_code($result) == 204 ) {
-				Co2ok_BewustBezorgd::remoteLogging(json_encode(["Logging emissions predictions error stored"]));
+				\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Logging emissions predictions error stored");
 				return ;
 			}
 		} catch (RequestException $e) {
@@ -183,10 +183,11 @@ class Co2ok_BewustBezorgd {
 			'SameDay',
 			'SundayDelivery'
 		);
-		foreach ($shippingCategory as $method) {
+		if (in_array($method, $shippingCategory)) {
 			if ($method == $shipping)
 				return $shipping;
 		}
+			\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Logging BB API shipping method updated to NextDay from " . $shipping);
 		return 'NextDay';
 	}
 
@@ -197,22 +198,7 @@ class Co2ok_BewustBezorgd {
 		if($e->hasResponse()){
 		  $error['response'] = $e->getResponse();
 		}
-		Co2ok_BewustBezorgd::remoteLogging(json_encode(["Error occurred in BB API request ",  $error]));
+		\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Error occurred in BB API request " . $error);
 	}
 
-	final public static function remoteLogging($message = "Unspecified message.")
-    {
-
-        // Write to remote log
-        try {
-            // Only called when user has opted in to allow anymous tracking
-            // @reviewers: we've done our best to limit the amount of logging, please
-            // contact us if this approach is unacceptable
-            //
-            $token = "8acac111-633f-46b3-b14b-1605e45ae614"; // our LogEntries token
-            $remote = LogEntries::getLogger($token, true, true);
-            $remote->info( $message );
-        } catch (Exception $e) { // fail silently
-        }
-    }
 }
