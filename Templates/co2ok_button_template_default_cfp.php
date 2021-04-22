@@ -12,7 +12,7 @@
 
         <div id="checkbox_label">
             <a href="#!" input type="button" role="button" tabindex="0" style="outline: none; -webkit-appearance: none;">
-				<div class="inner_checkbox_label inner_checkbox_label_default co2ok_global_temp" style="text-align: center; background: linear-gradient(#1DEFAC -50.09%, #11D071 51.05%, #10CC6B 56.81%, #05B139 100%)" id="default_co2ok_temp">
+				<div class="inner_checkbox_label inner_checkbox_label_default co2ok_global_temp" style="text-align: center; background: linear-gradient(#34D32D -25.09%, #1DBC16 50%, #009B0F 75%, #1F7837 100%)" id="default_co2ok_temp">
                     <span class="make make_co2ok_default" style="color: white; text-align:center; margin-bottom: -2px; font-size: 18px; margin-left: 13px;"><?php echo __( 'This purchase is', 'co2ok-for-woocommerce' ); ?></span>
 					<div style="margin-bottom: -2px;">
 						<?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/logo_wit.svg', 'co2ok_logo', 'co2ok_logo_default', 'co2ok_logo', 'skip-lazy'); ?>
