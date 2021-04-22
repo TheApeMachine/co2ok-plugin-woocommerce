@@ -120,8 +120,8 @@ class Co2ok_BewustBezorgd {
 				'body'        => $this->token,
 				'data_format' => 'body',
 			));
-			if ( wp_remote_retrieve_response_code($result) == 204 ) {
-				\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging(json_encode(["Logging emissions predictions error stored"]));
+			if ( ! wp_remote_retrieve_response_code($result) == 204 ) {
+				\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging(json_encode(["Logging BB API emissions predictions storing error"]));
 				return ;
 			}
 		} catch (RequestException $e) {
