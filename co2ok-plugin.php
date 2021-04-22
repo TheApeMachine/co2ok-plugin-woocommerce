@@ -653,9 +653,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     }
 
 
-    /** For BB shops, thco2ok_bewust_bezorgd() is takes data from the order and posts it BB API
+    /** For BB shops, get_order_data_for_bewust_bezorgd_api() is takes data from the order and posts it BB API
      * for emissions calcation and stores data to BB API Dashboard */
-    final private function co2ok_bewust_bezorgd($order, $merchantId) {
+    final private function get_order_data_for_bewust_bezorgd_api($order, $merchantId) {
         try {
             $shop = array(
                 'bbApiId' => get_option('co2ok_bbApi_id', false),
@@ -741,7 +741,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
         //if the shop is a BewustBezordg shop, store data
         if (get_option('co2ok_bbApi_id', false)) {
-            $this->co2ok_bewust_bezorgd($order, $merchantId);
+            $this->get_order_data_for_bewust_bezorgd_api($order, $merchantId);
         }
 
     }

@@ -61,7 +61,7 @@ class Co2ok_BewustBezorgd {
 					add_option('co2ok_bbApi_token_expire', (string)$responseToken['expireDateTimeAccesToken']);
 					$shopBbApiToken = get_option('co2ok_bbApi_token', false);
 				} else {
-					\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Logging BB Api error response token: " . $responseToken['errors']);
+					\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging(json_encode(["Logging BB Api error response token: " . $responseToken['errors']]));
 					return ;
 				}
 			} catch (RequestException $e) {
@@ -103,7 +103,7 @@ class Co2ok_BewustBezorgd {
 				$emissionsGrams = $responseTwoLegs['emission'];
 				$diesel = $responseTwoLegs['metersDiesel'];
 				$gasoline = $responseTwoLegs['metersGasoline'];
-				\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Logging BB Api two-legs error response: " . $responseTwoLegs['errors'], " Emissions(g): " . $emissionsGrams, "Diesel: " . $diesel . " Gasoline: ".  $gasoline);
+				\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging(json_encode(["Logging BB Api two-legs error response: " . $responseTwoLegs['errors'], " Emissions(g): " . $emissionsGrams, "Diesel: " . $diesel . " Gasoline: ".  $gasoline]));
 				return ;
 			}
 		} catch (RequestException $e) {
@@ -120,8 +120,8 @@ class Co2ok_BewustBezorgd {
 				'body'        => $this->token,
 				'data_format' => 'body',
 			));
-			if ( ! wp_remote_retrieve_response_code($result) == 204 ) {
-				\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Logging emissions predictions error stored");
+			if ( wp_remote_retrieve_response_code($result) == 204 ) {
+				\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging(json_encode(["Logging emissions predictions error stored"]));
 				return ;
 			}
 		} catch (RequestException $e) {
@@ -186,7 +186,7 @@ class Co2ok_BewustBezorgd {
 		if (in_array($shipping, $shippingCategory)) {
 				return $shipping;
 		}
-			\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Logging BB API shipping method updated to NextDay from " . $shipping);
+		\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging(json_encode(["Logging BB API shipping method updated to NextDay from " . $shipping]));
 		return 'NextDay';
 	}
 
@@ -197,7 +197,7 @@ class Co2ok_BewustBezorgd {
 		if($e->hasResponse()){
 		  $error['response'] = $e->getResponse();
 		}
-		\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging("Error occurred in BB API request " . $error);
+		\co2ok_plugin_woocommerce\Co2ok_Plugin::remoteLogging(json_encode(["Error occurred in BB API request " . $error]));
 	}
 
 }
