@@ -18,19 +18,19 @@ msgstr ""
 msgid ""
 "Co2ok Plugin needs Woocommerce to work, please install woocommerce and try "
 "again."
-msgstr "de CO2ok plugin heeft WooCommerce nodig, aub installeren."
+msgstr "Le plugin Co2ok a besoin de Woocommerce pour fonctionner, veuillez installer Woocommerce et réessayer."
 
 #: Templates/co2ok_button_template_default.php:42
 msgid "How CO&#8322; compensation works"
-msgstr "Hoe CO&#8322; compensatie werkt"
+msgstr "Comment fonctionne la compensation CO&#8322;"
 
 #. Name of the plugin
 msgid "CO2ok for WooCommerce"
-msgstr "CO2ok voor WooCommerce"
+msgstr "CO2ok pour WooCommerce"
 
 #. Description of the plugin
 msgid "A WooCommerce plugin to integrate CO2ok"
-msgstr "Een WooCommerce plugin om CO2ok te integreren"
+msgstr "Un plugin WooCommerce pour intégrer CO2ok"
 
 #. URI of the plugin
 msgid "https://github.com/Mil0dV/co2ok-plugin-woocommerce"
@@ -42,51 +42,52 @@ msgstr "http://www.co2ok.eco/"
 
 #: co2ok-plugin.php:206 co2ok-plugin.php:344
 msgid "CO2 compensation"
-msgstr "CO2 compensatie"
+msgstr "Compensation de CO2"
 
 #: Templates/co2ok_button_template_default.php:19
 msgid "Make "
-msgstr "Maak "
+msgstr "Faire "
 
 #: Templates/co2ok_button_template_default.php:40
-msgid "Make my purchase climate friendly"
+msgid "Faire en sorte que mon achat soit respectueux du climat"
 msgstr "Maak mijn aankoop klimaatvriendelijk"
 
 #: Templates/co2ok_button_template_default.php:49
 msgid "{COMPENSATION_COUNT}x compensated; {IMPACT}t CO₂ reduction"
-msgstr "{COMPENSATION_COUNT}x gecompenseerd; {IMPACT}t CO₂ reductie"
+msgstr "{COMPENSATION_COUNT}x compensé; {IMPACT}t CO₂ réduction"
 
 #: Templates/co2ok_button_template_default.php:57
 msgid "This is equivalent to {KM} km of flying ✈️"
-msgstr "Dit staat gelijk aan {KM} km vliegen ✈️"
+msgstr "Cela équivaut à des {KM} km de vol ✈️"
 
 #: Templates/co2ok_button_template_default.php:74
 msgid "Every product has a climate impact through transport and production"
-msgstr "Elk product heeft een klimaatimpact door vervoer en productie"
+msgstr "Chaque produit a un impact sur le climat par son transport et sa production"
 
 #: Templates/co2ok_button_template_default.php:85
 msgid "This webshop neutralizes emissions from transport"
-msgstr "Deze webshop neutraliseert de uitstoot van het vervoer"
+msgstr "Cette boutique en ligne neutralise les émissions dues au transport"
 
 #: Templates/co2ok_button_template_default.php:97
 msgid "You can neutralize the impact of production with your contribution"
-msgstr "Jij kan met jouw bijdrage de impact van productie neutraliseren"
+msgstr "Vous pouvez neutraliser l'impact de la production grâce à votre contribution"
 
 #: Templates/co2ok_button_template_default.php:109
 msgid "We finance projects that directly prevent emissions and together we help the climate 💚"
-msgstr "Zo financieren we projecten die direct uitstoot voorkomen en helpen we samen het klimaat 💚"
+msgstr "Les projets financés réduisent directement les émissions et, ensemble, nous aidons le climat 💚"
+
 
 #: Templates/co2ok_button_template_default.php:120
 msgid "CO2OK support several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
-msgstr "CO2OK ondersteunen verschillende CO2-compensatie-projecten, gecoördineerd door Atmosfeer en FairCliamteFund. Deze zijn gecertificeerd met de CDM Gold Standard, de strengste norm voor projecten voor klimaatbescherming"
+msgstr "CO2OK soutient des projets de compensation de carbone organisé par Atmosfair et FairClimateFund; certifiés par le CDM Gold Standard: la norme la plus ferme pour les projets de protection du climat."
 
 #: Templates/co2ok_button_template_default.php:124
 msgid "Not only the climate benefits: we also realize less deforestation and increased health benefits through less smoke and toxic carbon monoxide"
-msgstr "Niet alleen het klimaat profiteert; we realiseren zo ook minder ontbossing, sprokkeltijd en kans op rook- en koolmonoxidevergiftiging"
+msgstr "En plus des bénéfices pour le climat, nous réduisons la déforestation, qui a des avantages pour la santé grâce à la diminution de la fumée et du monoxyde de carbone toxique."
 
 #: Templates/co2ok_button_template_default.php:117
 msgid "How do we do this"
-msgstr "Hoe we dit doen"
+msgstr "En savoir plus"
 
 #: Templates/co2ok_plugin.php:79
 msgid "Hey %1$s"
@@ -94,32 +95,24 @@ msgstr "Hey %1$s"
 
 #: Templates/co2ok_plugin.php:80
 msgid "Great that you want to help fight climate change! Press the blue button to help us improve CO2ok with some anonymous data."
-msgstr "Gaaf dat jullie meedoen met klimaatverandering bestrijden! Druk op de blauwe knop om ons te helpen met CO2ok te verbeteren met wat anonieme data."
+msgstr "C'est formidable que vous vouliez contribuer à la lutte contre le changement climatique! Appuyez sur le bouton bleu pour nous aider à améliorer CO2ok avec quelques données anonymes."
 
 #: Templates/co2ok_button_template_default_cfp.php:16
 msgid "This purchase is"
-msgstr "Deze aankoop is"
+msgstr "Cet achat est"
 
 #: Templates/co2ok_button_template_default_cfp.php:16
 msgid "This purchase is climate friendly"
-msgstr "Deze aankoop is klimaatvriendelijk"
+msgstr "Cet achat est respectueux du climat"
 
 #: Templates/co2ok_button_template_default_cfp.php:66
 msgid "This store is committed to minimising the climate impact of the production of its goods"
-msgstr "Deze winkel zet zich in om de gevolgen van de productie van zijn goederen voor het klimaat tot een minimum te beperken"
+msgstr "Ce magasin s'engage à minimiser l'impact climatique de la production de ses produits"
 
 #: Templates/co2ok_button_template_default_cfp.php:77
 msgid "The inevitable emissions are neutralised by funding projects that prevent the same amount of emissions"
-msgstr "De onvermijdelijke emissies worden geneutraliseerd door projecten te financieren die dezelfde hoeveelheid emissies voorkomen"
+msgstr "Les émissions impérieuses sont égalées par le financement de projets qui réduisent la même quantité d'émissions"
 
 #: Templates/co2ok_button_template_default_cfp.php:88
 msgid "This means that both your purchase and this store have a net-zero climate impact 💚"
-msgstr "Dit betekent dat zowel je aankoop als deze shop per saldo geen impact op het klimaat hebben 💚"
-
-#: Templates/co2ok_button_template_default_cfp.php:98
-msgid "CO2OK support several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
-msgstr "CO2OK ondersteunen verschillende CO2-compensatie-projecten, gecoördineerd door Atmosfeer en FairCliamteFund. Deze zijn gecertificeerd met de CDM Gold Standard, de strengste norm voor projecten voor klimaatbescherming"
-
-#: Templates/co2ok_button_template_default_cfp.php:102
-msgid "Not only the climate benefits: we also realize less deforestation and increased health benefits through less smoke and toxic carbon monoxide"
-msgstr "Niet alleen het klimaat profiteert; we realiseren zo ook minder ontbossing, sprokkeltijd en kans op rook- en koolmonoxidevergiftiging"
+msgstr "Cela signifie que votre achat et ce magasin ont un impact net nul sur le climat 💚"

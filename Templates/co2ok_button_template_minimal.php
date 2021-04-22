@@ -124,7 +124,7 @@
         </p>
         <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/co2-projects.png', 'default-projects-image default-info-hovercard', 'a3-notlazy'); ?>
         <p class="co2-image-description default-info-hovercard">
-          <?php echo __('Not only does the climate benefit; we also realize less deforestation, gleaning time and risk of smoke and carbon monoxide poisoning this way.',  'co2ok-for-woocommerce' );?>
+          <?php echo __('Not only the climate benefits: we also realize less deforestation and increased health benefits through less smoke and toxic carbon monoxide',  'co2ok-for-woocommerce' );?>
         </p>
       </div>
 
