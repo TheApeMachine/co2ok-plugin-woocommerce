@@ -8,17 +8,25 @@ class Co2ok_GraphQLClient extends Co2ok_HttpsRequest
         parent::__construct($apiUrl);
     }
 
-    public function query()
+    public function query($callback,$responseCallback)
     {
+        $requestType = "query";
+        $query = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLRequest($requestType);
+        $callback($query);
+        $query->ProcessRequest($requestType);
+
+        $response = $this->executeRequest($query->requestQuery);
+        $responseCallback($response);
     }
 
     public function mutation($callback,$responseCallback)
     {
-        $mutation = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLMutation();
+        $requestType = "mutation";
+        $mutation = new \co2ok_plugin_woocommerce\Components\Co2ok_GraphQLRequest($requestType);
         $callback($mutation);
-        $mutation->ProcessMutationQuery();
-        
-        $response = $this->executeRequest($mutation->mutationQuery);
+        $mutation->ProcessRequest($requestType);
+
+        $response = $this->executeRequest($mutation->requestQuery);
         $responseCallback($response);
     }
 }

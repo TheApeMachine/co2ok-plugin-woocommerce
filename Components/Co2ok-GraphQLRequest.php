@@ -1,7 +1,7 @@
 <?php
 namespace co2ok_plugin_woocommerce\Components;
 
-Class Co2ok_GraphQLMutation
+Class Co2ok_GraphQLRequest
 {
     private $mutationFunctionName;
     private $mutationFunctionParams;
@@ -29,26 +29,27 @@ Class Co2ok_GraphQLMutation
         $this->mutationFunctionReturnTypes = $functionReturnTypes;
     }
 
-    public function ProcessMutationQuery()
+    public function ProcessRequest($requestType)
     {
-        $this->mutationQuery = "mutation { ";
-        $this->mutationQuery .= $this->mutationFunctionName.'(';
+        $this->requestQuery = $requestType . " { ";
+        $this->requestQuery .= $this->mutationFunctionName.'(';
 
         $paramCount = count($this->mutationFunctionParams);
         $paramIndex = 0;
         foreach($this->mutationFunctionParams as $key => $param)
         {
             if(!is_numeric($param))
-                $this->mutationQuery .= $key.': "'.$param.'"';
+                $this->requestQuery .= $key.': "'.$param.'"';
             else
-                $this->mutationQuery .= $key.': '.$param.'';
+                $this->requestQuery .= $key.': '.$param.'';
             $paramIndex++;
 
             if($paramIndex < $paramCount)
-                $this->mutationQuery .= ", ";
+                $this->requestQuery .= ", ";
         }
 
-        $this->mutationQuery .= ') { ';
+        $this->requestQuery .= ') { ';
+
         $returnTypeCount = count($this->mutationFunctionParams);
         $returnTypeIndex = 0;
         foreach($this->mutationFunctionReturnTypes as $key => $param)
@@ -59,20 +60,20 @@ Class Co2ok_GraphQLMutation
                 $returnFunc = preg_replace('/\[/', '{',  $returnFunc );
                 $returnFunc = preg_replace('/\]/', '}',  $returnFunc );
 
-                $this->mutationQuery .= $key .  $returnFunc;
+                $this->requestQuery .= $key .  $returnFunc;
             }
             else
             {
-                $this->mutationQuery .= $param;
+                $this->requestQuery .= $param;
             }
 
-            $paramIndex++;
-
-            if($paramIndex < $paramCount)
-                $this->mutationQuery .= ", ";
+            $returnTypeIndex++;
+            if($returnTypeIndex < $returnTypeCount) {
+                $this->requestQuery .= ", ";
+            }
         }
-        $this->mutationQuery .= '}'; //Closes function
-
-        $this->mutationQuery .= '}'; // Closes mutation
+        $this->requestQuery .= '}'; //Closes function
+        $this->requestQuery .= '}'; // Closes mutation
     }
+
 }
