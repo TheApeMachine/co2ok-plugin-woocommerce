@@ -103,7 +103,7 @@ msgid "CO2OK support several carbon offset projects coordinated by Atmosfair and
 msgstr "CO2OK unterstützt mehrere Klimaschutzprojekte, die von Atmosfair und FairClimateFund koordiniert werden. Diese sind mit dem CDM Gold Standard, dem strengsten Standard für Klimaschutzprojekte, zertifiziert."
 
 #: Templates/co2ok_button_template_default_cfp.php:102
-msgid "Not only does the climate benefit; we also realize less deforestation, gleaning time and risk of smoke and carbon monoxide poisoning this way."
+msgid "Not only the climate benefits: we also realize less deforestation and increased health benefits through less smoke and toxic carbon monoxide"
 msgstr "Davon profitiert nicht nur das Klima, auch die Abholzung von Wäldern, die Nachlesezeit und die Gefahr von Rauch- und Kohlenmonoxidvergiftungen lassen sich auf diese Weise verringern."
 
 #: Templates/co2ok_button_template_default.php:45
