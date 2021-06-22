@@ -77,8 +77,8 @@ msgid "We finance projects that directly prevent emissions and together we help 
 msgstr "Zo financieren we projecten die direct uitstoot voorkomen en helpen we samen het klimaat 💚"
 
 #: Templates/co2ok_button_template_default.php:120
-msgid "CO2OK support several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
-msgstr "CO2OK ondersteunen verschillende CO2-compensatie-projecten, gecoördineerd door Atmosfeer en FairCliamteFund. Deze zijn gecertificeerd met de CDM Gold Standard, de strengste norm voor projecten voor klimaatbescherming"
+msgid "CO2OK supports several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
+msgstr "CO2OK ondersteunt verschillende CO2-compensatie-projecten, gecoördineerd door Atmosfeer en FairClimateFund. Deze zijn gecertificeerd met de CDM Gold Standard, de strengste norm voor projecten voor klimaatbescherming"
 
 #: Templates/co2ok_button_template_default.php:124
 msgid "Not only the climate benefits: we also realize less deforestation and increased health benefits through less smoke and toxic carbon monoxide"
@@ -119,7 +119,3 @@ msgstr "Dit betekent dat zowel je aankoop als deze shop per saldo geen impact op
 #: Templates/co2ok_button_template_default_cfp.php:98
 msgid "CO2OK support several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
 msgstr "CO2OK ondersteunen verschillende CO2-compensatie-projecten, gecoördineerd door Atmosfeer en FairCliamteFund. Deze zijn gecertificeerd met de CDM Gold Standard, de strengste norm voor projecten voor klimaatbescherming"
-
-#: Templates/co2ok_button_template_default_cfp.php:102
-msgid "Not only the climate benefits: we also realize less deforestation and increased health benefits through less smoke and toxic carbon monoxide"
-msgstr "Niet alleen het klimaat profiteert; we realiseren zo ook minder ontbossing, sprokkeltijd en kans op rook- en koolmonoxidevergiftiging"

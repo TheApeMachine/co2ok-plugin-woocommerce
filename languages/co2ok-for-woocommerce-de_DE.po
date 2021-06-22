@@ -99,7 +99,7 @@ msgid "This means that both your purchase and this store have a net-zero climate
 msgstr "Das heißt, Sie können ohne schlechtes Gewissen einkaufen und gemeinsam helfen wir dem Klima 💚"
 
 #: Templates/co2ok_button_template_default_cfp.php:98
-msgid "CO2OK support several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
+msgid "CO2OK supports several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
 msgstr "CO2OK unterstützt mehrere Klimaschutzprojekte, die von Atmosfair und FairClimateFund koordiniert werden. Diese sind mit dem CDM Gold Standard, dem strengsten Standard für Klimaschutzprojekte, zertifiziert."
 
 #: Templates/co2ok_button_template_default_cfp.php:102
@@ -117,10 +117,6 @@ msgstr "CO&#8322ok verhindert die gleiche Menge an Ausstoß"
 #: Templates/co2ok_button_template_default.php:55
 msgid "This way, your purchase is climate friendly!"
 msgstr "Und so wird dein Einkauf Klimafreundlich!"
-
-#: Templates/co2ok_button_template_default.php:120
-msgid "CO2OK support several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
-msgstr "CO2OK unterstützt mehrere Klimaschutzprojekte, die von Atmosfair und FairClimateFund koordiniert werden. Diese sind mit dem CDM Gold Standard, dem strengsten Standard für Klimaschutzprojekte, zertifiziert."
 
 #: Templates/co2ok_button_template_default.php:124
 msgid "Not only does the climate benefit; we also realize less deforestation, gleaning time and risk of smoke and carbon monoxide poisoning this way."

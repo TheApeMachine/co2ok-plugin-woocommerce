@@ -569,6 +569,12 @@ img#co2ok_logo_minimal {
     color: black;
     margin-left: 6px;
     margin-bottom: 0px;
+    text-decoration: none !important;
+    line-height: 1.1rem !important;
+    font-family: Roboto, sans-serif !important;
+    letter-spacing: normal !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
   }
   .default-projects-image {
     width: 100%;

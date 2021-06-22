@@ -78,7 +78,7 @@ msgstr "Les projets financés réduisent directement les émissions et, ensemble
 
 
 #: Templates/co2ok_button_template_default.php:120
-msgid "CO2OK support several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
+msgid "CO2OK supports several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects."
 msgstr "CO2OK soutient des projets de compensation de carbone organisé par Atmosfair et FairClimateFund; certifiés par le CDM Gold Standard: la norme la plus ferme pour les projets de protection du climat."
 
 #: Templates/co2ok_button_template_default.php:124
