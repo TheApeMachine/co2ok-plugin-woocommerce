@@ -1,0 +1,65 @@
+.co2ok_container_default .co2ok_checkbox_container_default .inner_checkbox_label_default:after, .co2ok_container_default .co2ok_checkbox_container_default.selected .inner_checkbox_label_default, .co2ok_container_minimal .co2ok_checkbox_container_minimal.selected .inner_checkbox_label_minimal .comp_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal, .co2ok_container_minimal .co2ok_checkbox_container_minimal .inner_checkbox_label_minimal .comp_amount_label_minimal .inner_comp_amount_label_minimal {
+    background: -webkit-linear-gradient(#312c80 -50.09%, #312c80 51.05%, #312c80 56.81%, #312c80 100%);
+    background: -o-linear-gradient(#312c80 -50.09%, #312c80 51.05%, #312c80 56.81%, #312c80 100%);;
+    background: linear-gradient(#312c80 -50.09%, #312c80 51.05%, #312c80 56.81%, #312c80 100%); }
+
+    23c23
+    <   .co2ok_container del, .co2ok_container dfn, .co2ok_container em, .co2ok_container img, .co2ok_container ins, .co2ok_container kbd, .co2ok_container q, .co2ok_container s, .co2ok_container samp,
+    ---
+    >   .co2ok_container del, .co2ok_container dfn, .co2ok_container em, .co2ok_container ins, .co2ok_container kbd, .co2ok_container q, .co2ok_container s, .co2ok_container samp,
+    58d57
+    <     width: 100%;
+    60c59
+    <     margin-top: -12px;
+    ---
+    >     margin-top: -14px;
+    62c61
+    <     margin-left: 4px;
+    ---
+    >     margin-right: -8px;
+    64d62
+    <     text-align: center;
+    71,72c69
+    <     color: #4D5155 !important;
+    <     width: 110%; }
+    ---
+    >     color: #4D5155 !important; }
+    89a87
+    >           margin-right: 10px;
+    115c113
+    <       border-radius: 10px;
+    ---
+    >       border-radius: 8px;
+    138c136
+    <       margin: 10px 0px 14px 8px; }
+    ---
+    >       margin: 11px 0px 14px -29px; }
+    148a147
+    >       margin-left: 1px;
+    156,157c155,157
+    <       font-size: 18px;
+    <       font-family: Roboto, sans-serif !important;
+    ---
+    >       margin-left: 1px;
+    >       font-size: 15px;
+    >       font-family: Roboto !important;
+    229c229
+    <   width: 230px !important; }
+    ---
+    >   width: 275px !important; }
+    255c255
+    <     color: #05B139 !important;
+    ---
+    >     color: #005091 !important;
+    584a585,595
+    >     }
+    >
+    >     .co2ok_sp_logo {
+    >       position: absolute;
+    >       margin-top: 6px;
+    >       margin-left: -2px;
+    >     }
+    >
+    >     .logo-hovercard {
+    >       width: 27%;
+    >       left: 4px;

@@ -350,6 +350,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
             // Set optimal defaults
             update_option('co2ok_widgetmark_footer', 'on');
             update_option('co2ok_checkout_placement', 'checkout_order_review');
+            
+            // Set South Pole theme
+            update_option('co2ok_button_template', 'co2ok_button_template_south_pole');
         }
         else {
             // The admin has updated this plugin ..
@@ -621,7 +624,9 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     final public function co2ok_stylesheet()
     {
         wp_register_style('co2ok_stylesheet', plugins_url('css/co2ok.css', __FILE__).'?plugin_version='.self::VERSION);
+        wp_register_style('co2ok_sp_stylesheet', plugins_url('css/co2ok_sp.css', __FILE__).'?plugin_version='.self::VERSION);
         wp_enqueue_style('co2ok_stylesheet');
+        wp_enqueue_style('co2ok_sp_stylesheet');
     }
 
     final public function co2ok_font()
