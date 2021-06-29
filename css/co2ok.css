@@ -15,7 +15,7 @@
   .co2ok_container html, .co2ok_container body, .co2ok_container div, .co2ok_container span, .co2ok_container applet, .co2ok_container object, .co2ok_container iframe,
   .co2ok_container h1, .co2ok_container h2, .co2ok_container h3, .co2ok_container h4, .co2ok_container h5, .co2ok_container h6, .co2ok_container p, .co2ok_container blockquote, .co2ok_container pre,
   .co2ok_container a, .co2ok_container abbr, .co2ok_container acronym, .co2ok_container address, .co2ok_container big, .co2ok_container cite, .co2ok_container code,
-  .co2ok_container del, .co2ok_container dfn, .co2ok_container em, .co2ok_container img, .co2ok_container ins, .co2ok_container kbd, .co2ok_container q, .co2ok_container s, .co2ok_container samp,
+  .co2ok_container del, .co2ok_container dfn, .co2ok_container em, .co2ok_container ins, .co2ok_container kbd, .co2ok_container q, .co2ok_container s, .co2ok_container samp,
   .co2ok_container small, .co2ok_container strike, .co2ok_container strong, .co2ok_container sub, .co2ok_container sup, .co2ok_container tt, .co2ok_container var,
   .co2ok_container b, .co2ok_container u, .co2ok_container i, .co2ok_container center,
   .co2ok_container dl, .co2ok_container dt, .co2ok_container dd, .co2ok_container ol, .co2ok_container ul, .co2ok_container li,
@@ -50,9 +50,9 @@
   .co2ok_container .co2ok_adaptive_color {
     color: white; }
   .co2ok_container .co2ok_payoff {
-    width: 100%;
-    margin-top: -1px;
+    margin-top: -14px;
     font-size: 13px;
+    margin-right: -8px;
     /* text-align: center; */
     font-family: Roboto, sans-serif;
     font-style: normal;
@@ -60,8 +60,7 @@
     line-height: normal;
     display: block;
     letter-spacing: -0.0538461em;
-    color: #4D5155 !important;
-    width: 110%; }
+    color: #4D5155 !important;}
 
     /* Payoff text animation */
     .co2ok_payoff_text{
@@ -115,6 +114,7 @@
         border-radius: 50%;
         display: inline-block;
         margin-left: -17px;
+        margin-right: 10px;
         position: relative; }
         .co2ok_container .co2ok_payoff #p .co2ok_info_hitarea img {
           width: 16px;
@@ -152,7 +152,7 @@
       background-position: center;
       background-color: transparent !important;
       background-size: 100%;
-      border-radius: 10px;
+      border-radius: 8px;
       transition: all 0.4s ease; }
       .co2ok_container .co2ok_checkbox_container .inner_checkbox_label:after {
         box-sizing: border-box;
@@ -176,11 +176,12 @@
       background: #E1E6E7;
       box-shadow: inset 0px 2px 1px rgba(96, 100, 104, 0.3);
       border-radius: 3px !important;
-      margin: 10px 0px 14px 8px; }
+      margin: 11px 0px 14px -29px; }
     .co2ok_container .co2ok_checkbox_container #co2ok_cart_field {
       display: none !important; }
     .co2ok_container .co2ok_checkbox_container.unselected .make {
       margin-bottom: 2px;
+      margin-left: 1px;
       font-size: 16px;
       font-family: Roboto, sans-serif !important;
       color: #606468 !important;
@@ -188,8 +189,9 @@
     .co2ok_container .co2ok_checkbox_container.selected .make {
       color: white !important;
       margin-bottom: 2px;
-      font-size: 16px;
-      font-family: Roboto, sans-serif !important;
+      margin-left: 1px;
+      font-size: 15px;
+      font-family: Roboto !important;
       font-weight: 500; }
     .co2ok_container .co2ok_checkbox_container.selected .co2ok_payoff {
       margin-bottom: 400px; }
@@ -258,7 +260,7 @@ img#co2ok_logo_minimal {
     padding-bottom: 15px; }
 
 .co2ok_container_default {
-  width: 215px;
+  width: 275px;
   border-radius: 12px !important;
   padding-top: 2px; }
   .co2ok_container_default .co2ok_checkbox_container_default .inner_checkbox_label_default {
@@ -440,6 +442,17 @@ img#co2ok_logo_minimal {
       font-family: Roboto, sans-serif !important;
       color: #606468 !important;
     }
+
+  .co2ok_sp_logo {
+    position: absolute;
+    margin-top: 6px;
+    margin-left: -2px;
+  }
+  
+  .logo-hovercard {
+    width: 27%;
+    left: 4px;
+  }
 
 
 /*start of checkout button hovercard css*/
@@ -975,3 +988,4 @@ img#co2ok_logo_minimal {
     .cfp-left {
       padding-top: 4%; }
   }
+
