@@ -102,6 +102,7 @@
     padding-left: 19px;
     left: -14px;
     margin-top: 10px;
+    margin-right: 28px;
     float: right;
     font-size: 15px;
     font-weight: 500;
@@ -121,11 +122,13 @@
 
 img#co2ok_logo {
   display: inline-block;
-  width: 24px;
+  width: 28px;
   vertical-align: middle;
   padding: 0px;
-  margin: -3px 0px 0px 0px;
-  border-radius: 0px !important; }
+  margin: 8px 0px 0px 59px;
+  border-radius: 0px !important;
+  position: absolute;
+ }
 
   .co2ok_container .co2ok_checkbox_container #checkbox_label a {
     border-radius: 0px;
