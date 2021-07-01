@@ -1,4 +1,4 @@
-=== SouthPole: The offset movement ===
+=== South Pole: The offset movement ===
 Contributors: South Pole
 Donate link: http://southpole.com/
 Tags: climate neutral, sustainability, carbon offsetting, Green, CO2 footprint, carbon footprint, carbon emissions, sustainable , carbon offset, environmental, CSR, cause marketing
@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.7.0
 Requires PHP: 5.5
 WC tested up to: 5.1.0
-Stable tag: 1.0.8.10
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,10 +78,6 @@ We gather as little data as possible, specifically:
 1. The South Pole button and info-hover as it is presented to users
 
 2. An overview that includes the checkout screen
-
-3. The minimal button design
-
-4. Show off your impact with our widgets!
 
 == Changelog ==
 

@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: CO2ok for WooCommerce
+ * Plugin Name: South Pole: The offset movement
  *
- * Description: A WooCommerce plugin to integrate CO2ok
+ * Description: A WooCommerce plugin to integrate South Pole
  *
  * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
  * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.9.1
+ * Version: 1.0.0
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.7.2
@@ -16,8 +16,9 @@
  * Milo de Vries,
  * Chris Fuller,
  * Ryan George,
- * Michiel van Tienhoven
+ * Michiel van Tienhoven,
  * Jessica D. Smith
+ * Mark van Houtert
  * Text Domain: co2ok-for-woocommerce
  * Author URI: http://www.co2ok.eco/
  * License: GPLv2
