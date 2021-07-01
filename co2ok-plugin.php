@@ -132,7 +132,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.9.1';
+    const VERSION = '1.0.0.0';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -526,7 +526,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     Co2ok_Plugin::registerMerchant();
 
                     // Set optimal defaults
-                    update_option('co2ok_widgetmark_footer', 'on');
+                    // update_option('co2ok_widgetmark_footer', 'on');
                     update_option('co2ok_checkout_placement', 'checkout_order_review');
                 }
 
@@ -578,10 +578,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
                 add_action( 'update_merchant_cron_hook', array($this, 'updateMerchant' ));
 
-                $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'off');
-                if ($co2ok_widgetmark_footer == 'on') {
-                    add_action('wp_footer', array($this, 'co2ok_footer_widget'));
-                }
+                // $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'off');
+                // if ($co2ok_widgetmark_footer == 'on') {
+                //     add_action('wp_footer', array($this, 'co2ok_footer_widget'));
+                // }
 
         }
         else
