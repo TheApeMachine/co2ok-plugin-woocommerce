@@ -1155,7 +1155,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $percentage_old = $shown_old_count / ($order_count - $shown_old_count);
         $percentage = $shown_count / $hidden_count;
 
-        echo("A/B results (shown/hidden/total): " . $shown_count .", ".  $hidden_count .", ". $ab_order_count . "<br>");
+        echo(esc_html("A/B results (shown/hidden/total): " . $shown_count .", ".  $hidden_count .", ". $ab_order_count . "<br>"));
 
         sleep(30);
 
@@ -1294,8 +1294,8 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
         'async div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
 
-        echo $footer_code;
-        echo $widget_js;
+        echo esc_html($footer_code);
+        echo esc_html($widget_js);
     }
 
 }
