@@ -102,6 +102,14 @@
          * @var bool
          */
         public $is_uninstalled = false;
+        /**
+         * @author Edgar Melkonyan
+         *
+         * @since 2.4.2
+         *
+         * @var bool
+         */
+        public $is_beta;
 
         /**
          * @param stdClass|bool $site
@@ -150,6 +158,7 @@
                 fs_starts_with( $subdomain, 'local.' ) ||
                 fs_starts_with( $subdomain, 'dev.' ) ||
                 fs_starts_with( $subdomain, 'test.' ) ||
+                fs_starts_with( $subdomain, 'stage.' ) ||
                 fs_starts_with( $subdomain, 'staging.' ) ||
 
                 // Ends with.
@@ -163,15 +172,25 @@
                 fs_ends_with( $subdomain, '.myftpupload.com' ) ||
                 // ngrok tunneling.
                 fs_ends_with( $subdomain, '.ngrok.io' ) ||
+                // wpsandbox.
+                fs_ends_with( $subdomain, '.wpsandbox.pro' ) ||
                 // SiteGround staging.
                 fs_starts_with( $subdomain, 'staging' ) ||
                 // WPEngine staging.
                 fs_ends_with( $subdomain, '.staging.wpengine.com' ) ||
+                fs_ends_with( $subdomain, '.dev.wpengine.com' ) ||
+                fs_ends_with( $subdomain, '.wpengine.com' ) ||
                 // Pantheon
-                ( fs_ends_with($subdomain, 'pantheonsite.io') &&
-                  (fs_starts_with($subdomain, 'test-') || fs_starts_with($subdomain, 'dev-'))) ||
+                ( fs_ends_with( $subdomain, 'pantheonsite.io' ) &&
+                  ( fs_starts_with( $subdomain, 'test-' ) || fs_starts_with( $subdomain, 'dev-' ) ) ) ||
                 // Cloudways
-                fs_ends_with( $subdomain, '.cloudwaysapps.com' )
+                fs_ends_with( $subdomain, '.cloudwaysapps.com' ) ||
+                // Kinsta
+                ( fs_starts_with( $subdomain, 'staging-' ) && ( fs_ends_with( $subdomain, '.kinsta.com' ) || fs_ends_with( $subdomain, '.kinsta.cloud' ) ) ) ||
+                // DesktopServer
+                fs_ends_with( $subdomain, '.dev.cc' ) ||
+                // Pressable
+                fs_ends_with( $subdomain, '.mystagingwebsite.com' )
             );
         }
 
@@ -221,5 +240,14 @@
          */
         function is_tracking_prohibited() {
             return ! $this->is_tracking_allowed();
+        }
+
+        /**
+         * @author Edgar Melkonyan
+         *
+         * @return bool
+         */
+        function is_beta() {
+            return ( isset( $this->is_beta ) && true === $this->is_beta );
         }
     }
