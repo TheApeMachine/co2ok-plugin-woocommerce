@@ -4,8 +4,7 @@
  *
  * Description: A WooCommerce plugin to integrate South Pole
  *
- * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
- * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
+ * Plugin URI: https://south-pole.com
  * Version: 1.0.0
  *         (Remember to change the VERSION constant, below, as well!)
  *
