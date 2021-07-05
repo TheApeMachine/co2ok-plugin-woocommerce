@@ -38,40 +38,6 @@
                         <h2>Want to help us some more?</h2>
                         <p>If you do, please leave us a <a href=https://wordpress.org/support/view/plugin-reviews/co2ok-for-woocommerce?rate=5#new-post>5★ rating on WordPress.org</a>. It would be a great help to us.</p>
 
-                        <h2>South Pole Button:</h2>
-                        <p>By default we have set the button to OFF. But you can decide to set the South Pole button to default ON. This way you are in control,
-                        helping the environment even more!</p>
-                        
-                        <form method="POST">
-                        
-                            <input type="radio" name="co2ok_optout" id="comp_on" value="on" <?php if($co2ok_optout == 'on') echo "checked" ?> >
-                            <label style="display: inline" for="comp_on">Compensation default ON.</label>
-                            <br>
-                            <input type="radio" name="co2ok_optout" id="comp_off" value="off" <?php if($co2ok_optout == 'off') echo "checked" ?> >
-                            <label style="display: inline" for="comp_off">Compensation default OFF.</label>
-                            
-                            <p style="margin-top: 12px">
-                                <input type="submit" value="Save" class="button button-primary button-large"></p>
-                        </form>
-                    
-                        <h2>Button Placement:</h2>
-                        <p>By default we automatically place the button on the Checkout page. But you can also decide to place the button on specific locations on your Checkout webpage: </p>
-                        
-                        <form method="POST">
-
-                            <select name="co2ok_checkout_placement" style="display:block;" id="co2ok_checkout_placement">
-                                <option value="after_order_notes" <?php if($co2ok_checkout_placement == 'after_order_notes') echo "selected" ?>>After Order Notes</option>
-                                <option value="before_checkout_form" <?php if($co2ok_checkout_placement == 'before_checkout_form') echo "selected" ?>>Before the Checkout Form</option>
-                                <option value="checkout_before_customer_details" <?php if($co2ok_checkout_placement == 'checkout_before_customer_details') echo "selected" ?>>Before Customer Details</option>
-                                <option value="after_checkout_billing_form" <?php if($co2ok_checkout_placement == 'after_checkout_billing_form') echo "selected" ?>>After Billing Details Form</option>
-                                <!-- Disabled since it breaks click functionality <option value="review_order_before_submit" <?php if($co2ok_checkout_placement == 'review_order_before_submit') echo "selected" ?>>Before "Place Order"</option> -->
-                                <option value="checkout_order_review" <?php if($co2ok_checkout_placement == 'checkout_order_review') echo "selected" ?>>Before Order Review (Recommended)</option>
-                            </select>
-
-                            <p style="margin-top: 12px">
-                                <input type="submit" value="Save" class="button button-primary button-large"></p>
-                        </form>
-
                         <h2>GIF feature</h2>
                         <p>We believe in putting smiles on customers faces - a happy customer is a returning one. One of the ways we try to put smiles on peoples faces is our GIF feature - it shows a fun GIF like the one above to customers if they choose CO2 compensation. Of course there are differing opinions on this - use the below setting to disable this feature.</p>
                         
