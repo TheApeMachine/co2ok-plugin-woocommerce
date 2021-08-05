@@ -1,7 +1,7 @@
-=== CO2ok for Woocommerce ===
+=== CO2ok: carbon offsetting for e-commerce===
 Contributors: co2ok
 Donate link: http://co2ok.eco/
-Tags: climate neutral, sustainability, sustainable, carbon offsetting, carbon offset, CO2 footprint, carbon footprint, carbon emissions, environmental, CSR, cause marketing
+Tags: climate neutral, sustainability, carbon offsetting, Green, CO2 footprint, carbon footprint, carbon emissions, sustainable, , carbon offset, environmental, CSR, cause marketing
 Requires at least: 4.0
 Tested up to: 5.7.2
 Requires PHP: 5.5
@@ -10,50 +10,47 @@ Stable tag: 1.0.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Save my planet: offset the CO2-footprint from factory to home
+**Empower your customers to make their order climate neutral**
 
 == Description ==
 
-**Save my planet: offset the CO2-footprint from factory to home**
+**Empower your customers to make their orders climate neutral**
+Co2ok helps stores offset their carbon emissions and increase conversion since 2017. Join hundreds of online stores in the movement to empower sustainable consumption.
 
-As consumer awareness on the importance of preserving the environment continues to grow, more companies puzzle how to integrate growing demand for CO2 reduction or offset into their business model, ensuring they contribute to a sustainable planet. This is where CO2ok comes in. We empower companies and their customers to neutralise the emission of greenhouse gases, from production to transport.
+**How can Co2ok help me?**
+* Make your business sustainable within minutes
+* Your customers can offset their carbon emissions with one click
+* Parcel delivery will be made carbon neutral for free
+* Increase conversion and engagement through green branding
+* Unique integration of sustainability in your customer journey
+* Support gold standard certified sustainability projects
+* Choose the carbon offset project that fits your story 
+* Small price, big impact!
 
-**Go green**
-Get a grip on sustainability of your products, show the impact of production and transport and neutralise CO2 emissions.
 
-**Higher conversion & retention**
-Increase shop indexability, brand perception, customer loyalty and value and overall sales, while reducing shopping cart abandonment.
+**Make your business sustainable within minutes:**
+Our plugin is set up in a few minutes. Execute your Social Responsibility Strategy, helping to fight climate change by empowering your customers to make their orders climate neutral!
 
-**Greenify your shipping**
-Make your delivery climate friendly - compensation of the emissions is included in our service! 
+**Offset carbon emissions with one click:**
+Our easy to install plugin will empower your customers to offset the emissions caused by the production and shipping of their purchase. The impact calculator lets you show how much you’ve already offset. 
 
-**Easy integration and use**
-Our plugin is setup in a matter of minutes. Execute your social responsibility strategy, helping to fight climate change.
+**Green shipping included in the service for free:**
+Co2ok will take care of making your last mile carbon neutral, you don’t have to change your shipping methods - let us take care of it!
 
-CO2ok offers a service that lets your customers compensate the CO2 footprint of their online purchases through investment in projects that directly contribute to lowering or neutralising the amount of carbon dioxide in the atmosphere. By enabling your customers to do so you do your bit to preserve our planet for our kids and future generations.
+**Increase conversion and engagement through green branding:**
+Your customers will love your efforts in sustainability and so will be less likely to abandon their cart and be more likely to come back for more! We can give marketing support so you can engage with your customers on your joint offetting efforts. 
 
-We help online retailers engage with their customers on climate change, offering valuable insight in emissions and the choice to offset it. In turn affiliated retailers build a positive brand image and increase awareness through demonstrated environmental responsibility. As a plus, CO₂ok’s easy to use technology lets you increase your sales conversion.
+**Unique integration of sustainability in your customer journey: **
+Make sustainability your USP by integration in your customer journey. We can customize the plugin and widgets to your design and our info hover tells your customers about your green efforts in an easy way.
 
-**Features**
-* Multi-language (currently English, Dutch, German and French - let us know which language you need!)
-* Clear information 'hoverbox' with instant explanation
-* Flexible placement on the checkout page
-* 2 button designs available (custom on request)
-* Receive marketing support with our free kit and frequent content updates
-* Give your customers a smile on their face with our gifs (or disable them)
-* Show the impact your shop makes with our widgets: Impact Trustmark and/or Impact Calculator
+**Support gold standard certified sustainability projects: **
+We only work with the highest quality carbon offset projects so you can be sure there is no green washing. Our impact calculator lets you show how much you’ve offset already. 
 
-**How it works**
+**Choose the carbon offset project that fits your story: **
+Our sustainability partners have a wide variety of carbon offset projects; we’ll let you choose the one that fits with your sustainability ambitions!
 
-Upon checkout, customers are presented the choice to offset greenhouse gas emission of their purchase. When clicking the CO2ok-button a minor fee* is added to the order amount. Customers complete their order the regular way. The fee is paid by the customer to you and we bill you the amount of accumulated fees. We then invest in the project(s) of your choice.
-
-Upon clicking the CO2ok-button:
-1. We calculate and show the cost to compensate CO2 that was emitted during production and transport of the product.
-2. We add the fee to the cart - the checkout process remains unchanged.
-3. We bill our retailer for the received compensation fees and invest them in projects via our certified partners: Atmosfair & Fair Climate Fund
-4. Your customers shop climate neutral.
-
-*The extra fee is 1% on average.
+**Small price, big impact:**
+Our basic service is completely free of charge. Your customers will pay a small fee for the compensation, usually about 1-2% of their order value. 
 
 **Help us fight climate change!**
 
@@ -96,6 +93,9 @@ We gather as little data as possible, specifically:
 4. Show off your impact with our widgets!
 
 == Changelog ==
+
+= 1.0.9.1
+* Minor CSS fixes
 
 = 1.0.9.0
 * Adds Bewust Bezorgd feature (contact us if you want to use this)
