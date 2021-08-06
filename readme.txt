@@ -40,13 +40,13 @@ Co2ok will take care of making your last mile carbon neutral, you don’t have t
 **Increase conversion and engagement through green branding:**
 Your customers will love your efforts in sustainability and so will be less likely to abandon their cart and be more likely to come back for more! We can give marketing support so you can engage with your customers on your joint offetting efforts. 
 
-**Unique integration of sustainability in your customer journey: **
+**Unique integration of sustainability in your customer journey:**
 Make sustainability your USP by integration in your customer journey. We can customize the plugin and widgets to your design and our info hover tells your customers about your green efforts in an easy way.
 
-**Support gold standard certified sustainability projects: **
+**Support gold standard certified sustainability projects:**
 We only work with the highest quality carbon offset projects so you can be sure there is no green washing. Our impact calculator lets you show how much you’ve offset already. 
 
-**Choose the carbon offset project that fits your story: **
+**Choose the carbon offset project that fits your story:**
 Our sustainability partners have a wide variety of carbon offset projects; we’ll let you choose the one that fits with your sustainability ambitions!
 
 **Small price, big impact:**
