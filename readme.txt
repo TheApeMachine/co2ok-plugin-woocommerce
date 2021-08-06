@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 5.7.2
 Requires PHP: 5.5
 WC tested up to: 5.4.1
-Stable tag: 1.0.9.0
+Stable tag: 1.0.9.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,8 +94,13 @@ We gather as little data as possible, specifically:
 
 == Changelog ==
 
+= 1.0.9.2
+* Minor CSS fixes
+* Updates plugin store text
+
 = 1.0.9.1
 * Minor CSS fixes
+* Minor hovercard and text fixes
 
 = 1.0.9.0
 * Adds Bewust Bezorgd feature (contact us if you want to use this)
