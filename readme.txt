@@ -1,5 +1,5 @@
-=== South Pole: The offset movement ===
-Contributors: South Pole
+=== South Pole: Climate action now ===
+Contributors: CO2ok
 Donate link: http://southpole.com/
 Tags: climate neutral, sustainability, carbon offsetting, Green, CO2 footprint, carbon footprint, carbon emissions, sustainable , carbon offset, environmental, CSR, cause marketing
 Requires at least: 4.0
@@ -16,7 +16,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 **Give your customers the chance to shop carbon neutral**
 
-South Pole is the number one carbon offset provider worldwide. We have been busy making the world a better place since 2006. Download our plug-in to join the movement. 
+South Pole's e-commerce solution empowers organisations to seize the opportunities climate change presents and to mitigate climate-related risks. Download our plug-in to join the movement. 
 
 **What will SouthPole do for my company?**
 * Give your customers the chance to offset their emissions. 
@@ -75,9 +75,9 @@ We gather as little data as possible, specifically:
 
 == Screenshots ==
 
-1. The South Pole button and info-hover as it is presented to users
+1. The South Pole button integrated in the checkout screen
 
-2. An overview that includes the checkout screen
+2. An overview that show our info-hover as it is presented to users
 
 == Changelog ==
 

@@ -1,7 +1,7 @@
 webserver:
    container_name: woocommerce
-   image: julianxhokaxhiu/docker-woocommerce
-   #image: tatemz/wp-cli
+   # image: julianxhokaxhiu/docker-woocommerce
+   image: tatemz/wp-cli
    environment:
     WORDPRESS_DB_USER: wordpress
     WORDPRESS_DB_PASSWORD: wordpress
