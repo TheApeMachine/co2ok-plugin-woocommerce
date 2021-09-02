@@ -486,14 +486,27 @@ var Co2ok_JS = function () {
 
             });
 
-            jQuery('body').on("touchstart",function(e) {
-
-              if((!_this.modalRegex(e)) || (jQuery(e.target).hasClass("exit-area"))){
-                _this.hideInfoBox();
-              }
-              else {
-                _this.ShowInfoBox();
-              }
+            let documentClick;
+            $('body').on('touchstart', function() {
+                documentClick = true;
+            });
+            $('body').on('touchmove', function() {
+                documentClick = false;
+            });
+            $('body').on('click touchend', function(e) {
+                if (e.type == "click") documentClick = true;
+                if (documentClick){
+                    element_id = _this.modalRegex(e);
+                    if (element_id === '.co2ok-hovercard-exit') {
+                        //prevents opening of cart on closing of hovercards
+                        if (e.detail === 1) {
+                            e.stopImmediatePropagation();
+                            _this.hideInfoBox();
+                        }
+                    } else if (element_id) {
+                        _this.ShowInfoBox();
+                    }
+                }
             });
 
             if(!co2ok_global.IsMobile())
