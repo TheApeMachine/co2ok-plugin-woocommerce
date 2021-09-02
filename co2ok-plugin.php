@@ -1,12 +1,11 @@
 <?php
 /**
- * Plugin Name: CO2ok for WooCommerce
+ * Plugin Name: South Pole: The offset movement
  *
- * Description: A WooCommerce plugin to integrate CO2ok
+ * Description: A WooCommerce plugin to integrate South Pole
  *
- * Plugin URI: https://github.com/Mil0dV/co2ok-plugin-woocommerce
- * GitHub Plugin URI: Mil0dV/co2ok-plugin-woocommerce
- * Version: 1.0.9.1
+ * Plugin URI: https://south-pole.com
+ * Version: 1.0.0
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.7.2
@@ -16,8 +15,9 @@
  * Milo de Vries,
  * Chris Fuller,
  * Ryan George,
- * Michiel van Tienhoven
+ * Michiel van Tienhoven,
  * Jessica D. Smith
+ * Mark van Houtert
  * Text Domain: co2ok-for-woocommerce
  * Author URI: http://www.co2ok.eco/
  * License: GPLv2
@@ -132,7 +132,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.9.1';
+    const VERSION = '1.0.0.0';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -526,7 +526,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                     Co2ok_Plugin::registerMerchant();
 
                     // Set optimal defaults
-                    update_option('co2ok_widgetmark_footer', 'on');
+                    // update_option('co2ok_widgetmark_footer', 'on');
                     update_option('co2ok_checkout_placement', 'checkout_order_review');
                 }
 
@@ -578,10 +578,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
                 add_action( 'update_merchant_cron_hook', array($this, 'updateMerchant' ));
 
-                $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'off');
-                if ($co2ok_widgetmark_footer == 'on') {
-                    add_action('wp_footer', array($this, 'co2ok_footer_widget'));
-                }
+                // $co2ok_widgetmark_footer = get_option('co2ok_widgetmark_footer', 'off');
+                // if ($co2ok_widgetmark_footer == 'on') {
+                //     add_action('wp_footer', array($this, 'co2ok_footer_widget'));
+                // }
 
         }
         else
@@ -636,8 +636,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     final public function co2ok_javascript()
     {
-        wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok.js', null, null, true);
-        // wp_register_script('co2ok_js_cdn', 'https://s3.eu-central-1.amazonaws.com/co2ok-static/co2ok-test.js', null, null, true);
+        wp_register_script('co2ok_js_cdn', plugins_url('js/co2ok.js', __FILE__).'?plugin_version='.self::VERSION);;
         // wp_register_script('co2ok_js_cdn', 'http://localhost:8080/co2ok.js', null, null, true);
 
         //only loads middleware JS if on cart, checkout or a woocommerce page
@@ -1155,7 +1154,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         $percentage_old = $shown_old_count / ($order_count - $shown_old_count);
         $percentage = $shown_count / $hidden_count;
 
-        echo("A/B results (shown/hidden/total): " . $shown_count .", ".  $hidden_count .", ". $ab_order_count . "<br>");
+        echo(esc_html("A/B results (shown/hidden/total): " . $shown_count .", ".  $hidden_count .", ". $ab_order_count . "<br>"));
 
         sleep(30);
 
@@ -1171,45 +1170,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         return $schedules;
     }
 
-    final public function co2ok_register_shortcodes() {
-        add_shortcode('co2ok_widgetmark', array($this, 'co2ok_widgetmark_shortcode'));
-        add_shortcode('co2ok_widget', array($this, 'co2ok_widget_shortcode'));
-    }
-
-    final public function co2ok_widgetmark_shortcode() {
-        $code = get_option('co2ok_code');
-        $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
-
-        $widget_code =
-        '<div id="widgetContainer" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
-        // '<script src="http://localhost:8080/widget/co2okWidgetMark.js" ' .
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
-        'defer div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
-
-        return $widget_code;
-    }
-
-    final public function co2ok_widget_shortcode($atts = []){
-
-        // override default attributes with user attributes
-        $co2ok_atts = shortcode_atts([
-            'size' => 'XL',
-            'color' => 'default',
-        ], $atts);
-
-        $code = get_option('co2ok_code');
-        $size = $co2ok_atts['size'];
-        $color = $co2ok_atts['color'];
-        $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
-
-        $widget_code =
-        '<div id="widgetContainerXL" style="width:auto;height:auto;display:flex;flex-direction:row;align-items:center;margin-top: 5px;"></div>'.
-        // '<script src="http://localhost:8080/widget/co2okWidgetXL.js" ' .
-        '<script src="https://co2ok.eco/widget/co2okWidgetXL-' . $code . '.js" ' .
-        'defer div="widgetContainerXL" merchantId=' . $code . ' widgetSize="' . $size . '" widgetColor="' . $color . '" lang="' . $lang . '"></script>';
-
-        return $widget_code;
-    }
 
     final public function rutime($ru, $rus, $index) {
         return ($ru["ru_$index.tv_sec"]*1000 + intval($ru["ru_$index.tv_usec"]/1000))
@@ -1275,28 +1235,6 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     }
 
-    final public function co2ok_footer_widget() {    
-        $code = get_option('co2ok_code');
-        $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
-
-        /*
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
-        '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
-        */
-        
-        $footer_code =
-        '<script>jQuery("footer").find("div").first().append(\'' . 
-        '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>' .
-        '\' );</script>';
-        
-        $widget_js = 
-        // '<script src="http://localhost:8080/widget/co2okWidgetMark.js" ' .
-        '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
-        'async div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';
-
-        echo $footer_code;
-        echo $widget_js;
-    }
 
 }
 endif; //! class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' )

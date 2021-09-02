@@ -117,7 +117,7 @@
 
             <div class="projects-wrapper default-info-hovercard">
                 <p class="default-projects projects-text default-info-hovercard">
-                    <?php echo __('CO2OK supports several carbon offset projects coordinated by Atmosfair and FairClimateFund. These are certified with the CDM Gold Standard, the strictest standard for climate protection projects.',  'co2ok-for-woocommerce' );?>
+                    <?php echo __('South Pole supports several carbon offset projects. These projects are certified with the CDM Gold Standard, the strictest standard for climate protection projects.',  'co2ok-for-woocommerce' );?>
                 </p>
                 <?php echo co2ok_plugin_woocommerce\Components\Co2ok_HelperComponent::RenderImage('images/co2-projects.png', 'default-projects-image default-info-hovercard', 'a3-notlazy'); ?>
                 <p class="co2-image-description default-info-hovercard">

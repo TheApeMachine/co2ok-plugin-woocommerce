@@ -47,49 +47,68 @@ class Co2ok_AdminOverview
         add_menu_page( 'Co2ok Plugin Page', 'CO&#8322;ok Plugin', 'manage_options', 'co2ok-plugin', array($this, 'co2ok_plugin_admin_overview'));
     }
 
+    function validate_setting_input($setting, $input)
+    {
+      $returnValue = '';
+      if ($setting == 'co2ok_optout' || 'co2ok_gif_feature' || 'co2ok_ab_research') {
+        if ($input == 'on' || $input == 'off') {
+          $returnValue = $input; 
+        } else {
+          $returnValue = 'off';
+        }
+      } else if ($setting == 'co2ok_checkout_placement') {
+        if ($input == 'after_order_notes' || 'before_checkout_form' || 'checkout_before_customer_details' || 'after_checkout_billing_form' || 'checkout_order_review') {
+          $returnValue = $input;
+        } else {
+          $returnValue = 'checkout_order_review';
+        }
+      }
+      return $returnValue;
+    }
+
     function co2ok_plugin_admin_overview()
     {
         // Receives Post from Plugin-Settings in the browser and updates 
         // the state of the co2ok button style to WP database
-        if (isset($_POST['co2ok_button_template'])) {
-            update_option('co2ok_button_template', $_POST['co2ok_button_template']);
-        }
+        // if (isset($_POST['co2ok_button_template'])) {
+        //     update_option('co2ok_button_template', $_POST['co2ok_button_template']);
+        // }
 
-        if (isset($_POST['co2ok_statistics']))
-        {
-            update_option('co2ok_statistics', 'on');
-        }
+        // if (isset($_POST['co2ok_statistics']))
+        // {
+        //     update_option('co2ok_statistics', 'on');
+        // }
 
-        if (isset($_POST['co2ok_optout']))
-        {
-            update_option('co2ok_optout', $_POST['co2ok_optout']);
-        }
-        if (isset($_POST['co2ok_cfp']))
-        {
-            update_option('co2ok_cfp', $_POST['co2ok_cfp']);
-        }
+        // if (isset($_POST['co2ok_optout']))
+        // {
+        //     update_option('co2ok_optout', $this->validate_setting_input('co2ok_optout', sanitize_key($_POST['co2ok_optout'])));
+        // }
+        // if (isset($_POST['co2ok_cfp']))
+        // {
+        //     update_option('co2ok_cfp', $_POST['co2ok_cfp']);
+        // }
         if (isset($_POST['co2ok_gif_feature']))
         {
-            update_option('co2ok_gif_feature', $_POST['co2ok_gif_feature']);
+            update_option('co2ok_gif_feature', $this->validate_setting_input('co2ok_gif_feature', sanitize_key($_POST['co2ok_gif_feature'])));
         }
         if (isset($_POST['co2ok_ab_research']))
         {
-            update_option('co2ok_ab_research', $_POST['co2ok_ab_research']);
+            update_option('co2ok_ab_research', $this->validate_setting_input('co2ok_ab_research', sanitize_key($_POST['co2ok_ab_research'])));
         }
-        if (isset($_POST['co2ok_widgetmark_footer']))
-        {
-            update_option('co2ok_widgetmark_footer', $_POST['co2ok_widgetmark_footer']);
-        }
+        // if (isset($_POST['co2ok_widgetmark_footer']))
+        // {
+        //     update_option('co2ok_widgetmark_footer', $_POST['co2ok_widgetmark_footer']);
+        // }
 
-        if (isset($_POST['co2ok_checkout_placement']))
-        {
-            update_option('co2ok_checkout_placement', $_POST['co2ok_checkout_placement']);
-        }
+        // if (isset($_POST['co2ok_checkout_placement']))
+        // {
+            // update_option('co2ok_checkout_placement', $this->validate_setting_input('co2ok_checkout_placement', sanitize_key($_POST['co2ok_checkout_placement'])));
+        // }
 
-        if (isset($_GET['co2ok_disable_button_on_cart']))
-        {
-            update_option('co2ok_disable_button_on_cart', $_GET['co2ok_disable_button_on_cart']);
-        }
+        // if (isset($_GET['co2ok_disable_button_on_cart']))
+        // {
+        //     update_option('co2ok_disable_button_on_cart', $_GET['co2ok_disable_button_on_cart']);
+        // }
 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
