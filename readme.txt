@@ -3,10 +3,10 @@ Contributors: CO2ok
 Donate link: http://southpole.com/
 Tags: climate neutral, sustainability, carbon offsetting, Green, CO2 footprint, carbon footprint, carbon emissions, sustainable , carbon offset, environmental, CSR, cause marketing
 Requires at least: 4.0
-Tested up to: 5.7.0
+Tested up to: 5.8.2
 Requires PHP: 5.5
-WC tested up to: 5.1.0
-Stable tag: 1.0.0
+WC tested up to: 5.8.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,9 @@ We gather as little data as possible, specifically:
 2. An overview that show our info-hover as it is presented to users
 
 == Changelog ==
+
+= 1.0.1 =
+* Bugfix: ensures using the SP theme
 
 = 1.0.0 =
 * Initial release

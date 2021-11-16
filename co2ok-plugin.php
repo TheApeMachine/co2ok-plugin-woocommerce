@@ -5,7 +5,7 @@
  * Description: A WooCommerce plugin to integrate South Pole
  *
  * Plugin URI: https://south-pole.com
- * Version: 1.0.0
+ * Version: 1.0.1
  *         (Remember to change the VERSION constant, below, as well!)
  *
  * Tested up to: 5.7.2
@@ -132,7 +132,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
     /**
      * This plugin's version
      */
-    const VERSION = '1.0.0.0';
+    const VERSION = '1.0.1.0';
 
     static $co2okApiUrl = "https://test-api.co2ok.eco/graphql";
 
@@ -426,6 +426,10 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                  */
                 $co2ok_checkout_placement = get_option('co2ok_checkout_placement', 'after_order_notes');
 
+                // Set South Pole theme
+                if(get_option('co2ok_button_template') != 'co2ok_button_template_south_pole')
+                    update_option('co2ok_button_template', 'co2ok_button_template_south_pole');
+
                 if ($ab_research == 'on') {
                     add_action('woocommerce_checkout_update_order_meta',function( $order_id, $posted ) {
                         $order = wc_get_order( $order_id );
@@ -563,7 +567,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
                 }
                 add_action( 'co2ok_impact_cron_hook', array($this, 'co2ok_calculate_impact' ));
 
-                add_action('init', array($this, 'co2ok_register_shortcodes'));
+                // add_action('init', array($this, 'co2ok_register_shortcodes'));
 
                 if ($ab_research == 'on') {
                     if ( ! wp_next_scheduled( 'co2ok_ab_results_cron_hook' ) ) {
