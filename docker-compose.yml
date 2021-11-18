@@ -1,29 +1,60 @@
-webserver:
-   container_name: woocommerce
-   image: julianxhokaxhiu/docker-woocommerce
-   #image: tatemz/wp-cli
-   environment:
-    WORDPRESS_DB_USER: wordpress
-    WORDPRESS_DB_PASSWORD: wordpress
-    WP_DEBUG: 'true'
-   links:
-    - dbserver:mysql
-   ports:
-    - 8080:80
-   volumes:
-    - ./:/var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/
-    - ./upload.ini:/usr/local/etc/php/conf.d/uploads.ini
+version: '3.7'
 
-dbserver:
-   container_name: woo_mariadb
-   image: mysql:5.7
-   environment:
-    MYSQL_ROOT_PASSWORD: somewordpress
-    MYSQL_DATABASE: wordpress
-    MYSQL_USER: wordpress
-    MYSQL_PASSWORD: wordpress
-   ports:
-    - 3307:3306
-   volumes:
-    - ./db:/var/lib/mysql
-    - ./db-conf:/etc/mysql/conf.d
+volumes:
+  wordpress-data: {}
+  db-data: {}
+
+services:
+  wordpress:
+    container_name: wordpress
+    image: wordpress
+    #image: julianxhokaxhiu/docker-woocommerce
+    #image: tatemz/wp-cli
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www/html/wp-content/plugins/co2ok-plugin-woocommerce/
+      - ./upload.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - wordpress-data:/var/www/html
+
+  cli:
+    container_name: cli
+    image: wordpress:cli
+    command: wp plugin install woocommerce --path=/var/www/html
+    environment:
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_HOST: mysql
+    user: "33"
+    links:
+      - mysql
+    depends_on:
+      - mysql
+      - wordpress
+    volumes:
+      - wordpress-data:/var/www/html
+    working_dir: /var/www/html
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    ports:
+      - 3306:3306
+    volumes:
+      - db-data:/var/lib/mysql
+      # - ./db:/var/lib/mysql
+      # - ./db-conf:/etc/mysql/conf.d
