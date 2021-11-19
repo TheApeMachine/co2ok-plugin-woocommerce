@@ -1,16 +1,29 @@
-var co2ok_temp_global = document.querySelector('.co2ok_global_temp');
+import Global from './globals.js';
+import Meta from './lib/meta.js';
+import Conditional from './helpers/style_classes.js';
+import Buttons from './helpers/buttons.js';
+import InfoBox from './models/infobox.js';
+import Refresh from './handlers/refresh.js';
 
-if(document.querySelector('.qty') != null && document.querySelector(
-  '.compensation_amount_default'
-) != null) {
-  defaultButton();
-} else if(document.querySelector('.qty') != null && document.querySelector(
-  '.compensation_amount_minimal') != null
-) {
-  minimumButton();
+const co2ok_global = new Global();
+const co2ok_temp_global = document.querySelector('.co2ok_global_temp');
+const buttons = new Buttons([
+  ['.qty', '.comp_amount_label_default', new Meta('defaultButton')],
+  ['.qty', '.comp_amount_label_minimal', new Meta('minimumButton')]
+]);
+const infobox = new InfoBox(co2ok_global);
+const conditional = new Conditional();
+const refresh = new Refresh();
+
+function modalRegex(e) {
+  return conditional.has_classes(e, [
+    "svg-img", "svg-img-large", "text-block", "inner-wrapper", 
+    "co2ok_info", "co2ok_info_hitarea", "co2ok_infobox_container", "cfp-hovercard",
+    "default-info-hovercard", "hover-link"
+  ]);
 }
 
-var Co2ok_JS = function () {
+var Co2ok_JS = function() {
   var image_url = plugin.url;
 
   function getBackground(jqueryElement) {
@@ -37,9 +50,8 @@ var Co2ok_JS = function () {
         return;
       }
 
-      this.RegisterBindings();
-      this.RegisterInfoBox();
-      this.RegisterRefreshHandling();
+      infobox.register(modalRegex)
+      refresh.do()
 
       var _this = this;
 
@@ -98,92 +110,10 @@ var Co2ok_JS = function () {
       );
     },
 
-    RegisterBindings: function() {
-      jQuery('#co2ok_cart').click(function (event) {
-        if (!(jQuery(this).is(":checked"))) {
-          jQuery("#co2ok_logo").attr("src", image_url + '/logo.svg');
-          hideVideoRewardBox();
-        }
-
-        if(jQuery(this).is(":checked")) {
-          jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
-
-          if (jQuery(".co2ok_videoRewardBox_container").length) {
-            placeVideoRewardBox();
-            showVideoRewardBox();
-
-            jQuery('#co2ok_videoReward').on('ended',function(){
-              hideVideoRewardBox();
-            });
-          }
-
-          handle_checkout_styles();
-        }
-
-
-        jQuery('.woocommerce-cart-form, .woocommerce form').find(
-          'input.qty'
-        ).first().unbind();
-
-        jQuery('.woocommerce-cart-form, .woocommerce form').find(
-          'input.qty'
-        ).first().bind('change', function() {
-          // This timeout it to prevent multiple ajax calls when a user clicks multiple 
-          // times (e.g. from 1 to 5 apples).
-          // TODO: Would this be more robust setting a flag and unsetting when the ajax call
-          // returns or errors out?
-          setTimeout(function() {
-            jQuery("[name='update_cart']").trigger("click");
-          },200);
-        });
-
-        setTimeout(function() {
-          jQuery('body').trigger('update_checkout');
-
-          // Prevent update cart firing on cart+checkout pages.
-          if (!jQuery('form.checkout').length) {
-            // This fixes fee adding for shops with a disabled update cart button.
-            jQuery("[name='update_cart']").removeAttr("disabled").trigger("click");
-            jQuery("[name='update_cart']").trigger("click");
-          }
-        }, 200);
-
-        jQuery('.woocommerce-cart-form').find('input.qty').first().trigger("change");
-      }); // TODO: hmm, we're a little deep in the weeds here, can't even see the opener.
-
-      jQuery('#co2ok_cart, #checkbox_label, .co2ok_checkbox_container').click(function(event) {
-        if(!jQuery(this).is("#co2ok_cart")) {
-          jQuery("[id='co2ok_cart']").trigger("click");
-        }
-
-        event.stopPropagation();
-      }).find('.co2ok_info_hitarea').click(function (event) {
-        event.stopPropagation();
-      })
-    },
-
-    placeInfoBox:    placeInfoBox(),
-    showInfoBox:     showInfoBox(),
-    hideInfoBox:     hideInfoBox(),
-    registerInfoBox: registerInfoBox(),
-
-    modalRegex: has_classes(e, [
-      "svg-img", "svg-img-large", "text-block", "inner-wrapper", 
-      "co2ok_info", "co2ok_info_hitarea", "co2ok_infobox_container", "cfp-hovercard",
-      "default-info-hovercard", "hover-link"
-    ]),
-
-    registerRefreshHandling: function() {
-      // Some shops actually rerender elements such as our button upon cart update
-      // this ofc breaks our bindings.
-      jQuery(document.body).on('updated_cart_totals', function() {
-        // detect if elements are bound:
-        if (!jQuery._data(jQuery('.co2ok_checkbox_container').get(0), "events")) {
-          console.log('Rebinding CO2ok')
-          Co2ok_JS().RegisterBindings()
-        }
-      });
-    },
+    placeInfoBox:    infobox.place(modalRegex),
+    showInfoBox:     infobox.show(modalRegex),
+    hideInfoBox:     infobox.hide(modalRegex),
+    registerInfoBox: infobox.register(modalRegex),
 
     getCookieValue: function (a) {
       var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
@@ -196,18 +126,13 @@ jQuery(document).ready(function() {
   // Checks wether A/B testing is enabled and dis/en-ables JS accordingly and removes 
   // the co2ok button.
   if (
-    Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 
-    && !Co2ok_JS().getCookieValue('co2ok_ab_hide')
+    Co2ok_JS().getCookieValue('co2ok_ab_enabled') == 1 && !Co2ok_JS().getCookieValue('co2ok_ab_hide')
   ) {
     var future = new Date();
     future.setTime(future.getTime() + 30 * 24 * 3600 * 1000);
 
     var random_A_or_B = Math.round(Math.random());
-    document.cookie = "co2ok_ab_hide=" + 
-      random_A_or_B + 
-      "; expires=" + 
-      future.toUTCString() + 
-      "; path=/";
+    document.cookie = "co2ok_ab_hide=" + random_A_or_B + "; expires=" + future.toUTCString() + "; path=/";
   }
 
   if (

@@ -1,51 +1,69 @@
-function minimumButton() {
-  var cad_minimal = document.querySelector('.compensation_amount_minimal');
-  var make_minimal = document.querySelector('.make_co2ok_global');
-  var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
-  var comp_amount_label_minimal = document.querySelector('.comp_amount_label_minimal');
-  var co2ok_info_hitare_minimal = document.querySelector('.co2ok_payoff_minimal');
-  var inner_border_minimal = document.querySelector('.inner_comp_amount_label_minimal');
+import Logo from '../styles.js';
 
-  //removes spaces in compensataion amount
-  cad_minimal.innerText = cad_minimal.innerText.replace(/\\t|\\n|\\(?=")/g, '');
-  var cad_length_minimal = cad_minimal.innerText.length;
+export default class Buttons {
 
-  //changes style relative to length of compensation
-  if (cad_length_minimal > 10) {
+  // Pass in conditions as an array of arrays which hold the two style classes
+  // we want to check being not null and a function as a string value which is
+  // constructed with the Meta class to actually return a callable method.
+  constructor(conditions) {
+    this.logo = new Logo();
 
-    var relative_font_size = Math.floor(14 - cad_length_minimal / 12);
-    var relative_size_diff = 12 - relative_font_size;
+    // Loop over the inner arrays to `search` for the button we can render.
+    conditions.forEach(item => {
+      console.log(item);
 
-  } else if (cad_length_minimal > 7) {
-
-    var relative_font_size = Math.floor(14 - cad_length_minimal / 14);
-    var relative_size_diff = 14 - relative_font_size;
-
+      if (document.querySelector(item[0]) != null && document.querySelector(item[1]) != null) {
+        // Call our Meta method.
+        item[2]()();
+      }
+    });
   }
 
-  if (cad_length_minimal > 7) {
+  minimumButton() {
+    console.log('minimumButton()');
 
-    cad_minimal.style.fontSize = relative_font_size - relative_size_diff + 'px';
-    make_minimal.style.fontSize = relative_font_size - relative_size_diff + 3 + 'px';
-    co2ok_logo_minimal.style.width = 45 - relative_size_diff + 'px';
-    comp_amount_label_minimal.style.left = '135px';
-    comp_amount_label_minimal.style.width = 70 + cad_length_minimal + 'px';
-    inner_border_minimal.style.width = 65 + cad_length_minimal + 'px';
-    co2ok_info_hitare_minimal.style.paddingLeft = cad_length_minimal * 2 + 'px';
-    co2ok_info_hitare_minimal.style.marginTop = '-3px';
+    var cad_minimal = document.querySelector('.compensation_amount_minimal');
+    var make_minimal = document.querySelector('.make_co2ok_global');
+    var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
+    var comp_amount_label_minimal = document.querySelector('.comp_amount_label_minimal');
+    var co2ok_info_hitare_minimal = document.querySelector('.co2ok_payoff_minimal');
+    var inner_border_minimal = document.querySelector('.inner_comp_amount_label_minimal');
 
+    //removes spaces in compensataion amount
+    cad_minimal.innerText = cad_minimal.innerText.replace(/\\t|\\n|\\(?=")/g, '');
+    var cad_length_minimal = cad_minimal.innerText.length;
+
+    //changes style relative to length of compensation
+    if (cad_length_minimal > 10) {
+      var relative_font_size = Math.floor(14 - cad_length_minimal / 12);
+      var relative_size_diff = 12 - relative_font_size;
+    } else if (cad_length_minimal > 7) {
+      var relative_font_size = Math.floor(14 - cad_length_minimal / 14);
+      var relative_size_diff = 14 - relative_font_size;
+    }
+
+    if (cad_length_minimal > 7) {
+      cad_minimal.style.fontSize = relative_font_size - relative_size_diff + 'px';
+      make_minimal.style.fontSize = relative_font_size - relative_size_diff + 3 + 'px';
+      co2ok_logo_minimal.style.width = 45 - relative_size_diff + 'px';
+      comp_amount_label_minimal.style.left = '135px';
+      comp_amount_label_minimal.style.width = 70 + cad_length_minimal + 'px';
+      inner_border_minimal.style.width = 65 + cad_length_minimal + 'px';
+      co2ok_info_hitare_minimal.style.paddingLeft = cad_length_minimal * 2 + 'px';
+      co2ok_info_hitare_minimal.style.marginTop = '-3px';
+    }
+  }
+
+  defaultButton() {
+    console.log('defaultButton()');
+
+    var make, cad, co2ok_logo = this.get_make_cad_logo()
+
+    // Removes spaces from compensataion amount.
+    cad.innerText = cad.innerText.replace(/\s+/g, '');
+
+    // Changes style relative to length of compensation.
+    relative_size_tuple = this.logo.setMarginTop(cad);
+    this.logo.setLogoStyle(cad, make, co2ok_logo, relative_size_tuple)
   }
 }
-
-function defaultButton() {
-  var make, cad, co2ok_logo = get_make_cad_logo()
-
-  // Removes spaces from compensataion amount.
-  cad.innerText = cad.innerText.replace(/\s+/g, '');
-
-  // Changes style relative to length of compensation.
-  relative_size_tuple = setMarginTop(cad);
-  setLogoStyle(cad, make, co2ok_logo, relative_size_tuple)
-}
-
-

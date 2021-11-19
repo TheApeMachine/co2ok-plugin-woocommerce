@@ -641,6 +641,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         }
         wp_register_script('co2ok_js_wp', plugins_url('js/co2ok-plugin.js', __FILE__).'?plugin_version='.self::VERSION);
         wp_enqueue_script('co2ok_js_wp', "", array('jquery'), null, true);
+        add_filter('script_loader_tag', 'add_type_attribute' , 10, 3);
         wp_localize_script('co2ok_js_wp', 'ajax_object',
             array('ajax_url' => admin_url('admin-ajax.php')));
         wp_localize_script('co2ok_js_wp', 'plugin',
@@ -1068,7 +1069,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         'meta_compare' => 'EXISTS',
         );
 
-        // Since Douchezaak has > 2000 orders with some AB and some not, set the correct start date for them 
+        // Since Douchezaak has > 2000 orders with some AB and some not, set the correct start date for them
         if (strpos($site_name, 'douchezaak') !== false) {
             Co2ok_Plugin::remoteLogging(json_encode(["Douchezaak A/B result calculation start"]));
             $args = array(
@@ -1270,7 +1271,7 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
 
     }
 
-    final public function co2ok_footer_widget() {    
+    final public function co2ok_footer_widget() {
         $code = get_option('co2ok_code');
         $lang = strtoupper(substr( get_bloginfo ( 'language' ), 0, 2 ));
 
@@ -1278,13 +1279,13 @@ if ( !class_exists( 'co2ok_plugin_woocommerce\Co2ok_Plugin' ) ) :
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js"></script>'.
         '<script src="http://localhost:8080/widget/co2okWidgetMark.js"></script>'.
         */
-        
+
         $footer_code =
-        '<script>jQuery("footer").find("div").first().append(\'' . 
+        '<script>jQuery("footer").find("div").first().append(\'' .
         '<div id="widgetContainer" style="width:180px;height:auto;display:flex;flex-direction:row;justify-content:center;align-items:center;"></div>' .
         '\' );</script>';
-        
-        $widget_js = 
+
+        $widget_js =
         // '<script src="http://localhost:8080/widget/co2okWidgetMark.js" ' .
         '<script src="https://co2ok.eco/widget/co2okWidgetMark-' . $code . '.js" ' .
         'async div="widgetContainer" merchantId=' . $code . ' widgetColor="default" lang="' . $lang . '"></script>';

@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 
 volumes:
   wordpress-data: {}
@@ -29,12 +29,14 @@ services:
   cli:
     container_name: cli
     image: wordpress:cli
-    command: wp plugin install woocommerce --path=/var/www/html
+    entrypoint: /bin/bash -c
+    command: /tmp/setup/setup.sh
     environment:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_HOST: mysql
-    user: "33"
+      WORDPRESS_ACTIVATE_PLUGINS: "woocommerce"
+    user: "33" # You need this to equalize the user rights with the wordpress container.
     links:
       - mysql
     depends_on:
@@ -42,11 +44,14 @@ services:
       - wordpress
     volumes:
       - wordpress-data:/var/www/html
+      - ./setup.sh:/tmp/setup/setup.sh
     working_dir: /var/www/html
 
   mysql:
     container_name: mysql
     image: mysql
+    cap_add:
+      - SYS_NICE
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress

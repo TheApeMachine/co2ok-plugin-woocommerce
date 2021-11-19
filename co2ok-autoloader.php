@@ -25,19 +25,29 @@ function co2ok_plugin_woocommerce_autoload( $class_name ) {
         if ( !class_exists( $class_name ) )
             include_once( $filepath );
     }
-    else{ 
+    else{
       //  echo "Something went wrong finding the files to include";
     }
 }
 */
 
 /*
- * PHP 5.1.2 < does not have spl_autoload_register 
+ * PHP 5.1.2 < does not have spl_autoload_register
     Fallback for Pre 5.1.2 PHP version
 */
 //if(!function_exists("spl_autoload_register"))
 //{
 
+function add_type_attribute($tag, $handle, $src) {
+    // if not your script, do nothing and return original $tag
+    if ('co2ok_js_wp' !== $handle) {
+        return $tag;
+    }
+
+    // change the script tag by adding type="module" and return it.
+    $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+    return $tag;
+}
 
 if ( !class_exists( 'co2ok_plugin_woocommerce\Components\Admin\Co2ok_AdminOverview' ) )
     require_once( plugin_dir_path( __FILE__ )."/Components/Admin/Co2ok-AdminOverview.php");
