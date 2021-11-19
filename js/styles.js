@@ -23,7 +23,7 @@ export default class Logo {
     }
 
     setLogoStyle(relative_size_tuple) {
-        if (relativeSizeTuple[0] <= 7) {
+        if (relative_size_tuple[0] <= 7) {
             return
         }
 
@@ -33,20 +33,4 @@ export default class Logo {
         this.co2ok_logo.style.width = 45 - relative_size_tuple[2] + 'px';
     }
 
-
-    get_background_color(el) {
-        // Is current element's background color set?
-        var color = el.css("background-color");
-
-        if (color !== "rgba(0, 0, 0, 0)") {
-            return color;
-        }
-
-        if (!el.is("body")) {
-            // Traverse up the DOM chain to find the background.
-            get_background_color(el.parent());
-        }
-
-        return false;
-    }
 }

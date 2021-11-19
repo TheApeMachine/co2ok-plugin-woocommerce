@@ -4,6 +4,8 @@ import Conditional from './helpers/style_classes.js';
 import Buttons from './helpers/buttons.js';
 import InfoBox from './models/infobox.js';
 import Refresh from './handlers/refresh.js';
+import Colors from './colors.js';
+import Product from './models/product.js';
 
 const co2ok_global = new Global();
 const co2ok_temp_global = document.querySelector('.co2ok_global_temp');
@@ -14,6 +16,8 @@ const buttons = new Buttons([
 const infobox = new InfoBox(co2ok_global);
 const conditional = new Conditional();
 const refresh = new Refresh();
+const colors = new Colors();
+const product = new Product();
 
 function modalRegex(e) {
   return conditional.has_classes(e, [
@@ -26,20 +30,6 @@ function modalRegex(e) {
 var Co2ok_JS = function() {
   var image_url = plugin.url;
 
-  function getBackground(jqueryElement) {
-    get_background_color(jqueryElement)
-  }
-
-  function calcBackgroundBrightness($) {
-    return calculate_brightness(getBackground(
-      jQuery("#co2ok_cart")
-    )); //Grab the background colour of the element.
-  }
-
-  function adaptiveTextColor() {
-    adaptiveStyleClass("co2ok_adaptive_color", calcBackgroundBrightness());
-  };
-
   return {
     Init: function () {
       // check .co2ok_checkbox_container div has cfp-selected, if it does, 
@@ -50,8 +40,8 @@ var Co2ok_JS = function() {
         return;
       }
 
-      infobox.register(modalRegex)
-      refresh.do()
+      infobox.register(modalRegex);
+      refresh.do();
 
       var _this = this;
 
@@ -60,9 +50,9 @@ var Co2ok_JS = function() {
           _this.GetPercentageFromMiddleware();
 
           if(co2ok_temp_global.id == 'default_co2ok_temp') {
-            defaultButton();
+            buttons.defaultButton();
           } else {
-            minimumButton();
+            buttons.minimumButton();
           }
         }
 
@@ -88,7 +78,11 @@ var Co2ok_JS = function() {
       if(jQuery("#co2ok_cart").length) { 
         // if the co2ok cart is present, set text and logo based on 
         // background brightness;
-        adaptiveTextColor();
+        colors.adaptiveStyleClass("co2ok_adaptive_color",
+          colors.calculate_brightness(colors.get_background_color(
+            jQuery("#co2ok_cart")
+          ))
+        );
 
         if(calcBackgroundBrightness() > 185) { 
           // Picks logo based on background brightness for minimal button design.
@@ -102,10 +96,10 @@ var Co2ok_JS = function() {
     GetPercentageFromMiddleware: function() {
       var merchant_id = jQuery('.co2ok_container').attr('data-merchant-id');
       var CartData    = {
-        products: build_cart(get_products(), [])
+        products: product.build_cart(product.get_products(), [])
       }
 
-      set_percentage(
+      product.set_percentage(
         CO2ok.getFootprint(merchant_id, CartData)
       );
     },

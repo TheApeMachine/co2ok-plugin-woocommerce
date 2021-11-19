@@ -57,13 +57,10 @@ export default class Buttons {
   defaultButton() {
     console.log('defaultButton()');
 
-    var make, cad, co2ok_logo = this.get_make_cad_logo()
-
     // Removes spaces from compensataion amount.
-    cad.innerText = cad.innerText.replace(/\s+/g, '');
+    this.logo.cad.innerText = this.logo.cad.innerText.replace(/\s+/g, '');
 
     // Changes style relative to length of compensation.
-    relative_size_tuple = this.logo.setMarginTop(cad);
-    this.logo.setLogoStyle(cad, make, co2ok_logo, relative_size_tuple)
+    this.logo.setLogoStyle(this.logo.setMarginTop())
   }
 }
