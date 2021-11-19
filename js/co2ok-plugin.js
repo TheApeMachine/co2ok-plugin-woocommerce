@@ -10,8 +10,8 @@ import Product from './models/product.js';
 const co2ok_global = new Global();
 const co2ok_temp_global = document.querySelector('.co2ok_global_temp');
 const buttons = new Buttons([
-  ['.qty', '.comp_amount_label_default', new Meta('defaultButton')],
-  ['.qty', '.comp_amount_label_minimal', new Meta('minimumButton')]
+  ['.qty', '.compensation_amount_default', 'defaultButton'],
+  ['.qty', '.compensation_amount_minimal', 'minimumButton']
 ]);
 const infobox = new InfoBox(co2ok_global);
 const conditional = new Conditional();
@@ -36,7 +36,7 @@ var Co2ok_JS = function() {
       // button only needs to RegisterInfoBox().
       if (jQuery('.co2ok_container').hasClass('cfp-selected')) {
         jQuery("#co2ok_logo").attr("src", image_url + '/logo_wit.svg');
-        this.RegisterInfoBox();
+        infobox.register(modalRegex);
         return;
       }
 
@@ -60,7 +60,7 @@ var Co2ok_JS = function() {
           compensationAmountTextSize();
         }
 
-        jQuery( document.body ).on( 'updated_cart_totals', function() {
+        jQuery(document.body).on('updated_cart_totals', function() {
           compensationAmountTextSize();
         });
 
@@ -76,20 +76,15 @@ var Co2ok_JS = function() {
       }
 
       if(jQuery("#co2ok_cart").length) { 
-        // if the co2ok cart is present, set text and logo based on 
-        // background brightness;
-        colors.adaptiveStyleClass("co2ok_adaptive_color",
-          colors.calculate_brightness(colors.get_background_color(
-            jQuery("#co2ok_cart")
-          ))
-        );
+        // // if the co2ok cart is present, set text and logo based on 
+        // // background brightness;
+        // colors.adaptiveStyleClass("co2ok_adaptive_color",
+        //   colors.calculate_brightness(colors.get_background_color(
+        //     jQuery("#co2ok_cart")
+        //   ))
+        // );
 
-        if(calcBackgroundBrightness() > 185) { 
-          // Picks logo based on background brightness for minimal button design.
-          jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo.svg');
-        } else {
-          jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo_licht.svg');
-        }
+        jQuery("#co2ok_logo_minimal").attr("src", image_url + '/logo.svg');
       }
     },
 
@@ -103,11 +98,6 @@ var Co2ok_JS = function() {
         CO2ok.getFootprint(merchant_id, CartData)
       );
     },
-
-    placeInfoBox:    infobox.place(modalRegex),
-    showInfoBox:     infobox.show(modalRegex),
-    hideInfoBox:     infobox.hide(modalRegex),
-    registerInfoBox: infobox.register(modalRegex),
 
     getCookieValue: function (a) {
       var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');

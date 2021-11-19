@@ -58,15 +58,15 @@ export default class InfoBox {
     });
 
     jQuery('body').click(function(e) {
-      this.clickOrTouch(_this);
+      _this.clickOrTouch(_this, modalRegex, e);
     });
 
     jQuery('body').on("touchstart",function(e) {
-      this.clickOrTouch(_this);
+      _this.clickOrTouch(_this, modalRegex, e);
     });
 
     if(!this.co2ok_global.is_mobile()) {
-      jQuery(".co2ok_info , .co2ok_info_hitarea").mouseenter(function() {
+      jQuery(".co2ok_info, .co2ok_info_hitarea").mouseenter(function() {
         _this.place();
       });
 
@@ -88,7 +88,7 @@ export default class InfoBox {
     });
   }
   
-  clickOrTouch(_this) {
+  clickOrTouch(_this, modalRegex, e) {
     if((!modalRegex(e)) || (jQuery(e.target).hasClass("exit-area"))) {
       _this.hide(); return;
     }

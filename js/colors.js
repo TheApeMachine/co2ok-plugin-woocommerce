@@ -1,7 +1,7 @@
 export default class Colors {
 
   calculate_brightness(color) {
-    console.log(color);
+    console.log("bright", color);
     var rgb = color.substring(
       color.indexOf("(") + 1, color.lastIndexOf(")")
     ).split(/,\s*/); // Calculate the brightness of the element

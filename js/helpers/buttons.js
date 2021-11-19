@@ -4,24 +4,21 @@ export default class Buttons {
 
   // Pass in conditions as an array of arrays which hold the two style classes
   // we want to check being not null and a function as a string value which is
-  // constructed with the Meta class to actually return a callable method.
+  // going to get called as a method on this object.
   constructor(conditions) {
     this.logo = new Logo();
 
     // Loop over the inner arrays to `search` for the button we can render.
     conditions.forEach(item => {
-      console.log(item);
-
       if (document.querySelector(item[0]) != null && document.querySelector(item[1]) != null) {
-        // Call our Meta method.
-        item[2]()();
+        console.log("found", item[2]);
+        // Call third string as a method on this object.
+        this[conditions[0][2]]();
       }
     });
   }
 
   minimumButton() {
-    console.log('minimumButton()');
-
     var cad_minimal = document.querySelector('.compensation_amount_minimal');
     var make_minimal = document.querySelector('.make_co2ok_global');
     var co2ok_logo_minimal = document.querySelector('.co2ok_logo_minimal');
@@ -55,8 +52,7 @@ export default class Buttons {
   }
 
   defaultButton() {
-    console.log('defaultButton()');
-
+    console.log("here");
     // Removes spaces from compensataion amount.
     this.logo.cad.innerText = this.logo.cad.innerText.replace(/\s+/g, '');
 

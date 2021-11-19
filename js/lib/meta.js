@@ -4,7 +4,7 @@ export default class Meta {
 
   constructor(str) {
     this.cacheWindow();
-    return window.getFunctionFromString(str);
+    return window.getFunctionFromString("this."+str);
   }
 
   cacheWindow() {
