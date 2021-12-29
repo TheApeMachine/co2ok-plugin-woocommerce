@@ -111,11 +111,11 @@ https://po2mo.net/
 
   Commit messages will need be written in present tense like this:
 
-  ❌ "Fix error messages"
+  ❌ "Fix error messages" (Does anyone want me to reverse those icons for them so that they're in the right order?)
 
   And not like this:
 
-  ✅ "Fixed error messages"
+  ✅ "Fixed error messages" (Or do we like [Conway](https://en.wikipedia.org/wiki/Conway%27s_law) too much for that?)
 
 ## License
 
